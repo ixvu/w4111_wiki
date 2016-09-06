@@ -25,6 +25,33 @@ There are multiple ways to contribute:
 * add figures to clarify concepts
 * add relevant references
 
+Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged.
+
+* LX: TOPIC (YOUR GITHUB USERNAME)
+* L2: Entity-Relationship Modeling
+* L3: Entity-Relationship Modeling
+* L4: Relational Model
+* L5: Relational Model
+* L6: Relational Model
+* L7: Relational Algebra
+* L8: Relational Algebra
+* L9: Relational Algebra
+* L10: SQL
+* L11: SQL
+* L12: SQL
+* L15: APIs
+* L16: Normalization
+* L17: Normalization
+* L18: Physical Design
+* L19: Physical Design
+* L20: Query Processing
+* L21: Query Processing
+* L22: Transaction Processing
+* L23: Transaction Processing
+* L24: Guest Lecture/Review
+
+
+
 ### Credit
 
 Extra credit may be earned for contributing to the scribe notes.  The credit will be assigned subjectively based on the quality and value of the written notes, and the amount that you contribute.  The most important aspect is that the edits are concrete contributions.  Some rough guidelines are the following:
