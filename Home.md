@@ -25,6 +25,8 @@ There are multiple ways to contribute:
 * add figures to clarify concepts
 * add relevant references
 
+### Sign Up
+
 Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged.
 
 * LX: TOPIC (YOUR GITHUB USERNAME)
