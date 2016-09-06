@@ -33,7 +33,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L2: Entity-Relationship Modeling
 * L3: Entity-Relationship Modeling
 * L4: Relational Model
-* L5: Relational Model
+* L5: Relational Model (davidkuhta)
 * L6: Relational Model
 * L7: Relational Algebra
 * L8: Relational Algebra
