@@ -2,9 +2,40 @@
 
 The goal of these scribe notes is to eventually create a document that can replace and surpass the expensive textbook.  These notes are meant to supplement the lecture slides, which do not include detailed information nor full examples, and address the issue that the same questions are repeatedly asked on Piazza.
 
+Links to topics
+
+* [[Introduction|intro]]
+* [[ER Models | er]]
+* [[Relational Model | relational-model]]
+* [[Relational Algebra | relational-algebra]]
+* [[SQL | sql]]
+* [[APIs | apis]]
+* [[Normalization | normalization]]
+* [[Physical Design | physical-design]]
+* [[Query Processing | query-proc]]
+* [[Transactions | transactions]]
+
 ## How to Contribute
 
-There are three ways to contribute, 
+There are multiple ways to contribute: 
+
+* sign up to be the primary scribe for a specific lecture 
+* add constructive comments and edits to existing pages
+* add relevant examples (say, on instabase if it is executable) based on discussion in class or on piazza
+* add figures to clarify concepts
+* add relevant references
+
+### Credit
+
+Extra credit may be earned for contributing to the scribe notes.  The credit will be assigned subjectively based on the quality and value of the written notes, and the amount that you contribute.  The most important aspect is that the edits are concrete contributions.  Some rough guidelines are the following:
+
+* >5%: above and beyond what is listed below.
+* 3-5%: write and edit the scribe contents for one lecture.  Of the quality that can be publicly shared and helpful to classmates.
+* <2%: adding new examples, fleshing out ambiguous text, and otherwise improvements on the order of paragraphs.
+* <1%: minor edits (e.g., typos) on the order of sentences
+* <0%: NOOP edits or those that introduce more errors/confusion than they remove.
+
+
 
 ## Primary Scribe Content
 
