@@ -27,7 +27,7 @@ There are multiple ways to contribute:
 
 ### Sign Up
 
-Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged.
+Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged, *particularly* if you are scribing for the same topic..
 
 * LX: TOPIC (YOUR GITHUB USERNAME)
 * L2: Entity-Relationship Modeling
