@@ -53,7 +53,6 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L24: Guest Lecture/Review
 
 
-
 ### Credit
 
 Extra credit may be earned for contributing to the scribe notes.  The credit will be assigned subjectively based on the quality and value of the written notes, and the amount that you contribute.  The most important aspect is that the edits are concrete contributions.  Some rough guidelines are the following:
@@ -74,8 +73,8 @@ You may use the lecture slides as a reference when writing the scribe notes.  Yo
 
 ## Format
 
-Write your notes using LaTeX, with figures in Encapsulated PostScript (generated from xfig or Adobe Illustrator or whatever you want). Start from the provided scribe template, which sets the style.
+Write your notes using Markdown with proper heading, lists, and code blocks.
 
 ## Timing
 
-Scribe notes should be completed and shared with the course staff within 2 days of the lecture.  The course staff will send you comments or schedule a meeting to go over the text.  The staff will make suggestions, you will make a second pass, and submit it.   The goal will be to get the notes out by one week after the corresponding class.
+Scribe notes should be completed and shared with the course staff within 2 days of the lecture.  We encourage scribes to take notes directly in markdown in class and refine it after class.  The course staff will send you comments or schedule a meeting to go over the text.  The staff will make suggestions, you will make a second pass, and submit it.   The goal will be to get the notes out within one week after the corresponding class.
