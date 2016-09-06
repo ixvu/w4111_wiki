@@ -19,7 +19,7 @@ Links to topics
 
 There are multiple ways to contribute: 
 
-* sign up to be the primary scribe for a specific lecture 
+* sign up below to be the primary scribe for a specific lecture 
 * add constructive comments and edits to existing pages
 * add relevant examples (say, on instabase if it is executable) based on discussion in class or on piazza
 * add figures to clarify concepts
