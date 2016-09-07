@@ -30,11 +30,11 @@ There are multiple ways to contribute:
 Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged, *particularly* if you are scribing for the same topic..
 
 * LX: TOPIC (YOUR GITHUB USERNAME)
-* L2: Entity-Relationship Modeling (mayavanand)
+* L2: Entity-Relationship Modeling 
 * L3: Entity-Relationship Modeling
 * L4: Relational Model
 * L5: Relational Model (davidkuhta)
-* L6: Relational Model
+* L6: Relational Model (mayavanand)
 * L7: Relational Algebra
 * L8: Relational Algebra
 * L9: Relational Algebra
