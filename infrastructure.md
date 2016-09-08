@@ -1,0 +1,1 @@
+The page contains instructions and tips for infrastructure used in this course, including instabase, web servers, python, postgreSQL, SQLite, etc.
