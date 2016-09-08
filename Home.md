@@ -15,6 +15,10 @@ Links to topics
 * [[Query Processing | query-proc]]
 * [[Transactions | transactions]]
 
+Additional Topics
+
+* [[Instabase and Assignment Infrastructure |infrastructure]]
+
 ## How to Contribute
 
 There are multiple ways to contribute: 
