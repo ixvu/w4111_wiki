@@ -29,6 +29,8 @@ There are multiple ways to contribute:
 * add figures to clarify concepts
 * add relevant references
 
+**If you contribute, add your name in the [[Contributors|contributors]] page along with a _very_ short description of the contribution**
+
 ### Sign Up
 
 Reserve the lecture that you will scribe for by adding your github username next to the lecture number.  **Do not remove an existing username**  Working together is encouraged, *particularly* if you are scribing for the same topic..
