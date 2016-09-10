@@ -2,7 +2,9 @@ The page contains instructions and tips for infrastructure used in this course, 
 
 ## Instabase Common Errors and Cheat Sheet 
 
-1. When you open a notebook file with Jupyter in [Instabase](https://www.instabase.com), it typically takes ***5-10 seconds*** to setup a container for you and launch the notebook. In some cases though, there might not be enough resource capacity (CPU and Memory)  in the cluster -- in that case [Instabase](https://www.instabase.com) automatically expands the cluster capacity. If launching your notebook requires adding new machines to the cluster -- the time to launch your notebook can be up to ***1-3 minutes***. In no case, it should take more than 3 minutes though.
+1. When you open a notebook file with Jupyter in [Instabase](https://www.instabase.com), it typically takes ***5-10 seconds*** to setup a container for you and launch the notebook.
+
+In some cases though, there might not be enough resource capacity (CPU and Memory)  in the cluster -- in that case [Instabase](https://www.instabase.com) automatically expands the cluster capacity. If launching your notebook requires adding new machines to the cluster -- the time to launch your notebook can be up to ***1-3 minutes***. In no case, it should take more than 3 minutes though.
 
 1. When you load a notebook (open a ipynb or refresh a page) -- please wait for ```Kernel Ready``` before you can run any code in the notebook.
  
