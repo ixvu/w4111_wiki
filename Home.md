@@ -56,7 +56,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L21: Query Processing
 * L22: Transaction Processing
 * L23: Transaction Processing
-* L24: Guest Lecture/Review 
+* L24: Guest Lecture/Review .
 
 
 ### Credit
