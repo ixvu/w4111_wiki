@@ -44,8 +44,8 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L7: Relational Algebra 
 * L8: Relational Algebra
 * L9: Relational Algebra (chjoanna)
-* L10: SQL
-* L11: SQL
+* L10: SQL 
+* L11: SQL (zzhanzzhao)
 * L12: SQL
 * L15: APIs (Wangler)
 * L16: Normalization
