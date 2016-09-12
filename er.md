@@ -65,8 +65,10 @@ Note: set is non-duplicate.
  * foreign key
 
 ## Entity graph representation
-![](http://imgur.com/vef6cXr.jpg)
+![](http://imgur.com/ossbYm7.jpg)
+
 Keys are underlined
+
 Age is not good because age may vary with time. Use birthday instead.
 
 
