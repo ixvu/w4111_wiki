@@ -53,6 +53,20 @@ Task: Design an application to find a product in a supermarket. What's your data
 * Entity Set: a table. Differentiate each entity by a primary key, which is unique.    
 Note: set is non-duplicate.
 
+## Keys
+* unique
+ * candidate key : a unique key 
+ * primary key : a selected candidate key. Of course unique.
+ * composite key : two attributes to make a row unique
+  * flight type + flight date makes a flight unique, ie can be specifically identified
+ * surrogate key : a manually constructed key to identify a row
+  * flight No., ie flight num
+* non-unique
+ * foreign key
+
+
+
+
 
 
  
