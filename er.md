@@ -11,5 +11,8 @@ target in el.lower() will match if there is a substring in el.lower() matches ta
 
 modifying to **target == el.lower()** will get the correct result.
 
+# Lecture 2 Entity-Relationship Model
+## Inconsistencies/ConstraintViolations
+
 
 
