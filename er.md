@@ -58,9 +58,9 @@ Note: set is non-duplicate.
  * candidate key : a unique key 
  * primary key : a selected candidate key. Of course unique.
  * composite key : two attributes to make a row unique
-  * flight type + flight date makes a flight unique, ie can be specifically identified
+   * flight type + flight date makes a flight unique, ie can be specifically identified
  * surrogate key : a manually constructed key to identify a row
-  * flight No., ie flight num
+   * flight No., ie flight num
 * non-unique
  * foreign key
 
