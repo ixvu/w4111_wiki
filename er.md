@@ -7,5 +7,7 @@ target = "single malt scotch"
 
 target in el.lower() will match if there is a substring in el.lower() matches target.
 
-May modify to **target == el.lower()**
+modifying to **target == el.lower()** will get the correct result.
+
+
 
