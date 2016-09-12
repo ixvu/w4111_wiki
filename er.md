@@ -22,6 +22,33 @@ modifying to **target == el.lower()** will get the correct result.
   2. Error may happen if two people own the same bank account.
   3. Error may happen if two people own the same facebook id. Sending messages to wrong friends, etc.
 * unique attribute: email
+
+## It is Hard to Design Applications
+
+Task: Design an application to find a product in a supermarket. What's your data model?
+
+* Product
+  * inStock
+Price
+Categories
+Expration
+Barcode(primary key)
+Name
+Alternates
+Loc 
+Aisle
+Shelf
+Rack
+(Prod, loc)
+User
+Name/pw
+List
+Qty
+Product
+loc
+
+
+
  
 
 
