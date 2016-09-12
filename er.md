@@ -49,8 +49,9 @@ Task: Design an application to find a product in a supermarket. What's your data
 
 ## Could we draw a line to represent the relationship between entities?
 (If you miss something, you may need to redesign the app.)
-* Entity: a row, which may have a set of attributes.
+* Entity: a row, which has a set of attributes.
 * Entity Set: a table. Differentiate each entity by a primary key, which is unique.
+
 Note: set is non-duplicate.
 
 
