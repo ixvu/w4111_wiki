@@ -45,7 +45,10 @@ Task: Design an application to find a product in a supermarket. What's your data
  * List
  * Qty
  * Product
-* loc
+ * loc
+
+## Could we draw a line to represent the relationship between entities?
+(If you miss something, you may need to redesign the app.)
 
 
 
