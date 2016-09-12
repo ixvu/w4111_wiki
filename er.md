@@ -29,23 +29,23 @@ Task: Design an application to find a product in a supermarket. What's your data
 
 * Product
   * inStock
-Price
-Categories
-Expration
-Barcode(primary key)
-Name
-Alternates
-Loc 
-Aisle
-Shelf
-Rack
-(Prod, loc)
-User
-Name/pw
-List
-Qty
-Product
-loc
+  * Price
+  * Categories
+  * Expiration
+  * Barcode(primary key)
+  * Name
+  * Alternates
+* Loc 
+  * Aisle
+  * Shelf
+  * Rack
+* (Prod, loc)
+* User
+ * Name/pw
+ * List
+ * Qty
+ * Product
+* loc
 
 
 
