@@ -116,7 +116,7 @@ Age is not good because age may vary with time. Use birthday instead.
 
 ## Quiz
 ### Diagram an airplane reservation with the following entities: 
-Passenger, Seat
+### Passenger, Seat
 
 * Answer
  * A passenger can book many seats AND a seat has at most one passenger
