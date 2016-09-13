@@ -2,7 +2,7 @@
 
 # Homework review
 
-![](http://imgur.com/y32u2kN.jpg)
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img1.png)
 
 Note:
 target = "single malt scotch"
