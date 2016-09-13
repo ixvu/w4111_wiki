@@ -4,7 +4,7 @@
 
 target = "single malt scotch"
 
-target in el.lower() will match if there is a substring in el.lower() matches target.
+target in `el.lower()` will match if there is a substring in `el.lower()` matches target.
 
 modifying to **target == el.lower()** will get the correct result.
 
@@ -15,7 +15,7 @@ modifying to **target == el.lower()** will get the correct result.
 
 * duplicate attribute: 
 
-  * Search a author name on DBLP, the site for computer science publications. You may find different authors with the same name, which is not unique. Therefore, we call this as Inconsistencies.
+  * Search a author name on [dblp](http://dblp.uni-trier.de/), the site for computer science publications. You may find different authors with the same name, which is not unique. Therefore, we call this as Inconsistencies.
   * Error may happen if two people own the same bank account.
   * Error may happen if two people own the same facebook id. Sending messages to wrong friends, etc.
 
@@ -56,18 +56,31 @@ Note: set is non-duplicate.
  * candidate key : a unique key 
  * primary key : a selected candidate key. Of course unique.
  * composite key : two attributes to make a row unique
-   * airplane number + flight date makes a flight unique, ie can be specifically identified
-   ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/composite%20k.png)
- * surrogate key : a manually constructed key to identify a row
-   * flight number
-   ![](https://github.com/micklinISgood/scribenotes/blob/6e099693fa6d9122cec409edb75b0fabe653fa85/L2/surrogate%20k.png)
+   * airplane number + flight date makes a flight unique, ie can be specifically identified  
+
+      | Airplane Number | Flight Date |
+      | -------------   |:-----------:|
+      | UA 36           | 03 Sep 2016 |
+      | EVA 66          | 04 Sep 2016 |
+      | UA 36           | 04 Sep 2016 |
+      | DEL 7           | 03 Sep 2016 |
+ * surrogate key : a manually constructed key to identify a row  
+   * flight number  
+
+      |Flight Number| Airplane Number | Flight Date |
+      |-------------| -------------   |:-----------:|
+      |1            | UA 36           | 03 Sep 2016 |
+      |2            | EVA 66          | 04 Sep 2016 |
+      |3            | UA 36           | 04 Sep 2016 |
+      |4            | DEL 7           | 03 Sep 2016 |
+
 * non-unique
  * foreign key
 
 ## Entity graph representation
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img7.37.50%20PM.png)
 
-Keys are underlined
+<u>Keys</u> are underlined
 
 Age is not good because age may vary with time. Use birthday instead.
 
