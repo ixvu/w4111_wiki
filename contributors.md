@@ -11,5 +11,6 @@ List of contributors and contributions
   1. sections: homework review, Inconsistencies/ConstraintViolations, It is Hard to Design Applications, Keys, Entity graph representation, Relationships, Quiz
 * George Fisher
   1. Added Relational Model page
-
+* David Kuhta (dk2723)
+  1. L2 - Converted table images to markdown tables, added dblp link
 
