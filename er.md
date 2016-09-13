@@ -99,9 +99,9 @@ Age is not good because age may vary with time. Use birthday instead.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.39.31%20PM.png)
  * Ternary Relationships - Connects three entities
    * A course has at least one user AND at least one assignment
-   * An user has at least one course AND at least one assignment
-   * An assignment has at least one course AND at least one user
-   * Grade not necessarily exists
+    * An user has at least one course AND at least one assignment
+    * An assignment has at least one course AND at least one user
+    * Grade not necessarily exists
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.45%20PM.png)
 
 
