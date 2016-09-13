@@ -4,4 +4,8 @@ List of contributors and contributions
 * Eugene Wu (ew2493)
   1. setup scaffolding for wiki
   1. added example notes in introduction lecture page.
-* _add your name+UNI+contnibutions to the list in the same format_
+* Mick Lin (cl3469)
+  1. scribed L2 ER Models
+  1. supplied Keys definitions
+  1. reflow the relationship and relationship set section
+
