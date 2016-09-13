@@ -1,5 +1,3 @@
-1. L2: Entity-Relationship Modeling(micklinISgood)
-
 # Homework review
 
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img1.png)
