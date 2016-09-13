@@ -71,6 +71,8 @@ Keys are underlined
 Age is not good because age may vary with time. Use birthday instead.
 
 ## Relationships
+* Symbol definition
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.51%20PM.png)
 
 
 
