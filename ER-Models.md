@@ -67,6 +67,7 @@ Note: set is non-duplicate.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img7.37.50%20PM.png)
 
 Keys are underlined
+
 Age is not good because age may vary with time. Use birthday instead.
 
 ## Relationships
