@@ -68,7 +68,6 @@ Note: set is non-duplicate.
 ![](http://imgur.com/ossbYm7.jpg)
 
 Keys are underlined
-
 Age is not good because age may vary with time. Use birthday instead.
 
 
