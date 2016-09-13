@@ -65,16 +65,23 @@ Note: set is non-duplicate.
  * foreign key
 
 ## Entity graph representation
-![](http://imgur.com/ossbYm7.jpg)
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img7.37.50%20PM.png)
 
 Keys are underlined
+
 Age is not good because age may vary with time. Use birthday instead.
 
 ## Relationships
 * Symbol definition
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.51%20PM.png)
-
-
+* Relationship
+ * 1-to-1
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/11.png)
+ * 1-to Many
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/1m.png)
+ * Many-to-Many
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/mm.png)
+* Relationships sets
 
 
 
