@@ -77,7 +77,8 @@ Age is not good because age may vary with time. Use birthday instead.
 * Relationship
  * 1-to-1
  * A course has at most one instructor AND users can instruct at most one course
-![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.28%20PM.png)![](https://github.com/micklinISgood/scribenotes/blob/master/L2/11.png)
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.28%20PM.png)
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/11.png)
  * 1-to Many
 
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/1m.png)
