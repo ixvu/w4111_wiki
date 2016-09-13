@@ -89,8 +89,7 @@ Age is not good because age may vary with time. Use birthday instead.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.22%20PM.png)
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/mm.png)
  * self-loop
-   * Users takes different roles in same relationships set
-   * an user can teach many users AND an user can be taught by many users
+   * Users takes different roles in same relationships set * an user can teach many users AND an user can be taught by many users
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.40.48%20PM.png)
 
 * Relationships sets
