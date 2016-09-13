@@ -106,10 +106,10 @@ Age is not good because age may vary with time. Use birthday instead.
     * A course has exact one instructor
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.01%20PM.png)
  * Weak Entities
-   * A course has at least one user AND at least one assignment
-    * An user has at least one course AND at least one assignment
-    * An assignment has at least one course AND at least one user
-    * Grade not necessarily exists
+   * A weak entity can only be uniquely identified by using the primary key of its owner entity
+    * Owner and weak entity sets must be in one to many relationship set
+    * Weak entity set must have total participation in this identifying relationships set
+    * An user has many wall posts AND a wall post belongs to exact one user. 
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.09%20PM.png)
 
 ## Quiz
