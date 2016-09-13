@@ -41,10 +41,10 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L4: Relational Model
 * L5: Relational Model (davidkuhta)
 * L6: Relational Model (mayavanand)
-* L7: Relational Algebra (cchao595)
+* L7: Relational Algebra
 * L8: Relational Algebra
 * L9: Relational Algebra (chjoanna)
-* L10: SQL 
+* L10: SQL (cchao595)
 * L11: SQL (zzhanzzhao)
 * L12: SQL
 * L15: APIs (Wangler)
