@@ -97,6 +97,9 @@ Age is not good because age may vary with time. Use birthday instead.
  * Relationships sets can have descriptive attributes
    * an user takes a course since when
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.39.31%20PM.png)
+ * Ternary Relationships - Connects three entities
+   * an user takes a course since when
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.45%20PM.png)
 
 
 
