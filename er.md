@@ -76,14 +76,16 @@ Age is not good because age may vary with time. Use birthday instead.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.51%20PM.png)
 * Relationship
  * 1-to-1
- * A course has at most one instructor AND users can instruct at most one course
+  * A course has at most one instructor AND users can instruct at most one course
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.28%20PM.png)
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/11.png)
  * 1-to Many
-
+   * A course has at most one instructor AND users can instruct many courses
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.28%21PM.png)
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/1m.png)
  * Many-to-Many
-
+   * A course has many instructors AND users can instruct many courses
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.28%22PM.png)
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/mm.png)
 * Relationships sets
 
