@@ -101,6 +101,28 @@ Age is not good because age may vary with time. Use birthday instead.
     * An assignment has at least one course AND at least one user
     * Grade not necessarily exists
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.45%20PM.png)
+ * Participation constraints
+   * A course has at least one user AND at least one assignment
+    * An user has at least one course AND at least one assignment
+    * An assignment has at least one course AND at least one user
+    * Grade not necessarily exists
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.01%20PM.png)
+ * Participation constraints
+   * A course has at least one user AND at least one assignment
+    * An user has at least one course AND at least one assignment
+    * An assignment has at least one course AND at least one user
+    * Grade not necessarily exists
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.09%20PM.png)
+
+## Quiz: Diagram an airplane reservation with the following entities:
+* Passenger 
+* Seat
+
+* Answer
+ * A passenger can book many seats AND a seat has at most one passenger
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.38%20PM.png)
+ * A passenger can book at most one seat AND a seat has at most one passenger
+![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.39%20PM.png)
 
 
 
