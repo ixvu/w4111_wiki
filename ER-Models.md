@@ -114,9 +114,9 @@ Age is not good because age may vary with time. Use birthday instead.
     * Grade not necessarily exists
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.09%20PM.png)
 
-## Quiz: Diagram an airplane reservation with the following entities: 
-Passenger 
-Seat
+## Quiz
+### Diagram an airplane reservation with the following entities: 
+Passenger, Seat
 
 * Answer
  * A passenger can book many seats AND a seat has at most one passenger
