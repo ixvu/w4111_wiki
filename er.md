@@ -76,10 +76,13 @@ Age is not good because age may vary with time. Use birthday instead.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.51%20PM.png)
 * Relationship
  * 1-to-1
+
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/11.png)
  * 1-to Many
+
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/1m.png)
  * Many-to-Many
+
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/mm.png)
 * Relationships sets
 
