@@ -8,4 +8,7 @@ List of contributors and contributions
   1. scribed L2 ER Models
   1. supplied Keys definitions
   1. reflow the relationship and relationship set section
+  1. sections: homework review, Inconsistencies/ConstraintViolations, It is Hard to Design Applications, Keys, Entity graph representation, Relationships, Quiz
+
+
 
