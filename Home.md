@@ -38,7 +38,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * LX: TOPIC (YOUR GITHUB USERNAME)
 * L2: Entity-Relationship Modeling
 * L3: Entity-Relationship Modeling (ggfisher)
-* L4: Relational Model
+* L4: Relational Model (leighton613)
 * L5: Relational Model (davidkuhta)
 * L6: Relational Model (mayavanand)
 * L7: Relational Algebra
