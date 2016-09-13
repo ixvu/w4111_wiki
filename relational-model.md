@@ -1,1 +1,1 @@
-# Lecture 3 Relational Models
+# Lecture 3 Relational Model
