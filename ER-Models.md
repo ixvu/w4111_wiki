@@ -2,8 +2,6 @@
 
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img1.png)
 
-Note:
-
 target = "single malt scotch"
 
 target in el.lower() will match if there is a substring in el.lower() matches target.
