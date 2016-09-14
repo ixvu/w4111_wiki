@@ -5,7 +5,7 @@ The goal of these scribe notes is to eventually create a document that can repla
 Links to topics
 
 * [[Introduction|intro]]
-* [[ER Models | er]]
+* [[ER Models | entity-relationship-modeling]]
 * [[Relational Model | relational-model]]
 * [[Relational Algebra | relational-algebra]]
 * [[SQL | sql]]
