@@ -125,6 +125,7 @@ Age is not good because age may vary with time. Use birthday instead.
     * Owner and weak entity sets must be in one to many relationship set
     * Weak entity set must have total participation in this identifying relationships set
     * An user has many wall posts AND a wall post belongs to exact one user. 
+    * If an user is deleted, his/her posts are deleted. 
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.38.09%20PM.png)
 
 ## Quiz
