@@ -53,7 +53,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L18: Physical Design
 * L19: Physical Design
 * L20: Query Processing(YunxuanZhu)
-* L21: Query Processing
+* L21: Query Processing(XZ2581)
 * L22: Transaction Processing
 * L23: Transaction Processing
 * L24: Guest Lecture/Review 
