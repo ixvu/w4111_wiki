@@ -180,6 +180,7 @@ Databases need to provide guarantees, so that you can build applications on them
 For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
 ![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
 ![Add check_unique](https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png)
+
 Ideally, the unique username data guarantee could be enforced in DBMS, because that’s where you store and manage data.
 “DRY” principle you should follow in Computer Science. Don’t copy a lot. It may result in many bugs. That's because when you copy code or other stuff from one place to another, if you changed one of them, the other one will not be changed. 
 
@@ -222,6 +223,7 @@ Association between 2 or more entities. E.g. Alice is taking Intro to Databases.
    * Relationship Set: 
 A collection of all relationships of a particular type. For example,
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png)
+
 Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
 
@@ -231,10 +233,12 @@ The interpretation in this case, is that users can be teachers or students, so u
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
        * Relationships sets can have descriptive attributes.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.4SinceRed.png)
+
 Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
    * Ternary Relationships
 Connected three entities. N-array relationships are possible too.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png)
+
 For example, this ternary relationship can be interpreted as “for a course, and a particular assignment, a user gets graded”. Remember, this relationships set just indicates that it is possible that a user could get graded for specific assignments. It does not mean all users must get graded or all assignments must get graded. That is the difference between the set and an entry of the set.
 
 
@@ -251,6 +255,7 @@ Key constraints define cardinality requirements on relationships
    * One to Many: e.g., a course has at most one instructor.
    * One to One: e.g., a course has at most one instructor and one instructor has at most one course.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.6Many.png)
+
 We could use arrows to represent these constraints. An arrow means “at most one”, with the direction from the end to the arrow. 1-to-many and 1- to-1 cases are shown as follows.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.7Arrows.png)
 
@@ -258,6 +263,7 @@ We could use arrows to represent these constraints. An arrow means “at most on
 e.g. a course needs at least one instructor. In this case, the participation of “Courses” in “Instructs” is total, otherwise (not thick line), it is a partial participation constraint.
 This constraint can be represented by thick line. 
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.8thick.png)
+
 In this case, the thick line with arrow means each course has exactly one instructor, and the thick line without arrow means each course needs to be taken by at least one student.
 Arrows only go inwards to relationship diamond.
 
