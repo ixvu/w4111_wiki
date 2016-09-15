@@ -170,11 +170,13 @@ For example, a typical fortune 100 company has around 10k different information 
 For example, wikipedia seems very simple but turns out to have many databases.
 
  2. Hope to help reduce the possible inconsistencies and data errors in your database.
+
 For example, in DBLP website, there may be different people with the same name duplicates. If the database does not take it into account, this error may be corrected manually, which is expensive. What if your bank account? Or health insurance.
 Google deals with it by telling you the username you chose whether or not has been used by others. 
 Databases need to provide guarantees, so that you can build applications on them. 
 
  3. It is hard to Design Applications.
+
 For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
 ![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
 ![Add check_unique](https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png)
