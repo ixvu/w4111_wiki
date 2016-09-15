@@ -165,6 +165,7 @@ The database could work, but maybe slow. This step is to make it fast.
 
 ##Why do we need Entity-Relationship Model?
  1. Database in real world is incredibly complex. 
+
 For example, a typical fortune 100 company has around 10k different information (data) systems, and 90% of them are relational databases (DBMSes). A typical database has >100 tables and one typical table has 50 – 200 attributes. If you don’t design this in a structural or systematic way, you may end up with many tables but don’t know how to deal with it.
 For example, wikipedia seems very simple but turns out to have many databases.
 
