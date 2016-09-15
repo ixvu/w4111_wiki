@@ -226,9 +226,10 @@ A collection of all relationships of a particular type. For example,
 
 Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
-
        * Users can take different roles in same relationships set. 
+
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
+
 The interpretation in this case, is that users can be teachers or students, so users can teach other users.
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
        * Relationships sets can have descriptive attributes.
@@ -270,6 +271,7 @@ Arrows only go inwards to relationship diamond.
 * Weak Entities
 A weak entity can only be uniquely identified by using the primary key of its owner entity.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.9WeakEntity.png)
+
 In this case, if a user was deleted, the WallPosts will also disappear. That is what “weak entity” means. It cannot exist without the owner “Users”.
 Owner and weak entity sets must be in 1-to-many relationship set. Weak entity set must have total participation in this identifying relationships set.
 Notation summary:
@@ -284,6 +286,7 @@ Add descriptive attributes specific to a subclass.
 Identify entities that participate in a relationship.
  E.g. If you don’t want some attributes of instructors (a subset of Users) belong to Students (another subset of Users), you need a Hierarchy.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.1ISA.png)
+
 In this case, an Instructor does not have a grade. A is a B, Instructors is a Users, Students is a Users.
 
     * Reasons for creating ISA.
@@ -305,14 +308,17 @@ These two constraints can not be expressed in diagram using Syntax for this cour
 Relationships between entities and relationships. This is the case when you want to have relationship with another relationship.
 For example,
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.2Aggregation.png)
+
 A company can donates a particular Amount to a particular Course.
 If you want to treat this donation as an entity, you can use aggregation.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.3Aggre.png)
+
 Dashed box represents “entity” that represents the entire relationship. When considering Instructors manage donations, the Instructor manage donation (the whole relationship) itself, not Course or Companies. But in terms of implementation, the data of Courses or Companies are stored in themselves.
 
    * Why use aggregation?
 Aggregation v.s. Ternary Relationships
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.4WhyAggre.png)
+
 When you want to put constraints on those entities, they apply to all entity sets. For example, If you want courses has exactly one Instructor. But in this case, you put constraints on Companies.
 Manages and Donates are separate ideas, you may want to separate them out.
 
