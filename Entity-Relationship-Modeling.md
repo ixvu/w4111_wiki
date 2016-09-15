@@ -164,18 +164,18 @@ Fix potential problems, normalization. To remove possible inconsistencies and er
 The database could work, but maybe slow. This step is to make it fast.
 
 ##Why do we need Entity-Relationship Model?
-1. Database in real world is incredibly complex. 
+* 1. Database in real world is incredibly complex. 
 
 For example, a typical fortune 100 company has around 10k different information (data) systems, and 90% of them are relational databases (DBMSes). A typical database has >100 tables and one typical table has 50 – 200 attributes. If you don’t design this in a structural or systematic way, you may end up with many tables but don’t know how to deal with it.
 For example, wikipedia seems very simple but turns out to have many databases.
 
-2. Hope to help reduce the possible inconsistencies and data errors in your database.
+* 2. Hope to help reduce the possible inconsistencies and data errors in your database.
 
 For example, in DBLP website, there may be different people with the same name duplicates. If the database does not take it into account, this error may be corrected manually, which is expensive. What if your bank account? Or health insurance.
 Google deals with it by telling you the username you chose whether or not has been used by others. 
 Databases need to provide guarantees, so that you can build applications on them. 
 
-3. It is hard to Design Applications.
+* 3. It is hard to Design Applications.
 
 For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
 ![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
