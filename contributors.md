@@ -16,5 +16,5 @@ List of contributors and contributions
 * Yuedong Wang (yw2931)
   1. Scribed Infrastructure (first version, and was edited by anantb)
   1. Scribed ER Models (detailed version) (around 2000 words).
-  1. Sections include: what is ER model, why we need ER model, basic concepts for ER model (Entity and Entity set, Relationships and Relationships Set, Constraints, ISA Hierarchies, and Aggregation).
+  1. Sections include: what is ER model, why we need ER model, basic concepts for ER model (Entity and Entity set, Relationships and Relationships Set, Constraints, ISA Hierarchies, and Aggregation). Also includes Q&A in class.
 
