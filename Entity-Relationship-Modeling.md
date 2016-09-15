@@ -139,6 +139,103 @@ Age is not good because age may vary with time. Use birthday instead.
 ![](https://github.com/micklinISgood/scribenotes/blob/master/L2/img10.37.39%20PM.png)
 
 
+#Entity Relationship Modeling (detailed version)
+Entity-Relationship (ER) Modeling is very important in the database. This section first introduces the entity-relationship model as part of database design process. Then addresses the reasons that we should use ER model (such as the complexity of databases or reducing possible inconsistencies and data errors). Finally, this section introduces the ER basic concepts such as Entity, Relationships, Constraints, and so forth.
+
+ * What is Entity-Relationship Model?
+ * Why do we need ER Model?
+ * Basic concepts and diagrams of ER Model
+   * Entity and Entity Set
+   * Relationships and Relationships Set
+   * Constraints 
+   * ISA Hierarchies, Aggregation
+
+##What is Entity-Relationship Model?
+For building a new Application, we typically have a few steps, including Requirements, Conceptual Database Design, Logical Design, Schema Refinement and Physical Database Design.
+ * Requirements:
+   When we build an application, we have a few steps. Typically, you will first consider what are you going to build (functionality, features). 
+ * Conceptual Database Design:
+Once you have features, you do Conceptual Database Design (What data you are going to store, and what are the relationships between the data). That is where ER model come from.
+ * Logical Design:
+Formal database schema. Formally implement into the database.
+ * Schema Refinement:
+Fix potential problems, normalization. To remove possible inconsistencies and errors.
+ * Physical Database Design:
+The database could work, but maybe slow. This step is to make it fast.
+
+##Why do we need Entity-Relationship Model?
+ 1. Database in real world is incredibly complex. 
+For example, a typical fortune 100 company has around 10k different information (data) systems, and 90% of them are relational databases (DBMSes). A typical database has >100 tables and one typical table has 50 – 200 attributes. If you don’t design this in a structural or systematic way, you may end up with many tables but don’t know how to deal with it.
+For example, wikipedia seems very simple but turns out to have many databases.
+
+ 2. Hope to help reduce the possible inconsistencies and data errors in your database.
+For example, in DBLP website, there may be different people with the same name duplicates. If the database does not take it into account, this error may be corrected manually, which is expensive. What if your bank account? Or health insurance.
+Google deals with it by telling you the username you chose whether or not has been used by others. 
+Databases need to provide guarantees, so that you can build applications on them. 
+
+ 3. It is hard to Design Applications.
+For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
+![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
+![Add check_unique](https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png)
+Ideally, the unique username data guarantee could be enforced in DBMS, because that’s where you store and manage data.
+“DRY” principle you should follow in Computer Science. Don’t copy a lot. It may result in many bugs. That's because when you copy code or other stuff from one place to another, if you changed one of them, the other one will not be changed. 
+
+##Basic Concepts for ER Modeling
+Basic concepts for ER Modeling includes:
+   * Entity and Entity Set
+   * Relationships and Relationships Set
+   * Constraints 
+   * ISA Hierarchies, Aggregation
+
+1. Entity and Entity Set
+   * Entity:
+An object that is distinguishable from other objects of the same “type”. For example, when it comes to Users, there is difference between Bob and Alice. Each one would be one entity.
+An entity is described as set of attributes and their values.
+Domain of an attribute: set of possible values (e.g. integers for data time).
+You can think an entity as a record in the database.
+
+   * Entity Set:
+A set of all possible entities, each entity is distinguishable with each other. For example, in an Entity Set “courses”, there could not be two same courses, because it violates the definition of “set”. That’s very important.
+All entities have same attributes.
+You can think entity set as a table that contains all the records.
+
+   * Keys:
+How do you distinguish one entity in an entity set. Use a unique key.
+A key is the minimal set of attributes that uniquely identify an entity.
+      * You may have multiple candidate keys. For example, for entity set “User”, both “uid” and “email” are unique and could be the key.
+      * The key may involve multiple attributes. E.g. A class could be identified by both number and section.
+      * Primary key: designated unique identifier. Namely, just pick one key from candidate keys, and take it as a primary key.
+      * Most entities have a key.
+
+   * An Example:
+![Example for Entity](https://github.com/wyd856570831/ScribeNotes/blob/master/3.1.png)
+In this example, keys are underlined.
+Attributes should be invariant to time so that your database will not goes wrong in the future. So “age” is a subtle bug in this example.
+
+
+2. Relationships and Relationships Set
+   * Relationships:
+Association between 2 or more entities. E.g. Alice is taking Intro to Databases.
+   * Relationship Set: 
+A collection of all relationships of a particular type. For example,
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png)
+Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
+In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
+
+       * Users can take different roles in same relationships set. 
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
+The interpretation in this case, is that users can be teachers or students, so users can teach other users.
+You might want to add constrains to this relationship, such as a user cannot teach themselves.
+
+
+
+
+
+
+
+
+
+
 
 
 
