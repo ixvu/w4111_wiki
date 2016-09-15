@@ -237,9 +237,10 @@ You might want to add constrains to this relationship, such as a user cannot tea
 
 Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
    * Ternary Relationships
-Connected three entities. N-array relationships are possible too.
+
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png)
 
+Connected three entities. N-array relationships are possible too.
 For example, this ternary relationship can be interpreted as “for a course, and a particular assignment, a user gets graded”. Remember, this relationships set just indicates that it is possible that a user could get graded for specific assignments. It does not mean all users must get graded or all assignments must get graded. That is the difference between the set and an entry of the set.
 
 
