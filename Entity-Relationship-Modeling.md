@@ -164,18 +164,18 @@ Fix potential problems, normalization. To remove possible inconsistencies and er
 The database could work, but maybe slow. This step is to make it fast.
 
 ##Why do we need Entity-Relationship Model?
- 1. Database in real world is incredibly complex. 
+1. Database in real world is incredibly complex. 
 
 For example, a typical fortune 100 company has around 10k different information (data) systems, and 90% of them are relational databases (DBMSes). A typical database has >100 tables and one typical table has 50 – 200 attributes. If you don’t design this in a structural or systematic way, you may end up with many tables but don’t know how to deal with it.
 For example, wikipedia seems very simple but turns out to have many databases.
 
- 2. Hope to help reduce the possible inconsistencies and data errors in your database.
+2. Hope to help reduce the possible inconsistencies and data errors in your database.
 
 For example, in DBLP website, there may be different people with the same name duplicates. If the database does not take it into account, this error may be corrected manually, which is expensive. What if your bank account? Or health insurance.
 Google deals with it by telling you the username you chose whether or not has been used by others. 
 Databases need to provide guarantees, so that you can build applications on them. 
 
- 3. It is hard to Design Applications.
+3. It is hard to Design Applications.
 
 For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
 ![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
@@ -190,7 +190,7 @@ Basic concepts for ER Modeling includes:
    * Constraints 
    * ISA Hierarchies, Aggregation
 
-1. Entity and Entity Set
+###Basics for ER Modeling - Entity and Entity Set
    * Entity:
 An object that is distinguishable from other objects of the same “type”. For example, when it comes to Users, there is difference between Bob and Alice. Each one would be one entity.
 An entity is described as set of attributes and their values.
@@ -216,7 +216,7 @@ In this example, keys are underlined.
 Attributes should be invariant to time so that your database will not goes wrong in the future. So “age” is a subtle bug in this example.
 
 
-2. Relationships and Relationships Set
+###Basics for ER Modeling - Relationships and Relationships Set
    * Relationships:
 Association between 2 or more entities. E.g. Alice is taking Intro to Databases.
    * Relationship Set: 
@@ -238,7 +238,7 @@ Connected three entities. N-array relationships are possible too.
 For example, this ternary relationship can be interpreted as “for a course, and a particular assignment, a user gets graded”. Remember, this relationships set just indicates that it is possible that a user could get graded for specific assignments. It does not mean all users must get graded or all assignments must get graded. That is the difference between the set and an entry of the set.
 
 
-3. Constraints
+###Basics for ER Modeling - Constraints
 Help avoid corruption and inconsistencies.
      * Key constraints
      * Participation constraints
@@ -269,7 +269,7 @@ Owner and weak entity sets must be in 1-to-many relationship set. Weak entity se
 Notation summary:
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.10Notations.png)
 
-4. ISA Hierarchies， Aggregation
+###Basics for ER Modeling - ISA Hierarchies， Aggregation
 * ISA (is a) Hierarchies
 Inheritance rules similar to programing languages.
 A ISA B: every A also considered as a B. When querying for Bs, must consider As.
