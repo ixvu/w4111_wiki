@@ -226,6 +226,22 @@ In this case, the relationship could be interpreted as users can take courses. H
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
 The interpretation in this case, is that users can be teachers or students, so users can teach other users.
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
+       * Relationships sets can have descriptive attributes.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.4SinceRed.png)
+Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
+   * Ternary Relationships
+Connected three entities. N-array relationships are possible too.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png)
+For example, this ternary relationship can be interpreted as “for a course, and a particular assignment, a user gets graded”. Remember, this relationships set just indicates that it is possible that a user could get graded for specific assignments. It does not mean all users must get graded or all assignments must get graded. That is the difference between the set and an entry of the set.
+
+
+3. Constraints
+Help avoid corruption and inconsistencies.
+    * Key constraints
+    * Participation constraints
+    * Weak entities
+    * Overlap and covering constraints
+
 
 
 
