@@ -237,10 +237,80 @@ For example, this ternary relationship can be interpreted as “for a course, an
 
 3. Constraints
 Help avoid corruption and inconsistencies.
-    * Key constraints
-    * Participation constraints
-    * Weak entities
-    * Overlap and covering constraints
+     * Key constraints
+     * Participation constraints
+     * Weak entities
+     * Overlap and covering constraints
+
+* Key constraints 
+Key constraints define cardinality requirements on relationships
+   * Many to many: a user can take many courses, a course can have many users that take the course.
+   * One to Many: e.g., a course has at most one instructor.
+   * One to One: e.g., a course has at most one instructor and one instructor has at most one course.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.6Many.png)
+We could use arrows to represent these constraints. An arrow means “at most one”, with the direction from the end to the arrow. 1-to-many and 1- to-1 cases are shown as follows.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.7Arrows.png)
+
+* Participation Constraints
+e.g. a course needs at least one instructor. In this case, the participation of “Courses” in “Instructs” is total, otherwise (not thick line), it is a partial participation constraint.
+This constraint can be represented by thick line. 
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.8thick.png)
+In this case, the thick line with arrow means each course has exactly one instructor, and the thick line without arrow means each course needs to be taken by at least one student.
+Arrows only go inwards to relationship diamond.
+
+* Weak Entities
+A weak entity can only be uniquely identified by using the primary key of its owner entity.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.9WeakEntity.png)
+In this case, if a user was deleted, the WallPosts will also disappear. That is what “weak entity” means. It cannot exist without the owner “Users”.
+Owner and weak entity sets must be in 1-to-many relationship set. Weak entity set must have total participation in this identifying relationships set.
+Notation summary:
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.10Notations.png)
+
+4. ISA Hierarchies， Aggregation
+* ISA (is a) Hierarchies
+Inheritance rules similar to programing languages.
+A ISA B: every A also considered as a B. When querying for Bs, must consider As.
+Why use ISA?
+Add descriptive attributes specific to a subclass. 
+Identify entities that participate in a relationship.
+ E.g. If you don’t want some attributes of instructors (a subset of Users) belong to Students (another subset of Users), you need a Hierarchy.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.1ISA.png)
+In this case, an Instructor does not have a grade. A is a B, Instructors is a Users, Students is a Users.
+
+    * Reasons for creating ISA.
+	* Grade is specific to Students, and not to Instructors. So you may want to segment them out from Users table.
+	* When start to create multiple entities, you might find some of them overlap in their attributes, so you decide to create a parent class.
+So in this case, you can see the ISA as a specialization of Users, or a generalization of Instructors and Students.
+
+    * Two constraints of ISA Hierarchies.
+        * Overlap Constraint:
+For a given entity (User), can it be both an instructor and a student? You can allow or disallow it.
+        * Covering Constraint:
+For a given entity (User), must it be an instructor or student?  Yes or No. In the case that Users could be other people in the organization, so a User does not have to be Instructor or Student. Thus Covering Constraint does not hold.
+
+These two constraints can not be expressed in diagram using Syntax for this course. You can come up with your own methods such as shaded or thick.
+
+
+* Aggregation
+
+Relationships between entities and relationships. This is the case when you want to have relationship with another relationship.
+For example,
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.2Aggregation.png)
+A company can donates a particular Amount to a particular Course.
+If you want to treat this donation as an entity, you can use aggregation.
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.3Aggre.png)
+Dashed box represents “entity” that represents the entire relationship. When considering Instructors manage donations, the Instructor manage donation (the whole relationship) itself, not Course or Companies. But in terms of implementation, the data of Courses or Companies are stored in themselves.
+
+   * Why use aggregation?
+Aggregation v.s. Ternary Relationships
+![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.4WhyAggre.png)
+When you want to put constraints on those entities, they apply to all entity sets. For example, If you want courses has exactly one Instructor. But in this case, you put constraints on Companies.
+Manages and Donates are separate ideas, you may want to separate them out.
+
+
+
+
+
 
 
 
