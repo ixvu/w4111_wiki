@@ -227,7 +227,7 @@ A collection of all relationships of a particular type. For example,
 Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
 
-       * Users can take different roles in same relationships set. 
+* * Users can take different roles in same relationships set. 
 
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
 
