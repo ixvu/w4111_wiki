@@ -227,19 +227,19 @@ A collection of all relationships of a particular type. For example,
 Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
 
-       * Users can take different roles in same relationships set. 
+   * Users can take different roles in same relationships set. 
 
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
 
 The interpretation in this case, is that users can be teachers or students, so users can teach other users.
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
        
-      * Relationships sets can have descriptive attributes.
+   * Relationships sets can have descriptive attributes.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.4SinceRed.png)
 
 Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
 
-     * Ternary Relationships
+   * Ternary Relationships
 
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png)
 
