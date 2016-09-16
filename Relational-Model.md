@@ -32,6 +32,7 @@ Aggregation is used in instances when you want to represent Relationships betwee
 ##__INSERT DONATES TUPLE DIAGRAM HERE__
 
 This diagram shows two Entities; "Companies" and "Courses," that are connected by the "Donates" Relationship.  This relationship shows that Companies, can Donate a specific Amount, to particular Courses.  For example, IBM could donate to COMS 4111.
+
 What kinds of Donations, or Relations, would we not be able to do?  As the diagram shows there is some information, about the donation, that we might want to capture - namely, in this case, the "Amount" of the Donation.  In some cases, where there are attributes associated with a Relationship - you might find a need to represent Relationships as Entities.  In this case, you would want to treat the entire Relationship as an Entity - this is called __Aggregation__.
 
 ##__INSERT DONATES AGGREGATION DIAGRAM HERE__
