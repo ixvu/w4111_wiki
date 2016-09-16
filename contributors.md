@@ -18,4 +18,4 @@ List of contributors and contributions
   1. Scribed ER Models (detailed version) (around 2000 words).
   1. Sections include: what is ER model, why we need ER model, basic concepts for ER model (Entity and Entity set, Relationships and Relationships Set, Constraints, ISA Hierarchies, and Aggregation). Also includes Q&A in class.
 * George Fisher (gf2359)
-1. Added initial Scribe notes for Lecture 3
+Added initial Scribe notes for Lecture 3
