@@ -69,4 +69,4 @@ For example, if you added a constraint on the Courses or Companies Entity in the
 
 ###Keys
 
-Keys are the minimal set of attributes that uniquely identify an Entity.  Most Entities have a key.  The exception is a "Weak Entity." In an Entity, there might be multiple candidate keys.  For example, both a "uid" and "email" might could be unique to a particular Entity.  In additon, a key might involve multiple attributes.  For example, a class might be identified by both a number and a section.  Primary keys are considered the most important type of "key" and are chosen from the set of candidate keys and underlined in Entity diagrams.
+Keys are the minimal set of attributes that uniquely identify an Entity.  Most Entities have a key.  The exception is a "Weak Entity." In an Entity, there might be multiple candidate keys.  For example, both a "uid" and "email" might be unique to a particular Entity.  In additon, a key might involve multiple attributes.  For example, a class might be identified by both a number and a section.  Primary keys are considered the most important type of "key" and are chosen from the set of candidate keys and underlined in Entity diagrams.
