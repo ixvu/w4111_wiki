@@ -331,9 +331,21 @@ For a given entity (User), must it be an instructor or student?  Yes or No. In t
 Manages and Donates are separate ideas, you may want to separate them out.
 
 
+## Using the ER Model
 
+**Entity or Attribute?**
+* Is address an attribute of User or an entity connected to Users by a relationship?
+* when should you have address as entity set?
+  * if address itself has attributes: neighborhoods
+  * want to be able to access address as zip code
+  * variant over time: users can move at certain time- maybe want to keep track of multiple addresses.
+* when should you have address as an attribute?
+  * when you want to keep it as a name and not do anything with it
+* If you have more than 1 instance of a relationship, then you probably want it as an attribute
+  * first diagram: ie. if ibm donate to databases, they cannot donate it again because this is a set.
+  * second diagram shows that you can now keep track of multiple Donations.
 
-
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/1donations.png?raw=true)
 
 
 
