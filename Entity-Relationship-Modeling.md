@@ -349,24 +349,41 @@ Manages and Donates are separate ideas, you may want to separate them out.
 
 
 **Entity or Relationship?**
-*Say company say they want to give Columbia money and Columbia gets to choose which courses to allocate the money to
-  *Redundancy of amount, need to remember to update everyone
-  *Misleading implies amount tied to each donation individually
+* Say company say they want to give Columbia money and Columbia gets to choose which courses to allocate the money to
+  * Redundancy of amount, need to remember to update everyone
+  * Misleading implies amount tied to each donation individually
   ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/2redundancy.png?raw=true)
 
-*Add “Donating Company”, move amount to attribute. What is the interpretation of this approach?
-  *Company can donate this amount EVER
-  *Issue if company wants to donate multiple time
+* Add “Donating Company”, move amount to attribute. What is the interpretation of this approach?
+  * Company can donate this amount EVER
+  * Issue if company wants to donate multiple time
   ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/3donating_companies.png)
 
 
+* If company donates once to school for data related courses
+  * refactor amount into entity
+  * what happens now?
+    * donation now is it’s own key with time and amount.
+  * Does this seem reasonable?
+  * We need to make sure that there is a way for us to tell that the sum of the donations of the courses end up to be the right amount
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/4donate_for_data_course.png?raw=true)
 
+**Binary or Ternary Relationships?**
+* Example: We have graders, students and assignments.
+* Keep in mind: assignment is part of a syllabus, not a specific submission
+* the table on the bottom left represents the diamond
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/5graders_students_assignment.png?raw=true)
 
+* Better approach: split it up by  having graders to assignments and students to assignments.
+  * Before: we had 2 separate relationships that we accidentally merged into a single one
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/6two_relationships.png?raw=true)
 
-
-
-
-
+* Question: If we want students can only submit assignment once, is that representable?
+  * If you put an arrow from assignment to submitted, then it means that student can only submit one from ANY assignments
+  * This is not representable by the current diagram.
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/7submit_one_from_any.png?raw=true)
+* Question: How can we represent students submit multiple times for multiple assignments
+  * thick line between students and submitted
  
 
 
