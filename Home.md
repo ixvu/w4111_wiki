@@ -50,7 +50,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L15: APIs (Wangler)
 * L16: Normalization (yh1008)
 * L17: Normalization (kellielu)
-* L18: Physical Design
+* L18: Physical Design (pyw2102)
 * L19: Physical Design
 * L20: Query Processing(YunxuanZhu)
 * L21: Query Processing(xz2581)
