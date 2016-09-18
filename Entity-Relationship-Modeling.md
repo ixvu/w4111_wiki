@@ -345,12 +345,18 @@ Manages and Donates are separate ideas, you may want to separate them out.
   * first diagram: ie. if ibm donate to databases, they cannot donate it again because this is a set.
   * second diagram shows that you can now keep track of multiple Donations.
 
-![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/1donations.png?raw=true)
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/1donations.png?raw=true)
 
 
-
-
-
+**Entity or Relationship?**
+*Say company say they want to give Columbia money and Columbia gets to choose which courses to allocate the money to
+  *Redundancy of amount, need to remember to update everyone
+  *Misleading implies amount tied to each donation individually
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/2redundancy.png?raw=true)
+*Add “Donating Company”, move amount to attribute. What is the interpretation of this approach?
+  *Company can donate this amount EVER
+  *Issue if company wants to donate multiple time
+  ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/ER-Modeling/3donating_companies.png)
 
 
 
