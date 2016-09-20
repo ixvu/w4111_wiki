@@ -21,3 +21,7 @@ List of contributors and contributions
   1. Added initial Scribe notes for Lecture 3
 * Priscilla Wang (pyw2102)
   1. Added onto ScribeNotes for Lecture 3 ( Including: Entity or Attribute, Entity or Relationship, Binary or Ternary)
+* Leighton Zhang (xz2461)
+  1. Scribed Data model history
+  1. Scribed relational model basic concepts
+  1. Scribed relational model Integrity Constraints
