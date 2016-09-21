@@ -141,14 +141,15 @@ CREATE TABLE Enrolled(  -- each student can enroll in a course only once
         * not NULL
         * primary way to refer to record
      * Example: What does the DDL say?
-       ```sql
+
+        ```sql
 CREATE TABLE Enrolled(
 sid int, cid int, grade char(2),
 PRIMARY KEY (sid)
 UNIQUE (cid, grade)
-       ```
-       * `sid` is the primary key means each student can only appear once, i.e. enroll in one course
-       * `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
+        ```
+          * `sid` is the primary key means each student can only appear once, i.e. enroll in one course
+          * `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
  * **Foreign key**
     * **Referential Integrity**: if all foreign key constraints are enforced
        * Enforced: well-maintained relational database
