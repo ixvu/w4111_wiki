@@ -42,7 +42,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L5: Relational Model (davidkuhta)
 * L6: Relational Model (mayavanand)
 * L7: Relational Algebra (WillCC)
-* L8: Relational Algebra (sacrespo)
+* L8: Relational Algebra (sacrespo,kailichen)
 * L9: Relational Algebra (chjoanna)
 * L10: SQL (cchao595)
 * L11: SQL (zzhanzzhao)
