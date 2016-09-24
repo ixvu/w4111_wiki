@@ -112,73 +112,240 @@ CREATE TABLE Students(
     login text,
     age int,
     gpa real
-)
+    )
   ```
 
-* **Keys**
-  * **Candidate key** 
-    * Conditions:
-       1. Two distinct valid tuples cannot have same values (distinct);
-       2. This is not true for any subset of the key (minimal)
-    * **superkey**: if (b) is false
-  * **Primary key**
+## Keys
+### Candidate key
+* Conditions:
+  1. Two distinct valid tuples cannot have same values (distinct);
+  2. This is not true for any subset of the key (minimal)
+* **superkey**: if (b) is false
 
-    ```sql
+### Primary key
+
+```sql
 CREATE TABLE Enrolled(  -- each student can enroll in a course only once
-    sid int,
-    cid int,
-    grade char(2),
-    PRIMARY KEY (sid, cid)  -- combination (sid, cid) 1.is unique and not null in the table,
-                                --                    and 2. is used to identify the record
+  sid int,
+  cid int,
+  grade char(2),
+  PRIMARY KEY (sid, cid)
+               -- combination (sid, cid) 1.is unique and not null in the table,
+               --                    and 2. is used to identify the record
 )
-    ```
+```
 
-     * Used to identify tuples elsewhere in the database
-     * If more than one candidate keys are in relation, then admin assigns one as primary key
-        * if DNA and sid both are candidate keys, we'd better choose sid, because we need to copy the whole sequence to identify, shorter one will be better
-     * indicates:
-        * unique
-        * not NULL
-        * primary way to refer to record
-     * Example: What does the DDL say?
+* Used to identify tuples elsewhere in the database
+* If more than one candidate keys are in relation, then admin assigns one as primary key
+  * if DNA and sid both are candidate keys, we'd better choose sid, because we need to copy the whole sequence to identify, shorter one will be better
+  * indicates:
+    * unique
+    * not `NULL`
+    * primary way to refer to record
+* Example: What does the DDL say?
 
-        ```sql
+```sql
+CREATE TABLE Enrolled(
+  sid int, cid int, grade char(2),
+  PRIMARY KEY (sid)
+  UNIQUE (cid, grade)
+```
+* `sid` is the primary key means each student can only appear once, i.e. enroll in one course
+* `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
+
+### Foreign key
+**Referential Integrity**: if all foreign key constraints are enforced
+  * Enforced: well-maintained relational database
+  * Not enforced: 
+    * HTML links (404 not found)
+    * Restaurant menus (out of order)
+    * Business card (number changed)
+  * Legitimate reasons to violate: unnecessary or too costly
+  * Imagine we have two relations *Students* and *Enrolled*, and *Enrolled*'s column referred to *Students* via *Students*'s primary key
+
+ * <img src="https://github.com/leighton613/scribenotes/blob/master/pics/foreign_key_1.png" width="500">
+ * set of fields in Relation used to refer to tuple in other relations by its primary keys
+
+```sql
+CREATE TABLE Enrolled(
+  sid int, cid int, grade char(2),
+  PRIMARY KEY (sid, cid),
+  FOREIGN KEY (sid) REFERENCES Students -- field sid represents as primary key in relation Student
+)
+```
+* If primary key of *Students* is `(sid, foo)` then we need the combination to refer to *Students* relation.
+  * <img src="https://github.com/leighton613/scribenotes/blob/master/pics/foreign_key_2.jpg" width="600">
+
+```sql
 CREATE TABLE Enrolled(
 sid int, cid int, grade char(2),
-PRIMARY KEY (sid)
-UNIQUE (cid, grade)
-        ```
-          * `sid` is the primary key means each student can only appear once, i.e. enroll in one course
-          * `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
- * **Foreign key**
-    * **Referential Integrity**: if all foreign key constraints are enforced
-       * Enforced: well-maintained relational database
-       * Not enforced: HTML links (404 not found), Restaurant menus (out of order), Business card (number changed)
-    * Imagine we have two relations *Students* and *Enrolled*, and *Enrolled*'s column referred to *Students* via *Students*'s primary key
-
-    * <img src="https://github.com/leighton613/scribenotes/blob/master/pics/foreign_key_1.png" width="500">
-    * set of fields in Relation used to refer to tuple in other relations by its primary keys
-
-      ```sql
-CREATE TABLE Enrolled(
-    sid int, cid int, grade char(2),
-    PRIMARY KEY (sid, cid),
-    FOREIGN KEY (sid) REFERENCES Students -- field sid represents as primary key in relation Student
+PRIMARY KEY (sid, foo, cid),
+FOREIGN KEY (sid, foo) REFERENCES Students -- field (sid, foo) represents as primary key in relation Student
 )
-      ```
-      * If primary key of *Students* is `(sid, foo)` then we need the combination to refer to *Students* relation.
-         * <img src="https://github.com/leighton613/scribenotes/blob/master/pics/foreign_key_2.jpg" width="600">
+```
+* Q: Why not use a table to keep those arrows?
+* A: 
+  1. Save *space*. New table takes up more disk space;
+  2. No need to worry about other tables when *modifying*;
+  3. Avoid dangling references when deleting (otherwise, application developer will be responsible for maintaining tables);
+  4. Have access to relationships from table design (for application development reasons).
 
-         ```sql
+### Enforcing Integrity Constraints
+Run checks any time the database changes.
+Enact "Gatekeepers" on any modification statement (**INSERT**, **UPDATE**, **DELETE**) can prevent database from being "corrupted" (violating integrity constraints)
+
+* On **INSERT**
+
+  What options are available when a new _Enrolled_ tuple refers to non-existent _Student_?
+  1. Reject Insertion
+
+* On **DELETE**
+
+  What options are available if a _Student_ tuple is deleted?
+  1.   DELETE dependent _Enrolled_ tuples
+  2.   Reject deletion
+  3.   set _Enrolled_.sid to default value or `null` (null in SQL: unknown/inapplicable)
+
+### General Constraints
+**Boolean expressions** are a powerful tool to define arbitrary constraints.
+Need to be careful, as these are expensive to check, as the database has no guarantee on how l
+```sql
 CREATE TABLE Enrolled(
-    sid int, cid int, grade char(2),
-    PRIMARY KEY (sid, foo, cid),
-    FOREIGN KEY (sid, foo) REFERENCES Students -- field (sid, foo) represents as primary key in relation Student
+  sid int,
+  cid int,
+  grade char(2),
+  CHECK (
+    grade = 'A' or grade = 'B' or
+    grade = 'C' or grade = 'D' or
+    grade = 'F'
+  )
 )
-         ```
-      * Q: Why not use a table to keep those arrows?
-      * A: 
-          1. Save *space*. New table takes up more disk space;
-          2. No need to worry about other tables when *modifying*;
-          3. Avoid dangling references when deleting (otherwise, application developer will be responsible for maintaining tables);
-          4. Have access to relationships from table design (for application development reasons).
+```
+Cautions:
+* Expensive to check as database has no guarantee on how long the statement is.
+* Very difficult to optimize
+
+## Where do Integrity Constraints originate?
+* Based on application semantics and use cases  
+* IC is statement about the world (all possible instances)  
+  - Can't infer ICs by staring at an instance  
+  e.g. Is "login" a unique candidate key? Maybe?  
+* Unique and foreign key ICs are very common (others less so)  
+
+Research on correlated attributes to recommend foreign key relationships
+
+## Referential Integrity
+A database has referential integrity if all foreign key constraints are _enforced_ (no dangling references)
+
+Examples where referential integrity is not enforced:
+* Weblinks
+* Restaurant Menus
+* Some relational databases!
+
+Why not? Too expensive or don't care about it.
+
+# Translating ER diagrams into Relational Schemas with constraints
+
+## Entity Set to Relation
+1. Include all entity set attributes
+2. Entity set key becomes relation primary key  
+####TODO: Course Entity Set Image####
+```sql
+CREATE TABLE Course(
+  cid int,
+  name text,
+  loc text,
+  PRIMARY KEY (cid)
+)
+```
+
+## Relationship Set without constraint to Relation
+1. Add keys for each entity set as foreign keys: _superkey_
+  Note: if there are other constraints, you may not need all columns
+2. Include all attributes of the relationship set
+####TODO: Relationship Set Image ####
+```sql
+CREATE TABLE Takes(
+  uid int,
+  cid int,
+  since date,
+  PRIMARY KEY (uid, cid),
+  FOREIGN KEY (uid) REFERENCES Users,
+  FOREIGN KEY (cid) REFERENCES Courses
+)
+```
+***
+**Comprehension Question**: Why do we need the primary key?  
+
+Application dependent difference between `PRIMARY KEY (uid, cid)` and `PRIMARY KEY (uid, cid, since)`
+***
+
+Strict translation of relationship set implies only one instance of each relation "pair" and corresponds to a primary key composed of the foreign keys.
+
+## "At Most One" to Relation
+1. Add keys for each entity set as foreign keys: _superkey_
+  Note: if there are other constraints, you may not need all columns
+2. Include all attributes of the relationship set
+####TODO: At Most One Relationship Set Image ####
+```sql
+CREATE TABLE Instructs(
+  uid int,
+  cid int,
+  PRIMARY KEY (cid),
+  FOREIGN KEY (uid) REFERENCES Users,
+  FOREIGN KEY (cid) REFERENCES Courses
+)
+```
+***
+**Comprehension Question**: What should the primary key be set to?  
+
+Set primary key to `cid` (course). This establishes that for a given course there can be at most one relation. Another way to check is to assess the cardinality.  One can see that if there where five _Courses_ and five-hundred _Users_, this relationship arrangement would mean that the cardinality of the _Instructs_ table would be equivalent to that of the _Courses_ table, and hence five rows in the _Instructs_ table. This make senses.
+***
+
+### "At Most One" combined
+
+Noting that the _Course_ table and _Instructs_ table have the same primary key of `cid`, it may be possible to combine them in one table.
+
+####TODO: At Most One Relationship Set Image ####
+```sql
+CREATE TABLE Course_Instructs(
+  uid int,
+  cid int,
+  name text,
+  loc text,
+  PRIMARY KEY (cid),
+  FOREIGN KEY (uid) REFERENCES Users
+)
+```
+***
+**Comprehension Question**: Why combine the Course and Instructs tables?  
+Combining the table sets us up for discussing "total participation". 
+
+**Comprehension Question**: How to represent courses without an instructor?  
+Allow `uid` to be `NULL` (in conjunction with other _Instruct_ attributes)
+
+***
+
+***
+## Review
+* **Relation**: Set of tuples with typed values (table)
+* **Schema**: Names and types for values in relation
+* **Database**: Set of relations
+* **SQL**: Structured Query Language
+* **Integrity Constraint**: Restrictions on valid data
+* **Candidate Key**: Minimal set of fields to identify a tuple in a relation.
+* **Primary Key**: Designated identifier for a tuple
+* **Foreign Key**: Reference to another tuple (Logical pointer)
+
+## Question & Answer
+1. Issue with auto-incrementing or auto-generated primary key identifier, if you have some mistake in the values of the tuples you may not catch it. Example: Very large databases, easy to miswrite  
+> Could use a hash of a tuple or hash of the memory address of the tuple.
+
+2. Talking to ER models not specific to any  
+> ER model is one way to represent relationships in data. Natural mapping between ER model and relational model (whereas more difficult in the hierarchical)
+
+3. Can foreign key be `NULL` (Translating "At Most One" to a Relation)?
+> No enforcement that we have to have a value anywhere, unless we say so.
+
+4. Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key? (Combining "At Most One" relations)
+> All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
