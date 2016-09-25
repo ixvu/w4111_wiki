@@ -262,7 +262,7 @@ CREATE TABLE Course(
 ## Relationship Set without constraint to Relation
 1. Add keys for each entity set as foreign keys: _superkey_
   Note: if there are other constraints, you may not need all columns
-2. Include all attributes of the relationship set
+2. Include all attributes of the relationship set  
 ####TODO: Relationship Set Image ####
 ```sql
 CREATE TABLE Takes(
@@ -275,8 +275,7 @@ CREATE TABLE Takes(
 )
 ```
 ***
-**Comprehension Question**: Why do we need the primary key?  
-
+### Why do we need the primary key?  
 Application dependent difference between `PRIMARY KEY (uid, cid)` and `PRIMARY KEY (uid, cid, since)`
 ***
 
@@ -297,14 +296,13 @@ CREATE TABLE Instructs(
 )
 ```
 ***
-**Comprehension Question**: What should the primary key be set to?  
-
+### What should the primary key be set to?  
 Set primary key to `cid` (course). This establishes that for a given course there can be at most one relation. Another way to check is to assess the cardinality.  One can see that if there where five _Courses_ and five-hundred _Users_, this relationship arrangement would mean that the cardinality of the _Instructs_ table would be equivalent to that of the _Courses_ table, and hence five rows in the _Instructs_ table. This make senses.
 ***
 
 ### "At Most One" combined
 
-Noting that the _Course_ table and _Instructs_ table have the same primary key of `cid`, it may be possible to combine them in one table.
+Noting that the _Course_ table and _Instructs_ table have the same primary key of `cid`, it may be possible to combine them in one table.  
 
 ####TODO: At Most One Relationship Set Image ####
 ```sql
@@ -318,13 +316,83 @@ CREATE TABLE Course_Instructs(
 )
 ```
 ***
-**Comprehension Question**: Why combine the Course and Instructs tables?  
+### Why combine the Course and Instructs tables?  
 Combining the table sets us up for discussing "total participation". 
 
-**Comprehension Question**: How to represent courses without an instructor?  
+### How to represent courses without an instructor?  
 Allow `uid` to be `NULL` (in conjunction with other _Instruct_ attributes)
 
+### How to ensure _total participation_ (i.e. _Course_ definitely has an _Instructor_)?  
+Combine relationship into Courses and require `uid` to not be `NULL`
+```
+uid int NOT NULL
+...
+FOREIGN KEY (uid) REFERENCES Users ON DELETE NO ACTION
+```
 ***
+
+## At Least One Constraint
+1. Can't be easily expressed! (Needs to be enacted at the application level, because the database cannot create the relationship automatically)
+####TODO: At Least One Constraint Image ####
+```sql
+CREATE TABLE Instructs(
+  uid int,
+  cid int,
+  PRIMARY KEY (cid, uid),
+  FOREIGN KEY (cid) REFERENCES Course
+  FOREIGN KEY (uid) REFERENCES User
+)
+```
+
+## Weak Entity to Relation
+1. Translate weak entity set and identifying relationship set into a single table.
+2. Ensure deletes are cascaded such that when the owner entity is deleted, all owned weak entities are also be deleted.
+E.g. Users can post WallPosts and WallPosts cannot exist without a corresponding user. Hence the WallPost primary key is dependent on the user id. Accordingly combine WallPosts entity and Posted relationship.
+####TODO: At Least One Constraint Image ####
+```sql
+CREATE TABLE Wall_Posted(
+  uid int,
+  post_text text,
+  posted_time DATE,
+  PRIMARY KEY (uid, posted_time),
+  FOREIGN KEY (uid) REFERENCES Users ON DELETE CASCADE
+)
+```
+
+## ISA Hierarchies
+Numerous way to represent, but none ideal.  
+Inheritance is difficult to represent in the relational model.  
+There are tradeoffs  
+### Options:  
+### 1. Keep base relation  
+
+  1. Shared child A & B attributes recorded in parent (Instructors and Students recorded in Users)
+  2. Unique attributes recorded in child A or child B relation (Information in Instructors or Students Relation)
+  3. Primary key is the key of the parent table and is the foreign key for the child tables
+
+### 2. Only keep child relations
+
+  1. Children copy attributes from parents (Instructors and Students contain all information from Users)
+
+```sql
+CREATE TABLE Users(       uid int, name text,     PRIMARY KEY(uid) )
+CREATE TABLE Instructors( uid int, rating int,    PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
+CREATE TABLE Students(    uid int, grade char(2), PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
+```
+####TODO: ISA Image ####
+Only if covering constraint = yes (all users are instructors or students)
+
+## Aggregation
+1. Convert the aggregated relationship into an entity (similar to other entities)
+E.g. Donates: PRIMARY KEY (company_id, course_id)
+     Manages: References this key
+```sql
+CREATE TABLE Instructors( uid int, rating int, PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
+CREATE TABLE Manages( mid int, since DATE, PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
+CREATE TABLE Donates( did int, company_id int, course_id int, amount int, PRIMARY KEY(company_id, course_id), FOREIGN KEY (uid) REFERENCES Users )
+```
+####TODO: Aggregation Image ####
+
 
 ***
 ## Review
@@ -349,3 +417,6 @@ Allow `uid` to be `NULL` (in conjunction with other _Instruct_ attributes)
 
 4. Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key? (Combining "At Most One" relations)
 > All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
+
+5. [[How does the Donates table have a primary key? (context of aggregation)|#isa-hierarchies]]
+> Primary Key of _Donates_ is a combination of course and company (composite).
