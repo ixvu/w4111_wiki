@@ -162,3 +162,15 @@ Can we force it to convert text to numbers?
 > {u'status': u'OK'}
 
 ### _Primary Keys_ Section 
+1. In the first cell, create Table A and provide three attributes
+    ```sql
+    %%sql
+    CREATE TABLE A ( a int, b text, primary key (a) );
+    ```
+> `{u'status': u'OK'}` 
+
+2. Create a new cell, and insert values into Table A:
+    ```sql
+    %sql insert into A values(1, 'a');
+    ```
+> `{u'status': u'OK'}` 
