@@ -412,10 +412,10 @@ CREATE TABLE Donates( did int, company_id int, course_id int, amount int, PRIMAR
 2. Talking to ER models not specific to any  
 > ER model is one way to represent relationships in data. Natural mapping between ER model and relational model (whereas more difficult in the hierarchical)
 
-3. Can foreign key be `NULL` (Translating "At Most One" to a Relation)?
+3. [Can foreign key be `NULL`?](#at-most-one-to-relation)
 > No enforcement that we have to have a value anywhere, unless we say so.
 
-4. Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key? (Combining "At Most One" relations)
+4. [Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key?] (#at-most-one-combined)
 > All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
 
 5. [How does the Donates table have a primary key? (context of aggregation)](#isa-hierarchies)
