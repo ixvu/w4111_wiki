@@ -393,92 +393,6 @@ CREATE TABLE Donates( did int, company_id int, course_id int, amount int, PRIMAR
 ```
 ####TODO: Aggregation Image ####
 
-# Instabase Livecode
-
-## Creating a Database
-1. On Instabase homepage, select a repository
-2. Click the _New_ dropdown, and select "Create New Database"
-3. Select _Postgres_ as the **Database Type** and provide a **Database Name**
-
-## Playing With Constraints (lec5.ipynb)
-1. Connect to your database: `ib.connect_db('ib://ewu/w4111-public/databases/w4111')` (replacing the url with that of the database you previously created.
-
-2. Try selecting from a non-existant table
-    ```sql
-    %%sql
-    select * from A
-    ```
-> `ERROR: ERROR: relation "a" does not exist`  
-
-### Domain Constraints Section  
-3. In the first cell, create Table A and provide three attributes
-    ```sql
-    %%sql
-    CREATE TABLE A ( a int, b text, c float );
-    ```
-> `{u'status': u'OK'}` 
-
-4. Create a new cell and select all values from Table A:
-    ```sql
-    %%sql
-    SELECT * FROM A;
-    ```
->|   | a | b | c |
-|---|---|---|---|
-
-5. Replace the cell's contents and insert new values into Table A:
-    ```sql
-    %%sql
-    INSERT INTO A(a,b,c) VALUES (1, '2', 3);
-    ```
-> `{u'status': u'OK'}` 
-This worked even though `3` wasn't `3.0`, because Postgres casted `3` into a float.
-
-5. Replace the cell's contents to insert values with alternate types into Table A:
-    ```sql
-    %%sql
-    INSERT INTO A(a,b,c) VALUES (1, 2, 3);
-    ```
-> `{u'status': u'OK'}` 
-
-6. Insert a new cell and select all values from Table A to see your previous inserts:
-    ```sql
-    %%sql
-    select * from A;
-    ```
->|   | a | b | c |
-|---|---|---|---|
-| 0 | 1 | 2 | 3 |
-| 1 | 1 | 2 | 3 |
-
-Postgres will cast values if it knows how to. So even though we provided an integer, Postgres knows how to cast it into a string and does so for us.
-
-7. Replace the second cell's contents to again insert values with alternate types into Table A:
-    ```sql
-    %%sql
-    INSERT INTO A(a,b,c) VALUES (1.5, 4, 5);
-    ```
-> `{u'status': u'OK'}` 
-
-8. Re-run the last cell to see Table A:
-    ```sql
-    %%sql
-    select * from A;
-    ```
->|   | a | b | c |
-|---|---|---|---|
-| 0 | 1 | 2 | 3 |
-| 1 | 1 | 2 | 3 |
-| 2 | 2 | 4 | 5 |
-
-7. Replace the second cell's contents to again insert values with missing attributes into Table A:
-    ```sql
-    %%sql
-    INSERT INTO A(a,b) VALUES (3, '4');
-    ```
-> `{u'status': u'OK'}` 
-
-***
 ## Review
 * **Relation**: Set of tuples with typed values (table)
 * **Schema**: Names and types for values in relation
@@ -488,6 +402,8 @@ Postgres will cast values if it knows how to. So even though we provided an inte
 * **Candidate Key**: Minimal set of fields to identify a tuple in a relation.
 * **Primary Key**: Designated identifier for a tuple
 * **Foreign Key**: Reference to another tuple (Logical pointer)
+
+## See [Playing With Constraints](https://github.com/w4111/scribenotes/wiki/Livecode---Playing-With-Constraints) Livecode for a hands-on review.
 
 ## Question & Answer
 1. Issue with auto-incrementing or auto-generated primary key identifier, if you have some mistake in the values of the tuples you may not catch it. Example: Very large databases, easy to miswrite  
@@ -504,5 +420,3 @@ Postgres will cast values if it knows how to. So even though we provided an inte
 
 5. [How does the Donates table have a primary key? (context of aggregation)](#isa-hierarchies)
 > Primary Key of _Donates_ is a combination of course and company (composite).
-
-***
