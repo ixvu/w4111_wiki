@@ -418,5 +418,5 @@ CREATE TABLE Donates( did int, company_id int, course_id int, amount int, PRIMAR
 4. Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key? (Combining "At Most One" relations)
 > All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
 
-5. [How does the Donates table have a primary key? (context of aggregation)](##ISA-Hierarchies)
+5. [How does the Donates table have a primary key? (context of aggregation)](#isa-hierarchies)
 > Primary Key of _Donates_ is a combination of course and company (composite).
