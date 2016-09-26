@@ -386,7 +386,10 @@ Manages and Donates are separate ideas, you may want to separate them out.
   * thick line between students and submitted
  
 
-
+# Software Tools for ER Modeling
+* [ERDPlus](https://erdplus.com)
+* [LucidChart](https://lucidchart.com) (Note the free upgrade for educational use)
+* [Draw.io](https://www.draw.io)
 
 
 
