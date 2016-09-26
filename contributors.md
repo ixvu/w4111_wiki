@@ -13,6 +13,9 @@ List of contributors and contributions
   1. Added Relational Model page
 * David Kuhta (dk2723)
   1. L2 - Converted table images to markdown tables, added dblp link
+  2. Scribed L5 and formatted to align with Lecture 4
+  3. Added Links for ER Modeling tools
+  4. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
 * Yuedong Wang (yw2931)
   1. Scribed Infrastructure (first version, and was edited by anantb)
   1. Scribed ER Models (detailed version) (around 2000 words).
