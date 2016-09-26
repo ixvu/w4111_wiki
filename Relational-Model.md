@@ -247,9 +247,9 @@ Why not? Too expensive or don't care about it.
 # Translating ER diagrams into Relational Schemas with constraints
 
 ## Entity Set to Relation
-1. Include all entity set attributes
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/entity_set.png" width="600">  
+1. Include all entity set attributes  
 2. Entity set key becomes relation primary key  
-####TODO: Course Entity Set Image####
 ```sql
 CREATE TABLE Course(
   cid int,
@@ -260,10 +260,10 @@ CREATE TABLE Course(
 ```
 
 ## Relationship Set without constraint to Relation
-1. Add keys for each entity set as foreign keys: _superkey_
-  Note: if there are other constraints, you may not need all columns
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/relationship_set.png" width="600">  
+1. Add keys for each entity set as foreign keys: _superkey_  
+  Note: if there are other constraints, you may not need all columns  
 2. Include all attributes of the relationship set  
-####TODO: Relationship Set Image ####
 ```sql
 CREATE TABLE Takes(
   uid int,
@@ -282,10 +282,10 @@ Application dependent difference between `PRIMARY KEY (uid, cid)` and `PRIMARY K
 Strict translation of relationship set implies only one instance of each relation "pair" and corresponds to a primary key composed of the foreign keys.
 
 ## "At Most One" to Relation
-1. Add keys for each entity set as foreign keys: _superkey_
-  Note: if there are other constraints, you may not need all columns
-2. Include all attributes of the relationship set
-####TODO: At Most One Relationship Set Image ####
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_most_one_set.png" width="600">  
+1. Add keys for each entity set as foreign keys: _superkey_  
+  Note: if there are other constraints, you may not need all columns  
+2. Include all attributes of the relationship set  
 ```sql
 CREATE TABLE Instructs(
   uid int,
@@ -303,8 +303,7 @@ Set primary key to `cid` (course). This establishes that for a given course ther
 ### "At Most One" combined
 
 Noting that the _Course_ table and _Instructs_ table have the same primary key of `cid`, it may be possible to combine them in one table.  
-
-####TODO: At Most One Relationship Set Image ####
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_most_one_set.png" width="600">  
 ```sql
 CREATE TABLE Course_Instructs(
   uid int,
@@ -332,8 +331,8 @@ FOREIGN KEY (uid) REFERENCES Users ON DELETE NO ACTION
 ***
 
 ## At Least One Constraint
-1. Can't be easily expressed! (Needs to be enacted at the application level, because the database cannot create the relationship automatically)
-####TODO: At Least One Constraint Image ####
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_least_one_relationship.png" width="600">  
+1. Can't be easily expressed! (Needs to be enacted at the application level, because the database cannot create the relationship automatically)  
 ```sql
 CREATE TABLE Instructs(
   uid int,
@@ -345,10 +344,10 @@ CREATE TABLE Instructs(
 ```
 
 ## Weak Entity to Relation
-1. Translate weak entity set and identifying relationship set into a single table.
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/weak_entity_set.png" width="600">  
+1. Translate weak entity set and identifying relationship set into a single table.  
 2. Ensure deletes are cascaded such that when the owner entity is deleted, all owned weak entities are also be deleted.
-E.g. Users can post WallPosts and WallPosts cannot exist without a corresponding user. Hence the WallPost primary key is dependent on the user id. Accordingly combine WallPosts entity and Posted relationship.
-####TODO: At Least One Constraint Image ####
+E.g. Users can post WallPosts and WallPosts cannot exist without a corresponding user. Hence the WallPost primary key is dependent on the user id. Accordingly combine WallPosts entity and Posted relationship.  
 ```sql
 CREATE TABLE Wall_Posted(
   uid int,
@@ -360,9 +359,12 @@ CREATE TABLE Wall_Posted(
 ```
 
 ##ISA Hierarchies
-Numerous way to represent, but none ideal.  
-Inheritance is difficult to represent in the relational model.  
-There are tradeoffs  
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/isa_set.png" width="600">  
+
+* Numerous way to represent, but none ideal.  
+* Inheritance is difficult to represent in the relational model.  
+* There are tradeoffs  
+
 ### Options:  
 ### 1. Keep base relation  
 
@@ -379,7 +381,6 @@ CREATE TABLE Users(       uid int, name text,     PRIMARY KEY(uid) )
 CREATE TABLE Instructors( uid int, rating int,    PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
 CREATE TABLE Students(    uid int, grade char(2), PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
 ```
-####TODO: ISA Image ####
 Only if covering constraint = yes (all users are instructors or students)
 
 ## Aggregation
