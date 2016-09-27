@@ -341,7 +341,7 @@ Manages and Donates are separate ideas, you may want to separate them out.
   * variant over time: users can move at certain time- maybe want to keep track of multiple addresses.
 * when should you have address as an attribute?
   * when you want to keep it as a name and not do anything with it
-* If you have more than 1 instance of a relationship, then you probably want it as an entity
+* If you have more than 1 instance of a relationship attribute, then you probably want it as an entity
   * first diagram: ie. if ibm donate to databases, they cannot donate it again because this is a set.
   * second diagram shows that you can now keep track of multiple Donations.
 
