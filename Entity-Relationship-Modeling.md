@@ -212,7 +212,9 @@ A key is the minimal set of attributes that uniquely identify an entity.
       * Most entities have a key.
 
    * An Example:
-![Example for Entity](https://github.com/wyd856570831/ScribeNotes/blob/master/3.1.png)
+
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.1.png" width="500">
+
 In this example, keys are underlined.
 Attributes should be invariant to time so that your database will not goes wrong in the future. So “age” is a subtle bug in this example.
 
@@ -222,8 +224,9 @@ Attributes should be invariant to time so that your database will not goes wrong
      Association between 2 or more entities. E.g. Alice is taking Intro to Databases.
    * Relationship Set: 
      A collection of all relationships of a particular type. For example,
-     ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png)
 
+     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png" width="300">
+     
      Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
 
@@ -231,8 +234,8 @@ In this case, the relationship could be interpreted as users can take courses. H
     The interpretation in this case, is that users can be teachers or students, so users can teach other users.
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
 
-    ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png)
-       
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png" width="460">
+
      * Relationships sets can have descriptive attributes.
     Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
     ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.4SinceRed.png)
