@@ -94,15 +94,6 @@ and deleting duplication is expensive.
   - think about efficiency 
 
 
-
-
-
-
-
-
-
-
-
 ###<a id="ISA_QA">ISA Relationships Questions</a>
 
 - Users(uid, name)
