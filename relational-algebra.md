@@ -16,65 +16,78 @@ Relational algebra [Wikipedia](https://en.wikipedia.org/wiki/Relational_algebra)
 - It is a domain specific language. 
 
 
-Relational Algebra vs. Relational calculus 
-result in 3 
-RA: 
-1+2
-2+1
-3+0
-...
-RC: {(a,b) | a,b are integers and a+b = 3}
+##Relational Algebra vs. Relational calculus 
+- Q: How many ways you can add two numbers to 3 ?  
+- Answer of Relational Algebra: 
+  - 1+2
+  - 3+0
+  - ...
+- Answer of Relational Calculus: 
+  - {(a,b) | a,b are integers and a+b = 3}
 
 
-query is a function over relation instances 
+##Prelims
+- Query is a function over `relation instances` 
 
-relation
-instance is a set of tuples
-schema defines field names and types 
+- Relation
+  - Instance is a set of tuples
+  - Schema defines field names and types 
 
-how are relations different than generic sets?
-can assume item structure ue to schema
-some algebra operations (x) need to be modified
+- how are relations different than generic sets?
+  - One can assume item structure due to schema
+  - Some algebra operations (x) need to be modified
 
 
 
-Core 5 operations
-PROJECT
-given attributes to reflect results
-duplicate results? No. return a set 
-real systems typically don't remove duplicates 
-because you want to know the distribution 
-deduplication is costly 
-SELECT
-select subset of rows that satisfy condition (age < 30)
-UNION
-A op B = Result 
-A and B must be union-compatible (types better be compatible )
-union remove duplicate 
-SET DIFFERENCE
-CROSPRODUCT
-vertically concatenate tables 
-rename duplicate names 
-all pairwise combination 
-loose foreign key references 
+##5 Core operations
+- [PROJECT](#project)
+- [SELECT](#select)
+- [UNION](#union)
+- [SET DIFFERENCE](#setdifference)
+- [CROSSPRODUCT](#crossproduct)
 
-additional operations
-interset
-A and B must be union compatible 
-join
-find same attributions 
-concatenate 
-select(c) (A X B)
-Eui-Join
-Natural join
-same name cause different result 
-divide 
 
-Commutatively allowed. 
-project different attribute, commutatively is not allowed 
+###<a id="project">PROJECT</a>
+- Given attributes to reflect results
+- No duplicate results because PROJECT returns a set 
+- real systems typically don't remove duplicates because you want to know the distribution 
+and deleting duplication is expensive.
 
-if S1 is very wide, use project narrow down.
-think about efficiency 
+ 
+###<a id="select">SELECT</a>
+- select subset of rows that satisfy condition 
+- For example, select age under 30 SELECT(age < 30)
+
+###<a id="union setdifference">UNION,SET DIFFERENCE</a>
+- A op B = Result 
+- A and B must be union-compatible (types should be compatible )
+- union remove duplicate 
+
+
+
+###<a id="crossproduct">CROSSPRODUCT</a>
+- Vertically concatenate tables 
+- Rename duplicate names 
+- All pairwise combination 
+- Loose foreign key references 
+
+##additional operations
+###interset
+- A and B must be union compatible 
+###join
+- find same attributions 
+- concatenate 
+- select(c) (A X B)
+###Eui-Join
+###Natural join
+- same name cause different result 
+###divide 
+
+#####Commutatively is allowed between PROJECT and SELECT. 
+#####Commutatively is not allowed if project different attributes.  
+
+- If S1 is very wide, use project narrow down.
+  - think about efficiency 
 
 
 
