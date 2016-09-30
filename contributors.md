@@ -28,3 +28,7 @@ List of contributors and contributions
   1. Scribed Data model history
   1. Scribed relational model basic concepts
   1. Scribed relational model Integrity Constraints
+* Chi Cao (cc3920)
+  1. Scribed Lecture 7 Relational Algebra
+  1. Add in hyperlinks for easier browsing 
+  1. Provided graphs for better understanding
