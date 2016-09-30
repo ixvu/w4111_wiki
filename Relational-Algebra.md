@@ -74,13 +74,17 @@ and deleting duplication is expensive.
 ##additional operations
 ###interset
 - A and B must be union compatible 
+
 ###join
 - find same attributions 
 - concatenate 
 - select(c) (A X B)
+
 ###Eui-Join
+
 ###Natural join
 - same name cause different result 
+
 ###divide 
 
 #####Commutatively is allowed between PROJECT and SELECT. 
