@@ -5,6 +5,7 @@
 
 # Playing With Constraints
 ## Setup
+0. Re-read Step 3 above to confirm your database type!!!
 1. Open lec5.ipynb
 1. Connect to your database: `ib.connect_db('ib://ewu/w4111-public/databases/w4111')` (replacing the url with that of the database you previously created.
 
