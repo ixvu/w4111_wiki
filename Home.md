@@ -47,7 +47,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L10: SQL (cchao595)
 * L11: SQL (zzhanzzhao)
 * L12: SQL (hermshermsherms)
-* L15: APIs (Wangler)
+* L15: APIs (Wangler, katebrea)
 * L16: Normalization (yh1008)
 * L17: Normalization (kellielu)
 * L18: Physical Design (pyw2102)
@@ -55,7 +55,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L20: Query Processing(YunxuanZhu)
 * L21: Query Processing(xz2581)
 * L22: Transaction Processing (agango, zhaosjason)
-* L23: Transaction Processing
+* L23: Transaction Processing 
 * L24: Guest Lecture/Review 
 
 
