@@ -195,17 +195,17 @@ Division is not supported in most systems:
 ##Examples of Set Division 
 
 A/R1
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/1.png)
 
 A/R2
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/2.png)
 
 A/R3
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/3.png)
 
 ##How to Express Set Division?
 * Find all xs not “disqualified” by some y in B.
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/4.png)
 
 
 **Meaning:** 
@@ -215,21 +215,25 @@ A/R3
 ##More Examples
 Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
 * Name of students that reserved DB books
+![](https://github.com/sacrespo/ScribeNotes/blob/master/5.png)
 
 Note: If there are many attributes and records, the cardinality is high. The latter one is a more efficient query.
 Note: Query optimizer can find the more efficient query!
 
 * Students that reserved DB or HCI book (Hint: or operation)
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/6.png)
 
 * Students that reserved DB and HCI book (Hint: find two sets, and perform intersection)
-
+![](https://github.com/sacrespo/ScribeNotes/blob/master/7.png)
 
 * Students that reserved all books
+![](https://github.com/sacrespo/ScribeNotes/blob/master/8.png)
 
 If primary key of Reserve is (sid, rid) and we forget to use sid, rid, we will still end up with the same result.
 
 * Students that reserved all horror books
+![](https://github.com/sacrespo/ScribeNotes/blob/master/9-1.png)
+![](https://github.com/sacrespo/ScribeNotes/blob/master/9-2.png)
 
 
 ##Why learn relational algebra? 
