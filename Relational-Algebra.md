@@ -141,3 +141,106 @@ Question
 Constraints
 - Covering: must be an instructor or student 
 - Overlaps: can be an instructor and student
+
+##Set Difference and Performance
+
+Most operations are **monotonic**: 
+-The more input => the more output grows. 
+-If A ⊇ B => Q(A,T) ⊇ Q(B,T). 
+-Can **compute incrementally**. 
+-This is a desirable property.
+
+However **set difference** is **not monotonic**: 
+-If A ⊇ B => T-A ⊆ T-B  
+-Cannot compute incrementally. 
+-Computers with **blocking**. 
+-This is undesirable.
+
+The difference between **incremental** and **blocking**: 
+
+Given Op1(Op2(table)), where Op1 takes 10 seconds, and Op2 takes 10 seconds: 
+-**Incremental**: overlap execution of Op1 + Op2 (10-11 seconds total) 
+-**Blocking**: Op1 finishes, then Op2 can start (20 seconds total) 
+
+Note: when aggregating data, there is usually an elegant incremental solution. 
+
+##Recap: Joins
+-The definition of joins is you do the cross-product, and then filter.
+-Join only takes two tables as input. Need to decide which two tables join first.
+-Joins are very popular and are natively supported.
+
+Note: We can’t express left outer join and right outer join in relational algebra. The reason is we haven’t introduced NULL in this model.
+
+##Relational Operator: Set Division 
+**General Form:**
+-Relations: A(x,y) and B(y). 
+-Division: A/B = { <x> | ∀y ∈ B<x,y> ∈ A }
+**Example:** 
+-Relations: A(name,bid) and B(bid), where name is a student’s name and bid is a book ID. 
+-Division: A/B = { <name> | ∀bid ∈ B<name,bid> ∈ A }
+-Meaning: Find ALL students that have reserved all books. 
+**Meaning:** 
+-Used to express “ALL.”
+-Example: Which students are registered in ALL courses given by Prof. Wu? 
+Such that if Prof. Wu gives a course, then the student is registered in it. 
+
+**Note:**
+Division is not supported in most systems: 
+-Huge run-time. 
+-Very expensive. 
+-Not used often. 
+-Blocking operation. Not monotonic.
+-There are alternative methods to accomplish “ALL” statements. 
+
+##Examples of Set Division 
+
+A/R1
+
+
+A/R2
+
+
+A/R3
+
+
+##How to Express Set Division?
+-Find all xs not “disqualified” by some y in B.
+
+
+
+**Meaning:** 
+-Disqualified: Students that do not reserve the particular books.
+-Final answer: All students minus disqualified students.
+
+##More Examples
+Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
+-Name of students that reserved DB books
+
+Note: If there are many attributes and records, the cardinality is high. The latter one is a more efficient query.
+Note: Query optimizer can find the more efficient query!
+
+Students that reserved DB or HCI book (Hint: or operation)
+
+
+Students that reserved DB and HCI book (Hint: find two sets, and perform intersection)
+
+
+Students that reserved all books
+
+If primary key of Reserve is (sid, rid) and we forget to use sid, rid, we will still end up with the same result.
+
+Students that reserved all horror books
+
+
+##Why learn relational algebra? 
+
+Relational algebra is a language benchmark: if a language can express something as well as relational algebra, it is considered good. 
+
+**Other pros:** 
+-Query by example. 
+-Novel relationship interfaces. 
+-Equi-Joins are a lifestyle.  
+**Cons:**
+-Limits on nulls,aggregation, recursion, and duplicates, which cannot be expressed. 
+-All of the above can be carried out in other ways. 
+
