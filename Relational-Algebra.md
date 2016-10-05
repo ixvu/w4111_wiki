@@ -240,6 +240,7 @@ Relational algebra is a language benchmark: if a language can express something 
 * Query by example. 
 * Novel relationship interfaces. 
 * Equi-Joins are a lifestyle.  
+
 **Cons:**
 * Limits on nulls,aggregation, recursion, and duplicates, which cannot be expressed. 
 * All of the above can be carried out in other ways. 
