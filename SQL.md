@@ -88,12 +88,9 @@ SELECT [query1] UNION SELECT [query2]
 - produce DISTINCT result
 - query1 and query2 need to be UNION compatible
 <br/>
+
 SELECT [query1] UNION ALL SELECT [query2]
 - keep all the duplicate
-
-
-## Nested Queries
-
 
 [More Examples about SQL statement](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 
