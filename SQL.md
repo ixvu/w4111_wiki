@@ -62,15 +62,38 @@ WHERE qualification
 
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img7.png)
 
+<br\>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img8.png)
+- INCORRECT! (B.color = ‘red’ AND B.color = ‘blue’) == FALSE, so it will return an EMPTY table.
+
+<br/>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img9.png)
+- (B1.bid = R1.bid) gives all the distinct sailors who reserve red boat.
+
+
 ## Expressions
-- Constant 1, ‘hello’, 7.85
-*
+- Constant 1, ‘hello’, 7.85 (use single quote for string)
 - Col reference Sailors.name
 - Arithmetic Sailors.sid * 10
 - Unary operators NOT
-- Binary operators AND, OR, <, =, <>, >=
+- Binary operators AND, OR, <, =, <>, >= (<> means "non equal")
 - Function abs(), sqrt(), ...
 - Casting 1.7::int, ‘10-12-2015’::date
+
+
+## UNION, INTERSECT, EXCEPT
+SELECT [query1] UNION SELECT [query2]
+- produce DISTINCT result
+- query1 and query2 need to be UNION compatible
+<br/>
+SELECT [query1] UNION ALL SELECT [query2]
+- keep all the duplicate
+
+
+## Nested Queries
+
 
 [More Examples about SQL statement](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 
