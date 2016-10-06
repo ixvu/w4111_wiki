@@ -15,11 +15,10 @@ SQL is an extension of relational algebra, it extends in many ways:
 ## Database Example
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img1.png)
 - The Primary key for Reserves is sid and bid, meaning a sailor can only reserves a boat once.
-- Day should be part of key.   
-   
-    
-    
-    
+- Day should be part of key.
+
+<br/>
+     
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img2.png)
 - Add a relation to the FROM clause is similar to perform a cross-product, and the WHERE statement is the filter condition for the output of cross-product.
 
@@ -29,6 +28,49 @@ SQL is an extension of relational algebra, it extends in many ways:
 - WHERE: remove tuples that fail qualifications. Specify the selection conditions on the relations in FROM. 
 - SELECT: specify columns to be retained in the result
 - DISTINCT: remove duplicate rows
+
+
+## Structure of a SQL Query
+SELECT [DISTINCT] target-list   
+FROM relation-list   
+WHERE qualification   
+- target-list: list of attributes that we want to pull out of the relations
+- relation-list: list of relations
+- qualification: should be Boolean expression.
+
+
+## SQL Query Examples
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img3.png)
+- A sid can join to multiple reservations, so adding DISTINCT will change the result 
+
+<br\>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img4.png)
+
+<br\>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img5.png)
+- AS: give name to the output attribute (e.g. age2)
+
+<br\>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img6.png)
+- LIKE: match all strings that are similar to the given string.
+- e.g. 'e_%': match the name of all sailors who's name starts with 'e' and has at least one more character in the name.  
+
+<br\>
+
+![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img7.png)
+
+## Expressions
+- Constant 1, ‘hello’, 7.85
+*
+- Col reference Sailors.name
+- Arithmetic Sailors.sid * 10
+- Unary operators NOT
+- Binary operators AND, OR, <, =, <>, >=
+- Function abs(), sqrt(), ...
+- Casting 1.7::int, ‘10-12-2015’::date
 
 [More Examples about SQL statement](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 
