@@ -94,4 +94,18 @@ SELECT [query1] UNION ALL SELECT [query2]
 
 [More Examples about SQL statement](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 
+## SET Comparison Operators
+We can create operators to compare scalar values to sets.
+-x IN r. True if value x appears in r.
+-EXISTS r. True if relation r is not empty.
+<br/>
+x (op) ANY r: True if x (operator) is true for any row in r.
+- Example: x = ANY r. True if x is equal to ANY value in r. This is also equivalent to x IN r.
+<br/>
+x (op) ALL r: True if x (operator) is true for all rows in r.
+- Example: x <> ALL r. True if x is not equal to ALL values in r. This is also equivalent to x NOT IN r.
 
+![](https://github.com/cchao595/scribenotes/blob/master/1.png)
+
+-Note that the max cardinality of the query is cardinality of Sailors.
+-Joins can increase cardinality of output beyond the input tables (cross products)
