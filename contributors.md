@@ -16,6 +16,7 @@ List of contributors and contributions
   2. Scribed L5 and formatted to align with Lecture 4
   3. Added Links for ER Modeling tools
   4. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
+  5. Added sidebar to simplify moving between pages.
 * Yuedong Wang (yw2931)
   1. Scribed Infrastructure (first version, and was edited by anantb)
   1. Scribed ER Models (detailed version) (around 2000 words).
