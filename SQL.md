@@ -211,3 +211,53 @@ Suppose we had select a, sum(b), c. If we look at 1: the last step would yield: 
 - Shouldn't have access to other attributes after the group by. Instead, filter before you group using WHERE.  
 A continuation of the process of evaluating queries:  
 ![](https://github.com/cchao595/scribenotes/blob/master/14.png)
+
+#ORDER BY
+<br/>
+- Expressions to determine precedence in output table
+- ASC: Ascending (Lowest to Highest)
+- DESC: Descending (Highest to Lowest)
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/2.png)
+
+#LIMIT
+<br/>
+- Limit to only first n results in output table 
+- OFFSET: skip n rows in beginning before beginning to return rows.
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/3.png)
+
+#NULL
+<br/>
+- Means "unknown" or "maybe" 
+- Example: NULL AND True? Could be true if NULL were TRUE: = NULL
+- Example: 1/NULL? Could be error if NUll were 0, but not necessarily: = NULL
+- IS NULL & IS NOT NULL: tests if a value is NULL or NOT NULL
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/1.png)
+
+#JOIN
+<br/>
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/4.png)
+- INNER JOIN: returns all matched rows; is default JOIN type
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/5.png)
+- NATURAL JOIN: equi-join for each pair of attributes with the same name 
+- LEFT OUTER JOIN: returns all matched rows and **unmatched rows from table on left of join clause**
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/6.png)
+- RIGHT OUTER JOIN: returns all matched rows and **unmatched rows from table on right of join clause**
+- FULL OUTER JOIN: returns all matched rows and unmatched rows from **both sides of join**
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/7.png)
+
+#Table Constraints
+<br/>
+- Inserts/Deletes/Updates that violate Integrity Constraints rejected
+- CHECK: ensures columns meet certain criteria
+- CONSTRAINT: sets rules for the data 
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/8.png)
+
+#User Defined Functions (UDFs)
+<br/>
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/9.png)
+- Custom functions that can be called in database
+- Many languages: SQL, python, C, perl, etc
+- Input arguments could be tables or columns with a certain data type like "int"
+- Input arguments can be called using "$1", "$2", etc or their given names 
+![](https://github.com/zzhanzzhao/scribenotes/blob/master/10.png)
+
