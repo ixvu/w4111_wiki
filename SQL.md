@@ -243,6 +243,7 @@ A continuation of the process of evaluating queries:
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/6.png)
 - RIGHT OUTER JOIN: returns all matched rows and **unmatched rows from table on right of join clause**
 - FULL OUTER JOIN: returns all matched rows and unmatched rows from **both sides of join**
+<br/>
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/7.png)
 
 #Table Constraints
