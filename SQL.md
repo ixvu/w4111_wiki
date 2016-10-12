@@ -213,20 +213,17 @@ A continuation of the process of evaluating queries:
 ![](https://github.com/cchao595/scribenotes/blob/master/14.png)
 
 #ORDER BY
-<br/>
 - Expressions to determine precedence in output table
 - ASC: Ascending (Lowest to Highest)
 - DESC: Descending (Highest to Lowest)
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/2.png)
 
 #LIMIT
-<br/>
 - Limit to only first n results in output table 
 - OFFSET: skip n rows in beginning before beginning to return rows.
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/3.png)
 
 #NULL
-<br/>
 - Means "unknown" or "maybe" 
 - Example: NULL AND True? Could be true if NULL were TRUE: = NULL
 - Example: 1/NULL? Could be error if NUll were 0, but not necessarily: = NULL
@@ -247,7 +244,6 @@ A continuation of the process of evaluating queries:
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/7.png)
 
 #Table Constraints
-<br/>
 - Inserts/Deletes/Updates that violate Integrity Constraints rejected
 - CHECK: ensures columns meet certain criteria
 - CONSTRAINT: sets rules for the data 
