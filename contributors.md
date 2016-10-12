@@ -42,3 +42,6 @@ List of contributors and contributions
 * Ching-Hui Hsu (ch3230)
   1. Scribed Lecture 9 SQL
   1. Include: 1. SQL Semantics 2. SQL Query Examples 3. supply detailed explanation for query statement/expression.
+* Zhan Zhao (zz2247)
+  1. Scribed Lecture 11 SQL (10/12/2016)
+  1. Sections include: ORDER BY, LIMIT, NULL, JOIN, Table Constraints, UDFs
