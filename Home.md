@@ -9,6 +9,7 @@ Links to topics
 * [[Relational Model | relational-model]]
 * [[Relational Algebra | relational-algebra]]
 * [[SQL | sql]]
+* [[Advanced SQL (UDFs, triggers, WITH, etc) | advancedsql]]
 * [[APIs | apis]]
 * [[Normalization | normalization]]
 * [[Physical Design | physical-design]]
