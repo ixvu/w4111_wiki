@@ -1,3 +1,5 @@
+##This is the start of a study guide for the midterm.  Please add anything you think would be useful.
+
 ## Important Terms
 
 ###Chapter 2
