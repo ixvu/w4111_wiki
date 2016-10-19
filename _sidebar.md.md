@@ -12,6 +12,7 @@
 
 ###Additional Topics  
 [[Instabase and Assignment Infrastructure |infrastructure]]
+[[Midterm Study Guide |midterm study guide]]
 
 ***
 
