@@ -1,6 +1,4 @@
-# Lecture 9 SQL
-
-## Structured Query Language
+# Structured Query Language
 The two subsets of SQL language:
 - Data Definition Language (**DDL**)  
  - All the statements in order to define and modify schema (physical, logical, view).
@@ -24,14 +22,12 @@ SQL is an extension of relational algebra with:
 
 **SQL is worthwhile to study as it is not just the most widely used relational query language, but also most widely used query language!**
 
-## Database Example
+# Database Example
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img1.png)
-
-***
 
 <details> 
   <summary>Q1: Is the Reserves table correct?</summary><br />
-   A1: No! The **Reserves** primary key is **sid** and **bid**, meaning a sailor can only reserve a boat once. Therefore day should be part of key (and would be underlined accordingly)
+   No! The **Reserves** primary key is **sid** and **bid**, meaning a sailor can only reserve a boat once. Therefore day should be part of key (and would be underlined accordingly)
 </details>
      
 ***
@@ -46,11 +42,9 @@ SQL is an extension of relational algebra with:
 > `SELECT * FROM Sailors WHERE age < 30`  
 > **σ<sub>age<30</sub>(Sailors)**
 
-***
-
 <details> 
   <summary>Q2: Which relational operator is this equivalent to?</summary><br />
-   A2: Project takes columns, Select is the operator that takes a predicate and reduces a set of rows. In contrast, in SQL this select takes out columns. **SQL Select Clause != Select Relational Operator**. They're opposites
+   Project takes columns, Select is the operator that takes a predicate and reduces a set of rows. In contrast, in SQL this select takes out columns. **SQL Select Clause != Select Relational Operator**. They're opposites
 </details>
      
 ***
@@ -58,7 +52,7 @@ SQL is an extension of relational algebra with:
 > `SELECT name,age FROM Sailors WHERE age < 30`  
 > **π<sub>name,age</sub>(σ<sub>age<30</sub>(Sailors))**
   
-<br />
+***
 
 > ```
 SELECT S.name  
@@ -67,49 +61,151 @@ WHERE  S.sid = R.sid AND R.bid = 102
 ```
 > **π<sub>name</sub>(σ<sub>bid=102</sub>(Sailors⋈<sub>sid</sub>Reserves))**
 
-***
-
 <details> 
   <summary>Q3: What kind of join is this?</summary><br />
-   A3: An equi-join!  
+   An equi-join!  
    ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img2.png)
 </details>
-     
-***
+
+### Who reserved boat 102?
+
+**Sailors**  
+
+| sid | name   | rating | age |
+| --- | ---    | ---    | --- |
+| 1   | Eugene | 7      | 22  |
+| 2   | Luis   | 2      | 39  |
+| 3   | Ken    | 8      | 27  |
+
+**Reserves**  
+
+| sid | bid | day  |
+| --- | --- | ---  |
+| 1   | 102 | 9/12 |
+| 2   | 102 | 9/13 |
+| 2   | 103 | 9/14 |
+| 1   | 102 | 9/15 |
 
 
+<details> 
+  <summary>Q4: Who reserved boat 102?</summary>
+   <table>
+   <tr><th>name</th></tr>
+   <tr><td>Eugene</td></tr>
+   <tr><td>Luis</td></tr>
+   </table>  
+   Note the duplicate "Eugene" row.
+</details>
+
+Note:  
 The addition of relations to a **FROM** clause correspond with the addition of a **cross product**.  
 The **WHERE** statement is the **filter** condition for the output of the cross product.
 
+***
 
-## Semantics
-- FROM: compute cross product of relations
-- WHERE: remove tuples that fail qualifications. Specify the selection conditions on the relations in FROM. 
-- SELECT: specify columns to be retained in the result
-- DISTINCT: remove duplicate rows
+# Semantics
+#### FROM: compute cross product of relations
+#### WHERE: remove tuples that fail qualifications. Specify the selection conditions on the relations in FROM. 
+#### SELECT: specify columns to be retained in the result
+#### DISTINCT: remove duplicate rows
 
 
-## Structure of a SQL Query
+# Structure of a SQL Query
 SELECT [DISTINCT] target-list   
 FROM relation-list   
 WHERE qualification   
-- target-list: list of attributes that we want to pull out of the relations
-- relation-list: list of relations
-- qualification: should be Boolean expression.
 
+### target-list
+- list of expressions over attributes of tables in **relation-list**
+- e.g. `SELECT s.name`
 
-## SQL Query Examples
-![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img3.png)
-- A sid can join to multiple reservations, so adding DISTINCT will change the result 
+### relation-list  
+- list of relations  
+- Can define aliases `AS X`  
+- e.g. `FROM Sailors AS s, Reserves as R`  
 
-<br\>
+### qualification  
+- Boolean expression
+ - Combined w/ `AND`, `OR`, `NOT`
+ - attr op const
+ - attr<sub>1</sub> op attr<sub>2</sub>
+ - op is =, <, >, <>, etc.
 
-![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img4.png)
+### DISTINCT
+- Optional: Remove duplicates (set)
+- Default: duplicates permitted (multiset)
+
+##TODO: Conceptual Query Slide!
+
+# SQL Query Examples
+
+## Building Queries!
+
+### Sailors that reserved 1+ boats
+
+<details> 
+  <summary>1. In order to find out what sailors reserved boats, I'll need the sailors relation and boats relation</summary>
+  `FROM Sailors AS S, Reserves as R`  
+  <details> 
+    <summary>2. Well what data do I want to keep?</summary>
+      `FROM  Sailors AS S, Reserves as R`  
+      `WHERE S.sid = R.sid`  
+      <details> 
+        <summary>3. Happy with that and only want the sailor id</summary>
+          `SELECT S.sid`  
+          `FROM   Sailors AS S, Reserves as R`  
+          `WHERE  S.sid = R.sid` 
+          <details> 
+             <summary>Q5: Would DISTINCT change anything is this query?</summary>
+             Yes, a **sid** can join to multiple reservations, so adding DISTINCT will change the result. Even if the            attribute is a primary key, it can appear multiple times in the relation.
+             <details> 
+               <summary>So what query do I really want?</summary>
+               `SELECT DISTINCT S.sid`  
+               `FROM   Sailors AS S, Reserves as R`  
+               `WHERE  S.sid = R.sid`  
+               ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img3.png)
+             </details>
+          </details>
+      </details>
+  </details>
+</details>
+
+#### Professor Pro-tips:
+> "When I give you a question I'm going to say 'give me the *unique set* of sailor names'; In which case that tell's you what I'm looking for. If I just said 'I want the sailor names', it's ambiguous and you can interpret both ways. We want to be precise about what we're saying in terms of writing SQL queries"
+
+****
+
+### Table Alias (AS, Range Variables)
+- Disambiguate relations (useful when the same table is used multiple times)
+
+<details> 
+  <summary>1. We want all sailors who are older than another sailor so we use a use a self join</summary>
+  So we try:  
+  `Select sid`  
+  `FROM   Sailors, Sailors`  
+  `WHERE  age > age`  
+  <details> 
+    <summary>Q6: But what's wrong with this query?</summary>
+      Ambiguity! (Big hint that it's incorrect)  
+      `SELECT S1.sid`  
+      `FROM   Sailors AS S1, Sailors AS S2`  
+      `WHERE  S1.age > S2.age`   
+      ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img4.png)
+      <details>
+         <summary>And if we want additional fields we must label them explicitly</summary>
+         `SELECT S1.name, S1.age, S2.name, S2.age`  
+         `FROM   Sailors AS S1, Sailors AS S2`  
+         `WHERE  S1.age > S2.age`  
+      </details>
+  </details>
+</details>
+
+### TODO: Link to Livecode
 
 <br\>
 
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img5.png)
-- AS: give name to the output attribute (e.g. age2)
+#### AS: give name to the output attribute (e.g. age2)
 
 <br\>
 
@@ -132,17 +228,20 @@ WHERE qualification
 - (B1.bid = R1.bid) gives all the distinct sailors who reserve red boat.
 
 
-## Expressions
-- Constant 1, ‘hello’, 7.85 (use single quote for string)
-- Col reference Sailors.name
-- Arithmetic Sailors.sid * 10
-- Unary operators NOT
-- Binary operators AND, OR, <, =, <>, >= (<> means "non equal")
-- Function abs(), sqrt(), ...
-- Casting 1.7::int, ‘10-12-2015’::date
+# Expressions
+<table>
+<tr><th>Type</th><th>Example</th></tr>
+<tr><td>Constant</td><td>1, 'hello', 7.85</td></tr>
+<tr><td>Column Reference</td><td>Sailors.name</td></tr>
+<tr><td>Arithmetic</td><td>Sailors.sid * 10</td></tr>
+<tr><td>Unary Operators</td><td>NOT</td></tr>
+<tr><td>Binary Operators</td><td>AND, OR, <, =, <>, >=</td></tr>
+<tr><td>Functions</td><td>abs(), sqrt()</td></tr>
+<tr><td>Casting</td><td>1.7::int, ‘10-12-2015’::date</td></tr>
+</table>
+Note: Use a single quote for string and `<>` means "non equal"
 
-
-## UNION, INTERSECT, EXCEPT
+# UNION, INTERSECT, EXCEPT
 SELECT [query1] UNION SELECT [query2]
 - produce DISTINCT result
 - query1 and query2 need to be UNION compatible
@@ -153,7 +252,7 @@ SELECT [query1] UNION ALL SELECT [query2]
 
 [More Examples about SQL statement](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 
-## SET Comparison Operators
+# SET Comparison Operators
 We can create operators to compare scalar values to sets.
 -x IN r. True if value x appears in r.
 -EXISTS r. True if relation r is not empty.
@@ -211,7 +310,7 @@ NOUN--> NOUN--> VERB
 ENTITY1--> ENTITY2--> RELATIONSHIP  
 Check [Instabase](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb) to see the swap between Reserves and Boats and why the outputs are different. 
 
-## Aggregation
+# Aggregation
 Aggregates: Functions over sets.  
 Syntax: Function(expression). Expression can contain math (age*2+5) and "DISTINCT"- distinct expression vals.
 Examples of aggregates:  
@@ -271,13 +370,13 @@ Suppose we had select a, sum(b), c. If we look at 1: the last step would yield: 
 A continuation of the process of evaluating queries:  
 ![](https://github.com/cchao595/scribenotes/blob/master/14.png)
 
-#ORDER BY
+# ORDER BY
 - Expressions to determine precedence in output table
 - ASC: Ascending (Lowest to Highest)
 - DESC: Descending (Highest to Lowest)
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/2.png)
 
-#LIMIT
+# LIMIT
 - Limit to only first n results in output table 
 - OFFSET: skip n rows in beginning before beginning to return rows.
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/3.png)
@@ -289,7 +388,7 @@ A continuation of the process of evaluating queries:
 - IS NULL & IS NOT NULL: tests if a value is NULL or NOT NULL
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/1.png)
 
-#JOIN
+# JOIN
 <br/>
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/4.png)
 - INNER JOIN: returns all matched rows; is default JOIN type
@@ -302,13 +401,13 @@ A continuation of the process of evaluating queries:
 <br/>
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/7.png)
 
-#Table Constraints
+# Table Constraints
 - Inserts/Deletes/Updates that violate Integrity Constraints rejected
 - CHECK: ensures columns meet certain criteria
 - CONSTRAINT: sets rules for the data 
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/8.png)
 
-#User Defined Functions (UDFs)
+# User Defined Functions (UDFs)
 <br/>
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/9.png)
 - Custom functions that can be called in database
@@ -316,4 +415,3 @@ A continuation of the process of evaluating queries:
 - Input arguments could be tables or columns with a certain data type like "int"
 - Input arguments can be called using "$1", "$2", etc or their given names 
 ![](https://github.com/zzhanzzhao/scribenotes/blob/master/10.png)
-
