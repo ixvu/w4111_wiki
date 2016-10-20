@@ -2,25 +2,84 @@
 
 ## Structured Query Language
 The two subsets of SQL language:
-- Data Definition Language (DDL): All the statements in order to create or define schema.
-- Data Manipulation Language (DML): Get data into the database, modify and fetch data.
+- Data Definition Language (**DDL**)  
+ - All the statements in order to define and modify schema (physical, logical, view).
+ - `CREATE TABLE`, Integrity Constraints
+- Data Manipulation Language (**DML**): Get and modify data
+ - simple `SELECT`, `INSERT`, `DELETE`
+ - _human-readable_ language
 
+DBMS attempts efficient execution
+- Key: precise (well-defined) query semantics
+- Reorder/modify queries while answers stay the same
+- Estimates costs for different evaluation plans
+- SQL -> Plan Generator -> Plans 1...n -> Select Cheapest Plan
 
-SQL is an extension of relational algebra, it extends in many ways: 
-- Multi-sets: results of SQL statement can contain duplicates
+SQL is an extension of relational algebra with: 
+- Multi-sets
+ - Results of SQL statement can contain duplicates
+ - Order doesn't matter
 - NULLs
 - Aggregates
 
+**SQL is worthwhile to study as it is not just the most widely used relational query language, but also most widely used query language!**
 
 ## Database Example
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img1.png)
-- The Primary key for Reserves is sid and bid, meaning a sailor can only reserves a boat once.
-- Day should be part of key.
 
-<br/>
+***
+
+<details> 
+  <summary>Q1: Is the Reserves table correct?</summary><br />
+   A1: No! The **Reserves** primary key is **sid** and **bid**, meaning a sailor can only reserve a boat once. Therefore day should be part of key (and would be underlined accordingly)
+</details>
      
-![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img2.png)
-- Add a relation to the FROM clause is similar to perform a cross-product, and the WHERE statement is the filter condition for the output of cross-product.
+***
+
+**<30 year old sailors**
+
+| sid | name   | rating | age |
+| --- | ---    | ---    | --- |
+| 1   | Eugene | 7      | 22  |
+| 3   | Ken    | 8      | 27  |
+
+> `SELECT * FROM Sailors WHERE age < 30`  
+> **σ<sub>age<30</sub>(Sailors)**
+
+***
+
+<details> 
+  <summary>Q2: Which relational operator is this equivalent to?</summary><br />
+   A2: Project takes columns, Select is the operator that takes a predicate and reduces a set of rows. In contrast, in SQL this select takes out columns. **SQL Select Clause != Select Relational Operator**. They're opposites
+</details>
+     
+***
+
+> `SELECT name,age FROM Sailors WHERE age < 30`  
+> **π<sub>name,age</sub>(σ<sub>age<30</sub>(Sailors))**
+  
+<br />
+
+> ```
+SELECT S.name  
+FROM   Sailors AS S, Reserves AS R  
+WHERE  S.sid = R.sid AND R.bid = 102  
+```
+> **π<sub>name</sub>(σ<sub>bid=102</sub>(Sailors⋈<sub>sid</sub>Reserves))**
+
+***
+
+<details> 
+  <summary>Q3: What kind of join is this?</summary><br />
+   A3: An equi-join!  
+   ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img2.png)
+</details>
+     
+***
+
+
+The addition of relations to a **FROM** clause correspond with the addition of a **cross product**.  
+The **WHERE** statement is the **filter** condition for the output of the cross product.
 
 
 ## Semantics
