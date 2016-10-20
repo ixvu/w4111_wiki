@@ -173,6 +173,8 @@ So in this relation, employeeID is a candidate key.  Also, no values in the empl
 
 Out of all the available candidate keys, a database designer can identify a primary key.  
 
+##SQL and Relational Algebra  
+
 Consider the following schema - the primary keys are __*bold italic*__:  
 
 Suppliers(__*sid*__: integer, sname: string, address: string)   
