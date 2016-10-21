@@ -4,7 +4,7 @@
 [[Relational Model | relational-model]] (4-6)  
 [[Relational Algebra | relational-algebra]] (7-9)  
 [[SQL | sql]] (10-12)  
-[[Advanced SQL | advancedsql]]
+[[Advanced SQL | advancedsql]]  
 [[APIs | apis]]  
 [[Normalization | normalization]]  
 [[Physical Design | physical-design]]  
