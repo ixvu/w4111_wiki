@@ -275,7 +275,7 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,((π<sub>sid,pid</sub>Catalog)/(π<sub>pid</su
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,((π<sub>sid,pid</sub>Catalog)/(π<sub>pid</sub>σ<sub>color='green'</sub>Parts)**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**R1∪R2**  
 
-```
+```sql
 SQL SELECT C.sid  
     FROM Catalog C  
     WHERE (NOT EXISTS (SELECT P.pid  
@@ -301,7 +301,7 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,Catalog)**
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,Catalog)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.sid,R2.sid</sub>(σ<sub>R1.pid=R2.pid∧R1.sid ≠ R2.sid∧R1.cost>R2.cost</sub>(R1×R2))  
 
-```
+```sql
 SQL SELECT C1.sid C2.sid  
     FROM Catalog C1, Catalog C2  
     WHERE C1.pid = C2.pid AND  C1.sid <> C2.sid  
@@ -314,7 +314,7 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,Catalog)**
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,Catalog)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.pid</sub>σ<sub>R1.pid=R2.pid∧R1.sid ≠ R2.sid</sub>(R1×R2)    
 
-```
+```sql
 SQL SELECT C.pid
     FROM Catalog C
     WHERE EXISTS (SELECT C1.sid
@@ -330,7 +330,7 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,π<sub>sid</sub>σ<sub>sname='YosemiteSham'</s
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R4(1->sid, 2->pid, 3->cost),σ<sub>R3.cost < R2.cost </sub>(R3xR2))**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**π<sub>pid</sub>(R2-π<sub>sid,pid,cost</sub>R4)**  
 
-```
+```sql
 SQL SELECT C.pid
     FROM Catalog C, Suppliers S
     WHERE S.sname = 'Yosemite Sham' AND C.sid = S.sid
