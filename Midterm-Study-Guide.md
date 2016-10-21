@@ -167,9 +167,9 @@ A ***primary key*** is a candidate keys which has no NULL values
 |1	|	22,000	|ernie|
 |2	|	40,000	|alice|
 |3	|	22,000	|bart|
-|4	|	45,000	|NULL|
+|4	|	45,000	|billy|
 
-So in this relation, employeeID is a candidate key.  Also, no values in the employeeID are null, so employeeID is also the primary key.  Although employeename is a candidate key, it contains NULL values so it cannot be a primary key.
+So in this relation, employeeID is a candidate key.  Also, no values in the employeeID are null, so employeeID is also the primary key.  Also employeename is a candidate key and since it does not contain any null values, it could be selected as a primary key.
 
 Out of all the available candidate keys, a database designer can identify a primary key.  
 
