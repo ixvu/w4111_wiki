@@ -275,66 +275,66 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,((π<sub>sid,pid</sub>Catalog)/(π<sub>pid</su
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,((π<sub>sid,pid</sub>Catalog)/(π<sub>pid</sub>σ<sub>color='green'</sub>Parts)**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**R1∪R2**  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE (NOT EXISTS (SELECT P.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P.color = 'red' AND    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(NOT EXISTS (SELECT C1.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.sid = C.sid AND  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C1.pid = P.pid)))  
-  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR (NOT EXISTS (SELECT P1.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P1    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P1.color = 'green' AND  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(NOT EXISTS (SELECT C2.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C2.sid = C.sid AND  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C2.pid = P1.pid)))  
+```
+SQL SELECT C.sid  
+    FROM Catalog C  
+    WHERE (NOT EXISTS (SELECT P.pid  
+    FROM Parts P    
+    WHERE P.color = 'red' AND    
+       (NOT EXISTS (SELECT C1.sid  
+       FROM Catalog C1  
+       WHERE C1.sid = C.sid AND  
+       C1.pid = P.pid)))  
+
+       OR (NOT EXISTS (SELECT P1.pid  
+       FROM Parts P1    
+       WHERE P1.color = 'green' AND  
+       (NOT EXISTS (SELECT C2.sid  
+       FROM Catalog C2  
+       WHERE C2.sid = C.sid AND  
+       C2.pid = P1.pid)))  
+```
 
 __*Find pairs of sids such that the supplier with the ﬁrst sid charges more for some part than the supplier with the second sid.*__  
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,Catalog)**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,Catalog)**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.sid,R2.sid</sub>(σ<sub>R1.pid=R2.pid∧R1.sid __not equal__ R2.sid∧R1.cost>R2.cost</sub>(R1×R2))  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.sid,R2.sid</sub>(σ<sub>R1.pid=R2.pid∧R1.sid ≠ R2.sid∧R1.cost>R2.cost</sub>(R1×R2))  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C1.sid C2.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1, Catalog C2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.pid = C2.pid AND  C1.sid __not equal__ C2.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND C1.cost > C2.cost  
-
-**Note - I couldn't get the not equal sign to work**  
+```
+SQL SELECT C1.sid C2.sid  
+    FROM Catalog C1, Catalog C2  
+    WHERE C1.pid = C2.pid AND  C1.sid <> C2.sid  
+    AND C1.cost > C2.cost
+```
 
 __*Find the pids of parts supplied by at least two diﬀerent suppliers.*__  
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,Catalog)**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,Catalog)**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.pid</sub>σ<sub>R1.pid=R2.pid∧R1.sid __not equal__ R2.sid</sub>(R1×R2)    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π<sub>R1.pid</sub>σ<sub>R1.pid=R2.pid∧R1.sid ≠ R2.sid</sub>(R1×R2)    
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE EXISTS (SELECT C1.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.pid = C.pid AND  C1.sid __not equal__ C.sid)  
-
-**Note - I couldn't get the not equal sign to work**  
+```
+SQL SELECT C.pid
+    FROM Catalog C
+    WHERE EXISTS (SELECT C1.sid
+    FROM Catalog C1
+    WHERE C1.pid = C.pid AND C1.sid <> C.sid)
+``` 
 
 __*Find the pids of the most expensive parts supplied by suppliers named Yosemite Sham.*__
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,π<sub>sid</sub>σ<sub>sname='YosemiteSham'</sub>Suppliers)**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,R1 ⋈ Catalog)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R3,R2)**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R4(1->sid, 2->pid, 3->cost),σ<sub>R3.cost<code> __less than__ </code> R2.cost </sub>(R3xR2))**    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R4(1->sid, 2->pid, 3->cost),σ<sub>R3.cost < R2.cost </sub>(R3xR2))**    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**π<sub>pid</sub>(R2-π<sub>sid,pid,cost</sub>R4)**  
 
-**Note - I couldn't get the less than sign to work**  
-
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C, Suppliers S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.sname = 'Yosemite Sham' AND C.sid = S.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND C.cost __greater than or equal__ ALL (Select C2.cost  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C2, Suppliers S2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S2.sname = 'Yosemite Sham' AND C2.sid = S2.sid)  
-
-**Note - I couldn't get the greater than or equal sign to work**
+```
+SQL SELECT C.pid
+    FROM Catalog C, Suppliers S
+    WHERE S.sname = 'Yosemite Sham' AND C.sid = S.sid
+    AND C.cost ≥ ALL (Select C2.cost
+    FROM Catalog C2, Suppliers S2
+    WHERE S2.sname = 'Yosemite Sham' AND C2.sid = S2.sid)
+```
