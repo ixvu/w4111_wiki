@@ -14,6 +14,7 @@ List of contributors and contributions
   1. Added initial Scribe notes for Lecture 3
   1. Added the first commit of the midterm study guide
   1. Added a SQL and Relational Algebra section to the midterm study guide
+  1. Added additional SQL and RA examples
 * David Kuhta (dk2723)
   1. L2 - Converted table images to markdown tables, added dblp link
   2. Scribed L5 and formatted to align with Lecture 4
