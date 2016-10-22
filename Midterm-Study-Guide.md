@@ -393,7 +393,21 @@ SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname
 
 The set contains the names of the sailors associated with sid 22,31, and 74.  This query could be modified to find all sailors who have not reserved boat 103 by replacing __IN__ by __NOT IN__.  
 
-RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(σ<sub>bid='103'</sub>Reserves)⋈Sailors)**    
+RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(σ<sub>bid='103'</sub>Reserves)⋈Sailors)**  
+
+__*Alternatively*__
+
+SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors, Reserves  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.sid = R.sid AND B.bid =103  
+
+__*Find the names of sailors who have reserved boat number 103. - using EXISTS*__  
+
+SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE EXISTS (SELECT *    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Reserves R  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE R.bid = 103 AND S.sid = R.sid)  
 
 __*Find the names of sailors who have reserved a red boat.*__  
 
@@ -408,14 +422,6 @@ SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname
 The result of this query would be to return the names Dustin, Lubber, and Horatio.  To find the names of sailors who have not reserved a red boat we replace the outermost __IN__ by __NOT IN__.  
 
 RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(π<sub>sid</sub>((π<sub>bid</sub>σ<sub>color='red'</sub>Boats)⋈Reserves)⋈Sailors)**  
-
-__*Find the names of sailors who have reserved boat number 103. - using EXISTS*__  
-
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE EXISTS (SELECT *    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Reserves R  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE R.bid = 103 AND S.sid = R.sid)  
 
 __* Find sailors whose rating is better than some sailor called Horatio.*__  
 
