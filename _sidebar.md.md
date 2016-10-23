@@ -12,7 +12,7 @@
 [[Transactions | transactions]]  
 
 ###Additional Topics  
-[[Instabase and Assignment Infrastructure |infrastructure]]
+[[Instabase & Assignment Structure |infrastructure]]
 
 [[Midterm Study Guide |midterm study guide]]
 
