@@ -384,13 +384,6 @@ A continuation of the process of evaluating queries:
 ![](https://github.com/lh2728/linahuang/blob/master/Screen%20Shot%202016-10-22%20at%2011.01.53%20PM.png)
 
 
-**Results**
-
-|name  |int4  |age|
-|------|------|---|
-|Ken   | 4    |27 |
-|Eugene| 3    |22 |
-
 #NULL
 - Means "unknown" or "maybe" 
 - Example: NULL AND True? Could be true if NULL were TRUE: = NULL
