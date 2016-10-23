@@ -388,9 +388,23 @@ Only if covering constraint = yes (all users are instructors or students)
 E.g. Donates: PRIMARY KEY (company_id, course_id)
      Manages: References this key
 ```sql
-CREATE TABLE Instructors( uid int, rating int, PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
-CREATE TABLE Manages( mid int, since DATE, PRIMARY KEY(uid), FOREIGN KEY (uid) REFERENCES Users )
-CREATE TABLE Donates( did int, company_id int, course_id int, amount int, PRIMARY KEY(company_id, course_id), FOREIGN KEY (uid) REFERENCES Users )
+CREATE TABLE Donates( 
+    company_id int,
+    course_id int,
+    amount int,
+    PRIMARY KEY(company_id, course_id),
+    FOREIGN KEY(company_id) REFERENCES companies,
+    FOREIGN KEY(course_id) REFERENCES courses
+);
+CREATE TABLE Manages( 
+    uid int,
+    company_id int,
+    course_id int,
+    since DATE,
+    PRIMARY KEY(uid, company_id, course_id),
+    FOREIGN KEY(uid) REFERENCES Instructors,
+    FOREIGN KEY(company_id, course_id) REFERENCES Donates
+);
 ```
 ####TODO: Aggregation Image ####
 
