@@ -39,8 +39,10 @@ SQL is an extension of relational algebra with:
 | 1   | Eugene | 7      | 22  |
 | 3   | Ken    | 8      | 27  |
 
-> `SELECT * FROM Sailors WHERE age < 30`  
-> **σ<sub>age<30</sub>(Sailors)**
+```sql
+SELECT * FROM Sailors WHERE age < 30
+```  
+**σ<sub>age<30</sub>(Sailors)**
 
 <details> 
   <summary>Q2: Which relational operator is this equivalent to?</summary><br />
@@ -100,8 +102,8 @@ WHERE  S.sid = R.sid AND R.bid = 102
 </details>
 
 Note:  
-The addition of relations to a **FROM** clause correspond with the addition of a **cross product**.  
-The **WHERE** statement is the **filter** condition for the output of the cross product.
+The addition of relations to a **`FROM`** clause correspond with the addition of a **cross product**.  
+The **`WHERE`** statement is the **filter** condition for the output of the cross product.
 
 ***
 
@@ -113,9 +115,11 @@ The **WHERE** statement is the **filter** condition for the output of the cross 
 
 
 # Structure of a SQL Query
+```sql
 SELECT [DISTINCT] target-list   
 FROM relation-list   
 WHERE qualification   
+```
 
 ### target-list
 - list of expressions over attributes of tables in **relation-list**
@@ -212,7 +216,7 @@ WHERE qualification
 <br\>
 
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img6.png)
-- LIKE: match all strings that are similar to the given string.
+- `LIKE`: match all strings that are similar to the given string.
 - e.g. 'e_%': match the name of all sailors who's name starts with 'e' and has at least one more character in the name.  
 
 <br\>
