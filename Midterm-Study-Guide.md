@@ -141,18 +141,19 @@ a candidate key, {eid,name} could not be a candidate key because {eid} is a subs
 Example:
 
 |eid|eage|ename|
-|---|---|---|
+|---:|---|---|
 |1|	20|	lisa|
 |2	|20	|lisa|
 |3	|30	|andy|
 |2	|30	|andy|
+
 
 Here, eid does not uniquely identify a tupel however, the combination of {eid,eage} does uniquely define each tuple so {eid,eage} is a candidate key.
 
 Example:
 
 |eid|eage|ename|
-|---|---|---|
+|---:|---|---|
 |1|	20|	tony|
 |2	|20	|lisa|
 |3	|30	|andy|
@@ -167,11 +168,11 @@ A ***superkey*** is acandidate key plus zero or more attributes. Every candidate
 Example:
 
 |employeeID|salary|employeename|
-|---|---|---|
-|1|		22,000	|ernie|
-|2	|	40,000	|alice|
-|3	|	22,000	|bart|
-|4	|	45,000	|ernie|
+|---:      |------|---|
+|1         |	22,000	|ernie|
+|2	   |	40,000	|alice|
+|3	   |	22,000	|bart|
+|4	   |	45,000	|ernie|
 
 In this example, empoyeeID is the only candidate key
 
@@ -191,7 +192,7 @@ Note that every relation is guaranteed to have a key. Since a relation is a set 
 A ***primary key*** is a candidate keys which has no NULL values
 
 |employeeID	|salary|	employeename|
-|---|---|---|
+|---:|---|---|
 |1	|	22,000	|ernie|
 |2	|	40,000	|alice|
 |3	|	22,000	|bart|
@@ -399,7 +400,7 @@ Instance 83  of Sailors
 Instance R2 of Reserves  
 
 |sid|bid|   day  |
-|---|---|--------|
+|---|---|--------:|
 |22 |101|10/10/98|
 |22 |102|10/10/98|
 |22 |103|10/8/98 |
