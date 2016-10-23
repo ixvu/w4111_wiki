@@ -1,5 +1,4 @@
-# Lecture 4 Relational Model
-## Roadmap
+# Roadmap
 * Data models history
 * Basic concepts
 * Data definition language (DDLs)
@@ -7,8 +6,8 @@
 * Data Manipulation Language Selection Queries (DML) *(Not mentioned in Lec 4)*
 * ER --translate--to--> Relational model *(Not mentioned in Lec 4)*
 
-## Data Model History
-### Information Management System (IMS), 1968
+# Data Model History
+## Information Management System (IMS), 1968
 <img src="https://github.com/leighton613/scribenotes/blob/master/pics/ims.png" width="460">
 
 * widely used, runs the world's most workloads
@@ -21,7 +20,7 @@
  * Lacks of physical data independence;
 * Example: [IBM IMS](https://www-01.ibm.com/software/data/ims/)
 
-### Network Models, CODASYL, 1969
+## Network Models, CODASYL, 1969
 <img src="https://github.com/leighton613/scribenotes/blob/master/pics/network_models.png" width="400">
 
 * connected by named sets
@@ -34,7 +33,7 @@
  * No physical nor logical data independence
 * Example: [Oracle CODASYL DBMS](http://www.oracle.com/technetwork/products/rdb/index-086844.html)
 
-### Relational Model, 1970
+## Relational Model, 1970
 * [A relational model of data for large shared data banks](https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf) 
 * Key properties:
    * simple representation: table
@@ -43,9 +42,8 @@
 * Pros and Cons
    * Pros: simple
    * Cons: slow
- 
 
-## Basic Concepts
+# Basic Concepts
 * **Database** a set of relations
 * **Relation** a table with rows and columns
  * **Schema** name of relation + name & type of each column
@@ -55,18 +53,19 @@
  
 * Example: *Student* Relation
 
- | **sid** | name | login | age | gpa |
- | ------- | ---- | ----- | --- | --- |
- | 1       | eugene | ewu@cs | 20 | 2.5 |
- | 2       | enha | neha@cs | 20 | 3.5 |
- | 3       | lin | lin@math | 33 | 3.9 |
- | 4       | leighton | leighton@ee | 18 | 3.0 |
+ | **sid** |  name  |     login   | age | gpa |
+ | -------:| ------:| ----------- | --- | --- |
+ | 1       | eugene |   ewu@cs    | 20  | 2.5 |
+ | 2       |  enha  |   neha@cs   | 20  | 3.5 |
+ | 3       |   lin  |   lin@math  | 33  | 3.9 |
+ | 4       |leighton| leighton@ee | 18  | 3.0 |
+
  * Schema: `Student(sid: int, name: string, login: string, age: int, gpa: float)`
 
 * Terminology
 
  | Formal Name | Synonyms | Example |
- | ----------- | -------- | ------- |
+ | -----------:| -------- | ------- |
  | Relation    | Table    | *Student* Relation |
  | Tuple       | Row, Record | `(1, eugene, ewu@cs, 20 2.5)`, etc |
  | Attribute   | Column, Field | sid, name, login, age, gpa |
@@ -74,26 +73,27 @@
  | Cardinality | number of tuple | 4 |
  | Degree      | number of attributes | 5 |
 
-## Data Definition Language (DDL) 
+# Data Definition Language (DDL) 
  **DDL**: a syntax defining data structures, especially database schemas.[Ref: wiki](https://en.wikipedia.org/wiki/Data_definition_language)
 * `CREATE`: creates database, table or index.
 
   ```sql 
 CREATE TABLE Name(   -- syntax to create a table
-columnName columnType,
+    columnName columnType,
 ...
 )
   ```
+
 * `DROP`: destroys an existing database, table, index, or view
 * `ALTER`: modifies existing database object
 * `RENAME`: modifies an existing database object
 
-## Integrity Constraints (ICs)
+# Integrity Constraints (ICs)
 **IC**: a condition that is true for *any* instance of database
 * **Domain Constraints** -- Attribution type
         
   ```sql
-CREATE TABLE Students(
+CREATE TABLE Students (
     sid int,    -- syntax: colname type
     name text,  -- specific type of sid is int
     login text,
@@ -115,21 +115,21 @@ CREATE TABLE Students(
     )
   ```
 
-## Keys
-### Candidate key
+# Keys
+## Candidate key
 * Conditions:
   1. Two distinct valid tuples cannot have same values (distinct);
   2. This is not true for any subset of the key (minimal)
 * **superkey**: if (b) is false
 
-### Primary key
+## Primary key
 
 ```sql
-CREATE TABLE Enrolled(  -- each student can enroll in a course only once
-  sid int,
-  cid int,
-  grade char(2),
-  PRIMARY KEY (sid, cid)
+CREATE TABLE Enrolled (  -- each student can enroll in a course only once
+    sid int,
+    cid int,
+    grade char(2),
+    PRIMARY KEY (sid, cid)
                -- combination (sid, cid) 1.is unique and not null in the table,
                --                    and 2. is used to identify the record
 )
@@ -145,15 +145,15 @@ CREATE TABLE Enrolled(  -- each student can enroll in a course only once
 * Example: What does the DDL say?
 
 ```sql
-CREATE TABLE Enrolled(
-  sid int, cid int, grade char(2),
-  PRIMARY KEY (sid)
-  UNIQUE (cid, grade)
+CREATE TABLE Enrolled (
+    sid int, cid int, grade char(2),
+    PRIMARY KEY (sid)
+    UNIQUE (cid, grade)
 ```
 * `sid` is the primary key means each student can only appear once, i.e. enroll in one course
 * `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
 
-### Foreign key
+## Foreign key
 **Referential Integrity**: if all foreign key constraints are enforced
   * Enforced: well-maintained relational database
   * Not enforced: 
@@ -167,20 +167,20 @@ CREATE TABLE Enrolled(
  * set of fields in Relation used to refer to tuple in other relations by its primary keys
 
 ```sql
-CREATE TABLE Enrolled(
-  sid int, cid int, grade char(2),
-  PRIMARY KEY (sid, cid),
-  FOREIGN KEY (sid) REFERENCES Students -- field sid represents as primary key in relation Student
+CREATE TABLE Enrolled (
+    sid int, cid int, grade char(2),
+    PRIMARY KEY (sid, cid),
+    FOREIGN KEY (sid) REFERENCES Students -- field sid represents as primary key in relation Student
 )
 ```
 * If primary key of *Students* is `(sid, foo)` then we need the combination to refer to *Students* relation.
   * <img src="https://github.com/leighton613/scribenotes/blob/master/pics/foreign_key_2.jpg" width="600">
 
 ```sql
-CREATE TABLE Enrolled(
-sid int, cid int, grade char(2),
-PRIMARY KEY (sid, foo, cid),
-FOREIGN KEY (sid, foo) REFERENCES Students -- field (sid, foo) represents as primary key in relation Student
+CREATE TABLE Enrolled (
+    sid int, cid int, grade char(2),
+    PRIMARY KEY (sid, foo, cid),
+    FOREIGN KEY (sid, foo) REFERENCES Students -- field (sid, foo) represents as primary key in relation Student
 )
 ```
 * Q: Why not use a table to keep those arrows?
@@ -190,7 +190,7 @@ FOREIGN KEY (sid, foo) REFERENCES Students -- field (sid, foo) represents as pri
   3. Avoid dangling references when deleting (otherwise, application developer will be responsible for maintaining tables);
   4. Have access to relationships from table design (for application development reasons).
 
-### Enforcing Integrity Constraints
+## Enforcing Integrity Constraints
 Run checks any time the database changes.
 Enact "Gatekeepers" on any modification statement (**INSERT**, **UPDATE**, **DELETE**) can prevent database from being "corrupted" (violating integrity constraints)
 
@@ -206,19 +206,15 @@ Enact "Gatekeepers" on any modification statement (**INSERT**, **UPDATE**, **DEL
   2.   Reject deletion
   3.   set _Enrolled_.sid to default value or `null` (null in SQL: unknown/inapplicable)
 
-### General Constraints
+## General Constraints
 **Boolean expressions** are a powerful tool to define arbitrary constraints.
 Need to be careful, as these are expensive to check, as the database has no guarantee on how l
 ```sql
-CREATE TABLE Enrolled(
-  sid int,
-  cid int,
-  grade char(2),
-  CHECK (
-    grade = 'A' or grade = 'B' or
-    grade = 'C' or grade = 'D' or
-    grade = 'F'
-  )
+CREATE TABLE Enrolled (
+    sid int,
+    cid int,
+    grade char(2),
+    CHECK (grade = 'A' or grade = 'B' or grade = 'C' or grade = 'D' or grade = 'F')
 )
 ```
 Cautions:
@@ -358,6 +354,18 @@ CREATE TABLE Wall_Posted(
 )
 ```
 
+<detail>
+    <summary>Can a weak entity be involved in other relationships?</detail>
+    Yes! No limits to relationship with weak entities
+</detail>
+
+<detail>
+    <summaryWhat are key features of a weak entity?</detail>
+    * Cannot be uniquely identified by its own attributes
+    * Binary "exactly one" relationship with "owner"
+    * Delete owner: delete weak entities references
+</detail>
+
 ##ISA Hierarchies
 <img src="https://github.com/davidkuhta/scribenotes/blob/master/images/isa_set.png" width="600">  
 
@@ -407,6 +415,19 @@ CREATE TABLE Manages(
 );
 ```
 ####TODO: Aggregation Image ####
+
+## Entities vs Relationships
+### "<entity> has <relationship> with <entity>"
+
+* user has instructor relationship with courses
+* user has friendship with user
+* user can view profile
+
+**Question to ask oneself: Is the relationship something you actually want to store?**
+
+## Data vs Logic
+* ER model stores minimum data to support application. Does not store logic!
+#### TODO: Insert Data vs Logic Image
 
 ## Review
 * **Relation**: Set of tuples with typed values (table)
