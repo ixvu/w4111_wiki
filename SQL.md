@@ -381,23 +381,8 @@ A continuation of the process of evaluating queries:
 # LIMIT
 - Limit to only first n results in output table 
 - OFFSET: skip n rows in beginning before beginning to return rows.
+![](https://github.com/lh2728/linahuang/blob/master/Screen%20Shot%202016-10-22%20at%2011.01.53%20PM.png)
 
-## Only the first two results
-**Sailors**
-
-|sid|name  |rating|age|
-|---|------|------|---|
-| 1 |Eugene| 7    |22 |
-| 2 |Luis  | 2    |39 |
-| 3 |Ken   | 8    |27 |
-
-```sql
-SELECT    S.name, (S.rating/2)::int, S.age
-FROM      Sailors S
-ORDER BY  (S.rating/2)::int ASC,
-          S.age DESC
-LIMIT     2 OFFSET 1
-```
 
 **Results**
 
