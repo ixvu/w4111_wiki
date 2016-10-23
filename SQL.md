@@ -400,6 +400,7 @@ LIMIT     2 OFFSET 1
 ```
 
 **Results**
+
 |name  |int4  |age|
 |------|------|---|
 |Ken   | 4    |27 |
