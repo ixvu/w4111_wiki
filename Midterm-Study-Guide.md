@@ -4,50 +4,78 @@
 
 ###Chapter 2
 
-***Attribute*** - a property or description of an entity. A toy department employee
-entity could have attributes describing the employee’s name, salary, and years of
-service.
-
-***Domain*** - a set of possible values for an attribute.
-
+<details> 
+  <summary>All Terms</summary><br />
+***Attribute*** - a property or description of an entity. A toy department employee entity could have attributes describing the employee’s name, salary, and years of service.<br /><br />
+***Domain*** - a set of possible values for an attribute.<br /><br />
 ***Entity*** - an object in the real world that is distinguishable from other objects such
-as the green dragon toy.
+as the green dragon toy.<br /><br />
+***Relationship*** - an association among two or more entities.<br /><br />
+***Entity set*** - a collection of similar entities such as all of the toys in the toy department.<br /><br />
+***Relationship set*** - a collection of similar relationships<br /><br />
+***One-to-many relationship*** - a key constraint that indicates that one entity can be associated with many of another entity. An example of a one-to-many relationship is when an employee can work for only one department, and a department can have many employees.<br /><br />
+***Many-to-many relationship*** - a key constraint that indicates that many of one entity can be associated with many of another entity. An example of a many-to-many relationship is employees and their hobbies: a person can have many different hobbies, and many people can have the same hobby.<br /><br />
+***Participation constraint*** - a participation constraint determines whether relationships must involve certain entities. An example is if every department entity has a manager entity. Participation constraints can either be total or partial. A total participation constraint says that every department has a manager. A partial participation constraint says that every employee does not have to be a manager.<br /><br />
+***Overlap constraint*** - within an ISA hierarchy, an overlap constraint determines whether or not two subclasses can contain the same entity.<br /><br />
+***Covering constraint*** - within an ISA hierarchy, a covering constraint determines where the entities in the subclasses collectively include all entities in the superclass.<br /><br />
+***Weak entity set*** - an entity that cannot be identified uniquely without considering some primary key attributes of another identifying owner entity. An example is including Dependent information for employees for insurance purposes.<br /><br />
+***Aggregation*** - a feature of the entity relationship model that allows a relationship set to participate in another relationship set. This is indicated on an ER diagram by drawing a dashed box around the aggregation.
+</details>
 
-***Relationship*** - an association among two or more entities.
+<details> 
+  <summary>Attribute</summary><br />
+  A property or description of an entity. A toy department employee entity could have attributes describing the employee’s name, salary, and years of service.
+</details>
 
-***Entity set*** - a collection of similar entities such as all of the toys in the toy department.
+<details> 
+  <summary>Domain</summary><br />
+  a set of possible values for an attribute.
+</details>
 
-***Relationship set*** - a collection of similar relationships
+<details> 
+  <summary>Entity</summary><br />
+  an object in the real world that is distinguishable from other objects such
+</details>
 
-***One-to-many relationship*** - a key constraint that indicates that one entity can be
-associated with many of another entity. An example of a one-to-many relationship
-is when an employee can work for only one department, and a department can
-have many employees.
+<details> 
+  <summary>Relationship</summary><br />
+  an association among two or more entities.
+</details>
 
-***Many-to-many relationship*** - a key constraint that indicates that many of one
-entity can be associated with many of another entity. An example of a manyto-
-many relationship is employees and their hobbies: a person can have many
-different hobbies, and many people can have the same hobby.
+<details> 
+  <summary>One-to-Many Relationship</summary><br />
+  a key constraint that indicates that one entity can be associated with many of another.
+</details>
 
-***Participation constraint*** - a participation constraint determines whether relationships
-must involve certain entities. An example is if every department entity has
-a manager entity. Participation constraints can either be total or partial. A total
-participation constraint says that every department has a manager. A partial
-participation constraint says that every employee does not have to be a manager.
+<details> 
+  <summary>Many-to-Many Relationship</summary><br />
+  a key constraint that indicates that many of one entity can be associated with many of another entity. An example of a    many-to-many relationship is employees and their hobbies: a person can have many different hobbies, and many people can have the same hobby.
+</details>
 
-***Overlap constraint*** - within an ISA hierarchy, an overlap constraint determines
-whether or not two subclasses can contain the same entity.
+<details> 
+  <summary>Participation Constraint</summary><br />
+  a participation constraint determines whether relationships must involve certain entities. An example is if every department entity has a manager entity. Participation constraints can either be total or partial. A total participation constraint says that every department has a manager. A partial participation constraint says that every employee does not have to be a manager.
+</details>
 
-***Covering constraint*** - within an ISA hierarchy, a covering constraint determines
-where the entities in the subclasses collectively include all entities in the superclass.
+<details> 
+  <summary>Overlap Constraint</summary><br />
+  within an **ISA** hierarchy, an overlap constraint determines whether or not two subclasses can contain the same entity.
+</details>
 
-***Weak entity set*** - an entity that cannot be identified uniquely without considering
-some primary key attributes of another identifying owner entity. An example is
-including Dependent information for employees for insurance purposes.
+<details> 
+  <summary>Covering Constraint</summary><br />
+  within an **ISA** hierarchy, a covering constraint determines where the entities in the subclasses collectively include all entities in the superclass.
+</details>
 
-***Aggregation*** - a feature of the entity relationship model that allows a relationship
-set to participate in another relationship set. This is indicated on an ER diagram
-by drawing a dashed box around the aggregation.
+<details> 
+  <summary>Weak Entity Set</summary><br />
+  an entity that cannot be identified uniquely without considering some primary key attributes of another identifying owner entity. An example is including Dependent information for employees for insurance purposes.
+</details>
+
+<details> 
+  <summary>Aggregation</summary><br />
+  a feature of the entity relationship model that allows a relationship set to participate in another relationship set. This is indicated on an ER diagram by drawing a dashed box around the aggregation.
+</details>
 
 ###Chapter 3
 
