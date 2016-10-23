@@ -50,3 +50,5 @@ List of contributors and contributions
 * Zhan Zhao (zz2247)
   1. Scribed Lecture 11 SQL (10/12/2016)
   1. Sections include: ORDER BY, LIMIT, NULL, JOIN, Table Constraints, UDFs
+* Chang Pan (cp 2923)
+  1. add image of Conceptual Query Evaluation
