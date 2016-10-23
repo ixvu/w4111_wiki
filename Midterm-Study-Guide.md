@@ -185,32 +185,36 @@ __*Find the names of suppliers who supply a red part.*__
 
 RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(π<sub>sid</sub>((π<sub>pid</sub>σ<sub>color='red'</sub>Parts)⋈Catalog)⋈Suppliers)**
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname          
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Suppliers S, Parts P, Catalog C   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P.color=’red’ AND C.pid=P.pid AND C.sid=S.sid  
-      
+```sql
+SELECT S.sname          
+FROM Suppliers S, Parts P, Catalog C   
+WHERE P.color=’red’ AND C.pid=P.pid AND C.sid=S.sid  
+```
+
 __*Find the sids of suppliers who supply some red or green part.*__
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**π<sub>sid</sub>(π<sub>pid</sub>(σ<sub>color='red' V color='green'</sub>Parts)⋈Catalog)** 
-      
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C, Parts P   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE (P.color = ‘red’ OR P.color = ‘green’)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND P.pid = C.pid
 
+```sql
+SELECT C.sid   
+FROM Catalog C, Parts P   
+WHERE (P.color = ‘red’ OR P.color = ‘green’)   
+AND P.pid = C.pid
+```
 __*Find the sids of suppliers who supply some red part or are at 221 Packer Street.*__  
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,π<sub>sid</sub>((π<sub>pid</sub>σ<sub>color='red'</sub>Parts)⋈Catalog))**   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,π<sub>sid</sub>σ<sub>address='221PackerStreet'</sub>Suppliers)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**R1∪R2**  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Suppliers S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.address = ‘221 Packer street’  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR S.sid IN ( SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P, Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P.color=’red’ AND P.pid = C.pid )  
-
+```sql
+SELECT S.sid  
+FROM Suppliers S  
+WHERE S.address = ‘221 Packer street’  
+OR S.sid IN ( SELECT C.sid  
+              FROM Parts P, Catalog C  
+              WHERE P.color=’red’ AND P.pid = C.pid )  
+```
 
 __*Find the sids of suppliers who supply some red parts and some green parts.*__  
 
@@ -218,56 +222,63 @@ RA&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R1,π<sub>sid</sub>((π<sub>pid</sub>σ<sub>color
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ρ(R2,π<sub>sid</sub>((π<sub>pid</sub>σ<sub>color='green'</sub>Parts)⋈Catalog))**     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**R1∩R2**  
 
-
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P, Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P.color = ‘red’ AND P.pid = C.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND EXISTS ( SELECT P2.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P2, Catalog C2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P2.color = ‘green’ AND C2.sid = C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND P2.pid = C2.pid )   
+```sql
+SELECT C.sid  
+FROM Parts P, Catalog C  
+WHERE P.color = ‘red’ AND P.pid = C.pid  
+AND EXISTS ( SELECT P2.pid  
+             FROM Parts P2, Catalog C2  
+             WHERE P2.color = ‘green’ AND C2.sid = C.sid  
+             AND P2.pid = C2.pid )
+```
 
 __*Find the sids of suppliers who supply every part.*__  
 
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**(π<sub>sid,pid</sub>Catalog)/(π<sub>pid</sub>Parts)**  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE NOT EXISTS (SELECT P.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE NOT EXISTS (SELECT C1.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.sid = C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND C1.pid = P.pid))  
+```sql
+SELECT C.sid  
+FROM Catalog C  
+WHERE NOT EXISTS (SELECT P.pid  
+                  FROM Parts P  
+                  WHERE NOT EXISTS (SELECT C1.sid  
+                                    FROM Catalog C1  
+                                    WHERE C1.sid = C.sid  
+                                    AND C1.pid = P.pid))  
+```
 
 __*Find the sids of suppliers who supply every red part.*__  
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**(π<sub>sid,pid</sub>Catalog)/(π<sub>pid</sub>σ<sub>color='red'</sub>Parts)**  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE NOT EXISTS (SELECT P.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE P.color = 'red'  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND (NOT EXISTS (SELECT C1.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.sid = C.sid AND  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C1.pid = P.pid)))  
+```sql
+SELECT C.sid  
+FROM Catalog C  
+WHERE NOT EXISTS (SELECT P.pid  
+                  FROM Parts P    
+                  WHERE P.color = 'red'  
+                  AND (NOT EXISTS (SELECT C1.sid  
+                                   FROM Catalog C1  
+                                   WHERE C1.sid = C.sid AND  
+                                   C1.pid = P.pid)))
+```
 
 __*Find the sids of suppliers who supply every red or green part.*__
 
 RA&nbsp;&nbsp;&nbsp;&nbsp;**(π<sub>sid,pid</sub>Catalog)/(π<sub>pid</sub>σ<sub>color='red' V color='green' </sub>Parts)**  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT C.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE NOT EXISTS (SELECT P.pid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Parts P    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE (P.color = 'red' OR P.color = 'green')  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND (NOT EXISTS (SELECT C1.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Catalog C1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE C1.sid = C.sid AND  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C1.pid = P.pid)))  
+```sql
+SELECT C.sid  
+FROM Catalog C  
+WHERE NOT EXISTS (SELECT P.pid  
+                  FROM Parts P    
+                  WHERE (P.color = 'red' OR P.color = 'green')  
+                  AND (NOT EXISTS (SELECT C1.sid  
+                                   FROM Catalog C1  
+                                   WHERE C1.sid = C.sid AND  
+                                   C1.pid = P.pid)))  
+```
 
  __*Find the sids of suppliers who supply every red part or supply every green part.*__  
  
@@ -344,52 +355,54 @@ SQL SELECT C.pid
 
 Instance 83  of Sailors    
 
-|sid|sname|rating|age|
-|---|---|---|---|
-|22|Dustin|7|45.0|
-|29|Brutus|1|33.0|
-|31|Lubber|8|55.5|
-|32|Andy|8|25.5|
-|58|Rusty|10|35.0|
-|64|Horatio|7|35.0|
-|71|Zorba|10|16.0|
-|74|Horatio|9|35.0|
-|85|Art|3|25.5|
-|95|Bob|3|63.5|
+|sid| sname |rating|age |
+|---|-------|------|----|
+|22 |Dustin |   7  |45.0|
+|29 |Brutus |   1  |33.0|
+|31 |Lubber |   8  |55.5|
+|32 |  Andy |   8  |25.5|
+|58 | Rusty |  10  |35.0|
+|64 |Horatio|   7  |35.0|
+|71 | Zorba |  10  |16.0|
+|74 |Horatio|   9  |35.0|
+|85 |  Art  |   3  |25.5|
+|95 |  Bob  |   3  |63.5|
 
 Instance R2 of Reserves  
 
-|sid|bid|day|
-|---|---|---|
-|22|101|10/10/98|
-|22|102|10/10/98|
-|22|103|10/8/98|
-|22|104|10/7/98|
-|31|102|11/10/98|
-|31|103|11/6/98|
-|31|104|11/12/98|
-|64|101|9/5/98|
-|64|102|9/8/98|
-|74|103|9/8/98|
+|sid|bid|   day  |
+|---|---|--------|
+|22 |101|10/10/98|
+|22 |102|10/10/98|
+|22 |103|10/8/98 |
+|22 |104|10/7/98 |
+|31 |102|11/10/98|
+|31 |103|11/6/98 |
+|31 |104|11/12/98|
+|64 |101|9/5/98  |
+|64 |102|9/8/98  |
+|74 |103|9/8/98  |
 
 Instance HI of Boats  
 
-|bid|bname|color|
-|---|---|---|
-|101|Interlake|blue|
-|102|Interlake|red|
-|103|Clipper|green|
-|104|Marine|red|
+|bid|  bname  |color|
+|---|---------|-----|
+|101|Interlake|blue |
+|102|Interlake| red |
+|103| Clipper |green|
+|104|  Marine | red |
 
 ### Some queries related to the above table  
 
 __*Find the names of sailors who have reserved boat 103.*__
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.sid IN (SELECT R.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Reserves R  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE R.bid = 103)
+```sql
+SELECT S.sname  
+FROM Sailors S  
+WHERE S.sid IN (SELECT R.sid  
+                FROM Reserves R  
+                WHERE R.bid = 103)
+```
 
 The set contains the names of the sailors associated with sid 22,31, and 74.  This query could be modified to find all sailors who have not reserved boat 103 by replacing __IN__ by __NOT IN__.  
 
@@ -397,27 +410,33 @@ RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(σ<sub>bid='103'</sub>Reserves)⋈Sailo
 
 __*Alternatively*__
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S, Reserves R  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.sid = R.sid AND R.bid = 103  
+```sql
+SELECT S.sname  
+FROM Sailors S, Reserves R  
+WHERE S.sid = R.sid AND R.bid = 103  
+```
 
 __*Find the names of sailors who have reserved boat number 103. - using EXISTS*__  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE EXISTS (SELECT *    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Reserves R  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE R.bid = 103 AND S.sid = R.sid)  
+```sql
+SELECT S.sname  
+FROM Sailors S  
+WHERE EXISTS (SELECT *    
+              FROM Reserves R  
+              WHERE R.bid = 103 AND S.sid = R.sid)
+```
 
 __*Find the names of sailors who have reserved a red boat.*__  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sname  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.sid __IN__ (SELECT R.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Reserves R  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE R.bid =IN (SELECT B.bid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Boats B  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE B.color = 'red'))  
+```sql
+SELECT S.sname  
+FROM Sailors S  
+WHERE S.sid IN (SELECT R.sid  
+                FROM Reserves R  
+                WHERE R.bid =IN (SELECT B.bid  
+                                 FROM Boats B  
+                                 WHERE B.color = 'red'))
+```
 
 The result of this query would be to return the names Dustin, Lubber, and Horatio.  To find the names of sailors who have not reserved a red boat we replace the outermost __IN__ by __NOT IN__.  
 
@@ -425,29 +444,35 @@ RA&nbsp;&nbsp;&nbsp;**π<sub>sname</sub>(π<sub>sid</sub>((π<sub>bid</sub>σ<su
 
 __* Find sailors whose rating is better than some sailor called Horatio.*__  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.rating > ANY (SELECT S2.rating  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S2   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S2.name = 'Horatio')  
+```sql
+SELECT S.sid  
+FROM Sailors S  
+WHERE S.rating > ANY (SELECT S2.rating  
+                      FROM Sailors S2   
+                      WHERE S2.name = 'Horatio')  
+```
 
 On instance 83, this computes the sids 31, 32, 58, 71, and 74.  
 
 __*Find sailors whose rating is better than every sailor called Horatio*__  
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.rating > ALL (SELECT S2.rating  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S2   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S2.name = 'Horatio')  
+
+```sql
+SELECT S.sid  
+FROM Sailors S  
+WHERE S.rating > ALL (SELECT S2.rating  
+                      FROM Sailors S2   
+                      WHERE S2.name = 'Horatio')  
+```
 
 As can be seen, the __ANY__ in the previous query was replaced with an __ALL__ in this one.  This query would return sids 58 and 71.  
 
 __*Find the sailor's with the highest rating.*__
 
-SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT S.sid  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE S.rating > ALL (SELECT S2.rating  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM Sailors S2)  
-
+```sql
+SELECT S.sid  
+FROM Sailors S  
+WHERE S.rating > ALL (SELECT S2.rating  
+FROM Sailors S2)  
+```
 This query would return the sids of the sailors with a rating of 10 belonging to sid 58 and 71.  
