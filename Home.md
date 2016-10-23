@@ -41,7 +41,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L3: Entity-Relationship Modeling (ggfisher)
 * L4: Relational Model (leighton613)
 * L5: Relational Model (davidkuhta)
-* L6: Relational Model (mayavanand)
+* L6: Relational Model (mayavanand?, davidkuhta)
 * L7: Relational Algebra (WillCC)
 * L8: Relational Algebra (sacrespo,kailichen)
 * L9: Relational Algebra (chjoanna)
