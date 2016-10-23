@@ -141,7 +141,8 @@ WHERE qualification
 - Optional: Remove duplicates (set)
 - Default: duplicates permitted (multiset)
 
-##TODO: Conceptual Query Slide!
+### Conceptual Query Evaluation
+<img src="https://github.com/cp2923/W4111_sribenote/blob/master/query.jpg" width="400">
 
 # SQL Query Examples
 
