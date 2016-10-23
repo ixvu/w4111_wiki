@@ -17,11 +17,13 @@ List of contributors and contributions
   1. Added additional SQL and RA examples
 * David Kuhta (dk2723)
   1. L2 - Converted table images to markdown tables, added dblp link
-  2. Scribed L5 and formatted to align with Lecture 4
-  3. Added Links for ER Modeling tools
-  4. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
+  1. Scribed L5 and formatted to align with Lecture 4
+  2. Added Links for ER Modeling tools
+  3. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
   5. Added sidebar to simplify moving between pages.
-  6. Revised first half of SQL, formatted answers to dropdown format.
+  8. Revised first half of SQL, formatted answers to dropdown format.
+  13. Reformatted midterm review with dropdowns and syntax highlighted SQL  
+  21. Added first half of Lecture 6
 * Yuedong Wang (yw2931)
   1. Scribed Infrastructure (first version, and was edited by anantb)
   1. Scribed ER Models (detailed version).
