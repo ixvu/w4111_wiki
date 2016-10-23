@@ -207,8 +207,7 @@ WHERE qualification
   </details>
 </details>
 
-### TODO: Link to Livecode
-
+[Livecode](https://www.instabase.com/ewu/w4111-public/fs/Instabase%20Drive/Examples/sql.ipynb)
 <br\>
 
 ![](https://github.com/CHJoanna/W4111_sribenote/blob/master/img5.png)
