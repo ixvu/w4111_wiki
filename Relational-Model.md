@@ -153,6 +153,17 @@ CREATE TABLE Enrolled (
 * `sid` is the primary key means each student can only appear once, i.e. enroll in one course
 * `(cid, grade)` is unique means each course can have each grade appear for once. E.g. only one student can get A/B/C/F in 4111. This also limits the number of students for a course.
 
+#### Question: Can a primary key be null/blank?  
+**No!**  
+```sql
+PRIMARY KEY(a,b,c) --means
+    a NOT NULL
+    b NOT NULL
+    c NOT NULL
+``` 
+
+***
+
 ## Foreign key
 **Referential Integrity**: if all foreign key constraints are enforced
   * Enforced: well-maintained relational database
@@ -189,6 +200,40 @@ CREATE TABLE Enrolled (
   2. No need to worry about other tables when *modifying*;
   3. Avoid dangling references when deleting (otherwise, application developer will be responsible for maintaining tables);
   4. Have access to relationships from table design (for application development reasons).
+
+#### Question: Can a foreign key be null/blank?  
+**Yes!**  
+```sql
+CREATE TABLE tweet (
+  tid int, author_uid REFERENCES users
+``` 
+Tweet of (0, null) is okay
+
+***
+
+## Single column keys
+```sql
+name type PRIMARY KEY
+name type UNIQUE
+name type REFERENCES table
+```
+
+### Shortcut notation
+```sql
+CREATE TABLE A (
+    id int,
+    ref int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (ref) REFERENCES other
+);
+```
+collapses to:
+```sql
+CREATE TABLE A (
+    id int PRIMARY KEY,
+    ref int REFERENCES other
+);
+```
 
 ## Enforcing Integrity Constraints
 Run checks any time the database changes.
@@ -426,9 +471,16 @@ CREATE TABLE Manages(
 **Question to ask oneself: Is the relationship something you actually want to store?**
 
 ## Data vs Logic
-* ER model stores minimum data to support application. Does not store logic!
+* ER model stores minimum data to support application. Does not store logic!  
 #### TODO: Insert Data vs Logic Image
 
+## Multiple Relationships  
+#### TODO: Insert Multiple Relationships
+
+Note: Lists, Strings
+- Thinking about how to store the data, not the data itself, violates physical data independence.
+
+<detail>Refer to non-prima
 ## Review
 * **Relation**: Set of tuples with typed values (table)
 * **Schema**: Names and types for values in relation
@@ -442,17 +494,57 @@ CREATE TABLE Manages(
 ## See [Playing With Constraints](https://github.com/w4111/scribenotes/wiki/Livecode---Playing-With-Constraints) Livecode for a hands-on review.
 
 ## Question & Answer
-1. Issue with auto-incrementing or auto-generated primary key identifier, if you have some mistake in the values of the tuples you may not catch it. Example: Very large databases, easy to miswrite  
-> Could use a hash of a tuple or hash of the memory address of the tuple.
+<details>
+    <summary>Issue with auto-incrementing or auto-generated primary key identifier, if you have some mistake in the values of the tuples you may not catch it. Example: Very large databases, easy to miswrite</summary><br />
+Could use a hash of a tuple or hash of the memory address of the tuple.
+</details>
 
-2. Talking to ER models not specific to any  
-> ER model is one way to represent relationships in data. Natural mapping between ER model and relational model (whereas more difficult in the hierarchical)
+<details>
+    <summary>Talking to ER models not specific to any</summary><br />
+    ER model is one way to represent relationships in data. Natural mapping between ER model and relational model (whereas more difficult in the hierarchical)
+</details>
 
-3. [Can foreign key be `NULL`?](#at-most-one-to-relation)
-> No enforcement that we have to have a value anywhere, unless we say so.
+<details>
+    <summary>[Can foreign key be `NULL`?](#at-most-one-to-relation)</summary><br />
+    No enforcement that we have to have a value anywhere, unless we say so.
+</details>
 
-4. [Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key?] (#at-most-one-combined)
-> All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
+<details>
+    <summary>[Can the `uid` be `NULL`; wouldn't it be impossible to have a `NULL` foreign key?] (#at-most-one-combined)</summary><br />
+    All this says is there is a `uid` value we know what it refers to. The foreign key statement means "when you interpret the value for `uid`, know it's a primary key for the `User` table". 
+</details>
 
-5. [How does the Donates table have a primary key? (context of aggregation)](#isa-hierarchies)
-> Primary Key of _Donates_ is a combination of course and company (composite).
+<details>
+    <summary>[How does the Donates table have a primary key? (context of aggregation)](#isa-hierarchies)</summary><br />
+    Primary Key of _Donates_ is a combination of course and company (composite).
+</details>
+
+<details>
+    <summary>Refer to non-PrimaryKey attributes using foreign keys?</summary>
+    ER diagrams: never happens
+    SQL: Must refer to primary key/unique (candidate key) `FOREIGN KEY (a,b) REFERENCES other(x,y)`
+</details>
+
+<details>
+    <summary>SQL for 2 relationships, 1 entity</summary><br />
+    Two relationships = two tables  
+    Relationship with itself = two attributes
+</details>
+
+<details>
+    <summary>How to formulate ISA hierarchy so children can't overlap?</summary><br />
+    Users, Students, Instructors  
+    - 3 tables: A user could be in all three  
+    - 2 tables: Can't be a plain user  
+    **No way to express this constraint**
+</details>
+
+```sql
+CREATE TABLE follows (
+    source int,
+    destination int,
+    PRIMARY KEY (source, destination),
+    FOREIGN KEY (source) REFERENCES users,
+    FOREIGN KEY (destination) REFERENCES users
+);
+```
