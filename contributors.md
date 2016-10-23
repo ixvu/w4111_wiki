@@ -24,7 +24,7 @@ List of contributors and contributions
   6. Revised first half of SQL, formatted answers to dropdown format.
 * Yuedong Wang (yw2931)
   1. Scribed Infrastructure (first version, and was edited by anantb)
-  1. Scribed ER Models (detailed version) (around 2000 words).
+  1. Scribed ER Models (detailed version).
   1. Sections include: what is ER model, why we need ER model, basic concepts for ER model (Entity and Entity set, Relationships and Relationships Set, Constraints, ISA Hierarchies, and Aggregation). Also includes Q&A in class.
 * Priscilla Wang (pyw2102)
   1. Added onto ScribeNotes for Lecture 3 ( Including: Entity or Attribute, Entity or Relationship, Binary or Ternary)
