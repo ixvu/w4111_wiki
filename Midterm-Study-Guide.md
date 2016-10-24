@@ -82,7 +82,7 @@ as the green dragon toy.<br /><br />
 ***relation schema***
 
 A relation schema can be thought of as the basic information describing
-a table or relation. This includes a set of column names, the data types associated
+a table or relation. (Note that relation is a set, so rows have to be distinct.) This includes a set of column names, the data types associated
 with each column, and the name associated with the entire table. For example, a
 relation schema for the relation called 
 
