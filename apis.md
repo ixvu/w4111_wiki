@@ -141,27 +141,69 @@ Use for these query templates. Not standardized. Vary between languages and data
 - Postgres in Go: Use `?`
 - SQLite in Python: Use `?`
 
-## Relational Impedance Mismatch
+## Relational Impedance Mismatches
 The way the db thinks about the world is not the same as how your programming language expresses and describes it
 e.g. object(programming) != Row (db)
 
 
-### (Type) Impedance Mismatch
+### By Type
 Default Mappings: most programming languages have same set of fundamental data types
 e.g. sql:
+<img src=https://github.com/Wangler/scribenotes/blob/master/objecttypes.png width=300>
+
 - this mapping is straight forward bc its simple
 - complex objects? e.g. python dictionary
 
 
-### (Object) Impedance Mismatch
+### By Object
 - Want to write an object with prog lang
 - in your prog lang you want to be able to change an object's attribute so that it can be stored in a database
 - in the 80s there was a push for object-oriented-database system
 - instead of doing embedded sql stuff, if objects can just correspond naturally to ER entities and relations in a relational model, why not just do this translation automatically. use C executables that knows how to change DB automatically when you change them.
 - didn't work. for same reason embedded sql didnt work. real companies dont use a single prog lang for all of their DB stuff.
 - so creating a c++ variant to store in db didn't make sense
-- ORMs are designed to solve this by turning object <-> db data translation into a library
+- ORMs are designed to solve this by turning object <-> db data translation into a library (see next section)
 
+
+### By Results
+- if you do select * from a big table, u want a pointer
+- a cursor is not a list - no inherent order
+- how to do this? 
+- you call cursor.next, and you just move to next entry
+- the DBMS won't actually compute sailor 9 and beyond. when you .next() from sailor 8 to 9, then db will do more work to get sailor 9
+- on program side: no need to run 5tb of data
+- on db side: does not need to do work if not asking it to do work
+- only cursor.next makes it do work
+- cursors are like iterators in normal prog languages
+- rowcount - gives you number of records to be returned in query
+- keys() = schema of result set
+- previous, next, get(idx) = call next x times until you get given result
+
+
+### By Functions
+- solved impedance mismatch for results: cursor
+- solved it in objects and records with class objects
+- functions? how to insert a defined function into the SQL string for execution?
+- convert into a UDF. DB needs to be able to support this particular runtime. 
+
+
+### By Constraints
+-DB-style constraints are assertion statements represented as exceptions
+- if u violate constraint, throw error in program
+- constraints are naturally expressed in db bc theres only place where data is stored and represented, which is nice
+- but in program, it's scattered everywhere, and uhave to read prog to know what's happening
+- if u want to check whether an age is in some bound: 
+- the JS or app code will make that check
+- in addition, DB will check - why have this duplication? 
+- JS is error message construction - not validation. the purpose is not to correct. it won't guarantee that the constraint is upheld. only doing it via DB will ensure that. also people managing db are diff from ppl writing the JS code. so they won't trust everyone.
+- ORM will have one place to define constraints. 
+- it will translate the code into a check constraint in DBMS
+- sitting betw prog and db library
+- heavyweights in terms of libraries: 
+-ODBC - Standard for Microsoft
+-JDBC - Standard for Java
+- 2 diff library implementations: java and javax
+- the semantics and functions exposed are diff
 
 ## Object-Relational Mappers
 - use objects in your program, read/write relations
@@ -190,49 +232,7 @@ the database has not changed at this point. in the program, it only made that as
 - it'll be really tricky knowing how to translate your sql query into this language
 
 
-### ORM Relationship Challenges (skip)
-
-
-### (results) Impedance Mismatch
-- if you do select * from a big table, u want a pointer
-- a cursor is not a list - no inherent order
-- how to do this? 
-- you call cursor.next, and you just move to next entry
-- the DBMS won't actually compute sailor 9 and beyond. when you .next() from sailor 8 to 9, then db will do more work to get sailor 9
-- on program side: no need to run 5tb of data
-- on db side: does not need to do work if not asking it to do work
-- only cursor.next makes it do work
-- cursors are like iterators in normal prog languages
-- rowcount - gives you number of records to be returned in query
-- keys() = schema of result set
-- previous, next, get(idx) = call next x times until you get given result
-
-
-### (functions) Impedance Mismatch
-- solved impedance mismatch for results: cursor
-- solved it in objects and records with class objects
-- functions? how to insert a defined function into the SQL string for execution?
-- convert into a UDF. DB needs to be able to support this particular runtime. 
-
-
-### (constraints) Impedance Mismatch
--DB-style constraints are assertion statements represented as exceptions
-- if u violate constraint, throw error in program
-- constraints are naturally expressed in db bc theres only place where data is stored and represented, which is nice
-- but in program, it's scattered everywhere, and uhave to read prog to know what's happening
-- if u want to check whether an age is in some bound: 
-- the JS or app code will make that check
-- in addition, DB will check - why have this duplication? 
-- JS is error message construction - not validation. the purpose is not to correct. it won't guarantee that the constraint is upheld. only doing it via DB will ensure that. also people managing db are diff from ppl writing the JS code. so they won't trust everyone.
-- ORM will have one place to define constraints. 
-- it will translate the code into a check constraint in DBMS
-- sitting betw prog and db library
-- heavyweights in terms of libraries: 
--ODBC - Standard for Microsoft
--JDBC - Standard for Java
-- 2 diff library implementations: java and javax
-- the semantics and functions exposed are diff
-
+### ORM Relationship Challenges (skip in lecture 15)
 
 ### Modern Database APIs
 - modern languages try to blur the lines betw db query code and app code e.g. linq, scalding, sparksql
