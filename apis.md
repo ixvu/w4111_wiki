@@ -145,40 +145,49 @@ Use for these query templates. Not standardized. Vary between languages and data
 The way the db thinks about the world is not the same as how your programming language expresses and describes it
 e.g. object(programming) != Row (db)
 
-
 ### By Type
 Default Mappings: most programming languages have same set of fundamental data types
 e.g. sql:
 <img src=https://github.com/Wangler/scribenotes/blob/master/objecttypes.png width=300>
 
-- this mapping is straight forward bc its simple
-- complex objects? e.g. python dictionary
+- This mapping is straightforward because types are simple
+- What about complex objects? e.g. python dictionaries
 
 
 ### By Object
-- Want to write an object with prog lang
-- in your prog lang you want to be able to change an object's attribute so that it can be stored in a database
-- in the 80s there was a push for object-oriented-database system
-- instead of doing embedded sql stuff, if objects can just correspond naturally to ER entities and relations in a relational model, why not just do this translation automatically. use C executables that knows how to change DB automatically when you change them.
-- didn't work. for same reason embedded sql didnt work. real companies dont use a single prog lang for all of their DB stuff.
-- so creating a c++ variant to store in db didn't make sense
-- ORMs are designed to solve this by turning object <-> db data translation into a library (see next section)
+- Issue: in your programming language you want to be able to change an object's attribute, and have that update be reflected in the database
+e.g.
+
+<img src = https://github.com/Wangler/scribenotes/blob/master/objects.png width = 500>
+
+- In the 80s there was a push for object-oriented-database system: it would use C executables which know how to change DB automatically when you change them. (This didn't work for the same reason embedded sql didn't work. Real companies don't use a single programming language for all of their applications).
+- ORMs are designed to solve this (!) by turning the object <-> db translation into a library (see next section)
 
 
 ### By Results
-- if you do select * from a big table, u want a pointer
-- a cursor is not a list - no inherent order
-- how to do this? 
-- you call cursor.next, and you just move to next entry
-- the DBMS won't actually compute sailor 9 and beyond. when you .next() from sailor 8 to 9, then db will do more work to get sailor 9
-- on program side: no need to run 5tb of data
-- on db side: does not need to do work if not asking it to do work
-- only cursor.next makes it do work
-- cursors are like iterators in normal prog languages
-- rowcount - gives you number of records to be returned in query
-- keys() = schema of result set
-- previous, next, get(idx) = call next x times until you get given result
+- Results can create a memory problem for your program depending on how they're stored
+- Solution: **cursors**! A cursor is like an iterator which points to the results in the db. It does not store all of the results at once.
+- A cursor is **not** a list: there is no inherent order.
+```python
+    cursor = execute(“SELECT * FROM bigtable”)
+    cursor.next()
+```
+- Run `cursor.next()` to get next record
+e.g. **Calling cursor.next()**
+<img src = https://github.com/Wangler/scribenotes/blob/master/cursor1.png width = 500>
 
+**Calling cursor.next() again**
+
+<img src = https://github.com/Wangler/scribenotes/blob/master/cursor2.png width = 500>
+
+**Benefits to using Cursors**
+- On program side: no need to hold onto all of the data in memory
+- On db side: only needs to process the records that you're explicitly requesting, otherwise not doing anything in the background
+- Other cursor attributes/methods:
+    - `.rowcount`: gives you number of records to be returned in query
+    - `.keys()`: gives you the number of records to be returned in query
+    - `.previous()`: works just like `.next()`
+    - `.get(idx)`: call `.next()` enough times until you get given result specified by that index
 
 ### By Functions
 - solved impedance mismatch for results: cursor
