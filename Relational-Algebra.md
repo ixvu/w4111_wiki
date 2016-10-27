@@ -108,15 +108,29 @@ and deleting duplication is expensive.
 
 ![](https://github.com/WillCGitHub/scribenotes/blob/master/IntersectExp.JPG)
 
-###join
-- find same attributions 
-- concatenate 
-- select(c) (A X B)
+##Joins (3 types)
+General definition: cross-product followed by selections and projections (Ramakrishnan 107)
 
-###Eui-Join
+###Condition Join (Theta Join)
+- Most general form of join
+- All fields of cross product retained
+- select(<sub>c</sub>)(A X B)
+
+###Equi-join
+- A special case of condition join where the join condition consists solely of equalities.
+- To avoid redundancy, left side of the equality is retained, right side dropped.
+- E.g., if the join condition is (R.name1 = S.name2), S.name2 is dropped as the final step of the join (after doing the cross product and selection)
 
 ###Natural join
-- same name cause different result 
+- Further special case of equi-join in which equalities are specified on all fields having the same name.
+
+###Example: join where one of the conditions is an equality, the other not
+Consider the following join: T1⋈<sub>((T1.A>T2.C)∧(T1.B=T2.D))</sub>T2.
+
+Will the output contain fields (T1.A, T1.B, T2.C) or (T1.A, T1.B, T2.C, T2.D)?
+
+Answer: The join condition does NOT consist solely of equalities, so it is considered a theta join, not an equi join. Therefore, all fields of the cross product are retained. Output relation contains fields (T1.A, T1.B, T2.C, T2.D). (Table 1's fields come first)
+
 
 ![](https://github.com/WillCGitHub/scribenotes/blob/master/EquiJoin.JPG)
 ###divide 
