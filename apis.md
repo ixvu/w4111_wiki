@@ -161,7 +161,7 @@ e.g.
 <img src = https://github.com/Wangler/scribenotes/blob/master/objects.png width = 500>
 
 - In the 80s there was a push for object-oriented-database system: it would use C executables which know how to change DB automatically when you change them. (This didn't work for the same reason embedded sql didn't work. Real companies don't use a single programming language for all of their applications).
-- ORMs are designed to solve this (!) by turning the object <-> db translation into a library (see next section)
+- ORMs are designed to solve this (!) by turning the object <-> db translation into a library ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers))
 
 
 ### By Results
@@ -190,51 +190,94 @@ e.g. **Calling cursor.next()**
     - `.get(idx)`: call `.next()` enough times until you get given result specified by that index
 
 ### By Functions
-- solved impedance mismatch for results: cursor
-- solved it in objects and records with class objects
-- functions? how to insert a defined function into the SQL string for execution?
-- convert into a UDF. DB needs to be able to support this particular runtime. 
+- How do you insert a function defined in python into the SQL string for execution?
+- Solution: embed a language runtime into dbms. Convert it into a UDF.
 
 
 ### By Constraints
--DB-style constraints are assertion statements represented as exceptions
-- if u violate constraint, throw error in program
-- constraints are naturally expressed in db bc theres only place where data is stored and represented, which is nice
-- but in program, it's scattered everywhere, and uhave to read prog to know what's happening
-- if u want to check whether an age is in some bound: 
-- the JS or app code will make that check
-- in addition, DB will check - why have this duplication? 
-- JS is error message construction - not validation. the purpose is not to correct. it won't guarantee that the constraint is upheld. only doing it via DB will ensure that. also people managing db are diff from ppl writing the JS code. so they won't trust everyone.
-- ORM will have one place to define constraints. 
-- it will translate the code into a check constraint in DBMS
-- sitting betw prog and db library
-- heavyweights in terms of libraries: 
--ODBC - Standard for Microsoft
--JDBC - Standard for Java
-- 2 diff library implementations: java and javax
-- the semantics and functions exposed are diff
+- Issue: Constraints are naturally expressed in dbms since there's only place where data is stored and represented. But in the program, it's scattered everywhere
+- Issue: Constraints are duplicated between the programming language and the dbms
 
-## Object-Relational Mappers
-- use objects in your program, read/write relations
-- inefficient
-- when you want to change your app, it's too hard
-- able to express simple things but with very complex queries
+e.g. **Applying a Check Constraint in JS vs DBMS**
+**JS**:
+``` js
+    age = get_age_input();
+    if(age>100 or age<18)
+        show_error(“age should be 18 – 100”);
+```
+**DBMS**:
+``` sql
+    CREATE TABLE Users (
+    ...
+    age int CHECK(age >= 18 and age <= 100)
+    ... 
+    )
+```
 
+- This JS error is purely for notifying - not for validating. The purpose is not to correct the data. 
+- It won't guarantee that the constraint is upheld -- only doing it via DB will ensure that.
+- ORM will have one place to define constraints ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers)) by translating the code into a check constraint in DBMS.
 
-e.g. creating an ORM
-create a Base database object called User
-in python, attribute id is part of user
-it corresponds to an int column in db, and its pk is true
-mixture of defining schema and object attributes at same time
-this is sufficient info for the ORM library to translate the code into a db
-- can now create new user, instantiating this object `ed_user`.
-- underneath covers, knows how to do more stuff (sessions)
-- can do ed_user.password = 'new password'
-the database has not changed at this point. in the program, it only made that assignment
-- the object has knowledge of how it's repped in the db, so you can run `.save()` so that it can take that info and store back into a db
-- these ORMs also let you query these objects
+#### Heavyweights in terms of libraries: 
+- ODBC: Standard for Microsoft
+- JDBC: Standard for Java. 2 different library implementations: java and javax
+- The semantics and functions exposed are different
+
+## Object-Relational Mappers (ORMS)
+- Using an object directly in your program which represents the DBMS itself. Changing the object directly changes the DBMS directly.
+- Uses its own type of query syntax in the application's programming language
+- A solution to object and constraint related relational impedance mismatches
+- Issues:
+    - Inefficient queries
+    - Tricky when you want to change your application
+    - Queries are harder to write since you can't use raw SQL
+
+e.g. ** Defining Object in Python ORM vs SQL **
+- Here we create a Base database object called User
+- In the Python ORM, you are defining the DBMS schema and the object attributes at same time.
+** In python**
+``` python
+    class User(Base): __tablename__ = 'users'
+        id = Column(Integer, primary_key=True) 
+        name = Column(String)
+        fullname = Column(String)
+        password = Column(String)
+);
+```
+**In SQL**
+``` sql
+    CREATE TABLE users(
+        id INT PRIMARY KEY, 
+        name TEXT,
+        fullname TEXT, 
+        password TEXT
+```
+
+- Below is how you instantiate the object and assign it to the DBMS via `.add(object)`.
+
+``` python
+    >>> ed_user = User(
+             name='ed', fullname='Ed Jones',
+             password='edspassword ')
+    >>> ed_user.name
+    'ed'
+    >>> ed_user.password
+    'edspassword'
+    >>> session.add(ed_user)
+```
+- **The database has not changed at this point**. The assignment has only been made in the program itself.
+- Running `.save()` sends the update back into the dbms.
+- The return value of an ORM query is a list of objects.
+e.g. **Query in ORM Python vs SQL**
+``` python
+    session.query(User). filter (User.name.in_( ['Edwardo', 'fakeuser']).all()
+```
+``` sql
+    SELECT * FROM users
+    WHERE name IN ('Edwardo', 'fakeuser')
+```
 - e.g. want all users of a particular type in a list (see slide) this code is complicated!
-- the return value of the query is a list of objects, which is nice
+
 - but its not easy to construct sql strings!
 - if you have to create sql strings dynamically in your program, you're just doing string manipulation a lot in your program
 - it'll protect you from sql injections bc you're not executing the sql strings directly
