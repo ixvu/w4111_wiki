@@ -52,3 +52,5 @@ List of contributors and contributions
   1. Sections include: ORDER BY, LIMIT, NULL, JOIN, Table Constraints, UDFs
 * Chang Pan (cp 2923)
   1. add image of Conceptual Query Evaluation and a link in SQL part
+* Gregory Chen (glc2121)
+  1. On "Relational Algebra" page: filled in missing information on different types of joins, included subtle example differentiating theta and equi joins (taken from a question that I asked on piazza)
