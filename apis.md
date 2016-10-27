@@ -224,14 +224,11 @@ e.g. **Applying a Check Constraint in JS vs DBMS**
 - The semantics and functions exposed are different
 
 ## Object-Relational Mappers (ORMS)
-- Using an object directly in your program which represents the DBMS itself. Changing the object directly changes the DBMS directly.
+- Using an object directly in your program which represents the DBMS itself. Can change object directly while the object itself fully captures the structure of the DBMS object.
 - Uses its own type of query syntax in the application's programming language
 - A solution to object and constraint related relational impedance mismatches
-- Issues:
-    - Inefficient queries
-    - Tricky when you want to change your application
-    - Queries are harder to write since you can't use raw SQL
 
+### Solving Object-based Impedance Mismatch
 e.g. ** Defining Object in Python ORM vs SQL **
 - Here we create a Base database object called User
 - In the Python ORM, you are defining the DBMS schema and the object attributes at same time.
@@ -268,6 +265,24 @@ e.g. ** Defining Object in Python ORM vs SQL **
 - **The database has not changed at this point**. The assignment has only been made in the program itself.
 - Running `.save()` sends the update back into the dbms.
 - The return value of an ORM query is a list of objects.
+
+### Solving Constraint-based Impedance Mismatch
+ORMS try to have one place to define constraints
+```python
+    class Person(models.Model):
+        first_name = models.CharField(max_length = 30) 
+        last_name = models.CharField (max_length = 30, null = True)
+```
+``` sql
+    CREATE TABLE myapp_person (
+        "id" serial NOT NULL PRIMARY KEY, 
+        "first_name" varchar(30) NOT NULL, 
+        "last_name" varchar(30)
+    );
+```
+
+
+### ORM Queries vs SQL Queries
 e.g. **Query in ORM Python vs SQL**
 ``` python
     session.query(User). filter (User.name.in_( ['Edwardo', 'fakeuser']).all()
@@ -276,38 +291,25 @@ e.g. **Query in ORM Python vs SQL**
     SELECT * FROM users
     WHERE name IN ('Edwardo', 'fakeuser')
 ```
-- e.g. want all users of a particular type in a list (see slide) this code is complicated!
 
-- but its not easy to construct sql strings!
-- if you have to create sql strings dynamically in your program, you're just doing string manipulation a lot in your program
-- it'll protect you from sql injections bc you're not executing the sql strings directly
-- it'll be really tricky knowing how to translate your sql query into this language
+### Issues with ORM:
+- Inefficient queries
+- Tricky when you want to change your application
+- Queries are harder to write since you can't use raw SQL. Translating SQL -> ORM language is hard.
+- If you have to create sql strings dynamically in your program, your program will have to deal with a lot of string manipulation
+- **BUT** using ORM language instead of raw SQL protects you from SQL injections: you're not executing any SQL strings directly from your program.
 
 
-### ORM Relationship Challenges (skip in lecture 15)
+## ORM Relationship Challenges (skip in lecture 15)
 
-### Modern Database APIs
-- modern languages try to blur the lines betw db query code and app code e.g. linq, scalding, sparksql
-- wants to open text file (.log) in spark. each line corresponds to a single record in the form of a very large string
-- you have lines which are pointers to a table with a schema with string attribute - there are as many rows in the table as there are lines in the log file
+## Modern Database APIs
+- Modern languages try to blur the lines between dbms query code and app code e.g. Linq, Scalding, SparkSQL
+- e.g. Spark:
+    - Spark reads .log files in which each line is a single record in the form of a very large string that needs to be delimited
+    - Each line is a pointer to a table with a schema with string attribute - there are as many rows in the table as there are lines in the log file
 - can do `.filter` (=`where`) so that every record must start with `Error`. this is written in Scala. db is embedded in the app code, so all these objects know that theyre relations. so you can run `.filter` and just pass in a function, which it knows as a SQL query
 - distributed db system: you have a relation, apply relational algebra, if you run execute it has a built in engine to run relational statement. 
 - the now defined errors variable can map and split by tab
 - .count() computes count over all of it
 - all within this prog which ahs implemented a db engine, can construct sql statement and execute it
 - done to bridge impedance mismatch
-
-
-### What to Understand
-- Impedance mismatch = the way you represent data in the db vs in the app are different
-- learn - what is it, what are examples and solutions
-- sql injection - what it is how to protect it
-- diff uses of a DBAPI
-- why embedded sql not good
-- why cursors exist
-
-
-
-
-
-
