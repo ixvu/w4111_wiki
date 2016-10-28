@@ -303,13 +303,19 @@ e.g. **Query in ORM Python vs SQL**
 ## ORM Relationship Challenges (skip in lecture 15)
 
 ## Modern Database APIs
-- Modern languages try to blur the lines between dbms query code and app code e.g. Linq, Scalding, SparkSQL
-- e.g. Spark:
-    - Spark reads .log files in which each line is a single record in the form of a very large string that needs to be delimited
-    - Each line is a pointer to a table with a schema with string attribute - there are as many rows in the table as there are lines in the log file
-- can do `.filter` (=`where`) so that every record must start with `Error`. this is written in Scala. db is embedded in the app code, so all these objects know that theyre relations. so you can run `.filter` and just pass in a function, which it knows as a SQL query
-- distributed db system: you have a relation, apply relational algebra, if you run execute it has a built in engine to run relational statement. 
-- the now defined errors variable can map and split by tab
-- .count() computes count over all of it
-- all within this prog which ahs implemented a db engine, can construct sql statement and execute it
-- done to bridge impedance mismatch
+- Modern languages try to blur the lines between dbms query code and application code e.g. Linq, Scalding, SparkSQL
+- e.g. Using Spark engine, written in Scala
+``` scala
+    val lines = spark.textFile(“logfile.log”)
+    val errors = lines.filter(_ startswith “Error”) 
+    val msgs = errors.map(_.split(“\t”)(2))
+
+    msgs.filter(_ contains “foo”).count()
+```
+    - Spark reads .log files in which each line is a single record in the form of a very large string
+    - `lines` is now a pointer to table with 1 attribute: which is the entire string. 
+the app code, so all these objects know that theyre relations. so you can run `.filter` and just pass in a function, which it knows as a SQL query
+- This is known as a distributed db system
+    - You have a relation and can apply relational algebra
+    - It has a built-in engine to execute the relational algebra statement.
+    - All within the program, which has implemente a db engine, you can construct a SQL statement and execute it.
