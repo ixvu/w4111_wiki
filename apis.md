@@ -41,9 +41,9 @@ See below Oracle Pro*C code:
 <img src="https://github.com/Wangler/scribenotes/blob/master/embeddedsql.png" width="460">
 
 1. **Preprocessor**: Run the code (with embedded SQL) through a query preprocessor which identifies all the `EXEC SQL` statements and translates them into DBMS library calls. 
-2. **Java Compiler**: Take the code and the DB library, and put into an executable which communicates with the database. 
+2. **Java Compiler**: Take the code and the DBMS library, and put into an executable which communicates with the database. 
 
-**_BUT_**, if we're using the DB library anyways, why not just use only this core component?
+**_BUT_**, if we're using the DBMS library anyways, why not just use only this core component?
 
 ## Aside: Embedded SQL History
 Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are:
@@ -56,8 +56,8 @@ Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are
 ## Libraries
 ### What does a library need to do?
 - **_At minimum_**: write a function that takes in a query string and execute it
-- It still requires making a connection to the DB
-- Given that there are so many different DB engines (i.e. Postgres, MySQL, Microsoft), ideally you'd be able to connect to them all with the same library
+- It still requires making a connection to the DBMS
+- Given that there are so many different DBMS engines (i.e. Postgres, MySQL, Microsoft), ideally you'd be able to connect to them all with the same library
 - The library serves as an intermediary between your program and all the databases you want to talk to
 - e.g.
 <img src="https://github.com/Wangler/scribenotes/blob/master/libraryflow.png" width="460">
@@ -160,7 +160,7 @@ e.g.
 
 <img src = https://github.com/Wangler/scribenotes/blob/master/objects.png width = 500>
 
-- In the 80s there was a push for object-oriented-database system: it would use C executables which know how to change DB automatically when you change them. (This didn't work for the same reason embedded sql didn't work. Real companies don't use a single programming language for all of their applications).
+- In the 80s there was a push for object-oriented-database system: it would use C executables which know how to change the DB automatically when you change them. (This didn't work for the same reason embedded sql didn't work. Real companies don't use a single programming language for all of their applications).
 - ORMs are designed to solve this (!) by turning the object <-> db translation into a library ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers))
 
 
@@ -174,11 +174,12 @@ e.g.
 ```
 - Run `cursor.next()` to get next record
 e.g. **Calling cursor.next()**
-<img src = https://github.com/Wangler/scribenotes/blob/master/cursor1.png width = 500>
+
+<img src = https://github.com/Wangler/scribenotes/blob/master/cursor1.png width = 300>
 
 **Calling cursor.next() again**
 
-<img src = https://github.com/Wangler/scribenotes/blob/master/cursor2.png width = 500>
+<img src = https://github.com/Wangler/scribenotes/blob/master/cursor2.png width = 300>
 
 **Benefits to using Cursors**
 - On program side: no need to hold onto all of the data in memory
@@ -215,7 +216,7 @@ e.g. **Applying a Check Constraint in JS vs DBMS**
 ```
 
 - This JS error is purely for notifying - not for validating. The purpose is not to correct the data. 
-- It won't guarantee that the constraint is upheld -- only doing it via DB will ensure that.
+- It won't guarantee that the constraint is upheld -- only doing it via DBMS will ensure that.
 - ORM will have one place to define constraints ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers)) by translating the code into a check constraint in DBMS.
 
 #### Heavyweights in terms of libraries: 
