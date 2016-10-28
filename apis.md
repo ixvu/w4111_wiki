@@ -1,8 +1,10 @@
-## SQL != Programming Language
+## Lecture goals
+
 - You cant actually create an application with SQL
 - How do you actually access a database without SQL injections?
 - How does the application talk to the database and do things?
 
+Recall that SQL != programming language!
 
 ## Many Database API Options
 Couple of different ways to solve this problem:
