@@ -55,6 +55,6 @@ List of contributors and contributions
 * Gregory Chen (glc2121)
   1. On "Relational Algebra" page: filled in missing information on different types of joins, included subtle example differentiating theta and equi joins (taken from a question that I asked on piazza)
 * Lucy Wang (Wangler, lw2351)
-  1. Scribed Lecture 15 APIs. Transcribed what was discussed in lecture, and adapted code blocks and diagrams from the slides.
+  1. Scribed Lecture 15 APIs. Transcribed what was discussed in lecture, and adapted code blocks and diagrams from the slides. Added some extra details and definitions from the textbook. 
   1. Sections include: 1. SQL != Programming Language, 2. Many Database API Options, 3. Embedded SQL, 4.Libraries, 5. SQL Injections, 6. Relational Impedance Mismatches, 7. ORMs, 8. Modern Database APIs
-  1. Added some extra details and definitions from the textbook. 
+  1. Added descriptions and examples for Triggers, WITH, Views in Advanced SQL page.
