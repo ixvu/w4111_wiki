@@ -288,7 +288,7 @@ e.g. **Query in ORM Python vs SQL**
 
 **In ORM Python**
 ``` python
-    session.query(User). filter (User.name.in_( ['Edwardo', 'fakeuser']).all()
+    session.query(User).filter(User.name.in_( ['Edwardo', 'fakeuser']).all()
 ```
 
 **In SQL**
