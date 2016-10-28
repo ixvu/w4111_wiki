@@ -233,7 +233,7 @@ e.g. **Applying a Check Constraint in JS vs DBMS**
 - A solution to object and constraint related relational impedance mismatches
 
 ### Solving Object-based Impedance Mismatch
-e.g. ** Defining Object in Python ORM vs SQL **
+e.g. **Defining Object in Python ORM vs SQL**
 - Here we create a Base database object called User
 - In the Python ORM, you are defining the DBMS schema and the object attributes at same time.
 
