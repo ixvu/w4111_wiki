@@ -20,6 +20,7 @@ Couple of different ways to solve this problem:
     - Objects can save themselves to the database
 
 ## Embedded SQL
+- **Embedded SQL**: the usage of SQL commands within a host program
 - Was previously a really popular approach; not any more.
 - e.g. Take the C (or C++, Fortran, Pascal, etc.) program that contains SQL, then compile it into parts that are just C code and parts that know how to talk with the DB.
 See below Oracle Pro*C code:
@@ -143,7 +144,7 @@ Use for these query templates. Not standardized. Vary between languages and data
 
 ## Relational Impedance Mismatches
 The way the db thinks about the world is not the same as how your programming language expresses and describes it
-e.g. object(programming) != Row (db)
+e.g. object(programming) != Row (dbms)
 
 ### By Type
 Default Mappings: most programming languages have same set of fundamental data types
@@ -166,6 +167,8 @@ e.g.
 
 ### By Results
 - Results can create a memory problem for your program depending on how they're stored
+- An impedance mismatch occurs because SQL operates on _set_ of records, whereas host languages do not cleanly support a set-of-records abstraction. 
+- We must provide a mechanism that allows us to retrieve rows one at a time from a relation.
 - Solution: **cursors**! A cursor is like an iterator which points to the results in the db. It does not store all of the results at once.
 - A cursor is **not** a list: there is no inherent order.
 ```python
@@ -177,18 +180,21 @@ e.g. **Calling cursor.next()**
 
 <img src = https://github.com/Wangler/scribenotes/blob/master/cursor1.png width = 300>
 
-**Calling cursor.next() again**
+- **Calling cursor.next() again**
 
 <img src = https://github.com/Wangler/scribenotes/blob/master/cursor2.png width = 300>
 
-**Benefits to using Cursors**
-- On program side: no need to hold onto all of the data in memory
-- On db side: only needs to process the records that you're explicitly requesting, otherwise not doing anything in the background
+- **Benefits to using Cursors**
+    - On program side: no need to hold onto all of the data in memory
+    - On db side: only needs to process the records that you're explicitly requesting, otherwise not doing anything in the background
 - Other cursor attributes/methods:
     - `.rowcount`: gives you number of records to be returned in query
     - `.keys()`: gives you the number of records to be returned in query
     - `.previous()`: works just like `.next()`
     - `.get(idx)`: call `.next()` enough times until you get given result specified by that index
+- Cursors can be set to be read-only
+- We usually need to open a cursor if the embedded statement is a SELECT query.
+- INSERT, DELETE, and UPDATE statements typically require no cursor.
 
 ### By Functions
 - How do you insert a function defined in python into the SQL string for execution?
