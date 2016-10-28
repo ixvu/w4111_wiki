@@ -200,13 +200,16 @@ e.g. **Calling cursor.next()**
 - Issue: Constraints are duplicated between the programming language and the dbms
 
 e.g. **Applying a Check Constraint in JS vs DBMS**
+
 **JS**:
+
 ``` js
     age = get_age_input();
     if(age>100 or age<18)
         show_error(“age should be 18 – 100”);
 ```
 **DBMS**:
+
 ``` sql
     CREATE TABLE Users (
     ...
@@ -233,7 +236,8 @@ e.g. **Applying a Check Constraint in JS vs DBMS**
 e.g. ** Defining Object in Python ORM vs SQL **
 - Here we create a Base database object called User
 - In the Python ORM, you are defining the DBMS schema and the object attributes at same time.
-** In python**
+
+**In python**
 ``` python
     class User(Base): __tablename__ = 'users'
         id = Column(Integer, primary_key=True) 
@@ -268,12 +272,16 @@ e.g. ** Defining Object in Python ORM vs SQL **
 - The return value of an ORM query is a list of objects.
 
 ### Solving Constraint-based Impedance Mismatch
-ORMS try to have one place to define constraints
+ORMs try to have one place to define constraints
+
+**Python**:
 ```python
     class Person(models.Model):
         first_name = models.CharField(max_length = 30) 
         last_name = models.CharField (max_length = 30, null = True)
 ```
+
+**SQL Equivalent**
 ``` sql
     CREATE TABLE myapp_person (
         "id" serial NOT NULL PRIMARY KEY, 
