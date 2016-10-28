@@ -164,7 +164,7 @@ e.g.
 <img src = https://github.com/Wangler/scribenotes/blob/master/objects.png width = 500>
 
 - In the 80s there was a push for object-oriented-database system: it would use C executables which know how to change the DB automatically when you change them. (This didn't work for the same reason embedded sql didn't work. Real companies don't use a single programming language for all of their applications).
-- ORMs are designed to solve this (!) by turning the object <-> db translation into a library ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers))
+- ORMs are designed to solve this (!) by turning the object <-> db translation into a library ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers-orms))
 
 
 ### By Results
@@ -228,7 +228,7 @@ e.g. **Applying a Check Constraint in JS vs DBMS**
 
 - This JS error is purely for notifying - not for validating. The purpose is not to correct the data. 
 - It won't guarantee that the constraint is upheld -- only doing it via DBMS will ensure that.
-- ORM will have one place to define constraints ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers)) by translating the code into a check constraint in DBMS.
+- ORM will have one place to define constraints ([see next section on ORM](https://github.com/w4111/scribenotes/wiki/apis#object-relational-mappers-orms)) by translating the code into a check constraint in DBMS.
 
 #### Heavyweights in terms of libraries: 
 - ODBC: Standard for Microsoft
