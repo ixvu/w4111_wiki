@@ -286,7 +286,7 @@ ORMS try to have one place to define constraints
 ### ORM Queries vs SQL Queries
 e.g. **Query in ORM Python vs SQL**
 
-** In ORM Python**
+**In ORM Python**
 ``` python
     session.query(User). filter (User.name.in_( ['Edwardo', 'fakeuser']).all()
 ```
