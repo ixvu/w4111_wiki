@@ -325,8 +325,9 @@ e.g. **Query in ORM Python vs SQL**
 
     msgs.filter(_ contains “foo”).count()
 ```
-    - Spark reads .log files in which each line is a single record in the form of a very large string
-    - `lines` is now a pointer to table with 1 attribute: which is the entire string. 
+
+- Spark reads .log files in which each line is a single record in the form of a very large string
+- `lines` is now a pointer to table with 1 attribute: which is the entire string. 
 the app code, so all these objects know that theyre relations. so you can run `.filter` and just pass in a function, which it knows as a SQL query
 - This is known as a distributed db system
     - You have a relation and can apply relational algebra
