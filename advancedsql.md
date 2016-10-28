@@ -106,12 +106,14 @@ WHERE B.bid = RB.bid AND count < 2
 ```
 
 # View
-VIEWS define a table for everyone to see. Can be saved. Used to make tables out of actual table results, as opposed to just base data used within a query (like with). 
-Any query that references 
--When a VIEW table is updated, its base data is also updated.
+- **Views** define tables that can be saved, as well as accessed by other people 
+- Used for constructing tables out of actual table results, unlike `With` which just generates a table confined to the query
+- When a view table is updated, its base data is also updated.
 
--when a view table with a GROUP BY is updated, the base data can’t be updated. Because adding to the column count is ambiguous i.e. which base data row do you dupe within the group?
-
+- **BUT**, when a view table with a `GROUP BY` is updated, the base data can’t be updated 
+    - This is because if you have an aggregated value in your view, it would be ambiguous as to which tuple involved in the aggregated value to apply the update to.
+    - e.g.If you're multiplying a `count()` field by 2, which tuple in the base data do you have to duplicate to yield that transformation in the view?
+    - Using `CREATE TABLE` is immune to this issue. An aggregated table defined by `CREATE TABLE` can be updated, with successful updating of the base data.
 
 
 # UDFs
