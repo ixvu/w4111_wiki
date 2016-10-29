@@ -43,14 +43,14 @@ See below Oracle Pro*C code:
 ### Embedded SQL Flow Example
 <img src="https://github.com/Wangler/scribenotes/blob/master/embeddedsql.png" width="460">
 
-1. **Preprocessor**: Run the code (with embedded SQL) through a query preprocessor which identifies all the `EXEC SQL` statements and translates them into DBMS library calls. 
-2. **Java Compiler**: Take the code and the DBMS library, and put into an executable which communicates with the database. 
+1. **Preprocessor**: Run the code (with embedded SQL) through the preprocessor which identifies all the `EXEC SQL` statements and translates them into DBMS library calls. 
+2. **Java Compiler**: Put the Java code into an executable that links to a DBMS library, to communicate with the database. 
 
 **_BUT_**, if we're using the DBMS library anyways, why not just use only this core component?
 
 ## Aside: Embedded SQL History
 Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are:
-- There could be runtime problems
+- There could be runtime problems e.g. invalid SQL query
 - SQL standard has changed over time. There are dependencies between SQL and other programming languages. e.g. If there's a fancy new SQL feature, the compilers of all these other languages need to be augmented to support this new feature
 - SQL with enough extensions becomes Turing complete
 - **_Making a library alone just sounds good enough_**
@@ -59,15 +59,17 @@ Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are
 ## Libraries
 ### What does a library need to do?
 - **_At minimum_**: write a function that takes in a query string and execute it
+- It needs to take care of the engine, connection, and query execution.
 - It still requires making a connection to the DBMS
-- Given that there are so many different DBMS engines (i.e. Postgres, MySQL, Microsoft), ideally you'd be able to connect to them all with the same library
 - The library serves as an intermediary between your program and all the databases you want to talk to
+- Given that there are so many different DBMS engines (i.e. Postgres, MySQL, Microsoft), ideally you'd be able to connect to them all with the same library
 - e.g.
 <img src="https://github.com/Wangler/scribenotes/blob/master/libraryflow.png" width="460">
-- In a real life company application, you need to connect to multiple difference databases (e.g. Ads, Users, Billing).
+- In a real life company application, you need to connect to multiple different databases (e.g. Ads, Users, Billing).
+- Using a library allows for a common interface to all databases: 
 
 ### Engines
-- Ideally you want a common interface to all databases.
+- Ideally you want a common interface to all database engines that hides all the syntactical differences between them
 - e.g. `SQLAlchemy` is a popular library. See below example for establishing a database connection
     - You insert the path string to the db into the `create_engine()` function. 
     - The path looks like: `protocol_name` `://` `location` `:` `port` `/` `database_name`
@@ -84,6 +86,7 @@ Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are
 
 ### Connections
 - You establish an HTTP or TCP connection to a particular machine at that particular host and port. The engine then allocates the resources in the db to start running queries.
+- **Issue**: can be expensive to set up
 ``` python
     conn1 = db1.connect()
     conn2 = db2.connect()
@@ -102,7 +105,7 @@ Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are
 - Run `.execute()` with a string which is blindly sent to the database.
 - Some issues:
     - Needs to do error handling
-    - Want to be able to allocate the data to a variable.
+    - Want to be able to assign the result to a program variable.
 - What should be the object type of what's returned in `.execute()` (`foo` in this e.g.)? 
     - You don't want `foo` to consist of 5TB of data in memory.
     - Lists? (not immutable)
@@ -132,11 +135,12 @@ Embedded SQL hasn't taken off in popularity. Some of the issues it has faced are
 - Must have some function which _sanitizes_ the input string to prevent certain types of sql text from existing
 - Most libraries have a parameter in its `execute()` function that allows you to pass in a tuple of query arguments so that it can properly escape input values, thereby sanitizing everything **before** it hits the db.
 ``` python
-    args = (‘Dr Seuss’, ‘40’) 
+    args = ('Dr Seuss', '40') 
     conn1.execute(
         “INSERT INTO users(name, age) VALUES(%s, %s)”, args)
 ``` 
-- **NEVER CONSTRUCT RAW SQL STRINGS**. You must always pass in a template instead.
+- The above uses placeholders, into which variables are passed in
+- **NEVER CONSTRUCT RAW SQL STRINGS**. You must always pass variables into template instead.
 
 ### Placeholders
 Use for these query templates. Not standardized. Vary between languages and databases.
@@ -172,7 +176,7 @@ e.g.
 - An impedance mismatch occurs because SQL operates on _set_ of records, whereas host languages do not cleanly support a set-of-records abstraction. 
 - We must provide a mechanism that allows us to retrieve rows one at a time from a relation.
 - Solution: **cursors**! A cursor is like an iterator which points to the results in the db. It does not store all of the results at once.
-- A cursor is **not** a list: there is no inherent order.
+- A cursor is **not** a list: there is no inherent order (_unless_ you use an `ORDER BY`)
 ```python
     cursor = execute(“SELECT * FROM bigtable”)
     cursor.next()
@@ -196,7 +200,6 @@ e.g. **Calling cursor.next()**
     - `.get(idx)`: call `.next()` enough times until you get given result specified by that index
 - Cursors can be set to be read-only
 - We usually need to open a cursor if the embedded statement is a SELECT query.
-- INSERT, DELETE, and UPDATE statements typically require no cursor.
 
 ### By Functions
 - How do you insert a function defined in python into the SQL string for execution?
