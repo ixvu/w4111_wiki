@@ -59,6 +59,6 @@ List of contributors and contributions
   1. Sections include: 1. SQL != Programming Language, 2. Many Database API Options, 3. Embedded SQL, 4.Libraries, 5. SQL Injections, 6. Relational Impedance Mismatches, 7. ORMs, 8. Modern Database APIs
   1. Added descriptions and examples for Triggers, WITH, Views in Advanced SQL page.
 * Jeremy Staub (jbs2208)
-  1. Scribed Lecture 12 Advanced SQL
+  1. Scribed Lecture 12 Advanced SQL + Met with Prof. Wu to discuss notes
   1. Wrote information about UDFs including details and code examples
   1. Supplemented details about Triggers, WITH, Views
