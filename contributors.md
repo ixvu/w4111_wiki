@@ -60,5 +60,6 @@ List of contributors and contributions
   1. Added descriptions and examples for Triggers, WITH, Views in Advanced SQL page.
 * Jeremy Staub (jbs2208)
   1. Scribed Lecture 12 Advanced SQL + Met with Prof. Wu to discuss notes
-  1. Wrote information about UDFs Triggers, WITH, VIEWs including details, comparisons and code examples
+  1. Wrote information about UDFs including details and code examples
+  1. Supplemented details and examples of Triggers, WITH, VIEWs
 
