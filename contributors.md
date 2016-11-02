@@ -62,4 +62,6 @@ List of contributors and contributions
   1. Scribed Lecture 12 Advanced SQL + Met with Prof. Wu to discuss notes
   1. Wrote information about UDFs including details and code examples
   1. Supplemented details and examples of Triggers, WITH, VIEWs
-
+* Peng Wu (pw2393)
+  1. Scribed Lecture 16 "Normalization" and discussed notes with Prof. Wu on email
+  1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
