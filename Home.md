@@ -50,13 +50,13 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L12: SQL (hermshermsherms)
 * L15: APIs (Wangler, katebrea)
 * L16: Normalization (pw2393)
-* L17: Normalization (kellielu, JisongLiu)
+* L17: Normalization (kellielu)
 * L18: Physical Design (pyw2102,zw2396)
-* L19: Physical Design (shy2116)
-* L20: Query Processing(YunxuanZhu, JisongLiu)
+* L19: Physical Design (shy2116, JisongLiu)
+* L20: Query Processing(YunxuanZhu)
 * L21: Query Processing(xz2581,zw2396)
 * L22: Transaction Processing (agango, zhaosjason)
-* L23: Transaction Processing (harrybari)
+* L23: Transaction Processing (harrybari, JisongLiu)
 * L24: Guest Lecture/Review 
 
 
