@@ -53,7 +53,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L17: Normalization (kellielu)
 * L18: Physical Design (pyw2102,zw2396)
 * L19: Physical Design (shy2116, JisongLiu)
-* L20: Query Processing(YunxuanZhu)
+* L20: Query Processing(YunxuanZhu，xw2337)
 * L21: Query Processing(xz2581,zw2396)
 * L22: Transaction Processing (agango, zhaosjason)
 * L23: Transaction Processing (harrybari, JisongLiu)
