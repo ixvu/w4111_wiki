@@ -24,16 +24,18 @@
 
 - Example: If you spend $ 1000 on hardware, you can get 64 - 96 GB for RAM, 400 - 1000 GB for SSD, 24000 for Disk. 
 You can spend some money on RAM for active data, Disk for main database, secondary storage, and Tapes for archive.
-
-### What does this mean? 
+- What does this mean? 
 - You can prioritize where your money goes to- ram, disk, etc.
-- What ends up with is following architecture:
 
-- (graph)
+## What ends up with is following architecture:
+
+-(graph)
 
 - You will have most of your storage capacity on disk, because it’s cheap.
 - As you go up the memory hierarchy, things become more expensive but faster. 
 - Register is a piece of memory that is accessible in CPU. (Ridiculously expensive)
 - You can purchase RAM with reasonable prices.
 - The faster you go up the less storage space you have. You need to optimize the rest of the system. 
+
+
 
