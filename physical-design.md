@@ -95,5 +95,16 @@ Random access between memory and disk is pretty much on par.
 
 -(graph)
 
-## 
+## What is a page?
+Unit of transfer between storage and database
+Typically fixed size
+Small enough for one I/O to be fast
+Big enough to not be wasteful
+Usually a multiple of 4 kB 
+Intel virtual memory hardware page size
+Modern disk sector size (minimum I/O size)
+It is a collection of records, keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
 
+
+Default page sizes in DBs
+Note: Typically multiple of 4 kBs
