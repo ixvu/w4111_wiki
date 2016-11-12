@@ -103,7 +103,6 @@ Random access between memory and disk is pretty much on par.
 - Usually a multiple of 4 kB 
 - Intel virtual memory hardware page size
 - Modern disk sector size (minimum I/O size)
-- It is a collection of records, keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
 
 ### Default page sizes in DBs
 Note: Typically multiple of 4 kBs
@@ -117,5 +116,39 @@ Note: Typically multiple of 4 kBs
 
 -(graph)
 
+### Record, Page and File Abstractions
+- File is a collection of pages for which if you collect all the pages together, you get all the data. 
+- Everything is going to be stored as files. 
+- A page is  “collection” of records because we can’t keep track of the order. Keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
+
+-(graph)
+
+### Units that we’ll care about
+- B # data pages on disk for relation
+- R # records per data age (we talk about it in terms of records, not the physical size of page) 
+- D avg time to read/write data page to/from disk. 
+
+- I.e. if i have 100 records per page, and 100 pages in a table, then we’ll have roughly 10,000 records in that particular table. 
+- We ignore sequential access for now. It will be added back in later on.
+
+## Different ways to store a table
+- Criteria: accessing, deleting, inserting data
+- Unordered Heap Files
+- Unordered collection of records
+- Pages allocated as collection grows
+- Need to track:
+ - Pages in file
+ - Free space on pages
+ - Records on pages (which pages are free, which pages are full, etc)
+ - Example: let's say you have a table with attributes (a int, b int).  Then you might store (say) 1000 (a, b) value pairs in one page.  One question is how you store them within a page --- sorted?  unsorted?  A second question is how to organize the pages in the table.  You may not be guaranteed there's contiguous sectors on the disk drive for all of the pages so some pages won't be next to each other.  So they will need to be able to "point" to their neighboring pages.  One way is to organize the pages as a linked list.
+
+
+
+
+A data page is just a bunch of records + two pointers 
+Each data page as a pointer to the next and previous data page
+If we want to read and write data, we will start at the first page, and read on until the record I care about. 
+Since this is unordered, we have to read all the pages. This is the dumbest way of representing it.
+Smarter way: keep track of which pages have full data and which pages have free space. (as shown in the image below).
 
 
