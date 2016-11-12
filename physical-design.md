@@ -84,4 +84,16 @@ Random access between memory and disk is pretty much on par.
 - 2009 english wikipedia: 14GB (you can fit this in your laptop!)
 - You don’t have to have Google infrastructure to do interesting things. 
 
+## What is the API between data base system and disk?
+- API is centered around a page, a fixed size block of data. This is the unit we pass around. We want to amortize the cost of having to move that arm. 
+
+- If page you read from disk too small: dominated by moving arm around
+- If page is too big (ie. 1 GB in size): read a huge amount of data but only access a small amount inside of it. Typically Operating system will pick a page size between 4kb and 64kb in size to balance out moving the arm and reading more data than you ask for. 
+
+- The data we store is in terms of pages. 
+- On disk, we store a file that represents Customers Table. We split and store Customers Table as pages. 
+
+-(graph)
+
+## 
 
