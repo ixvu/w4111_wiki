@@ -37,5 +37,13 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 - You can purchase RAM with reasonable prices.
 - The faster you go up the less storage space you have. You need to optimize the rest of the system. 
 
+### Interesting numbers:
+- 1: The cost of compression 1k bytes is 3000 ns. This means if you can compress your data sufficiently, that is more worthwhile to do than storing the uncompressed version in disk. It is faster to decompress the memory than to fetch the uncompressed version from disk.
+- 2: If you run a data center, the cost of access data in memory from another machine is .5 ms, which is significantly cheaper than disk.
+- The above two examples of some of the things that influence design decisions. What does this mean? If you can afford multiple machines with lots of RAM, it makes sense to use Disk for other things you never access, and put everything on other machines. 
+
+- Jim Gray found the idea of transactions, recovery, and other core databases ideas. Below is a storage hierarchy analogy. Going to memory/RAM is like driving to Philly and then coming back. Going to Disk is like going to Pluto and back. (“You might as well give up on Tape.”- Prof Wu.)
+
+-(graph)
 
 
