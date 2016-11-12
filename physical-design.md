@@ -6,8 +6,8 @@
 
 ##Work from bottom up
 ### Why Disk is important? 
-- 1. Disk is the cheapest per Gigabyte Storage mechanism in the market
-- 2. The process of analyzing and optimizing disk is the same process you might go through for optimizing any others
+- 1 Disk is the cheapest per Gigabyte Storage mechanism in the market
+- 2 The process of analyzing and optimizing disk is the same process you might go through for optimizing any others
 
 
 
