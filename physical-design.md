@@ -15,17 +15,17 @@
 - Buffer Manager: the software layer that is responsible for bringing pages from disk to main memory as needed. (p232)
 
 ## $ Matters 
-- Data is literally driven by money.
+ Data is literally driven by money.
 
 ### Why not store all in RAM?
-- 1: Cost too much:
+1. Cost too much:
 - High-end Databases today store Petabyte (1000TB) of data
 - 60% of the cost of operating a database is in supplying, managing and maintaining disks.
-- 2: Main Memory not persistent; It is important if DB stops or crashes. 
+2.  Main Memory not persistent; It is important if DB stops or crashes. 
 - Example: If you spend $ 1000 on hardware, you can get 64 - 96 GB for RAM, 400 - 1000 GB for SSD, 24000 for Disk. 
 You can spend some money on RAM for active data, Disk for main database, secondary storage, and Tapes for archive.
 - What does this mean? 
-- You can prioritize where your money goes to- ram, disk, etc.
+ You can prioritize where your money goes to- ram, disk, etc.
 
 ### What ends up with is following architecture:
 
