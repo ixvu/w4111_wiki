@@ -142,13 +142,27 @@ Note: Typically multiple of 4 kBs
  - Records on pages (which pages are free, which pages are full, etc)
  - Example: let's say you have a table with attributes (a int, b int).  Then you might store (say) 1000 (a, b) value pairs in one page.  One question is how you store them within a page --- sorted?  unsorted?  A second question is how to organize the pages in the table.  You may not be guaranteed there's contiguous sectors on the disk drive for all of the pages so some pages won't be next to each other.  So they will need to be able to "point" to their neighboring pages.  One way is to organize the pages as a linked list.
 
+### A data page is just a bunch of records + two pointers 
+- Each data page as a pointer to the next and previous data page
+- If we want to read and write data, we will start at the first page, and read on until the record I care about. 
+- Since this is unordered, we have to read all the pages. This is the dumbest way of representing it.
+- Smarter way: keep track of which pages have full data and which pages have free space. (as shown in the image below).
+
+-(graph)
+
+### What might be a smarter way of doing this? 
+- We can have pointers to all pages. Instead of single header page, we use a directory. 
+- You keep track of two numbers: the data page it points to, the amount of free space. 
+- Small constant cost to reading the directory to find which pages are free if you want to insert data
+- If you want to read data, this way still requires you to read everything. 
+- Even smarter: we can ensure the pages are sorted. In order to do that, the directory also has to keep track of the minimum and maximum value of all the data in each page. This will allow us to do binary search faster. Slightly faster if we start storing more information in the header page. 
+
+-(graph)
 
 
 
-A data page is just a bunch of records + two pointers 
-Each data page as a pointer to the next and previous data page
-If we want to read and write data, we will start at the first page, and read on until the record I care about. 
-Since this is unordered, we have to read all the pages. This is the dumbest way of representing it.
-Smarter way: keep track of which pages have full data and which pages have free space. (as shown in the image below).
+### Indexes
+If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
+
 
 
