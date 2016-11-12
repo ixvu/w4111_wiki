@@ -1,6 +1,6 @@
 
 # Lec 18 Physical Design
-##- Query Performance I: Disk Storage and Indexing
+## Query Performance I: Disk Storage and Indexing
 * Why do we care about hardware?
 * What properties that really matter for design the rest of the system?
 
@@ -159,9 +159,7 @@ Note: Typically multiple of 4 kBs
 
 -(graph)
 
-
-
-### Indexes
+## Indexes
 If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
 
 
