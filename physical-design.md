@@ -52,7 +52,8 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 -(graph)
 
 - This a representation of hard drive. The tip of Head know how to read and write what ever underneath it. Each of the ring is a track, which stores data. Each track is separated into several sector.
-Interesting properties:
+
+- Interesting properties:
 - 1: The size of the sector is determined by the rotational angle rather than a fixed length. So the sector far away from center will be larger than the sector near the center. You can read more data outside than inside for a given amount of time.
 - 2: How much data you can read depends on the spin speed. You want to maximize the RPM.
 - 3: If you want to move the arm in/out to read some data, there will be a seek cost (moving the arm to access data). It dominates by far the cost of accessing data.
