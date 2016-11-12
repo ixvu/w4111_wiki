@@ -16,6 +16,7 @@
 
 ## $ Matters 
 - Data is literally driven by money.
+
 ### Why not store all in RAM?
 - 1: Cost too much:
 - High-end Databases today store Petabyte (1000TB) of data
