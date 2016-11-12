@@ -67,7 +67,13 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 - Rotational delay: the data you want is not directly underneath the reader, so you need to wait until the disk rotates until you can actually read that thing.
 - The key thing here is to reduce seek and rotational delays: HW & SW approaches. 
 
+## Pre-fetching
+We want to optimize the amount of data we can sequentially access. Disk drive can do pre-fetching. If you are sequentially reading some data in a file that store sequentially on disk, then disk driver can just start reading ahead. E.g. doing data processing and pause it, next time you read the next data, it will already be there because it has already fetched it for you. 
 
+## Graph of read cost for random vs. sequential access
+If you are doing random access (randomly placed in storage device), how many can you read per sec? 316 values/sec
+If you look at memory, you will see that there is higher throughput. 
+Random access between memory and disk is pretty much on par. 
 
 
 
