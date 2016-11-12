@@ -105,7 +105,17 @@ Random access between memory and disk is pretty much on par.
 - Modern disk sector size (minimum I/O size)
 - It is a collection of records, keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
 
-Default page sizes in DBs
+### Default page sizes in DBs
 Note: Typically multiple of 4 kBs
 
 -(graph)
+
+### Disk Space Interface
+- Below is the API. 4 ways of access things
+- Page_id will translate that to position on disk drive. 
+- New Page()- allocate space on disk, give me the page_id of that freePage(page_id)- clears up space.
+
+-(graph)
+
+
+
