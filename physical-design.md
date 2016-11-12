@@ -75,5 +75,13 @@ If you are doing random access (randomly placed in storage device), how many can
 If you look at memory, you will see that there is higher throughput. 
 Random access between memory and disk is pretty much on par. 
 
+-(graph)
+
+## Pragmatics of Databases
+- Most databases are pretty small
+- All global daily weather since 1929:20GB
+- 2000 US Census: 200GB
+- 2009 english wikipedia: 14GB (you can fit this in your laptop!)
+- You don’t have to have Google infrastructure to do interesting things. 
 
 
