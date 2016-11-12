@@ -16,7 +16,7 @@
 
 ## $ Matters 
 - Data is literally driven by money.
-## Why not store all in RAM?
+### Why not store all in RAM?
 - 1: Cost too much:
 - High-end Databases today store Petabyte (1000TB) of data
 - 60% of the cost of operating a database is in supplying, managing and maintaining disks.
@@ -27,7 +27,7 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 - What does this mean? 
 - You can prioritize where your money goes to- ram, disk, etc.
 
-## What ends up with is following architecture:
+### What ends up with is following architecture:
 
 -(graph)
 
