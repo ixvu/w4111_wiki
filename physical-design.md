@@ -117,11 +117,11 @@ Note: Typically multiple of 4 kBs
 ### Disk Space Interface
 Below is the API. There are 4 ways of access things.
 
-DiskInterface:
-* `readPage(page_id): data`
-* `writePage(page_id, data)`
+DiskInterface: API, four ways of accessing things
+* `readPage(page_id): data` give it a page id, database will translate that into a position on the disk drive
+* `writePage(page_id, data)` do the same thing as readPage, but also provide a data
 * `newPage():page_id` allocate space on disk, give me the `page_id` of that 
-* `freePage(page_id)` clears up space.
+* `freePage(page_id)` I am done with this page, clears up space, so it can be reused.
 
 
 ### Record, Page and File Abstractions
@@ -175,5 +175,4 @@ DiskInterface:
 
 ## Indexes
 If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
-
 
