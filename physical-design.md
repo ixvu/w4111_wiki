@@ -62,6 +62,7 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/timetoaccess.png?raw=true)
 
 - Problem is the first 2 delays if you care about speed (the latency in which to get the first bit of data to read). We want to optimize seek and the rotational delays. Seeks are expensive, but reading things that is right underneath the head is very fast. This is called sequential access.
+- Sequential access: access to a computer data file that requires the user to read through the file from the beginning in the order in which it is stored.
 - Seek cost: the cost for moving arm.
 - Seek time : the average time to move arm
 - Rotational delay: the data you want is not directly underneath the reader, so you need to wait until the disk rotates until you can actually read that thing.
@@ -174,6 +175,5 @@ DiskInterface:
 
 ## Indexes
 If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
-
 
 
