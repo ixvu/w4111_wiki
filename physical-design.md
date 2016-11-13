@@ -9,7 +9,7 @@
 1. Disk is the cheapest per Gigabyte Storage mechanism in the market
 2. The process of analyzing and optimizing disk is the same process you might go through for optimizing any others
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/disk.png?raw=true)
 
 - Disk space manager : The lowest layer of the DBMS software manage space on disk, where the data is stored. Disk space manager supports the concept of a page as a unit data, and provide commands to allocate or deallocate a page and read or write a page. Higher layers allocate, deallocate, read, and write pages through (routines provided by) this layer.(p231)
 - Buffer Manager: the software layer that is responsible for bringing pages from disk to main memory as needed. (p232)
@@ -30,7 +30,7 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 
 ### What ends up with is following architecture:
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/layers.png?raw=true)
 
 - You will have most of your storage capacity on disk, because it’s cheap.
 - As you go up the memory hierarchy, things become more expensive but faster. 
@@ -45,12 +45,12 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 - The above two examples of some of the things that influence design decisions. What does this mean? If you can afford multiple machines with lots of RAM, it makes sense to use Disk for other things you never access, and put everything on other machines. 
 - Jim Gray found the idea of transactions, recovery, and other core databases ideas. Below is a storage hierarchy analogy. Going to memory/RAM is like driving to Philly and then coming back. Going to Disk is like going to Pluto and back. (“You might as well give up on Tape.”- Prof Wu.)It is important to minimize the time you need to access data.
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/jimgray.png?raw=true)
 
 ##  What is a disk? How a disk work?
 - Think of the disk as a very fast DVD or record player. Stack a bunch of the round disks on top of each other. The tip of the head will know how to read and write whatever is underneath it. This is how DVD and record players work. Each of the rings correspond to a track and it stores data. Each track is split into segments called Sector. 
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/diskcomponents.png?raw=true)
 
 - This a representation of hard drive. The tip of Head know how to read and write what ever underneath it. Each of the ring is a track, which stores data. Each track is separated into several sector.
 
@@ -59,7 +59,7 @@ You can spend some money on RAM for active data, Disk for main database, seconda
 2. How much data you can read depends on the spin speed. You want to maximize the RPM.
 3. If you want to move the arm in/out to read some data, there will be a seek cost (moving the arm to access data). It dominates by far the cost of accessing data.
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/timetoaccess.png?raw=true)
 
 - Problem is the first 2 delays if you care about speed (the latency in which to get the first bit of data to read). We want to optimize seek and the rotational delays. Seeks are expensive, but reading things that is right underneath the head is very fast. This is called sequential access.
 - Seek cost: the cost for moving arm.
@@ -75,7 +75,7 @@ If you are doing random access (randomly placed in storage device), how many can
 If you look at memory, you will see that there is higher throughput. 
 Random access between memory and disk is pretty much on par. 
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/valuereadpersec.png?raw=true)
 
 ## Pragmatics of Databases
 - Most databases are pretty small
@@ -93,7 +93,7 @@ Random access between memory and disk is pretty much on par.
 - The data we store is in terms of pages. 
 - On disk, we store a file that represents Customers Table. We split and store Customers Table as pages. 
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/table.png?raw=true)
 
 ## What is a page?
 - Unit of transfer between storage and database
@@ -106,22 +106,35 @@ Random access between memory and disk is pretty much on par.
 
 ### Default page sizes in DBs
 Note: Typically multiple of 4 kBs
-
--(graph)
+* SQLite: 1kB
+* IBM DB2: 4kB
+* Postgres: 8kB
+* SQL Server: 8kB
+* MySQL: 16kB
+* MongoDB: 32kB
 
 ### Disk Space Interface
-- Below is the API. 4 ways of access things
-- Page_id will translate that to position on disk drive. 
-- New Page()- allocate space on disk, give me the page_id of that freePage(page_id)- clears up space.
+Below is the API. There are 4 ways of access things.
 
--(graph)
+DiskInterface:
+* `readPage(page_id): data`
+* `writePage(page_id, data)`
+* `newPage():page_id` allocate space on disk, give me the `page_id` of that 
+* `freePage(page_id)` clears up space.
+
 
 ### Record, Page and File Abstractions
-- File is a collection of pages for which if you collect all the pages together, you get all the data. 
-- Everything is going to be stored as files. 
-- A page is  “collection” of records because we can’t keep track of the order. Keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
-
--(graph)
+* File is a collection of pages for which if you collect all the pages together, you get all the data. 
+* Everything is going to be stored as files. 
+* A page is  “collection” of records because we can’t keep track of the order. Keeping track of the order is not needed as a guarantee. However, it is useful to have sorted pages to be able to perform binary search.
+* Record: "application" storage unit
+  * e.g. a row in a table
+* Page: Collection of records
+* File: Collection of pages
+  * insert/delete/modify record
+  * get(record_id) a record
+  * scan all records
+* May be in multiple OS files spanning multiple disks
 
 ### Units that we’ll care about
 - B # data pages on disk for relation
@@ -148,7 +161,7 @@ Note: Typically multiple of 4 kBs
 - Since this is unordered, we have to read all the pages. This is the dumbest way of representing it.
 - Smarter way: keep track of which pages have full data and which pages have free space. (as shown in the image below).
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/heapFile.png?raw=true)
 
 ### What might be a smarter way of doing this? 
 - We can have pointers to all pages. Instead of single header page, we use a directory. 
@@ -157,7 +170,7 @@ Note: Typically multiple of 4 kBs
 - If you want to read data, this way still requires you to read everything. 
 - Even smarter: we can ensure the pages are sorted. In order to do that, the directory also has to keep track of the minimum and maximum value of all the data in each page. This will allow us to do binary search faster. Slightly faster if we start storing more information in the header page. 
 
--(graph)
+![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/directory.png?raw=true)
 
 ## Indexes
 If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
