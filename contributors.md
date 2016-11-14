@@ -69,3 +69,6 @@ List of contributors and contributions
   1. Scribed Lecture 18 "Physical Deisgn" and discussed notes with Prof. Wu on email
   1. section include: work from bottom up, % matters, what is disk, how does disk work
   1. Added definition and example from textbook
+* Jisong Liu (jl4819)
+  1. Scribed Lecture 20 "Physical Deisgn - Indexing Continued"
+  1. section include: the using of index, different types of index (hash index, B-tree index), the comparsion between different types of physical design on their time complexity of some common operators.
