@@ -179,17 +179,20 @@ DiskInterface: API, four ways of accessing things
 - If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
 - To enhance the visiting and search speed, the traditional idea that we set a head page and set pointers between each page is not a good choice, because it means we should scan almost each page to find the page we want which is time-consuming.
 As an alternative the idea of directory is used. The idea is that we use some extra space to store the page location information, although we might need some extra space and time to store and maintain it, the directory can extremely enhance the search speed. It is like "If I had eight hours to chop down a tree I'd spend six sharpening my ax". We use the six hours to maintain the extra time and space consuming and can have a better performance in two hours compared with using eight hours do search. Considering this case, we use indexes to implement this idea.
+
 ### Some knowledge about index
 - Index is defined for a search key
 - Index is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) 
 - In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations (reference from PsotgreSQL documentation)
+
 ### High level index structure
 - It includes index entries and data entries. 
 - In the primary index structure, the data entries is the data record and we can directly access the turple using it; 
 ![0](https://github.com/JisongLiu/Gym-/blob/master/0.png)
 - In secondary index structure, the data entries has the following format <search key value, rid> and we have another layer called data records. The actual record is stored in that layer. If we want to obtain the data in a page, the search process is index entries -> data entries -> data record(according to the rid storing in data entries)
 ![4](https://github.com/JisongLiu/Gym-/blob/master/4.png)
-###B+ tree Index
+
+### B+ tree Index
 - Each node of it represent for a page. 
 - Self-balanced (It makes the tree has a moderate height to make sure it can keep a good search performance). Therefore, the following situation will not happened.
 ![5](https://github.com/JisongLiu/Gym-/blob/master/5.png)
@@ -201,20 +204,24 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 - The number of B+ tree should that we can store the top levels in memory. Although we only store a little data in memory.
 - We can find the other data entries easily by using only the data in height 2 and height 3 data.
 ![2](https://github.com/JisongLiu/Gym-/blob/master/2.png)
-###Hash Index 
+
+### Hash Index 
 - Search: hash function is used to determine which hash bucket stores the page we want to search. 
 ![8](https://github.com/JisongLiu/Gym-/blob/master/8.png)
 - Insert: Similarly, when we want to insert some pages, hash function is used to determine which hash bucket we should use to store this page. 
 ![9](https://github.com/JisongLiu/Gym-/blob/master/9.png)
 - However, when the data size enlarge, there will be more possibility to meet the collision when insert a page and will induce the reduce of performance.
-##Costs for each type
-###The operatations we care about
+
+## Costs for each type
+
+### The operatations we care about
 - Scan everything (select * from R)
 - Equality (select * from R where x=1)
 - Range (select * from R where 10<x and x>50)
 - Insert record (insert into R values (1) )
 - Delete record (delete from R where x=1).
-###Time complexity
+
+### Time complexity
 The following image shows the time complexity for each operator by using different data structure.
 ![3](https://github.com/JisongLiu/Gym-/blob/master/3.png)
 - B is the number of data pages
