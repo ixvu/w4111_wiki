@@ -175,4 +175,15 @@ DiskInterface: API, four ways of accessing things
 
 ## Indexes
 If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
-
+###To enhance the visiting and search speed, the traditional idea that we set a head page and set pointers between each page is not a good choice. As a alternative we use the idea of directory. The idea is like we use some extra space to store the page location information, although we might need some extra space and time to store and maintain it, the directory can extremely enhance the search page. Considering this case, we use indexes to implement this idea.
+###Index is defined for a search key and is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. Commonly, if you do not assign an index, the default is CREATE INDEX ON TABLE USING btree (primary key) in PostgreSQL
+###High level index structure: commonly, it includes index entries and data entries. In the primary index structure, the data entries is the data record and we can directly access the turple using it; however, in secondary index structure, the data entries has the following format <search key value, rid> and we have another layer called data records. The actual record is stored in that layer.
+###B+ tree Index: Each node of it represent for a page. It is self-balanced, therefore, it can keep a good search performance. Besides, leaf nodes are connected as the following picture showed. This data structure help to actualize the disk optimition.
+![1](https://github.com/JisongLiu/Gym-/blob/master/1.png)
+![2](https://github.com/JisongLiu/Gym-/blob/master/2.png)
+The number of B+ tree should that we can store the top levels in memory. Although we only store a little data in memory, we can find the other data entries easily by using only the data in height 2 and height 3 data.
+###Hash Index for example. In this type of index, hash function is used to determine which hash bucket stores the page we want to search. Similarly, when we want to insert some pages, hash function is used to determine which hash bucket we should use to store this page. However, when the data size enlarge, there will be more possibility to meet the collision when insert a page and will induce the reduce of performance.
+##Costs for each type
+###The operatations we care about is scan everything, equality, range, insert record and delete record.
+###The following image shows the time complexity for each operator by using different data structure.
+![3](https://github.com/JisongLiu/Gym-/blob/master/3.png)
