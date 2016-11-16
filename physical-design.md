@@ -183,23 +183,23 @@ DiskInterface: API, four ways of accessing things
 
 - Visual: Disks have tracks, and data is stored on sectors along a track. An arm then reads this data. Sectors are roughly parallel to the concept of pages, the unit of data transfer and manipulation we will be using.
 
-- **Basic scenario V1: **We store data from tables in these pages at random, and assign a pointer to a page from which to start from.
+- **Basic scenario V1: ** We store data from tables in these pages at random, and assign a pointer to a page from which to start from.
 Q: Is this acceptable?
 A: No, we need a way to move from one page to another.
 
-- **Basic Scenario V2 (linked list): **Let’s add pointers from one page to another and a backward pointer for good measure. 
+- **Basic Scenario V2 (linked list): ** Let’s add pointers from one page to another and a backward pointer for good measure. 
 This is functional, but we have to read through all the data to find something
-- **Basic Scenario V3 (sorted linked list): **All the data along the linked list is sorted by a particular primary key, optimized for a specific query.
+- **Basic Scenario V3 (sorted linked list): ** All the data along the linked list is sorted by a particular primary key, optimized for a specific query.
 Q: Can we run a binary search on this? No.
 Q: How do you find the middle page? You can’t.
 We need something to tell us where the pages are and what they contain without having to read all the data.
 
-- **Basic Scenario V4 (directories): **Let’s create an “upper level” set of pages that serve as directories pointing to these pages
+- **Basic Scenario V4 (directories): ** Let’s create an “upper level” set of pages that serve as directories pointing to these pages
 Q: What if we have a billion pages in the lower level, and we are only able to narrow it down to a million “upper level” directories?
 A: We can recursively create additional levels of directories
 Additional observation: We can use directories to find a starting point, and once we get to a page in a sorted list, we can scroll through without having to go back up the tree.
 
-- **Basic Scenario V5 (Alternative directory): **Instead of pointing to pages, we can point to records
+- **Basic Scenario V5 (Alternative directory): ** Instead of pointing to pages, we can point to records
 This is useful if we don't want to deal with sorted data, which can be difficult to maintain
 
 ## Indexes
