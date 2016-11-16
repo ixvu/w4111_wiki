@@ -176,8 +176,8 @@ DiskInterface: API, four ways of accessing things
 ##L2: Disk Storage, Heap Files, B+ Trees, Hash Files, Single Operation Optimizations
 
 ## Pre-lecture Primer
-- Question: How can we access data quickly?
-- Thought: We need different options with different trade-offs to compare.
+- **Question:** How can we access data quickly?
+- **Thought:** We need different options with different trade-offs to compare.
 
 ![](https://github.com/shy2116/project1/blob/master/disk.jpg?raw=true)
 
@@ -200,9 +200,19 @@ We need something to tell us where the pages are and what they contain without h
  - Additional observation: We can use directories to find a starting point, and once we get to a page in a sorted list, we can scroll through without having to go back up the tree.
 
 - **Basic Scenario V5 (Alternative directory):** Instead of pointing to pages, we can point to records
-This is useful if we don't want to deal with sorted data, which can be difficult to maintain
+ - This is useful if we don't want to deal with sorted data, which can be difficult to maintain
 
 ## Indexes
+- **Idea:** If you know you’re going to do something often, it’s worthwhile to make sure it can be done fast
+- **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
+- **Two types of queries:**
+ 1. Something is equal to something
+  - Find students in "CS"
+ 2. Something is in a range
+  - Find students in California(any city)
+
+- Indexes are defined wrt a search key, an attribute or a set of attributes that you want to be able to query efficiently. Naming collision: A search key is different from a candidate key.
+
 
 ### Reason for using index
 - If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
