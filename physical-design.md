@@ -290,19 +290,52 @@ INSERT Pic Hash index
 
 ## Recap
 **Question:** How can we access data quickly?
+
 **Thought:** We need different options with different trade-offs to compare.
-**Options: ** 
+- **Options: Datastructure** 
  1. Heap file
  2. Directory on top of heap file
  3. Sorted heap file
  4. Index structure (B+ Tree)
  5. Hash index
 
+- **Options: Index Structure**
+ 1. Primary
+ 2. Secondary
 
+### Cost
+- How you can analyze and decide the cost for each of these things?
+**Assumptions**
+- Heap File: equality on a key
+- Sorted File: files compacted after deletion
+- B+ Tree: 100 pages/directory page, 80% fill factor
+- Hash Index: no overflow, 80% fill factor
 
+INSERT Cost Table
 
+**B:** # of data pages
+**D:** time to read/write a page
+**M:** # of pages in a range query
 
+- **Highlights:**
+ - Heap file: the cost of doing a scan
+ - B+ Tree: Fill factor affects the number of leaf pages, as well as how many entries a directory page can contain 
+ - Hash table: you need to initially make some generous assumptions
 
+#How do you pick?
+- Depend on the query
+ - Workload: distribution of all the queries expected to be run in the future
+   - Based on past access patterns, what do we expect future access patterns to look like?
+ - Relations
+ - Attributes
+ - Types of predicates (=, <, >)
+ - Selectivity
+   - Insert/Delete/Update 
+   - Quantity
+- **Example 1:** If running solely inserts, then use a heap file
+- **Example 2:** If we have a uniform data distribution, only need equality constraints, and have no need for inserts: hash index
+
+**General guideline: Everything is predicated on the query you are running and its WHERE clause. Put a different way, the attributes and the types of predicates being applied to those attributes.**
 
 
 
