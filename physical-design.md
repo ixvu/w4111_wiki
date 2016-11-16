@@ -232,7 +232,7 @@ We need something to tell us where the pages are and what they contain without h
 - Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
 
 ###B+ Tree Index
-![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree?raw=true)
+![](https://github.com/shy2116/project1/blob/master/B?raw=true)
 - Everything is stored as pages
 - Index pages point to children
 - Leaf pages contain the data
@@ -244,19 +244,19 @@ We need something to tell us where the pages are and what they contain without h
 - Built bottom up: When you construct the B+ Tree, you need a starting point on the disk and the pages need to be sorted. - Given these two factors, it is much more efficient to build the tree bottom-up than inserting each record into the tree in a top-down approach.
 
 **Basic B+ Tree: search key <age>**
-![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%200?raw=true)
+![](https://github.com/shy2116/project1/blob/master/B0?raw=true)
 - An index has at most 3 pointers corresponding to 3 conditions
 
 **Full B+ Tree with additional record pages**
-![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%201?raw=true)
+![](https://github.com/shy2116/project1/blob/master/B1?raw=true)
 - The B+ Tree is "full," meaning the maximum number of pointers from the index has been reached
 
-![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%202?raw=true)
+![](https://github.com/shy2116/project1/blob/master/B2?raw=true)
 - Additional index pages must be added
 
 
 **Composite search tree (multiple search keys)**
-![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%20age%20and%20name.PNG?raw=true)
+![](https://github.com/shy2116/project1/blob/master/Bage.PNG?raw=true)
 - A search tree sorts in order of search keys from left to right
 - Trade-off: Less entries in a given directory page, but you can answer queries based on two attributes.
 
