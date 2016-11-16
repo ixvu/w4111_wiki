@@ -204,14 +204,113 @@ We need something to tell us where the pages are and what they contain without h
 
 ## Indexes
 - **Idea:** If you know you’re going to do something often, it’s worthwhile to make sure it can be done fast
+ - Abraham Lincoln: "If I had eight hours to chop down a tree, I'd spend six sharpening my ax."
 - **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
 - **Two types of queries:**
  - Something is equal to something
-    - Find students in "CS"
+   - Find students in "CS"
  - Something is in a range
    - Find students in California(any city)
 
 - Indexes are defined wrt a search key, an attribute or a set of attributes that you want to be able to query efficiently. Naming collision: A search key is different from a candidate key.
+
+- **Application:** Search keys can provide faster access for WHERE clauses
+
+INSERT SQL INDEX
+
+- If a query can use an index, then the database optimizer will consider it as a potential way of running the query if it will be faster.
+
+### High Level (Primary) Index Structure
+INSERT Pic
+- The index is made of pages (illustrated below the index), pages that store the data records along with an index
+
+### High Level (Secondary) Index Structure
+INSERT Pic
+- As opposed to the “Primary,” the “Secondary” structure separates the indexing from the data records, simply using pages in the index as pointers. A pointer in an index page (aka data entries) would be a record of the form: <search value, record id> .
+- This structure is a parallel to our Basic Scenario V4 (directories)
+- The choice of index structure may be specific to the query. The trade-off is that the “Secondary” index structure is much more compact; however, you cannot directly access the record tuple.
+- Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
+
+###B+ Tree Index
+INSERT Pic
+- Everything is stored as pages
+- Index pages point to children
+- Leaf pages contain the data
+- Next/previous pointers to perform range scans, as opposed to going through the index each time
+- Both equality and range queries can be used
+ - Explanations and examples above
+- Self-balancing: Amount of time to search is logarithmic to the amount of data you have (height)
+- Disk optimized: indexes are optimized for specific types of storage
+- Built bottom up: When you construct the B+ Tree, you need a starting point on the disk and the pages need to be sorted. - Given these two factors, it is much more efficient to build the tree bottom-up than inserting each record into the tree in a top-down approach.
+
+**Basic B+ Tree: search key <age>**
+INSERT B+ Tree 0
+- An index has at most 3 pointers corresponding to 3 conditions
+
+**Full B+ Tree with additional record pages**
+INSERT B+ Tree 1
+- The B+ Tree is "full," meaning the maximum number of pointers from the index has been reached
+
+INSERT B+ Tree 2
+- Additional index pages must be added
+
+
+**Composite search tree (multiple search keys)**
+INSERT B+ Tree age and name
+- A search tree sorts in order of search keys from left to right
+- Trade-off: Less entries in a given directory page, but you can answer queries based on two attributes.
+
+**Query 1: SELECT age WHERE age = 14**
+- Query finds that the age of the index is greater than the 14 we are looking for, so it knows to go left. The query finds the 14 it is looking for and returns the record. The query then moves on to the next record, find that’s 17 is greater than 14 and stops.
+
+**Query 2: SELECT * WHERE age < 18 and name < ‘monica’**
+The indexing order is first by age, then by name. Starting at (17, norton), the query finds that 17 is less than 18, and goes right to find the rightmost value that satisfies this constraint. Scanning through from the left of the node, the query examines (17, norton) to find that 17 is less than 18, so the query continues to go right in order to find the boundary. Upon examining the next record (24, alice), the query finds the boundary for the first index, as 24 is not less than 18. The query then goes back to the last valid record (17, norton), and examines the second constraint to find that ‘norton’ is not less than ‘monica’. The query proceeds left and finds that (17, alice) does satisfy the constraint. The query then returns the record and that of all the records to the left. 
+Thoughts on efficiency: In a “Secondary” index, each pointer is potentially a disk access. The use of a “Primary” index allows us to filter out all the data we don’t need. If instead of (SELECT *), we chose to (SELECT age, name), we wouldn’t have to read anything beyond the index.
+
+**Query 3: SELECT age WHERE name = ‘bobby’**
+We can’t use this index because there is no criteria on age. We cannot do any better than simply reading through all the index data; however, considering that we are selecting an index value and the index is much smaller for a composite tree than the entire data set, this could potentially still be much faster.
+
+INSERT Pic Fill factor
+**Fill factor:** The portion of a page that is initially used to store data. The space leftover is a buffer to mitigate potentially expensive insertion costs. Empirical tests show that ~66% is the optimal factor
+**Fanout (“branching factor”):** How many pointers a directory page contains; how many children a given node can have.
+**Height:** Length of the path from the root to the leaf node. If a “Secondary” Index Structure is used, the page storing the data is not part of the height.
+
+### Some Numbers (8kb pages)
+INSERT Pic
+
+If we use 8kb pages to store integers and pointers, we can store roughly 500 entries/page. At fill factor of 66%, this is roughly 300 entries/page. We can see that the number of entries we can store ramp up exponentially with the height of the tree. A tree of height 2 filled to its limit (66% fill factor) of 27 million integer/pointer entries takes up ~2.4MB of space. Considering laptops today come standard with at least 4GB of memory, 2.4MB can be stored entirely in memory, meaning no disk access is necessary. This is even possible with a tree of height 3, requiring 750MB. 
+
+### Hash Index
+INSERT Pic Hash index
+
+- A hash index is a collection of buckets organized in an array. A hash function is used to map search keys to corresponding buckets. A hash function is useful, as it maps data of arbitrary size to data of fixed size.
+- Can only support equality predicates. Hash functions are supposed to be random, so it cannot support range operations.
+- Can hash on one or more attributes
+- Caution: If I use a poor hash function or the data is skewed, it may degenerate to a linked list data structure
+
+## Recap
+**Question:** How can we access data quickly?
+**Thought:** We need different options with different trade-offs to compare.
+**Options: ** 
+ 1. Heap file
+ 2. Directory on top of heap file
+ 3. Sorted heap file
+ 4. Index structure (B+ Tree)
+ 5. Hash index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Reason for using index
@@ -225,6 +324,7 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 - In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations (reference from PsotgreSQL documentation)
 
 ### High level index structure
+
 - It includes index entries and data entries. 
 - In the primary index structure, the data entries is the data record and we can directly access the turple using it; 
 ![0](https://github.com/JisongLiu/Gym-/blob/master/0.png)
