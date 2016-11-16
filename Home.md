@@ -57,7 +57,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L21: Query Processing(xz2581,zw2396)
 * L22: Transaction Processing (agango, zhaosjason)
 * L23: Transaction Processing (harrybari, JisongLiu)
-* L24: Guest Lecture/Review (cp2923)
+* L24: Guest Lecture/Review (cp2923, simonzhang0158)
 
 
 ### Credit
