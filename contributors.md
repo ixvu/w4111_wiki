@@ -70,5 +70,5 @@ List of contributors and contributions
   1. section include: work from bottom up, % matters, what is disk, how does disk work
   1. Added definition and example from textbook
 * Jisong Liu (jl4819)
-  1. Scribed Lecture 20 "Physical Deisgn - Indexing Continued"
+  1. Scribed the first edition for Lecture 20 "Physical Deisgn - Indexing Continued" and discussed notes with Prof. Wu on Office time and modify the notes according to the response.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparsion between different types of physical design on their time complexity of some common operators.
