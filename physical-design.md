@@ -173,7 +173,7 @@ DiskInterface: API, four ways of accessing things
 
 ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/directory.png?raw=true)
 
-##L2: Disk Storage, Heap Files, B+ Trees, Hash Files, Single Operation Optimizations
+##L20: Disk Storage, Heap Files, B+ Trees, Hash Files, Single Operation Optimizations
 
 ## Pre-lecture Primer
 - **Question:** How can we access data quickly?
