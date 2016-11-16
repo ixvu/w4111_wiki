@@ -178,9 +178,12 @@ Lecture 2: Disk Storage, Heap Files, B+ Trees, Hash Files, Single Operation Opti
 ## Pre-lecture Primer
 Question: How can we access data quickly?
 Thought: We need different options with different trade-offs to compare.
+
+https://github.com/shy2116/project1/blob/master/disk.jpg
+
 Visual: Disks have tracks, and data is stored on sectors along a track. An arm then reads this data. Sectors are roughly parallel to the concept of pages, the unit of data transfer and manipulation we will be using.
 
-INSERT DISK PICTURE
+
 ## Indexes
 
 ### Reason for using index
