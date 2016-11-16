@@ -216,23 +216,23 @@ We need something to tell us where the pages are and what they contain without h
 
 - **Application:** Search keys can provide faster access for WHERE clauses
 
-INSERT SQL INDEX
+![](https://github.com/shy2116/project1/blob/master/SQL%20index.PNG?raw=true)
 
 - If a query can use an index, then the database optimizer will consider it as a potential way of running the query if it will be faster.
 
 ### High Level (Primary) Index Structure
-INSERT Pic
+![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Primary)%20index%20structure.PNG?raw=true)
 - The index is made of pages (illustrated below the index), pages that store the data records along with an index
 
 ### High Level (Secondary) Index Structure
-INSERT Pic
+![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Secondary)%20index%20structure.PNG?raw=true)
 - As opposed to the “Primary,” the “Secondary” structure separates the indexing from the data records, simply using pages in the index as pointers. A pointer in an index page (aka data entries) would be a record of the form: <search value, record id> .
 - This structure is a parallel to our Basic Scenario V4 (directories)
 - The choice of index structure may be specific to the query. The trade-off is that the “Secondary” index structure is much more compact; however, you cannot directly access the record tuple.
 - Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
 
 ###B+ Tree Index
-INSERT Pic
+![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree?raw=true)
 - Everything is stored as pages
 - Index pages point to children
 - Leaf pages contain the data
@@ -244,19 +244,19 @@ INSERT Pic
 - Built bottom up: When you construct the B+ Tree, you need a starting point on the disk and the pages need to be sorted. - Given these two factors, it is much more efficient to build the tree bottom-up than inserting each record into the tree in a top-down approach.
 
 **Basic B+ Tree: search key <age>**
-INSERT B+ Tree 0
+![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%200?raw=true)
 - An index has at most 3 pointers corresponding to 3 conditions
 
 **Full B+ Tree with additional record pages**
-INSERT B+ Tree 1
+![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%201?raw=true)
 - The B+ Tree is "full," meaning the maximum number of pointers from the index has been reached
 
-INSERT B+ Tree 2
+![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%202?raw=true)
 - Additional index pages must be added
 
 
 **Composite search tree (multiple search keys)**
-INSERT B+ Tree age and name
+![](https://github.com/shy2116/project1/blob/master/B%2B%20Tree%20age%20and%20name.PNG?raw=true)
 - A search tree sorts in order of search keys from left to right
 - Trade-off: Less entries in a given directory page, but you can answer queries based on two attributes.
 
@@ -270,25 +270,25 @@ Thoughts on efficiency: In a “Secondary” index, each pointer is potentially 
 **Query 3: SELECT age WHERE name = ‘bobby’**
 We can’t use this index because there is no criteria on age. We cannot do any better than simply reading through all the index data; however, considering that we are selecting an index value and the index is much smaller for a composite tree than the entire data set, this could potentially still be much faster.
 
-INSERT Pic Fill factor
+![](https://github.com/shy2116/project1/blob/master/fill%20factor%20and%20fanout.PNG?raw=true)
 **Fill factor:** The portion of a page that is initially used to store data. The space leftover is a buffer to mitigate potentially expensive insertion costs. Empirical tests show that ~66% is the optimal factor
 **Fanout (“branching factor”):** How many pointers a directory page contains; how many children a given node can have.
 **Height:** Length of the path from the root to the leaf node. If a “Secondary” Index Structure is used, the page storing the data is not part of the height.
 
 ### Some Numbers (8kb pages)
-INSERT Pic
+![](https://github.com/shy2116/project1/blob/master/Some%20numbers.PNG?raw=true)
 
 If we use 8kb pages to store integers and pointers, we can store roughly 500 entries/page. At fill factor of 66%, this is roughly 300 entries/page. We can see that the number of entries we can store ramp up exponentially with the height of the tree. A tree of height 2 filled to its limit (66% fill factor) of 27 million integer/pointer entries takes up ~2.4MB of space. Considering laptops today come standard with at least 4GB of memory, 2.4MB can be stored entirely in memory, meaning no disk access is necessary. This is even possible with a tree of height 3, requiring 750MB. 
 
 ### Hash Index
-INSERT Pic Hash index
+![](https://github.com/shy2116/project1/blob/master/Hash%20Index.PNG?raw=true)
 
 - A hash index is a collection of buckets organized in an array. A hash function is used to map search keys to corresponding buckets. A hash function is useful, as it maps data of arbitrary size to data of fixed size.
 - Can only support equality predicates. Hash functions are supposed to be random, so it cannot support range operations.
 - Can hash on one or more attributes
 - Caution: If I use a poor hash function or the data is skewed, it may degenerate to a linked list data structure
 
-## Recap
+### Recap
 **Question:** How can we access data quickly?
 
 **Thought:** We need different options with different trade-offs to compare.
@@ -311,7 +311,7 @@ INSERT Pic Hash index
 - B+ Tree: 100 pages/directory page, 80% fill factor
 - Hash Index: no overflow, 80% fill factor
 
-INSERT Cost Table
+![](https://github.com/shy2116/project1/blob/master/Cost%20table.PNG?raw=true)
 
 **B:** # of data pages
 **D:** time to read/write a page
