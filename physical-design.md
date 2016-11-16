@@ -207,9 +207,9 @@ We need something to tell us where the pages are and what they contain without h
 - **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
 - **Two types of queries:**
  - Something is equal to something
-  - Find students in "CS"
+    - Find students in "CS"
  - Something is in a range
-  - Find students in California(any city)
+   - Find students in California(any city)
 
 - Indexes are defined wrt a search key, an attribute or a set of attributes that you want to be able to query efficiently. Naming collision: A search key is different from a candidate key.
 
