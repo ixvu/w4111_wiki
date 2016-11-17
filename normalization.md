@@ -158,3 +158,29 @@ Given S->NA, H->C, and BOLD primary key attributes, we have
 |**SH**NAC | NO | for H->C, C does not belong to SH, and H is not a superkey
 |**S**NA, **SH**C | NO | for H->C, C does not belong to SH, and H is not a superkey
 |**S**NA, **H**C, **S**H | YES | Fits the definition
+
+## Decompose table to BCNF by FDs
+### Algorithm
+```java
+while BCNF is violated: 
+   R with FDs FR
+   if X->Y violates BCNF
+      turn R into R-Y & XY
+```
+### Step by step example
+Table: Branch,Customer,banker Name,Office  BCNO
+
+FDs:
+   1. Name -> Branch, Office  N -> BO 
+   2. Customer,Branch->Name  CB->N
+
+Steps:
+   1. R: BCNO, violates BCNF
+   2. X->Y = N -> BO
+      1. R-Y = BCNO - BO = CN
+      2. XY = NBO
+      3. R = (NBO,CN)
+   3. R: (NBO,CN) is a BCNF, end while
+   4. miss CB->N
+ 
+
