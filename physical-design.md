@@ -203,16 +203,21 @@ We need something to tell us where the pages are and what they contain without h
  - This is useful if we don't want to deal with sorted data, which can be difficult to maintain
 
 ## Indexes
-- **Idea:** If you know you’re going to do something often, it’s worthwhile to make sure it can be done fast
+### Reason for using index
+- If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
+- To enhance the visiting and search speed, the traditional idea that we set a head page and set pointers between each page is not a good choice, because it means we should scan almost each page to find the page we want which is time-consuming.
+As an alternative the idea of directory is used. The idea is that we use some extra space to store the page location information, although we might need some extra space and time to store and maintain it, the directory can extremely enhance the search speed. It is like "If I had eight hours to chop down a tree I'd spend six sharpening my ax". We use the six hours to maintain the extra time and space consuming and can have a better performance in two hours compared with using eight hours do search. Considering this case, we use indexes to implement this idea.
  - Abraham Lincoln: "If I had eight hours to chop down a tree, I'd spend six sharpening my ax."
 - **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
 - **Two types of queries:**
  - Something is equal to something
-   - Find students in "CS"
+   - Find students in "CS"   // Specific query should be given to explain it
  - Something is in a range
-   - Find students in California(any city)
-
-- Indexes are defined wrt a search key, an attribute or a set of attributes that you want to be able to query efficiently. Naming collision: A search key is different from a candidate key.
+   - Find students in California(any city) // Specific query should be given to explain it
+### Some knowledge about index
+- Index is defined for a search key
+- Index is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) 
+- In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations (reference from PsotgreSQL documentation)
 
 - **Application:** Search keys can provide faster access for WHERE clauses
 
@@ -223,29 +228,33 @@ We need something to tell us where the pages are and what they contain without h
 ### High Level (Primary) Index Structure
 ![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Primary)%20index%20structure.PNG?raw=true)
 - The index is made of pages (illustrated below the index), pages that store the data records along with an index
+- It includes index entries and data entries. 
+- In the primary index structure, the data entries is the data record and we can directly access the turple using it
 
 ### High Level (Secondary) Index Structure
 ![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Secondary)%20index%20structure.PNG?raw=true)
-- As opposed to the “Primary,” the “Secondary” structure separates the indexing from the data records, simply using pages in the index as pointers. A pointer in an index page (aka data entries) would be a record of the form: <search value, record id> .
+- In secondary index structure, the data entries has the following format <search key value, rid> and we have another layer called data records. The actual record is stored in that layer. If we want to obtain the data in a page, 
+- The search process is index entries -> data entries -> data record(according to the rid storing in data entries)
 - This structure is a parallel to our Basic Scenario V4 (directories)
-- The choice of index structure may be specific to the query. The trade-off is that the “Secondary” index structure is much more compact; however, you cannot directly access the record tuple.
 - Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
 
 ###B+ Tree Index
 ![](https://github.com/shy2116/project1/blob/master/B.PNG?raw=true)
-- Everything is stored as pages
+- Each node of it represent for a page. 
+- Self-balanced (It makes the tree has a moderate height to make sure it can keep a good search performance). Therefore, the unbalanced situation will not happened.
 - Index pages point to children
 - Leaf pages contain the data
+- Leaf nodes are connected as the following picture showed. This data structure help to actualize the disk optimition.
+![1](https://github.com/JisongLiu/Gym-/blob/master/1.png)
 - Next/previous pointers to perform range scans, as opposed to going through the index each time
 - Both equality and range queries can be used
  - Explanations and examples above
-- Self-balancing: Amount of time to search is logarithmic to the amount of data you have (height)
-- Disk optimized: indexes are optimized for specific types of storage
 - Built bottom up: When you construct the B+ Tree, you need a starting point on the disk and the pages need to be sorted. - Given these two factors, it is much more efficient to build the tree bottom-up than inserting each record into the tree in a top-down approach.
 
 **Basic B+ Tree: search key <age>**
 ![](https://github.com/shy2116/project1/blob/master/B0.PNG?raw=true)
 - An index has at most 3 pointers corresponding to 3 conditions
+- The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it.  //Some mark should be marked on the image to clarified the search process
 
 **Full B+ Tree with additional record pages**
 ![](https://github.com/shy2116/project1/blob/master/B1.PNG?raw=true)
@@ -266,6 +275,7 @@ We need something to tell us where the pages are and what they contain without h
 **Query 2: SELECT * WHERE age < 18 and name < ‘monica’**
 The indexing order is first by age, then by name. Starting at (17, norton), the query finds that 17 is less than 18, and goes right to find the rightmost value that satisfies this constraint. Scanning through from the left of the node, the query examines (17, norton) to find that 17 is less than 18, so the query continues to go right in order to find the boundary. Upon examining the next record (24, alice), the query finds the boundary for the first index, as 24 is not less than 18. The query then goes back to the last valid record (17, norton), and examines the second constraint to find that ‘norton’ is not less than ‘monica’. The query proceeds left and finds that (17, alice) does satisfy the constraint. The query then returns the record and that of all the records to the left. 
 Thoughts on efficiency: In a “Secondary” index, each pointer is potentially a disk access. The use of a “Primary” index allows us to filter out all the data we don’t need. If instead of (SELECT *), we chose to (SELECT age, name), we wouldn’t have to read anything beyond the index.
+//avoid to use a long paragraph to explain one point, decompose it into several parts.
 
 **Query 3: SELECT age WHERE name = ‘bobby’**
 We can’t use this index because there is no criteria on age. We cannot do any better than simply reading through all the index data; however, considering that we are selecting an index value and the index is much smaller for a composite tree than the entire data set, this could potentially still be much faster.
@@ -277,7 +287,7 @@ We can’t use this index because there is no criteria on age. We cannot do any 
 
 ### Some Numbers (8kb pages)
 ![](https://github.com/shy2116/project1/blob/master/Some%20numbers.PNG?raw=true)
-
+- We can find the other data entries easily by using only the data in height 2 and height 3 data, therefore, we only store a little data in memory but visit a huge quantity of data easily.
 If we use 8kb pages to store integers and pointers, we can store roughly 500 entries/page. At fill factor of 66%, this is roughly 300 entries/page. We can see that the number of entries we can store ramp up exponentially with the height of the tree. A tree of height 2 filled to its limit (66% fill factor) of 27 million integer/pointer entries takes up ~2.4MB of space. Considering laptops today come standard with at least 4GB of memory, 2.4MB can be stored entirely in memory, meaning no disk access is necessary. This is even possible with a tree of height 3, requiring 750MB. 
 
 ### Hash Index
@@ -286,7 +296,7 @@ If we use 8kb pages to store integers and pointers, we can store roughly 500 ent
 - A hash index is a collection of buckets organized in an array. A hash function is used to map search keys to corresponding buckets. A hash function is useful, as it maps data of arbitrary size to data of fixed size.
 - Can only support equality predicates. Hash functions are supposed to be random, so it cannot support range operations.
 - Can hash on one or more attributes
-- Caution: If I use a poor hash function or the data is skewed, it may degenerate to a linked list data structure
+- Caution: If I use a poor hash function or the data is skewed, it may degenerate to a linked list data structure, because there will be more possibility to meet the collision when insert a page and will induce the reduce of performance.
 
 ### Recap
 **Question:** How can we access data quickly?
@@ -296,9 +306,6 @@ If we use 8kb pages to store integers and pointers, we can store roughly 500 ent
  1. Heap file
  2. Directory on top of heap file
  3. Sorted heap file
- 4. Index structure (B+ Tree)
- 5. Hash index
-
 - **Options: Index Structure**
  1. Primary
  2. Secondary
@@ -336,66 +343,3 @@ If we use 8kb pages to store integers and pointers, we can store roughly 500 ent
 - **Example 2:** If we have a uniform data distribution, only need equality constraints, and have no need for inserts: hash index
 
 **General guideline: Everything is predicated on the query you are running and its WHERE clause. Put a different way, the attributes and the types of predicates being applied to those attributes.**
-
-
-
-
-
-
-
-
-
-
-### Reason for using index
-- If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
-- To enhance the visiting and search speed, the traditional idea that we set a head page and set pointers between each page is not a good choice, because it means we should scan almost each page to find the page we want which is time-consuming.
-As an alternative the idea of directory is used. The idea is that we use some extra space to store the page location information, although we might need some extra space and time to store and maintain it, the directory can extremely enhance the search speed. It is like "If I had eight hours to chop down a tree I'd spend six sharpening my ax". We use the six hours to maintain the extra time and space consuming and can have a better performance in two hours compared with using eight hours do search. Considering this case, we use indexes to implement this idea.
-
-### Some knowledge about index
-- Index is defined for a search key
-- Index is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) 
-- In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations (reference from PsotgreSQL documentation)
-
-### High level index structure
-
-- It includes index entries and data entries. 
-- In the primary index structure, the data entries is the data record and we can directly access the turple using it; 
-![0](https://github.com/JisongLiu/Gym-/blob/master/0.png)
-- In secondary index structure, the data entries has the following format <search key value, rid> and we have another layer called data records. The actual record is stored in that layer. If we want to obtain the data in a page, the search process is index entries -> data entries -> data record(according to the rid storing in data entries)
-![4](https://github.com/JisongLiu/Gym-/blob/master/4.png)
-
-### B+ tree Index
-- Each node of it represent for a page. 
-- Self-balanced (It makes the tree has a moderate height to make sure it can keep a good search performance). Therefore, the following situation will not happened.
-![5](https://github.com/JisongLiu/Gym-/blob/master/5.png)
-- Leaf nodes are connected as the following picture showed. This data structure help to actualize the disk optimition.
-![1](https://github.com/JisongLiu/Gym-/blob/master/1.png)
-- The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it.
-![6](https://github.com/JisongLiu/Gym-/blob/master/6.png)
-- Page and directory page(this page have the store location information about other pages)
-- The number of B+ tree should that we can store the top levels in memory. Although we only store a little data in memory.
-- We can find the other data entries easily by using only the data in height 2 and height 3 data.
-![2](https://github.com/JisongLiu/Gym-/blob/master/2.png)
-
-### Hash Index 
-- Search: hash function is used to determine which hash bucket stores the page we want to search. 
-![8](https://github.com/JisongLiu/Gym-/blob/master/8.png)
-- Insert: Similarly, when we want to insert some pages, hash function is used to determine which hash bucket we should use to store this page. 
-![9](https://github.com/JisongLiu/Gym-/blob/master/9.png)
-- However, when the data size enlarge, there will be more possibility to meet the collision when insert a page and will induce the reduce of performance.
-
-## Costs for each type
-
-### The operatations we care about
-- Scan everything (select * from R)
-- Equality (select * from R where x=1)
-- Range (select * from R where 10<x and x>50)
-- Insert record (insert into R values (1) )
-- Delete record (delete from R where x=1).
-
-### Time complexity
-The following image shows the time complexity for each operator by using different data structure.
-![3](https://github.com/JisongLiu/Gym-/blob/master/3.png)
-- B is the number of data pages
-- D is time to read/write page
-- M is the number of pages in range query
