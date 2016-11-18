@@ -237,6 +237,7 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 - The search process is index entries -> data entries -> data record(according to the rid storing in data entries)
 - This structure is a parallel to our Basic Scenario V4 (directories)
 - Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
+// give more specific explaination on how the point work
 
 ###B+ Tree Index
 ![](https://github.com/shy2116/project1/blob/master/B.PNG?raw=true)
