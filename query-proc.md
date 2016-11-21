@@ -39,10 +39,12 @@ B: number of pages; M: number of pages matched in WHERE clause.
 
 ## Access path
 Access Path refers to the path chosen by the system to retrieve data after a structured query language (SQL) request is executed. A query may request at least one variable to be filled up with one value or more.
+
 ### Index + matching condition
 +    Sequential Scan: doesnt accept condition.
 +    Hash Index Search: accept equality conditions on all search keys.
 +    Tree Index Search: accept conditions on prefix of search keys.
+
 ### How to pick access path
 +    Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
 +    Selectivity only for selection operation.
