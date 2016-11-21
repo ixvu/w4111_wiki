@@ -45,15 +45,15 @@ It uses index to find all record, identify first index page and number of pages 
 +    Example query: Same query as previous.
 +    Comparison:
      +    Primary B+ Tree: 
-          +    Number of leave pages: 10K. 
+          +    Number of leaf pages: 10K. 
           +    Number of pages need to read: 90%x10K=9K. 
           +    Given 100 DEs of each page, number of pages one level up: 10K/100=100. 
           +    One level up is 1 page, root page. 
           +    Total height: log100(10K)=2. 
           +    Total cost: 9K+2.
      +    Secondary B+ Tree: 
-          +    Leave pages store pointers to tuples.
-          +    Number of leave pages = Total Number of tuples/number of DEs in each page = 10x10K/100=1K
+          +    leaf pages store pointers to tuples.
+          +    Number of leaf pages = Total Number of tuples/number of DEs in each page = 10x10K/100=1K
           +    Given 100 DEs of each page, number of pages one level up: 1K/100=10. 
           +    One level up is 1 page, root page. 
           +    Total height: 3. 
@@ -84,6 +84,6 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 
 ## Complementary Concepts
 ### Primary and Secondary Index
-    Primary: data is store in the leave nodes. 
-    Secondary: leave nodes only contain pointers to actual data files.
+    Primary: data is store in the leaf nodes. 
+    Secondary: leaf nodes only contain pointers to actual data files.
     The query optimizer attempts to determine the most efficient way to execute a given query by considering the possible query plans.
