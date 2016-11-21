@@ -1,7 +1,7 @@
 ## Background
-        Task: Find an efficient physical query plan (execution plan) for an sql query.
-        Goal: minimize the evaluation time for the query, compute query result as fast as possible.
-        Cost Factors: Disk accesses, read/write operations, [I/O, page transfer] (CPU time is typically ignored).
+    Task: Find an efficient physical query plan (execution plan) for an sql query.
+    Goal: minimize the evaluation time for the query, compute query result as fast as possible.
+    Cost Factors: Disk accesses, read/write operations, [I/O, page transfer] (CPU time is typically ignored).
 
 ## Translate Sql to query plan
 +    Query plan: A query plan (or query execution plan) is an ordered set of steps used to access data in a SQL relational database management system. This is a specific case of the relational model concept of access plans.
@@ -10,7 +10,10 @@
 +    Optimization: Find the “cheapest” execution plan for a query.
 
 ### Notice:
-    A relational algebra expression can be evaluated in many ways. An annotated expression specifying detailed evaluation strategy is called the execution plan (includes, e.g., whether index is used, join algorithms, . . . ) Among all semantically equivalent expressions, the one with the least costly evaluation plan is chosen.
+    A relational algebra expression can be evaluated in many ways. 
+    An annotated expression specifying detailed evaluation strategy is called the execution plan 
+    (includes, e.g., whether index is used, join algorithms, . . . ) 
+    among all semantically equivalent expressions, the one with the least costly evaluation plan is chosen.
 
 ## Query Evaluation
 -    Push: Operators are input-driven; As operator gets data, push it to parent operator; May run out of number and overload(???).
@@ -48,3 +51,19 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ### How to pick access path
 +    Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
 +    Selectivity only for selection operation.
+
+### How to determin/compute selectivity
++    Scan the whole data and multiple, assuming the distribution over all values is uniform.
++    How many distinct values in a hash table.
++    Default estimate -- if know nothing else, assume 5%.
+
+### Notice:
+        If attributes is primary key, you know exactly one matches it.
+        Number of value equals to cardinality.
+        Assumption: attribute selectivity is independent 
+
+## Complementary Concepts
+### Primary and Secondary Index
+    Primary: data is store in the leave nodes. 
+    Secondary: leave nodes only contain pointers to actual data files.
+    The query optimizer attempts to determine the most efficient way to execute a given query by considering the possible query plans.
