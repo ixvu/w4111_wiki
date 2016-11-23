@@ -177,7 +177,8 @@ Databases need to provide guarantees, so that you can build applications on them
 
 * 3. It is hard to Design Applications.
 
-For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
+For example, if you are building a web application, you would need an App Server to serve your web pages, as shown in the figure. There will be multiple different types of functions to support different types of functionalities. Of course you need users, so you implement multiple ways to create new users in three places in your code base, as shown in App Server block the three blue filled rectangle. Then people would start to use this app, by Web, Mobile or Import. Now you have codes in 3 places, and because people are using it, you will never be able to delete them. If at this time, you want to guarantee that your app only permit unique username, you would update the sign up function by adding check_unique (username), as shown in red filled rectangle. But there is an issue because other two functions have not been updated. So you have to make sure these teams responsible for Mobile and Import to also update their codes. Thus whenever you want to update something new, you would have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
+
 
 <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png" width="350">
 <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png" width="380">
