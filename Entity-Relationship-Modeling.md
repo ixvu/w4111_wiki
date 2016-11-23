@@ -217,7 +217,7 @@ A key is the minimal set of attributes that uniquely identify an entity.
 
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.1.png" width="600">
 
-In this example, keys are underlined.
+In this example, Entity is represented by rectangle, attributes are represented by eclipses, keys are underlined. The left diagram means "course" is an entity set, it has attributes like cid, name, loc, schedule, and cid is the key. Similarly, Entity Set "Users" has attributes uid, name, age, and summary, and uid is the key.
 Attributes should be invariant to time so that your database will not goes wrong in the future. So “age” is a subtle bug in this example.
 
 
@@ -229,7 +229,7 @@ Attributes should be invariant to time so that your database will not goes wrong
 
      <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png" width="200">
      
-     Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
+     Rectangle represents entities, and diamond represents relationships. In this example, "Users" can "take" "Courses". The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
 
      * Users can take different roles in same relationships set. 
