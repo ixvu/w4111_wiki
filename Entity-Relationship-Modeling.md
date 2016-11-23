@@ -331,7 +331,7 @@ For a given entity (User), must it be an instructor or student?  Yes or No. In t
 
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/4.2Aggregation.png" width="500">
 
-    A company can donates a particular Amount to a particular Course.
+    The diagram shows that a company can donates a particular Amount to a particular Course.
     If you want to treat this donation as an entity, you can use aggregation.
 
     
@@ -339,13 +339,17 @@ For a given entity (User), must it be an instructor or student?  Yes or No. In t
 
     Dashed box represents “entity” that represents the entire relationship. When considering Instructors manage donations, the Instructor manage donation (the whole relationship) itself, not Course or Companies. But in terms of implementation, the data of Courses or Companies are stored in themselves.
 
-  * Why use aggregation?
+  * Why use aggregation? Why this alternative (ternary relationships) does not work?
+
     Aggregation v.s. Ternary Relationships
    
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/4.4WhyAggre.png" width="500">
 
-    When you want to put constraints on those entities, they apply to all entity sets. For example, If you want courses has exactly one Instructor. But in this case, you put constraints on Companies.
-Manages and Donates are separate ideas, you may want to separate them out.
+    When you want to put constraints on those entities, they apply to all entity sets. What if you want to ensure A company’s donation can be managed by at most one instructor, or what if you want courses has exactly one Instructor. In  this case, if you put constraint on courses, you also put constraints on Companies. That’s why this idea falls apart.
+Manages and Donates are distinct relationships with their own attributes.
+They are separate ideas, you may want to separate them out.
+
+
 
 
 ## Using the ER Model
