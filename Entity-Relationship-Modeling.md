@@ -272,7 +272,7 @@ In Specific:
     e.g. a course needs at least one instructor. In this case, the participation of “Courses” in “Instructs” is total, otherwise (not thick line), it is a partial participation constraint.
     This constraint can be represented by thick line. 
 
-    ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.8thick.png)
+    
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.8thick.png" width="600">
 
     In this case, the thick line with arrow means each course has exactly one instructor, and the thick line without arrow means each course needs to be taken by at least one student.
@@ -327,20 +327,20 @@ For a given entity (User), must it be an instructor or student?  Yes or No. In t
     Relationships between entities and relationships. This is the case when you want to have relationship with another relationship.
     For example,
 
-    ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.2Aggregation.png)
+
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/4.2Aggregation.png" width="500">
 
     A company can donates a particular Amount to a particular Course.
     If you want to treat this donation as an entity, you can use aggregation.
 
-    ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.3Aggre.png)
+    
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/4.3Aggre.png" width="500">
 
     Dashed box represents “entity” that represents the entire relationship. When considering Instructors manage donations, the Instructor manage donation (the whole relationship) itself, not Course or Companies. But in terms of implementation, the data of Courses or Companies are stored in themselves.
 
   * Why use aggregation?
     Aggregation v.s. Ternary Relationships
-    ![](https://github.com/wyd856570831/ScribeNotes/blob/master/4.4WhyAggre.png)
+   
     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/4.4WhyAggre.png" width="500">
 
     When you want to put constraints on those entities, they apply to all entity sets. For example, If you want courses has exactly one Instructor. But in this case, you put constraints on Companies.
