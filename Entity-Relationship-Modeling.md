@@ -183,7 +183,7 @@ For example, if you are building a web application, you would need an App Server
 <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png" width="380">
 <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.3.png" width="380">
 
-Ideally, the unique username data guarantee could be enforced in DBMS, because that’s where you store and manage data.
+Ideally, the unique username data guarantee could be enforced in DBMS, as shown above, because that’s where you store and manage data.
 “DRY” principle you should follow in Computer Science. Don’t copy a lot. It may result in many bugs. That's because when you copy code or other stuff from one place to another, if you changed one of them, the other one will not be changed. 
 
 ##Basic Concepts for ER Modeling
