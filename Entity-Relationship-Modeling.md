@@ -178,8 +178,9 @@ Databases need to provide guarantees, so that you can build applications on them
 * 3. It is hard to Design Applications.
 
 For example, it you add a new function to your application such as check_unique(username), you have to make sure all the teams (Web, Mobile, and so on) to add this function. That would be hundreds of thousands of lines of code.
-![It is hard to design applications](https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png)
-![Add check_unique](https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png)
+
+<img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.1.png" width="350">
+<img src="https://github.com/wyd856570831/ScribeNotes/blob/master/2.2.png" width="450">
 
 Ideally, the unique username data guarantee could be enforced in DBMS, because that’s where you store and manage data.
 “DRY” principle you should follow in Computer Science. Don’t copy a lot. It may result in many bugs. That's because when you copy code or other stuff from one place to another, if you changed one of them, the other one will not be changed. 
