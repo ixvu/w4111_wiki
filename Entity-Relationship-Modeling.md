@@ -226,7 +226,7 @@ Attributes should be invariant to time so that your database will not goes wrong
    * Relationship Set: 
      A collection of all relationships of a particular type. For example,
 
-     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png" width="300">
+     <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.2.png" width="200">
      
      Rectangle represents entities, and diamond represents relationships. The reason that we don’t just draw a line between two entities is that there could be multiple relationships between these two entities.
 In this case, the relationship could be interpreted as users can take courses. How to interpret depends on your application.
@@ -235,7 +235,7 @@ In this case, the relationship could be interpreted as users can take courses. H
     The interpretation in this case, is that users can be teachers or students, so users can teach other users.
 You might want to add constrains to this relationship, such as a user cannot teach themselves.
 
-    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png" width="460">
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.3UsersTeaches.png" width="400">
 
      * Relationships sets can have descriptive attributes.
     Users could take courses multiple times, so you can add an attribute “since” to track at which time this user took the course.
@@ -244,7 +244,7 @@ You might want to add constrains to this relationship, such as a user cannot tea
 
    * Ternary Relationships
 
-    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png" width="300">
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.5GradedRed.png" width="400">
 
     Connected three entities. N-array relationships are possible too.
 For example, this ternary relationship can be interpreted as “for a course, and a particular assignment, a user gets graded”. Remember, this relationships set just indicates that it is possible that a user could get graded for specific assignments. It does not mean all users must get graded or all assignments must get graded. That is the difference between the set and an entry of the set.
@@ -263,10 +263,11 @@ In Specific:
    * One to Many: e.g., a course has at most one instructor.
    * One to One: e.g., a course has at most one instructor and one instructor has at most one course.
     ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.6Many.png)
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.6Many.png" width="500">
 
     We could use arrows to represent these constraints. An arrow means “at most one”, with the direction from the end to the arrow. 1-to-many and 1- to-1 cases are shown as follows.
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.7Arrows.png)
-
+<img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.7Arrows.png" width="500">
 * Participation Constraints：
     e.g. a course needs at least one instructor. In this case, the participation of “Courses” in “Instructs” is total, otherwise (not thick line), it is a partial participation constraint.
     This constraint can be represented by thick line. 
@@ -280,6 +281,8 @@ Arrows only go inwards to relationship diamond.
     A weak entity can only be uniquely identified by using the primary key of its owner entity.
 
     ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.9WeakEntity.png)
+    <img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.9WeakEntity.png" width="300">
+
 
     In this case, if a user was deleted, the WallPosts will also disappear. That is what “weak entity” means. It cannot exist without the owner “Users”.
 Owner and weak entity sets must be in 1-to-many relationship set. Weak entity set must have total participation in this identifying relationships set.
@@ -287,6 +290,8 @@ Owner and weak entity sets must be in 1-to-many relationship set. Weak entity se
 * Notation summary:
 
 ![](https://github.com/wyd856570831/ScribeNotes/blob/master/3.10Notations.png)
+<img src="https://github.com/wyd856570831/ScribeNotes/blob/master/3.10Notations.png" width="300">
+
 
 ###Basics for ER Modeling - ISA Hierarchies， Aggregation
 * ISA (is a) Hierarchies
