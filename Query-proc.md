@@ -136,6 +136,12 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 
 + Here we have a tie between AC and AB, let's say we decided to go with AC.
 
+### Step Two: Find the three-table join with the least cost
++ Two options (AC)B and (AC)D
+  + For (AC)B we can use indexed nested loop.
+  + For (AC)D since there is no index built for D, we can only use nested loop.
+  + Intuitively, (AC)B should have less cost.
+
 
 
 
