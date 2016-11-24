@@ -141,7 +141,9 @@ Access Path refers to the path chosen by the system to retrieve data after a str
   + For (AC)B we can use indexed nested loop.
   + For (AC)D since there is no index built for D, we can only use nested loop.
   + Intuitively, (AC)B should have less cost.
-
++ To estimate the cost for the three-table join, we need to find the estimated output size (in tuples) of A⋈C
+  + Denote the output size by |A⋈C|
+  + |A⋈C| = selectivity * size of the cross product of A and C 
 
 
 
