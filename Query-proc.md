@@ -106,7 +106,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 <img src = "https://github.com/xz2581/project1/blob/master/2.png" width = "600">
 
 ### Additional Notes
-+ For primary index, the bottom layer of the tree is sorted while this is not the case for secondary index.
++ For primary index, the bottom layer of the tree is sorted while this is not necessarily the case for secondary index.
 + Typically, the secondary tree is smaller than the primary tree. For example, in this case, there are 40 pages at the bottom for primary and only 20 pages at the bottom for secondary.
 + When would we want to use secondary index?
   + When you only want equality predicates.
