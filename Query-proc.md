@@ -115,7 +115,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
 
-## Dynamical Programming Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
+## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
 + We have primary B trees B(x) and C(x) both with height 2.
   + C = cost of indexing
@@ -128,9 +128,9 @@ Access Path refers to the path chosen by the system to retrieve data after a str
   + |D| = 100,000
   + T = #Tuples/page
 
-### Step One: Find the two table joins with the least cost
+### Step One: Find the two-table joins with the least cost
 + The existence of B tree indices B(x) and C(x) suggest that B or C should be the "inner" table for the two table join.
-+ Assume we use indexed nested loops, the possible combinations of joins and their corresponding costs are:
++ Assume we use indexed nested loops, the possible combinations of joins and their corresponding costs are: $\Bowtie$
 
 
 
