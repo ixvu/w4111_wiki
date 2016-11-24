@@ -134,6 +134,8 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 
 <img src = "https://github.com/xz2581/project1/blob/master/3.png">
 
++ Here we have a tie between AC and AB, let's say we decided to go with AC.
+
 
 
 
