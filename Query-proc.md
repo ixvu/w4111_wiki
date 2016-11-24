@@ -120,13 +120,125 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 -Join implementation 
 -Join ordering
 
-##Predicate Push down:  if I see (b), (b) can be pushed down to (a), then do so.
+##Predicate Push down: 
+if I see (b), (b) can be pushed down to (a), then do so.
 In general, depends on operator implementations. 
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
-Which option is faster if B+ tree index on a? --- (a)
+Which option is faster if B+ tree index on a?
 a)Log F(B) + M pages: using Btree, find the start point and scan to the right
 b)B pages : not using B tree, scans entire relation
+
+##Projection with DISTINCT clause
+need to deduplicate e.g., π  rating Sailors
+						
+Two basic approaches
+1. Sort: sort on rating, remove dups on scan of sorted data
+fundamental database operation
+O(2n + n): 2n to sort and n to scan
+
+
+2. Hash:partition into N buckets remove duplicates on insert						
+3.Index on projected fields: scan the index pages, avoid reading data 
+
+
+## The Join: 
+- Core database operation
+ join of 10s of tables common in enterprise apps
+						
+- Join algorithms is a large area of research
+e.g., distributed, temporal, geographic, multi-dim, range, sensors, graphs, etc
+Discuss three basic joins: nested loops, indexed nested loops, hash join
+						
+- Best join implementation depends on the query, the data, the indices, hardware, etc 
+
+
+###1.Nested Loops Join
+		 	 	 		
+# outer ⨝1 inner
+# outer JOIN inner ON outer.1 = inner.1 for row in outer:
+```						
+for irow in inner:
+       if row.attr == irow.attr:      # could be any check
+                yield (row, irow)
+```
+####property: 						
+-Very flexible,can implement theta join
+-Equality check can be replaced with any condition
+-Incremental algorithm
+As you execute it, it will generate record, while some other join executor requires waiting until you create the hash table or you sorted the data before you can start to get result.
+- Cost: M + MN, pretty expensive
+For each row of outer, go through each row in the inner and check. If it is matched, then yield that.						
+-Is this the same as a cross product? 
+No, for cross product, just remove the predicate check.
+
+
+####What this means in terms of disk IO?						
+A join B
+A is outer. M pages
+B is inner. N pages 
+T tuples per page
+						
+Cost: M +T × M × N
+for each tuple t in tableA, (M pages,TM tuples)
+scan through each page pi in the inner (N pages) 
+compare all the tuples in pi with t 
+
+
+#### Order matters
+M + T x M x N --- A join B
+N + T x N x M  --- B join A
+Scan “Outer” once, the first constant
+Scan Inner multiple times
+If inner is small IO, can fit in memory, then cost is M + N.
+You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
+
+
+###2.Indexed Nested Loops Join					
+```						
+for row in outer:
+    for irow in index.get(row[0], []):
+	yield (row, irow)
+```
+For every row in outer, do index look up, only iterate through everything that match.		Slightly less flexible
+Only supports conditions that the index supports 
+
+
+####What this means in terms of disk IO
+						
+A join B on sid
+M pages in A 
+N pages in B
+T tuples/page
+Primary B+index on B(sid)
+Cost of looking up in index is CI 
+predicate on outer has 5% selectivity (if there is filter over A)
+						
+M + T × M × C1
+
+
+M: read all the outer table in A
+T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
+ if predicate(t): (5% of tuples satisfy predicate)
+lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
+
+
+###3. Hash Join
+Type of index Nested Loops Join;When no index on inner table A join B on sid
+How: Create a hash table on inner loop and then run indexed nested loops
+						
+M pages in A
+N pages in B
+T tuples/page
+Cost of looking up in index is CI predicate on outer has 5% selectivity
+						
+N + M + T × M × 0.05 × C1
+index = build_hash_table(B)             (N pages)
+-for every sid in B, create a key, and then match all the tuple with that particular sid. By doing so, speed up C1
+for each tuple t in the A:	 	(M pages,TM tuples)					
+if predicate(t): 		(5% of tuples satisfy pred)
+lookup_in_index(t.sid)		 (CI disk IO) 
+
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
