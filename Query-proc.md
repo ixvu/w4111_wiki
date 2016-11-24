@@ -144,7 +144,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + To estimate the cost for the three-table join, we need to find the estimated output size (in tuples) of A⋈C
   + Denote the output size by |A⋈C|
   + |A⋈C| = selectivity * size of the cross product of A and C 
-           = 
+           = 1/max(1K, 100K) * (1K*100K) = 1K
 
 
 
