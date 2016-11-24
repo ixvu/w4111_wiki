@@ -108,7 +108,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ### Additional Notes
 + For primary index, the bottom layer of the tree is sorted while this is not necessarily the case for secondary index.
 + Typically, the secondary tree is smaller than the primary tree. For example, in this case, there are 40 pages at the bottom for primary and only 20 pages at the bottom for secondary.
-+ When would we want to use secondary index?
++ When would we want to use secondary index (or when would using secondary index probably faster)?
   + When you only want equality predicates.
   + When you don't want to access the actual tuples associated with this "a" value
     + ex1. count queries 
