@@ -156,8 +156,7 @@ Discuss three basic joins: nested loops, indexed nested loops, hash join
 ###1.Nested Loops Join
 ```		 	 	 		
 # outer ⨝1 inner
-# outer JOIN inner ON outer.1 = inner.1 for row in outer:
-				
+# outer JOIN inner ON outer.1 = inner.1 for row in outer:				
 for irow in inner:
        if row.attr == irow.attr:      # could be any check
                 yield (row, irow)
@@ -186,8 +185,8 @@ compare all the tuples in pi with t
 
 
 #### Order matters
-M + T x M x N --- A join B
-N + T x N x M  --- B join A
+-A join B: M + T x M x N      
+-B join A: N + T x N x M     
 Scan “Outer” once, the first constant
 Scan Inner multiple times
 If inner is small IO, can fit in memory, then cost is M + N.
@@ -216,10 +215,9 @@ predicate on outer has 5% selectivity (if there is filter over A)
 						
 M + T × M × C1
 
-
 M: read all the outer table in A
 T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
- if predicate(t): (5% of tuples satisfy predicate)
+if predicate(t): (5% of tuples satisfy predicate)
 lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
 
 
@@ -233,6 +231,7 @@ T tuples/page
 Cost of looking up in index is CI predicate on outer has 5% selectivity
 						
 N + M + T × M × 0.05 × C1
+
 index = build_hash_table(B)             (N pages)
 -for every sid in B, create a key, and then match all the tuple with that particular sid. By doing so, speed up C1
 for each tuple t in the A:	 	(M pages,TM tuples)					
@@ -295,7 +294,7 @@ Emp: 1000 Cardinality
 Cost(Emp join Dept)
 						 	 	 		
 Naïve
-# total records		1000* 10		=10,000
+total records		1000* 10		=10,000
 Selectivity of emp       1 / 1000		= 0.001 
 Selectivity of dep        1 / 10			=0.1
 Join selectivity            1 / max(1k,10)	=0.001
