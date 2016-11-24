@@ -132,7 +132,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + The existence of B tree indices B(x) and C(x) suggest that B or C should be the "inner" table for the two table join.
 + Assume we use indexed nested loops, the possible combinations of joins and their corresponding costs are: 
 
-<img src = "https://github.com/xz2581/project1/blob/master/3.png" width = "450">
+<img src = "https://github.com/xz2581/project1/blob/master/3.png">
 
 
 
