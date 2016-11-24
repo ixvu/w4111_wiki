@@ -115,3 +115,4 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
 
+## Dynamical Programming Example
