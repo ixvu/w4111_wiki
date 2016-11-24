@@ -87,3 +87,5 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     Primary: data is store in the leaf nodes. 
     Secondary: leaf nodes only contain pointers to actual data files.
     The query optimizer attempts to determine the most efficient way to execute a given query by considering the possible query plans.
+
+## Primary Index and Secondary Index
