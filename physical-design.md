@@ -211,9 +211,10 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 - **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
 - **Two types of queries:**
  - Something is equal to something
-   - Find students in "CS"   // Specific query should be given to explain it
+   - Find students in "CS"  
  - Something is in a range
-   - Find students in California(any city) // Specific query should be given to explain it
+   - Find students in California(any city)
+
 ### Some knowledge about index
 - Index is defined for a search key
 - Index is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) 
@@ -237,7 +238,6 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 - The search process is index entries -> data entries -> data record(according to the rid storing in data entries)
 - This structure is a parallel to our Basic Scenario V4 (directories)
 - Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
-// give more specific explaination on how the point work
 
 ###B+ Tree Index
 ![](https://github.com/shy2116/project1/blob/master/B.PNG?raw=true)
@@ -255,7 +255,7 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 **Basic B+ Tree: search key <age>**
 ![](https://github.com/shy2116/project1/blob/master/B0.PNG?raw=true)
 - An index has at most 3 pointers corresponding to 3 conditions
-- The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it.  //Some mark should be marked on the image to clarified the search process
+- The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it. 
 
 **Full B+ Tree with additional record pages**
 ![](https://github.com/shy2116/project1/blob/master/B1.PNG?raw=true)
@@ -276,7 +276,6 @@ As an alternative the idea of directory is used. The idea is that we use some ex
 **Query 2: SELECT * WHERE age < 18 and name < ‘monica’**
 The indexing order is first by age, then by name. Starting at (17, norton), the query finds that 17 is less than 18, and goes right to find the rightmost value that satisfies this constraint. Scanning through from the left of the node, the query examines (17, norton) to find that 17 is less than 18, so the query continues to go right in order to find the boundary. Upon examining the next record (24, alice), the query finds the boundary for the first index, as 24 is not less than 18. The query then goes back to the last valid record (17, norton), and examines the second constraint to find that ‘norton’ is not less than ‘monica’. The query proceeds left and finds that (17, alice) does satisfy the constraint. The query then returns the record and that of all the records to the left. 
 Thoughts on efficiency: In a “Secondary” index, each pointer is potentially a disk access. The use of a “Primary” index allows us to filter out all the data we don’t need. If instead of (SELECT *), we chose to (SELECT age, name), we wouldn’t have to read anything beyond the index.
-//avoid to use a long paragraph to explain one point, decompose it into several parts.
 
 **Query 3: SELECT age WHERE name = ‘bobby’**
 We can’t use this index because there is no criteria on age. We cannot do any better than simply reading through all the index data; however, considering that we are selecting an index value and the index is much smaller for a composite tree than the entire data set, this could potentially still be much faster.
