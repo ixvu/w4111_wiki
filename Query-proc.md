@@ -110,7 +110,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + Typically, the secondary tree is smaller than the primary tree. For example, in this case, there are 40 pages at the bottom for primary and only 20 pages at the bottom for secondary.
 + When would we want to use secondary index?
   + When you only want equality predicates.
-  + When you don't want to access the actual tuple associated with this "a" value
+  + When you don't want to access the actual tuples associated with this "a" value (ex. you only want to access the values of a)
     + ex1. Count queries 
     + ex2. Queries like: Select a from R where a > 0 
 
