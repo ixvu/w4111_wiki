@@ -128,7 +128,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
   + |D| = 100,000
   + T = #Tuples/page
 
-### Step One: Find the two-table joins with the least cost
+### Step One: Find the two-table joins with the least cost (Dynamical Programming example)
 + The existence of B tree indices B(x) and C(x) suggest that B or C should be the "inner" table for the two table join.
 + Assume we use indexed nested loops, the possible combinations of joins and their corresponding costs are: 
 
@@ -147,6 +147,15 @@ Access Path refers to the path chosen by the system to retrieve data after a str
            = 1/max(1K, 100K) * (1K*100K) = 1K
 + (AC)B and (AC)D with their corresponding costs:
 <img src = "https://github.com/xz2581/project1/blob/master/6.png">
++ (AC)B is indeed the one with the less cost.
+
+### Step Three: find the four-table join with the least cost
++ Since there is no index built on D, we can use either nested loop join or hash join
++ The details for calculating the cost of nested loop join and hash join are left to the readers.
+
+
+### The Entire process for determining the join orders for this particular example is shown below
+<img src = "https://github.com/xz2581/project1/blob/master/7.png">
 
 
 
