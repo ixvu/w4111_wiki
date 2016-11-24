@@ -238,6 +238,7 @@ index = build_hash_table(B)             (N pages)
 for each tuple t in the A:	 	(M pages,TM tuples)					
 if predicate(t): 		(5% of tuples satisfy pred)
 lookup_in_index(t.sid)		 (CI disk IO) 
+<img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
