@@ -103,4 +103,5 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + There are 10,000 tuples total.
 
 ### Calculations for the Height of the two B+ Trees
+<img src = "https://github.com/xz2581/project1/blob/master/2.png" width = "600">
 
