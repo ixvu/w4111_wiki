@@ -103,7 +103,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + There are 10,000 tuples total.
 
 ### Calculations for the Height of the two B+ Trees
-<img src = "https://github.com/xz2581/project1/blob/master/2.png" width = "600">
+<img src = "https://github.com/xz2581/project1/blob/master/2.png">
 
 ### Additional Notes
 + For primary index, the bottom layer of the tree is sorted while this is not necessarily the case for secondary index.
