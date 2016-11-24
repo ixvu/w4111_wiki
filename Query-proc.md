@@ -116,4 +116,4 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 
 
 ## Dynamical Programming Example
-A<sub>b</sub>
+A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
