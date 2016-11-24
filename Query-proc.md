@@ -118,6 +118,10 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ## Dynamical Programming Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
 + We have primary B trees B(x) and C(x) both with height 2.
+  + C = cost of indexing
+      = height of the trees + #pages that matched the predicate (1 here since we have equality predicate) 
+      = 2 + 1 
+      = 3
 + x values are distinct in each of the table A,B,C,D.
 + Cardinalities (in pages)
   + |A| = 100 
