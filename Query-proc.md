@@ -154,10 +154,10 @@ Discuss three basic joins: nested loops, indexed nested loops, hash join
 
 
 ###1.Nested Loops Join
-		 	 	 		
+```		 	 	 		
 # outer ⨝1 inner
 # outer JOIN inner ON outer.1 = inner.1 for row in outer:
-```						
+				
 for irow in inner:
        if row.attr == irow.attr:      # could be any check
                 yield (row, irow)
@@ -240,6 +240,97 @@ if predicate(t): 		(5% of tuples satisfy pred)
 lookup_in_index(t.sid)		 (CI disk IO) 
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
+####Questions:
+-Given a bunch of joins, which order do we use?
+-given two tables and a bunch of indices, what is the best way to execute it?
+
+
+###Blackboard example:
+Use cost model to decided what the best execution for single join and join order 
+
+
+####1. optimizing single join:
+ R join S on id
+|R| = 1000 pages
+|S| = 100 pages
+Tuple/page = 100
+For this problem, we can do nested loops and hash join
+<img src = "https://github.com/xz2581/project1/blob/master/10.png">
+
+For single join, go through all the combinations, because it is cheap enough to do this.
+
+
+####2. How do we  join Multiple tables?  Use Selinger Optimizer
+R join S join T	
+					
+### Selinger Optimizer
+Granddaddy of all existing optimizers, 
+Goals: don’t go for best plan, go for least worst plan
+						
+2 Big Ideas
+1.Cost Estimator
+“predict” cost of query from statistics
+Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
+							
+2.Plan Space
+avoid cross product
+push selections & projections to leaves as much as possible 
+only join ordering remaining 
+Try to reduce the possible trees to one that is manageable. 
+							
+### 1. Cost estimation
+Given an operate, input and statistics, we should be able to estimate the cost
+-estimate cost for each operator
+ depends on input cardinalities (# tuples)  and data structure you have					
+-estimate output size for each operator
+need to call estimate() on inputs!
+use selectivity. assume attributes are independent
+						
+Try it in PostgreSQL: EXPLAIN <query>; 
+
+
+####Estimate Size of Output
+Emp: 1000 Cardinality
+ Dept: 10 Cardinality
+Cost(Emp join Dept)
+						 	 	 		
+Naïve
+# total records		1000* 10		=10,000
+Selectivity of emp       1 / 1000		= 0.001 
+Selectivity of dep        1 / 10			=0.1
+Join selectivity            1 / max(1k,10)	=0.001
+Output card :             10,000 * 0.001 	=10											
+note: selectivity defined wrt cross product size
+Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
+
+
+#### join plan space
+A⨝B⨝C 
+Possible plans: 12
+(AB)C (AC)B (BC)A (BA)C (CA)B (CB)A 
+A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
+
+
+# of plans = # of permutation  * # of possible trees
+=  # parenthetizations *  #strings (N!)
+
+
+E.g. N = 10  # plans =17,643,225,600
+
+
+If the plan space is too large,things we can do:
+
+
+Simplify the set of plans so it's tractable and ~ok 
+1. Push down selections and projections
+2. Ignore cross  products(S&T don't share attrs) 
+3. Left deep plans only( only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
+- The reason we choose left deep : it is allowed pipelining, if the left side AB can generate a tuple, then we can immediately, start to join the other table C. It is impossible for right. If we want to join inner for every tuple in A, we need to recompute the join or wait until the inner is completed. Also, if the inner is the output of the join operation, then we don’t have any indices.				
+4. Dynamic programming optimization problem
+Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
+-Dynamic Programming Algorithm
+compute best join size 1, then size 2, ... ~O(N*2N) 
+ 5. Consider interesting sort orders 
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
