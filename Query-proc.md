@@ -115,5 +115,13 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
 
-## Dynamical Programming Example
-### A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
+## Dynamical Programming Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
+### Preliminaries
++ We have primary B trees B(x) and C(x) both with height 2.
++ Cardinalities (in pages)
+  + |A| = 100 
+  + |B| = 1000
+  + |C| = 10,000
+  + |D| = 100,000
+
+
