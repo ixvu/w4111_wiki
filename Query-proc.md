@@ -118,10 +118,15 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ## Dynamical Programming Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
 + We have primary B trees B(x) and C(x) both with height 2.
++ x values are distinct in each of the table A,B,C,D.
 + Cardinalities (in pages)
   + |A| = 100 
   + |B| = 1000
   + |C| = 10,000
   + |D| = 100,000
+  + T = #Tuples/page
+
+### Step One: Find the two table joins with the least cost
+
 
 
