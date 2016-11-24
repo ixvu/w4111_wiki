@@ -89,3 +89,4 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     The query optimizer attempts to determine the most efficient way to execute a given query by considering the possible query plans.
 
 ## Primary Index and Secondary Index
+![]https://github.com/xz2581/project1/blob/master/1.png
