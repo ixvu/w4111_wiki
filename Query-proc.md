@@ -145,6 +145,8 @@ Access Path refers to the path chosen by the system to retrieve data after a str
   + Denote the output size by |A⋈C|
   + |A⋈C| = selectivity * |A X C|
            = 1/max(1K, 100K) * (1K*100K) = 1K
++ (AC)B and (AC)D with their corresponding costs:
+<img src = "https://github.com/xz2581/project1/blob/master/5.png">
 
 
 
