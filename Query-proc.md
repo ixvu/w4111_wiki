@@ -154,7 +154,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + The details for calculating the cost of nested loop join and hash join are left to the readers.
 
 
-### The Entire process for determining the join orders for this particular example is shown below
+### The full process for determining the join orders is shown below
 <img src = "https://github.com/xz2581/project1/blob/master/7.png">
 
 
