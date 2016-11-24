@@ -310,16 +310,11 @@ Possible plans: 12
 (AB)C (AC)B (BC)A (BA)C (CA)B (CB)A 
 A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
 
-
-# of plans = # of permutation  * # of possible trees
-=  # parenthetizations *  #strings (N!)
-
-
+number of plans = number of permutation  * number of possible trees
+=  number of parenthetizations *  number of strings (N!)
 E.g. N = 10  # plans =17,643,225,600
 
-
 If the plan space is too large,things we can do:
-
 
 Simplify the set of plans so it's tractable and ~ok 
 1. Push down selections and projections
