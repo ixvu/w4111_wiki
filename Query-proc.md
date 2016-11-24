@@ -94,9 +94,12 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + Underlying data has the schema R(a int, b int, c int, d int)
 + We built primary and secondary B+ trees with key = a.
 + Page 1 is an example leaf page for primary index. It stores the actual tuples.
-+ Page 2 is an example leaf page for secondary index. It stores a values pointers to the actual tuple.
++ Page 2 is an example leaf page for secondary index. It stores a values with corresponding pointers to the actual tuples.
 
 ###Assumptions
 + Each page can fit in 8000 bytes of data.
 + An integer costs 8 bytes.
 + For simplicity, each pointer object has the type int.
++ There are 10,000 tuples total.
+
+### Calculations for the Height of the two B+ Trees
