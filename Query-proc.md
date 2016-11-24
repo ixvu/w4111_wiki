@@ -111,7 +111,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + When would we want to use secondary index?
   + When you only want equality predicates.
   + When you don't want to access the actual tuples associated with this "a" value
-    + ex1. Count queries 
+    + ex1. count queries 
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
 
