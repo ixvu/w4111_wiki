@@ -315,7 +315,7 @@ number of plans = number of permutation  * number of possible trees
 + e.g. N = 10  number of plans =17,643,225,600
 Note: The following two joins are not the same!
       + The "outer" table in these two cases is likely to have different cardinalities thus the two joins is likely to have different costs
-<img src = "https://github.com/xz2581/project1/blob/master/12.png">
+<img src = "https://github.com/xz2581/project1/blob/master/13.png">
 
 
 ### If the plan space is too large,we can simplify the set of plans so it's tractable and do the following:  
