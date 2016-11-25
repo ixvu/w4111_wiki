@@ -127,19 +127,19 @@ In general, depends on operator implementations.
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
 Which option is faster if B+ tree index on a?
-+a)Log F(B) + M pages: using Btree, find the start point and scan to the right
-+b)B pages : not using B tree, scans entire relation
++ a)Log F(B) + M pages: using Btree, find the start point and scan to the right
++ b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
 need to deduplicate e.g., π  rating Sailors
 						
 basic approaches
 
-+1. Sort: sort on rating, remove dups on scan of sorted data
++ 1. Sort: sort on rating, remove dups on scan of sorted data
 fundamental database operation
 O(2n + n): 2n to sort and n to scan
-+2. Hash:partition into N buckets remove duplicates on insert						
-+3.Index on projected fields: scan the index pages, avoid reading data 
++ 2. Hash:partition into N buckets remove duplicates on insert						
++ 3.Index on projected fields: scan the index pages, avoid reading data 
 
 
 ## The Join: 
@@ -162,13 +162,13 @@ for irow in inner:
                 yield (row, irow)
 ```
 ####property: 						
--Very flexible,can implement theta join
--Equality check can be replaced with any condition
--Incremental algorithm
+- Very flexible,can implement theta join
+- Equality check can be replaced with any condition
+- Incremental algorithm
 As you execute it, it will generate record, while some other join executor requires waiting until you create the hash table or you sorted the data before you can start to get result.
 - Cost: M + MN, pretty expensive
 For each row of outer, go through each row in the inner and check. If it is matched, then yield that.						
--Is this the same as a cross product? 
+- Is this the same as a cross product? 
 No, for cross product, just remove the predicate check.
 
 
@@ -279,9 +279,9 @@ Goals: don’t go for best plan, go for least worst plan
 							
 ### 1. Cost estimation
 Given an operate, input and statistics, we should be able to estimate the cost
--estimate cost for each operator
+- estimate cost for each operator
  depends on input cardinalities (# tuples)  and data structure you have					
--estimate output size for each operator
+- estimate output size for each operator
 need to call estimate() on inputs!
 use selectivity. assume attributes are independent
 						
@@ -294,15 +294,11 @@ Emp: 1000 Cardinality
 Cost(Emp join Dept)
 						 	 	 		
 Naïve
--total records		1000* 10		=10,000
-
--Selectivity of emp       1 / 1000		= 0.001
-
--Selectivity of dep        1 / 10			=0.1
-
--Join selectivity            1 / max(1k,10)	=0.001
-
--Output card :             10,000 * 0.001 	=10											
+- total records		1000* 10		=10,000
+- Selectivity of emp       1 / 1000		= 0.001
+- Selectivity of dep        1 / 10			=0.1
+- Join selectivity            1 / max(1k,10)	=0.001
+- Output card :             10,000 * 0.001 	=10											
 +note: selectivity defined wrt cross product size
 +Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
 
@@ -310,24 +306,22 @@ Naïve
 #### join plan space
 A⨝B⨝C 
 Possible plans: 12
-+(AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
-+A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
++ (AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
++ A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
 
 number of plans = number of permutation  * number of possible trees
 =  number of parenthetizations *  number of strings (N!)
-E.g. N = 10  # plans =17,643,225,600
+E.g. N = 10  number of plans =17,643,225,600
 
-If the plan space is too large,things we can do:
-
+If the plan space is too large,things we can:
 Simplify the set of plans so it's tractable and ~ok 
-
 1. Push down selections and projections
 2. Ignore cross  products(S&T don't share attrs) 
 3. Left deep plans only( only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
 - The reason we choose left deep : it is allowed pipelining, if the left side AB can generate a tuple, then we can immediately, start to join the other table C. It is impossible for right. If we want to join inner for every tuple in A, we need to recompute the join or wait until the inner is completed. Also, if the inner is the output of the join operation, then we don’t have any indices.				
 4. Dynamic programming optimization problem
 Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
--Dynamic Programming Algorithm
+- Dynamic Programming Algorithm
 compute best join size 1, then size 2, ... ~O(N*2N) 
  5. Consider interesting sort orders 
 
