@@ -218,10 +218,10 @@ for row in outer:
   + T × M × C1:for each tuple t in the outer, (M pages,TM tuples), incur the cost of looking up index
 ```
 for each tuple t in A:
-     if predicate(t):                 (5% of tuples satisfy predicate)
+     if predicate(t):                 #5% of tuples satisfy predicate
         lookup_in_index(t.sid)
 ```
-  + M + T × M × C1 x 0.05
+  + Cost is approximately M + T × M × C1 x 0.05
 
 
 ###3. Hash Join
