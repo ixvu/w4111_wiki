@@ -182,5 +182,23 @@ Steps:
       3. R = (NBO,CN)
    3. R: (NBO,CN) is a BCNF, end while
    4. miss CB->N
- 
+
+#3rd Normal Form (3NF)
+We relax BCNF (BCNF is a stricter version of 3NF):
+    * F: a set of functional dependencies over relation R
+        * for (X->Y) in R:
+            * Y is in X OR X is a superkey of R OR **Y is some attribute in a key in R**
+This new condition is NOT trivial, as this key is minimal, not a superkey. This guarantees lossless join AND dependency preserving decomposition
+Tradeoff is that a relation in 3NF form does retain some redundancies. 
+
+Let's look at the pizza example:
+Pizza &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Topping &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Type
+1     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Mozzarella                                  Cheese
+1                                         Pepperoni                                   Meat
+1                                         Olives                                      Vegetable
+2                                         Mozzarella                                  Cheese
+2                                         Sausage                                     Meat
+2                                         Peppers                                     Vegetable
+
+  
 
