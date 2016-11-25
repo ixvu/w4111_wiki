@@ -239,11 +239,11 @@ for each tuple t in A:
 
 ```
 # for every sid in B, create a key, and then match all the tuple with that particular sid. 
-# By doing so, we can speed up C1
-index = build_hash_table(B)                       #N pages
-    for each tuple t in the A:	 	          #M pages,TM tuples					
-         if predicate(t): 		          #5% of tuples satisfy predicate
-            lookup_in_index(t.sid)		  #CI disk IO) 
+# By doing so, we can speed up C<sub>1<sub>
+index = build_hash_table(B)                    #N pages
+    for each tuple t in the A:                    #M pages,TM tuples					
+         if predicate(t):                    #5% of tuples satisfy predicate
+            lookup_in_index(t.sid)                    #C1 cost
 ```
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
@@ -252,8 +252,8 @@ index = build_hash_table(B)                       #N pages
 - given two tables and a bunch of indices, what is the best way to execute it?
 
 
-###Blackboard example:
-Use cost model to decided what the best execution for single join and join order 
+###Example to Address the above questions:
++ Use cost model to decided what the best execution for single join and join order 
 
 ####1. optimizing single join:
 + R join S on id
