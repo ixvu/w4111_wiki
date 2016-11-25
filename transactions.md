@@ -13,10 +13,16 @@
         * Transaction thinks it is the only one running (ie. can't see anything else)
     * **Durability:**
         * If a transaction commits (ie. succeeds), then its effects must persist
+* **Commit:** When a transaction has been fully completed
 * **Schedule:** An ordering of transaction operations
     * **Serial Schedule:** Excute transactions one at a time (ie. no concurrency, no interleaving)
     * **Equivalent Schedule:** Database state is the same at the end of each schedule
     * **Serializable Schedule:** A schedule that is *equivalent* to a serial schedule
+* **Correctness:** A schedule is correct if it is serializable
+* **Conflict:** A conflict occurs when it is possible to get two different results from running two operations in a different order
+    * **Write/Read Conflict (Dirty Reads):** Reading in between uncommitted data
+    * **Read/Write Conflict (Unrepeatable Reads):** Reading same data gets different values
+    * **Write/Write Conflict (Lost Writes):** Overwriting someone else's writes
 
 ###Problem
 * How do we maintain consistency/correctness when dealing with computer crashes, failing hardware, and parallelly running queries.
@@ -81,7 +87,7 @@ How can we solve these problems?
 
 ###Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
-    * **Write/Read Conflicts (Dirty Reads):** Reading in between uncommitted data
+    * **Write/Read Conflicts (Dirty Reads):**
         * Consider the following schedule S:
             * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `abort`
             * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
@@ -89,31 +95,53 @@ How can we solve these problems?
             * The data written by T1 should not have been read/used by T2
         * Schedule S is *NOT* serializable because it is not equivalent to any serial schedule
             * Transactions in a serial schedules always have access to the most "up-to-date" data, so this situation could never happen (ie. they're atomic)
-    * **Read/Write Conflicts (Unrepeatable Reads):** Reading same data gets different values
+
+    * **Read/Write Conflicts (Unrepeatable Reads):**
         * Consider the following schedule S:
             * T1: `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit` 
             * T2: &emsp;&emsp;&ensp; `r(A) w(A)` `commit`
         * Here, transaction 1 reads from A twice and gets different results from each read
         * This schedule is also *NOT* serializable because there does not exist an equivalent serial schedule
             * Similar reasoning to previous example
-    * **Write/Write Conflicts (Lost Writes):** Overwriting someone else's writes
+
+    * **Write/Write Conflicts (Lost Writes):**
         * Consider the following schedule S: 
             * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)` `commit`
             * T2: &emsp;&emsp;&ensp; `w(A) w(B)` `commit`
         * In this case, T1's write to A is overwritten by T2
         * Again, this schedule is *NOT* serializable (ie. there is no serializable schedule that exists that would yield the same result as this)
         * NOTE: there is no W/W conflict between T2's and T1's write to B because T2 committed before T1 wrote to B
-        
 
+* Notice that all anomalies occur when one transaction writes and another is reading/writing
+    * That is to say: if transactions are just reading, then there are no anomalies
+    * This also suggests that tracking writes may help us prevent anomalies
 
-*currently being edited*
-
-
-
-
-
-
-
-
-
+###Conflict Serializability
+* A schedule is conflict serializable if it is conflict equivalent to a serial schedule
+    * A schedule S1 is conflict equivalent to another schedule S2 if:
+        1. S1 and S2 have the same set of actions
+        2. Each pair of actions in S1 and S2 have the same order
+    * To put it another way, if you can obtain a serial schedule by swapping non-conflicting operations, then that schedule is conflict serializable 
+* Some serializable schedules are not conflict serializable, but all conflict serializable schedules are serializable
+* Example of a Conflict Serializable Schedule:
+    * Consider the following schedule S: 
+        * T1: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
+        * T2: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(B) w(B)`
+    * We can swap `r(A) w(A)` in T1 and `r(B) w(B)` in T2 to obtain the serial schedule:
+        * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
+        * T2: `r(A) w(A)` `r(B) w(B)`
+    * So S is conflict serializable
+* Example of a Non-Conflict-Serializable (Regularly) Serializable Schedule:
+    * Firstly... lol
+    * Secondly, consider the schedule S:
+        * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
+        * T2: &emsp;&emsp;&nbsp; `w(A) w(B)`
+        * T3: &emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
+    * This schedule is basically one big write/write conflict and you can't do any swapping because every operation is a conflict
+        * So because this schedule isn't already serial, then it is also not conflict serializable by default
+    * S *IS* serializable because it is equivalent to the following schedule:
+        * T1: `w(A) w(B)`
+        * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `w(A) w(B)`
+        * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
+        * We can do this because T1's and T2's write to B is overwritten to T3, and because T1's write to A is lost to T2, so logically this serial schedule is equivalent to S
 
