@@ -247,12 +247,11 @@ for every sid in B, create a key, and then match all the tuple with that particu
 ###Blackboard example:
 Use cost model to decided what the best execution for single join and join order 
 
-
 ####1. optimizing single join:
- R join S on id
-|R| = 1000 pages
-|S| = 100 pages
-Tuple/page = 100
++ R join S on id
++ |R| = 1000 pages
++ |S| = 100 pages
++ Tuple/page = 100
 For this problem, we can do nested loops and hash join
 <img src = "https://github.com/xz2581/project1/blob/master/10.png">
 
