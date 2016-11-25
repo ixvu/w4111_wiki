@@ -136,8 +136,6 @@ Two basic approaches
 1. Sort: sort on rating, remove dups on scan of sorted data
 fundamental database operation
 O(2n + n): 2n to sort and n to scan
-
-
 2. Hash:partition into N buckets remove duplicates on insert						
 3.Index on projected fields: scan the index pages, avoid reading data 
 
