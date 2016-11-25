@@ -272,11 +272,11 @@ Goals: don’t go for best plan, go for least worst plan
 						
 Two Big Ideas:
 
-1.Cost Estimator
+1. Cost Estimator
 + “predict” cost of query from statistics
 + Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
 							
-2.Plan Space
+2. Plan Space
 + avoid cross product
 + push selections & projections to leaves as much as possible 
 + only join ordering remaining 
@@ -301,7 +301,7 @@ Given an operate, input and statistics, we should be able to estimate the cost
   - Selectivity of dep          1 / 10			=0.1
   - Join selectivity            1 / max(1k,10)  	=0.001
   - Output cardinality          10,000 * 0.001   	=10											
-+ note: selectivity is defined with respect to cross product size
++ Note: selectivity is defined with respect to cross product size
 + Note: estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
 
 
@@ -312,20 +312,21 @@ Possible plans: 12
 + A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
 
 number of plans = number of permutation  * number of possible trees
-=  number of parenthetizations *  number of strings (N!)
-E.g. N = 10  number of plans =17,643,225,600
++ e.g. N = 10  number of plans =17,643,225,600
 
-If the plan space is too large,things we can:
-Simplify the set of plans so it's tractable and  
+If the plan space is too large,we can simplify the set of plans so it's tractable and  
 + 1. Push down selections and projections
 + 2. Ignore cross  products(S&T don't share attrs) 
 + 3. Left deep plans only(only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
-  + The reason we choose left deep : it is allowed pipelining, if the left side AB can generate a tuple, then we can immediately, start to join the other table C. It is impossible for right. If we want to join inner for every tuple in A, we need to recompute the join or wait until the inner is completed. Also, if the inner is the output of the join operation, then we don’t have any indices.				
+  + The reason we choose left deep
+    + it allows pipelining. If the left side AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins. 
+    + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
+    + Also, if the inner is the output of the join operation, then we don’t have any indices.				
 + 4. Dynamic programming optimization problem
   + Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
   + Dynamic Programming Algorithm
   compute best join size 1, then size 2, ... ~O(N*2N) 
-+  5. Consider interesting sort orders 
++  5. Consider interesting sort orders  
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
