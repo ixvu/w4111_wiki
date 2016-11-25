@@ -293,7 +293,7 @@ Emp: 1000 Cardinality
  Dept: 10 Cardinality
 Cost(Emp join Dept)
 						 	 	 		
-Naïve
+Naïve
 total records		1000* 10		=10,000
 Selectivity of emp       1 / 1000		= 0.001 
 Selectivity of dep        1 / 10			=0.1
