@@ -319,16 +319,16 @@ number of plans = number of permutation  * number of possible trees
 E.g. N = 10  number of plans =17,643,225,600
 
 If the plan space is too large,things we can:
-Simplify the set of plans so it's tractable and ~ok 
-1. Push down selections and projections
-2. Ignore cross  products(S&T don't share attrs) 
-3. Left deep plans only( only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
-- The reason we choose left deep : it is allowed pipelining, if the left side AB can generate a tuple, then we can immediately, start to join the other table C. It is impossible for right. If we want to join inner for every tuple in A, we need to recompute the join or wait until the inner is completed. Also, if the inner is the output of the join operation, then we don’t have any indices.				
-4. Dynamic programming optimization problem
-Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
-- Dynamic Programming Algorithm
-compute best join size 1, then size 2, ... ~O(N*2N) 
- 5. Consider interesting sort orders 
+Simplify the set of plans so it's tractable and  
++ 1. Push down selections and projections
++ 2. Ignore cross  products(S&T don't share attrs) 
++ 3. Left deep plans only( only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
+  + The reason we choose left deep : it is allowed pipelining, if the left side AB can generate a tuple, then we can immediately, start to join the other table C. It is impossible for right. If we want to join inner for every tuple in A, we need to recompute the join or wait until the inner is completed. Also, if the inner is the output of the join operation, then we don’t have any indices.				
++ 4. Dynamic programming optimization problem
+  + Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
+  + Dynamic Programming Algorithm
+  compute best join size 1, then size 2, ... ~O(N*2N) 
++  5. Consider interesting sort orders 
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
