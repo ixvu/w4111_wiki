@@ -114,7 +114,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + ex1. count queries 
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
-####What Optimization Options Do We Have? 
+##What Optimization Options Do We Have? 
 -Access Path ✔ 
 -Predicate push-down 
 -Join implementation 
@@ -123,6 +123,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ##Predicate Push down: 
 if I see (b), (b) can be pushed down to (a), then do so.
 In general, depends on operator implementations. 
+
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
 Which option is faster if B+ tree index on a?
@@ -132,7 +133,8 @@ b)B pages : not using B tree, scans entire relation
 ##Projection with DISTINCT clause
 need to deduplicate e.g., π  rating Sailors
 						
-Two basic approaches
+basic approaches
+
 1. Sort: sort on rating, remove dups on scan of sorted data
 fundamental database operation
 O(2n + n): 2n to sort and n to scan
