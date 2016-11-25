@@ -216,13 +216,12 @@ for row in outer:
 + Cost = M + T × M × C1
   + M: read all the outer table in A
   + T × M × C1:for each tuple t in the outer, (M pages,TM tuples), incur the cost of looking up index
-'''
+```
 for each tuple t in A:
-     if predicate(t):
+     if predicate(t):                 (5% of tuples satisfy predicate)
         lookup_in_index(t.sid)
-'''
-  + if predicate(t): (5% of tuples satisfy predicate)
-  + lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
+```
+  + M + T × M × C1 x 0.05
 
 
 ###3. Hash Join
