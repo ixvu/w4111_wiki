@@ -2,7 +2,7 @@
 * **Transaction:** A single logical operation on a database that provides "ACID" guarantees  (essentially a simpler and more fundamental method of reading/writing)
 * **ACID:** A set {Atomicity, Consistency, Isolation, Durability} of transaction properties that ensure consistency and correctness of the database.
     * **Atomicity:** 
-        * "All or nothing": Lll changes are applied or none are
+        * "All or nothing": All changes are applied or none are
         * Users never see in-between transaction states
     * **Consistency:**
         * Database always satisfies integrity constraints
@@ -13,8 +13,8 @@
         * If a transaction commits (ie. succeeds), then its effects must persist
 * **Commit:** When a transaction has been fully completed
 * **Schedule:** An ordering of transaction operations
-    * **Serial Schedule:** Excute transactions one at a time (ie. no concurrency, no interleaving)
-    * **Equivalent Schedule:** Database state is the same at the end of each schedule
+    * **Serial Schedule:** Execute transactions one at a time (ie. no concurrency, no interleaving)
+    * **Equivalent Schedule:** Database state is the same at the end of both schedules, both schedules yield the same value
     * **Serializable Schedule:** A schedule that is *equivalent* to a serial schedule
 * **Correctness:** A schedule is correct if it is serializable
 * **Conflict:** A conflict occurs when it is possible to get two different results from running two operations in a different order
@@ -23,7 +23,7 @@
     * **Write/Write Conflict (Lost Writes):** Overwriting someone else's writes
 
 # II. The Problem
-* How do we maintain consistency/correctness when dealing with computer crashes, failing hardware, and parallelly running queries.
+* How do we maintain consistency/correctness when dealing with computer crashes, failing hardware, and queries running in parallel?
 * Simple Example: A wants to transfer $1000 to B.  How should we do this?
     1. Check if A has at least $1000
     2. Subtract $1000 from A's account
@@ -55,7 +55,11 @@ How can we solve these problems?
     * INSERT: Write
     * UPDATE: Read then Write
     * DELETE: Write an empty value
-
+* Example: UPDATE accounts
+           SET bal=bal+1000
+           WHERE bal > 1M
+* We read the balances for every tuple, update those with balances > 1M.
+* Does the access method matter? Yes, because if we scan, we have to read every tuple, but if we index, we only have to read the tuples with balance > 1M
 * Example:
     * User's (Application) View:
         * Transaction 1: `A = A + 100` `B = B - 100`
@@ -65,23 +69,33 @@ How can we solve these problems?
         * Transaction 2: `r(A) w(A)` `r(B) w(B)` `commit`
 
 # IV. Serial Schedules
-* Example 1: T1 first, T2 second
+* Consider the following logical exacts: 
+    * T1: `r(A) w(A) r(B) w(B) (e.g. A=A+100; B=B-100)`
+    * T2: `r(A) w(A) r(B) w(B) (e.g. A=A*1.5; B=B*1.5)`
+
+* Example 1: T1 first, T2 second, no concurrency (serial 1)
     * T1: `r(A) w(A)` `r(B) w(B)`
     * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
-* Example 2: T2 first, T1 second
+* Example 2: T2 first, T1 second, no concurrency (serial 2)
     * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
     * T2: `r(A) w(A)` `r(B) w(B)`
 * Are these two examples the same?
-    * No!  Different serial schedules can have different effects!
-    * For example: getting $100 then giving $100 vs. giving $100 then getting $100
-        * In the second case, you might not have enough money to give!
+    * No!  Different serial schedules can have different effects! Transaction order matters!
+ 
 * **NOTE:** A serial schedule does not necessarily guarantee an error free application; it only ensures that there are no anomalies due to ACID violations
+* This ties into the ideas of concurrency control (techniques to ensure correct results when running transactions concurrently) and recovery (on a crash or abort, how do we get back to the correct state?), which are intertwined.  
 
-# V. Correctness
+# V. Correctness 
 * What does correctness mean?
     * What are "correct" results when running transactions concurrently?
     * On crash or abort, how do we ensure that we can recover to a "correct" state?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
+* More example schedules:
+* Consider the following logical exacts: 
+    * T1: `r(A) w(A) **r(A)** w(B) (e.g. A=A+1; B=A+1)`
+    * T2: `r(A) w(A) r(B) w(B) (e.g. A=A+10; B=B+1)`
+* Concurrency (bad)
+    * T1: `r(A) w(A) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; r(A) w(B)
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
@@ -130,7 +144,8 @@ How can we solve these problems?
         * T2: `r(A) w(A)` `r(B) w(B)`
     * So S is conflict serializable
 * **Example of a Non-Conflict-Serializable (Regularly) Serializable Schedule:**
-    * Firstly... lol
+    * Firstly, consider the following schedule:
+        * T1:  
     * Secondly, consider the schedule S:
         * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
         * T2: &emsp;&emsp;&nbsp; `w(A) w(B)`
@@ -142,4 +157,8 @@ How can we solve these problems?
         * T2: &emsp;&emsp;&emsp;&emsp;&ensp; `w(A) w(B)`
         * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
         * We can do this because T1's and T2's write to B is overwritten to T3, and because T1's write to A is lost to T2, so logically this serial schedule is equivalent to S
+#VIII Anomalies
+    * What are some examples of anomalies?
+        * 
+
 
