@@ -267,11 +267,11 @@ For single join, go through all the combinations, because it is cheap enough to 
 ####2. How do we  join Multiple tables?  Use Selinger Optimizer
 R join S join T	
 					
-### Selinger Optimizer
-Granddaddy of all existing optimizers, 
+### Selinger Optimizer 
 Goals: don’t go for best plan, go for least worst plan
 						
 2 Big Ideas
+
 1.Cost Estimator
 + “predict” cost of query from statistics
 + Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
