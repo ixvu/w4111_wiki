@@ -81,7 +81,7 @@ How can we solve these problems?
     * T2: `r(A) w(A)` `r(B) w(B)`
 * Are these two examples the same?
     * No!  Different serial schedules can have different effects! Transaction order matters!
- 
+
 * **NOTE:** A serial schedule does not necessarily guarantee an error free application; it only ensures that there are no anomalies due to ACID violations
 * This ties into the ideas of concurrency control (techniques to ensure correct results when running transactions concurrently) and recovery (on a crash or abort, how do we get back to the correct state?), which are intertwined.  
 
@@ -103,12 +103,12 @@ How can we solve these problems?
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
-    * **Write/Read Conflicts (Dirty Reads):**
+    * **Write/Read Conflicts - reading in between uncommitted data (Dirty Reads):**
         * Consider the following schedule S:
-            * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `abort`
+            * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(B) w(B) abort`
             * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
-        * In this schedule, transaction 2 reads and commits tainted data that is aborted by T1
-            * The data written by T1 should not have been read/used by T2
+        * In this schedule, transaction 2 reads and commits data - it's write was based on an uncommitted read, and may lead to an inconsistent database state
+            * The data written by T1 should not have been read/used by T2, as it was not committed
         * Schedule S is *NOT* serializable because it is not equivalent to any serial schedule
             * Transactions in a serial schedules always have access to the most "up-to-date" data, so this situation could never happen (ie. they're atomic)
 
@@ -161,8 +161,6 @@ How can we solve these problems?
         * T2: &emsp;&emsp;&emsp;&emsp;&ensp; `w(A) w(B)`
         * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
         * We can do this because T1's and T2's write to B is overwritten to T3, and because T1's write to A is lost to T2, so logically this serial schedule is equivalent to S
-#VIII Anomalies
-    * What are some examples of anomalies?
-        * 
+
 
 
