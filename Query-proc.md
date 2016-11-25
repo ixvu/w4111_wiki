@@ -272,8 +272,8 @@ Goals: don’t go for best plan, go for least worst plan
 Two Big Ideas:
 
 1. Cost Estimator
-+ “predict” cost of query from statistics
-+ Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
+  + “predict” cost of query from statistics
+  + Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
 							
 2. Plan Space
 + avoid cross product
