@@ -316,13 +316,14 @@ number of plans = number of permutation  * number of possible trees
 Note: The following two joins are not the same!
 
 
-### If the plan space is too large,we can simplify the set of plans so it's tractable and  
+### If the plan space is too large,we can simplify the set of plans so it's tractable and do the following:  
 1. Push down selections and projections
 2. Ignore cross  products(S&T don't share attributes) 
 3. Left deep plans only
 + only outer is allowed to have join, which means only left side is allowed to have subtree. The right side is always a leaf.
-+ The reason for chossing left deep plan
-  + it allows pipelining. If the AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins:
++ The reason for choosing left deep plan
+  + it allows pipelining. If the AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep plan because:
+    + The inner in this case is B⋈C and the outer is A
     + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
     + Also, if the inner is the output of the join operation, then we don’t have any indices.				
 4. Dynamic programming optimization problem
