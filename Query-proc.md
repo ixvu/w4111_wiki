@@ -172,16 +172,17 @@ for irow in inner:
   - No, for cross product, just remove the predicate check.
 
 
-####What does this mean in terms of disk IO?						
+####What this in terms of disk IO					
 + Ex. A join B
   + A is outer. M pages
   + B is inner. N pages 
   + T tuples per page
 						
 + Cost: M +T × M × N
-  + for each tuple t in tableA, (M pages,TM tuples)
-  + scan through each page pi in the inner (N pages) 
-  + compare all the tuples in pi with t 
+  + Scan through the outer once, costs M pages.
+  + for each tuple t in table A, (M pages,TM tuples)
+  + scan through each page in the inner (N pages) 
+  + compare all the tuples in with t 
 
 
 #### Join Order Matters
@@ -198,26 +199,28 @@ for row in outer:
     for irow in index.get(row[0], []):
 	yield (row, irow)
 ```
-For every row in outer, do index look up, only iterate through everything that match.		Slightly less flexible
-Only supports conditions that the index supports 
++ For every row in outer, do index look up and only iterates through everything that matches.		
++ Slightly less flexible
++ Only supports conditions that the index supports 
 
 
-####What this means in terms of disk IO
+####What this means in terms of disk IO						
++ A join B on sid
+  + M pages in A 
+  + N pages in B
+  + T tuples/page
++ Primary B+index on B(sid)
++ Cost of looking up in index is C<sub>1<sub> 
++ predicate on outer has 5% selectivity (if there is filter over A)
 						
-A join B on sid
-M pages in A 
-N pages in B
-T tuples/page
-Primary B+index on B(sid)
-Cost of looking up in index is CI 
-predicate on outer has 5% selectivity (if there is filter over A)
-						
-M + T × M × C1
-
-+ M: read all the outer table in A
-+ T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
-+ if predicate(t): (5% of tuples satisfy predicate)
-+ lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
++ Cost = M + T × M × C1
+  + M: read all the outer table in A
+  + T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
+'''Java
+for each tuple t in A:
+'''Java
+  + if predicate(t): (5% of tuples satisfy predicate)
+  + lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
 
 
 ###3. Hash Join
