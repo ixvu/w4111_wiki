@@ -131,7 +131,7 @@ Which option is faster if we have a B+ tree index on a?
 + b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
-need to de-duplicate e.g., π  rating Sailors
+need to de-duplicate e.g., π<sub>rating<\sub> Sailors
 						
 basic approaches
 
