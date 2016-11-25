@@ -95,7 +95,8 @@ How can we solve these problems?
     * T1: `r(A) w(A) **r(A)** w(B) (e.g. A=A+1; B=A+1)`
     * T2: `r(A) w(A) r(B) w(B) (e.g. A=A+10; B=B+1)`
 * Concurrency (bad)
-    * T1: `r(A) w(A) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; r(A) w(B)
+    * T1: `r(A) w(A) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; r(A) w(B)`
+    * T2: `&emsp;&emsp;&emsp;&emsp; r(A) w(A) &emsp;&emsp;&emsp;&emsp; r(B) w(B)`
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
