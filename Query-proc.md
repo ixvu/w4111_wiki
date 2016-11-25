@@ -121,17 +121,17 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 - Join ordering
 
 ##Predicate Push down: 
-if I see (b), (b) can be pushed down to (a), then do so.
-In general, depends on operator implementations. 
-
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
-Which option is faster if B+ tree index on a?
-+ a)Log F(B) + M pages: using Btree, find the start point and scan to the right
++ if I see (b), (b) can be pushed down to (a), then do so.
++ In general, predicate push downs depend on the actual operator implementations. 
+
+Which option is faster if we have a B+ tree index on a?
++ a)Log F(B) + M pages: using Btree, go down the tree and find the starting value for a and scan to the right
 + b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
-need to deduplicate e.g., π  rating Sailors
+need to de-duplicate e.g., π  rating Sailors
 						
 basic approaches
 
