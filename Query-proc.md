@@ -179,9 +179,9 @@ B is inner. N pages
 T tuples per page
 						
 Cost: M +T × M × N
-for each tuple t in tableA, (M pages,TM tuples)
-scan through each page pi in the inner (N pages) 
-compare all the tuples in pi with t 
++ for each tuple t in tableA, (M pages,TM tuples)
++ scan through each page pi in the inner (N pages) 
++ compare all the tuples in pi with t 
 
 
 #### Order matters
@@ -215,10 +215,10 @@ predicate on outer has 5% selectivity (if there is filter over A)
 						
 M + T × M × C1
 
-M: read all the outer table in A
-T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
-if predicate(t): (5% of tuples satisfy predicate)
-lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
++ M: read all the outer table in A
++ T × M × C1:for each tuple t in the outer, (M pages,TM tuples),incur the cost of looking up index
++ if predicate(t): (5% of tuples satisfy predicate)
++ lookup_in_index(t.sid) (CI disk IO) -->M + T × M × C1 x 0.05
 
 
 ###3. Hash Join
@@ -240,8 +240,8 @@ lookup_in_index(t.sid)		 (CI disk IO)
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
 ####Questions:
--Given a bunch of joins, which order do we use?
--given two tables and a bunch of indices, what is the best way to execute it?
+- Given a bunch of joins, which order do we use?
+- given two tables and a bunch of indices, what is the best way to execute it?
 
 
 ###Blackboard example:
