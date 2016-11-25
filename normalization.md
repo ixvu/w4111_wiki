@@ -194,4 +194,6 @@ Tradeoff is that a relation in 3NF form does retain some redundancies.
 Let's look at the pizza example:
 ![](https://github.com/agango/Scribesnotes-image/blob/master/image.png)
   
+The key for this table is (Pizza, Type)-unique pairing of attributes, each pizza has one of every type
+We have the functional dependencies Topping->Type, and Pizza, Type->Topping. This relation is not in BCNF form, but is in 3NF form because the FD Topping->Type is no longer violated, as Type is a part of the key. However, this table does have redundancies.
 
