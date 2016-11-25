@@ -131,26 +131,26 @@ Which option is faster if we have a B+ tree index on a?
 + b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
-need to de-duplicate e.g., π<sub>rating<sub> Sailors
+need to de-duplicate e.g., π</sub>rating<sub> Sailors
 						
 basic approaches
 
 + 1. Sort: fundamental database operation
   + sort on rating, remove duplicates by scanning sorted data
   + O(2n + n): 2n to sort and n to scan
-+ 2. Hash:partition into N buckets remove duplicates on insert						
++ 2. Hash: partition into N buckets remove duplicates on insert						
 + 3.Index on projected fields: scan the index pages, avoid reading data 
 
 
-## The Join: 
+## The Join 
 - Core database operation
  join of 10s of tables common in enterprise apps
 						
 - Join algorithms is a large area of research
-e.g., distributed, temporal, geographic, multi-dim, range, sensors, graphs, etc
-Discuss three basic joins: nested loops, indexed nested loops, hash join
+  - e.g., distributed, temporal, geographic, multi-dim, range, sensors, graphs, etc
+  - Three basic joins: nested loops, indexed nested loops, hash join
 						
-- Best join implementation depends on the query, the data, the indices, hardware, etc 
+- Best join implementation depends on the query, the data, the indices, hardware, etc
 
 
 ###1.Nested Loops Join
