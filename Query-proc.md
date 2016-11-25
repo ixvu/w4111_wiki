@@ -115,10 +115,10 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + ex2. when you only want to access the values of a: Select a from R where a > 0 
 
 ##What Optimization Options Do We Have? 
--Access Path ✔ 
--Predicate push-down 
--Join implementation 
--Join ordering
+- Access Path ✔ 
+- Predicate push-down 
+- Join implementation 
+- Join ordering
 
 ##Predicate Push down: 
 if I see (b), (b) can be pushed down to (a), then do so.
@@ -185,12 +185,12 @@ Cost: M +T × M × N
 
 
 #### Order matters
--A join B: M + T x M x N      
--B join A: N + T x N x M     
-+Scan “Outer” once, the first constant
-+Scan Inner multiple times
-+If inner is small IO, can fit in memory, then cost is M + N.
-+You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
+- A join B: M + T x M x N      
+- B join A: N + T x N x M     
++ Scan “Outer” once, the first constant
++ Scan Inner multiple times
++ If inner is small IO, can fit in memory, then cost is M + N.
++ You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
 
 
 ###2.Indexed Nested Loops Join					
@@ -299,8 +299,8 @@ Naïve
 - Selectivity of dep        1 / 10			=0.1
 - Join selectivity            1 / max(1k,10)	=0.001
 - Output card :             10,000 * 0.001 	=10											
-+note: selectivity defined wrt cross product size
-+Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
++ note: selectivity defined wrt cross product size
++ Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
 
 
 ### 2. join plan space
