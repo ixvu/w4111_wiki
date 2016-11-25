@@ -259,7 +259,7 @@ index = build_hash_table(B)                    #N pages
   + Tuple/page = 100
 + For single join, go through all the combinations, because it is cheap enough to do this.
 + For this problem, we can do nested loops and hash join
-<img src = "https://github.com/xz2581/project1/blob/master/11.png">
+<img src = "https://github.com/xz2581/project1/blob/master/12.png">
 
 
 
@@ -272,20 +272,20 @@ Goals: don’t go for best plan, go for least worst plan
 Two Big Ideas:
 
 1. Cost Estimator
-  + “predict” cost of query from statistics
+  + “Predict” cost of query from statistics
   + Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
 							
 2. Plan Space
-   + avoid cross product
-   + push selections & projections to leaves as much as possible 
-   + only join ordering remaining 
+   + Avoid cross product
+   + Push selections & projections to leaves as much as possible 
+   + Only join ordering remaining 
    + Try to reduce the possible trees to one that is manageable. 
 							
 ### 1. Cost estimation
 Given an operate, input and statistics, we should be able to estimate the cost
-- estimate cost for each operator
+- Estimate cost for each operator
   - depends on input cardinalities (# tuples)  and data structure you have					
-- estimate output size for each operator
+- Estimate output size for each operator
   - need to call estimate() on inputs!
   - use selectivity. assume attributes are independent
 
@@ -314,11 +314,13 @@ Possible plans: 12
 number of plans = number of permutation  * number of possible trees
 + e.g. N = 10  number of plans =17,643,225,600
 Note: The following two joins are not the same!
+      + The "outer" table in these two cases is likely to have different cardinalities thus the two joins is likely to have different costs
+<img src = "https://github.com/xz2581/project1/blob/master/12.png">
 
 
 ### If the plan space is too large,we can simplify the set of plans so it's tractable and do the following:  
 1. Push down selections and projections
-2. Ignore cross  products(S&T don't share attributes) 
+2. Ignore cross  products
 3. Left deep plans only
    + only outer is allowed to have join, which means only left side is allowed to have subtree. The right side is always a leaf.
    + The reason for choosing left deep plan
