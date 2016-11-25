@@ -248,26 +248,24 @@ index = build_hash_table(B)                    #N pages
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
 ####Questions:
-- Given a bunch of joins, which order do we use?
-- given two tables and a bunch of indices, what is the best way to execute it?
+Q: Given a bunch of joins, which order do we use?
+Q: given two tables and a bunch of indices, what is the best way to execute it?
 
+### Use cost model to decide join order and what the best execution for single join should be
 
-###Example to Address the above questions:
-+ Use cost model to decided what the best execution for single join and join order 
-
-#### Optimizing single join:
+#### Optimizing single join Example:
 + R join S on id
   + |R| = 1000 pages
   + |S| = 100 pages
   + Tuple/page = 100
 + For single join, go through all the combinations, because it is cheap enough to do this.
 + For this problem, we can do nested loops and hash join
-<img src = "https://github.com/xz2581/project1/blob/master/10.png">
+<img src = "https://github.com/xz2581/project1/blob/master/11.png">
 
 
 
-####2. How do we  join Multiple tables?  
-+ Use Selinger Optimizer (Ex. R⋈S⋈T)
+#### Optimizing joins within multiple tables:
++ Use Selinger Optimizer (ex. R⋈S⋈T)
 					
 ### Selinger Optimizer 
 Goals: don’t go for best plan, go for least worst plan
@@ -293,18 +291,18 @@ Given an operate, input and statistics, we should be able to estimate the cost
   - use selectivity. assume attributes are independent
 
 ####Estimate Size of Output
-Emp: 1000 Cardinality
- Dept: 10 Cardinality
-Cost(Emp join Dept)
++ Emp: 1000 Cardinality
++ Dept: 10 Cardinality
++ Cost(Emp join Dept) = ?
 						 	 	 		
-Naïve
-- total records		1000* 10		=10,000
-- Selectivity of emp       1 / 1000		= 0.001
-- Selectivity of dep        1 / 10			=0.1
-- Join selectivity            1 / max(1k,10)	=0.001
-- Output card :             10,000 * 0.001 	=10											
-+ note: selectivity defined wrt cross product size
-+ Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
+- Naïve
+  - total records		1000* 10		=10,000
+  - Selectivity of emp          1 / 1000		= 0.001
+  - Selectivity of dep          1 / 10			=0.1
+  - Join selectivity            1 / max(1k,10)  	=0.001
+  - Output cardinality          10,000 * 0.001   	=10											
++ note: selectivity is defined with respect to cross product size
++ Note: estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
 
 
 ### 2. join plan space
