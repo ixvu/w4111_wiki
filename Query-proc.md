@@ -248,10 +248,9 @@ index = build_hash_table(B)                    #N pages
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
 ####Questions:
-Q: Given a bunch of joins, which order do we use?
-Q: given two tables and a bunch of indices, what is the best way to execute it?
-
-### Use cost model to decide join order and what the best execution for single join should be
++ Q: Given a bunch of joins, which order do we use?
++ Q: given two tables and a bunch of indices, what is the best way to execute it?
++ A: Use cost model to decide join order and what the best execution for single join should be
 
 #### Optimizing single join Example:
 + R join S on id
@@ -290,19 +289,20 @@ Given an operate, input and statistics, we should be able to estimate the cost
   - need to call estimate() on inputs!
   - use selectivity. assume attributes are independent
 
-####Estimate Size of Output
+#### Estimate Size of Output
 + Emp: 1000 Cardinality
 + Dept: 10 Cardinality
 + Cost(Emp join Dept) = ?
 						 	 	 		
-- Naïve
+- Naïvely
   - total records		1000* 10		=10,000
   - Selectivity of emp          1 / 1000		= 0.001
   - Selectivity of dep          1 / 10			=0.1
   - Join selectivity            1 / max(1k,10)  	=0.001
   - Output cardinality          10,000 * 0.001   	=10											
-+ Note: selectivity is defined with respect to cross product size
-+ Note: estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
++ Note
+  + Selectivity is defined with respect to cross product size
+  + estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
 
 
 ### 2. join plan space
@@ -316,10 +316,11 @@ number of plans = number of permutation  * number of possible trees
 
 If the plan space is too large,we can simplify the set of plans so it's tractable and  
 + 1. Push down selections and projections
-+ 2. Ignore cross  products(S&T don't share attrs) 
-+ 3. Left deep plans only(only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
-  + The reason we choose left deep
-    + it allows pipelining. If the left side AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins. 
++ 2. Ignore cross  products(S&T don't share attributes) 
++ 3. Left deep plans only
+     + only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf
+     + The reason for chossing left deep plan
+       + it allows pipelining. If the left side AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins. 
     + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
     + Also, if the inner is the output of the join operation, then we don’t have any indices.				
 + 4. Dynamic programming optimization problem
