@@ -316,6 +316,7 @@ E.g. N = 10  # plans =17,643,225,600
 If the plan space is too large,things we can do:
 
 Simplify the set of plans so it's tractable and ~ok 
+
 1. Push down selections and projections
 2. Ignore cross  products(S&T don't share attrs) 
 3. Left deep plans only( only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf.)
