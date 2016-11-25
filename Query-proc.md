@@ -294,11 +294,11 @@ Emp: 1000 Cardinality
 Cost(Emp join Dept)
 						 	 	 		
 Naïve
-total records		1000* 10		=10,000
-Selectivity of emp       1 / 1000		= 0.001 
-Selectivity of dep        1 / 10			=0.1
-Join selectivity            1 / max(1k,10)	=0.001
-Output card :             10,000 * 0.001 	=10											
+-total records		1000* 10		=10,000
+-Selectivity of emp       1 / 1000		= 0.001 
+-Selectivity of dep        1 / 10			=0.1
+-Join selectivity            1 / max(1k,10)	=0.001
+-Output card :             10,000 * 0.001 	=10											
 note: selectivity defined wrt cross product size
 Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
 
