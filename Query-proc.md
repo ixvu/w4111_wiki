@@ -127,19 +127,19 @@ In general, depends on operator implementations.
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
 Which option is faster if B+ tree index on a?
-a)Log F(B) + M pages: using Btree, find the start point and scan to the right
-b)B pages : not using B tree, scans entire relation
++a)Log F(B) + M pages: using Btree, find the start point and scan to the right
++b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
 need to deduplicate e.g., π  rating Sailors
 						
 basic approaches
 
-1. Sort: sort on rating, remove dups on scan of sorted data
++1. Sort: sort on rating, remove dups on scan of sorted data
 fundamental database operation
 O(2n + n): 2n to sort and n to scan
-2. Hash:partition into N buckets remove duplicates on insert						
-3.Index on projected fields: scan the index pages, avoid reading data 
++2. Hash:partition into N buckets remove duplicates on insert						
++3.Index on projected fields: scan the index pages, avoid reading data 
 
 
 ## The Join: 
@@ -187,10 +187,10 @@ compare all the tuples in pi with t
 #### Order matters
 -A join B: M + T x M x N      
 -B join A: N + T x N x M     
-Scan “Outer” once, the first constant
-Scan Inner multiple times
-If inner is small IO, can fit in memory, then cost is M + N.
-You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
++Scan “Outer” once, the first constant
++Scan Inner multiple times
++If inner is small IO, can fit in memory, then cost is M + N.
++You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
 
 
 ###2.Indexed Nested Loops Join					
@@ -268,14 +268,14 @@ Goals: don’t go for best plan, go for least worst plan
 						
 2 Big Ideas
 1.Cost Estimator
-“predict” cost of query from statistics
-Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
++ “predict” cost of query from statistics
++ Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
 							
 2.Plan Space
-avoid cross product
-push selections & projections to leaves as much as possible 
-only join ordering remaining 
-Try to reduce the possible trees to one that is manageable. 
++ avoid cross product
++ push selections & projections to leaves as much as possible 
++ only join ordering remaining 
++ Try to reduce the possible trees to one that is manageable. 
 							
 ### 1. Cost estimation
 Given an operate, input and statistics, we should be able to estimate the cost
