@@ -80,4 +80,4 @@ List of contributors and contributions
   1. Scribed Lecture 22: Transaction Processing
 * Abhiroop Gangopadhyay (agango)
   1. Scribed lecture 22: Transaction Processing
-  1. Added example schedules for concurrency and serializability 
+  1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
