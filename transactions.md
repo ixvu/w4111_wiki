@@ -123,7 +123,7 @@ How can we solve these problems?
         2. Each pair of actions in S1 and S2 have the same order
     * To put it another way, if you can obtain a serial schedule by swapping non-conflicting operations, then that schedule is conflict serializable 
 * Some serializable schedules are not conflict serializable, but all conflict serializable schedules are serializable
-* Example of a Conflict Serializable Schedule:
+* **Example of a Conflict Serializable Schedule:**
     * Consider the following schedule S: 
         * T1: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
         * T2: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(B) w(B)`
@@ -131,7 +131,7 @@ How can we solve these problems?
         * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
         * T2: `r(A) w(A)` `r(B) w(B)`
     * So S is conflict serializable
-* Example of a Non-Conflict-Serializable (Regularly) Serializable Schedule:
+* **Example of a Non-Conflict-Serializable (Regularly) Serializable Schedule:**
     * Firstly... lol
     * Secondly, consider the schedule S:
         * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
