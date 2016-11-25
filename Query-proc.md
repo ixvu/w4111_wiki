@@ -161,7 +161,7 @@ for irow in inner:
        if row.attr == irow.attr:      # could be any check
                 yield (row, irow)
 ```
-####property: 						
+####Property: 						
 - Very flexible,can implement theta join
 - Equality check can be replaced with any condition
 - Incremental algorithm
@@ -172,7 +172,7 @@ for irow in inner:
   - No, for cross product, just remove the predicate check.
 
 
-####What this in terms of disk IO					
+####What this means in terms of disk IO					
 + Ex. A join B
   + A is outer. M pages
   + B is inner. N pages 
