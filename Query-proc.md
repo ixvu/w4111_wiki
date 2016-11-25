@@ -276,10 +276,10 @@ Two Big Ideas:
   + Includes CPU, disk, memory,etc (can get sophisticated!) It’s an art
 							
 2. Plan Space
-+ avoid cross product
-+ push selections & projections to leaves as much as possible 
-+ only join ordering remaining 
-+ Try to reduce the possible trees to one that is manageable. 
+   + avoid cross product
+   + push selections & projections to leaves as much as possible 
+   + only join ordering remaining 
+   + Try to reduce the possible trees to one that is manageable. 
 							
 ### 1. Cost estimation
 Given an operate, input and statistics, we should be able to estimate the cost
@@ -320,12 +320,12 @@ Note: The following two joins are not the same!
 1. Push down selections and projections
 2. Ignore cross  products(S&T don't share attributes) 
 3. Left deep plans only
-+ only outer is allowed to have join, which means only left side is allowed to have subtree. The right side is always a leaf.
-+ The reason for choosing left deep plan
-  + it allows pipelining. If the AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep plan because:
-    + The inner in this case is B⋈C and the outer is A
-    + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
-    + Also, if the inner is the output of the join operation, then we don’t have any indices.				
+   + only outer is allowed to have join, which means only left side is allowed to have subtree. The right side is always a leaf.
+   + The reason for choosing left deep plan
+     + it allows pipelining. If the AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep plan because:
+        + The inner in this case is B⋈C and the outer is A
+        + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
+        + Also, if the inner is the output of the join operation, then we don’t have any indices.				
 4. Dynamic programming optimization problem
   + Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
   + Dynamic Programming Algorithm
