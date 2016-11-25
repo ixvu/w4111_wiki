@@ -192,13 +192,6 @@ This new condition is NOT trivial, as this key is minimal, not a superkey. This 
 Tradeoff is that a relation in 3NF form does retain some redundancies. 
 
 Let's look at the pizza example:
-Pizza &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Topping &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Type
-1     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Mozzarella                                  Cheese
-1                                         Pepperoni                                   Meat
-1                                         Olives                                      Vegetable
-2                                         Mozzarella                                  Cheese
-2                                         Sausage                                     Meat
-2                                         Peppers                                     Vegetable
-
+![](https://github.com/agango/Scribesnotes-image/blob/master/image.png)
   
 
