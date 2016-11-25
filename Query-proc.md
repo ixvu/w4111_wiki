@@ -131,13 +131,13 @@ Which option is faster if we have a B+ tree index on a?
 + b)B pages : not using B tree, scans entire relation
 
 ##Projection with DISTINCT clause
-need to de-duplicate e.g., π<sub>rating<\sub> Sailors
+need to de-duplicate e.g., π<sub>rating<sub> Sailors
 						
 basic approaches
 
-+ 1. Sort: sort on rating, remove dups on scan of sorted data
-fundamental database operation
-O(2n + n): 2n to sort and n to scan
++ 1. Sort: fundamental database operation
+  + sort on rating, remove duplicates by scanning sorted data
+  + O(2n + n): 2n to sort and n to scan
 + 2. Hash:partition into N buckets remove duplicates on insert						
 + 3.Index on projected fields: scan the index pages, avoid reading data 
 
