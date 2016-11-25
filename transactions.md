@@ -141,7 +141,7 @@ How can we solve these problems?
         * So because this schedule isn't already serial, then it is also not conflict serializable by default
     * S *IS* serializable because it is equivalent to the following schedule:
         * T1: `w(A) w(B)`
-        * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `w(A) w(B)`
-        * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
+        * T2: &emsp;&emsp;&emsp;&emsp;&ensp; `w(A) w(B)`
+        * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
         * We can do this because T1's and T2's write to B is overwritten to T3, and because T1's write to A is lost to T2, so logically this serial schedule is equivalent to S
 
