@@ -40,7 +40,7 @@ How can we solve these problems?
 * And also "*isolation*"
     * This provides the illusion that each transaction runs sequentially without concurrency
     * Essentially, transactions run in a vacuum: they are unaware and unaffected by other concurrently running transactions
-
+    * Why do we need concurrency? Serial schedules may preserve correctness and ACID guarantees, but it's slow. We need to be able to update our database quickly as well as correctly. We thus must serve transactions concurrently.
 # III. Translating Application Semantics to Transaction Semantics
 * A transaction is just a sequence of actions, where an action is one of the following:
     1. Read an object
@@ -94,9 +94,12 @@ How can we solve these problems?
 * Consider the following logical exacts: 
     * T1: `r(A) w(A) **r(A)** w(B) (e.g. A=A+1; B=A+1)`
     * T2: `r(A) w(A) r(B) w(B) (e.g. A=A+10; B=B+1)`
-* Concurrency (bad)
-    * T1: `r(A) w(A) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; r(A) w(B)`
-    * T2: `&emsp;&emsp;&emsp;&emsp; r(A) w(A) &emsp;&emsp;&emsp;&emsp; r(B) w(B)`
+* Concurrency (bad, this doesn't work)
+    * T1: `r(A) w(A)                              r(A) w(B)`
+    * T2: `                r(A) w(A)                              r(B) w(B)`
+* Concurrency (same as serial (T1, T2)!)
+    * T1: `r(A) w(A)                              r(A) w(B)`
+    * T2: `                r(A)                                   w(A) r(B) w(B)`
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
