@@ -303,16 +303,15 @@ Naïve
 -Join selectivity            1 / max(1k,10)	=0.001
 
 -Output card :             10,000 * 0.001 	=10											
-note: selectivity defined wrt cross product size
-Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
++note: selectivity defined wrt cross product size
++Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
 
 
 #### join plan space
 A⨝B⨝C 
 Possible plans: 12
-(AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
- 
-A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
++(AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
++A(BC) A(CB) B(CA) B(AC) C(AB) C(BA)
 
 number of plans = number of permutation  * number of possible trees
 =  number of parenthetizations *  number of strings (N!)
