@@ -78,3 +78,6 @@ List of contributors and contributions
   1. Combine the two different editions of the scribe into a new modified one that picked up the better aspects of them but  some parts of it still need to be enhanced(The part work will be or have been done by student shy2116).
 * Jason Zhao (jsz2107)
   1. Scribed Lecture 22: Transaction Processing
+* Abhiroop Gangopadhyay (agango)
+  1. Scribed lecture 22: Transaction Processing
+  1. Added example schedules for concurrency and serializability 
