@@ -15,6 +15,7 @@
 [[Instabase & Assignment Structure |infrastructure]]
 
 [[Midterm Study Guide |midterm study guide]]
+[[Access Path Selection Calculation | Access Path Selection Calculation ]]
 
 ***
 
