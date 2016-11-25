@@ -232,11 +232,11 @@ Cost of looking up in index is CI predicate on outer has 5% selectivity
 						
 N + M + T × M × 0.05 × C1
 
-index = build_hash_table(B)             (N pages)
--for every sid in B, create a key, and then match all the tuple with that particular sid. By doing so, speed up C1
-for each tuple t in the A:	 	(M pages,TM tuples)					
-if predicate(t): 		(5% of tuples satisfy pred)
-lookup_in_index(t.sid)		 (CI disk IO) 
++ index = build_hash_table(B)             (N pages)
+for every sid in B, create a key, and then match all the tuple with that particular sid. By doing so, speed up C1
++ for each tuple t in the A:	 	(M pages,TM tuples)					
++ if predicate(t): 		(5% of tuples satisfy pred)
++lookup_in_index(t.sid)		 (CI disk IO) 
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
 ####Questions:
