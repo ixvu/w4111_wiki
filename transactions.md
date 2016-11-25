@@ -79,9 +79,9 @@ How can we solve these problems?
     * On crash or abort, how do we ensure that we can recover to a "correct" state?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
 
-##Serializable Schedules: the "gold standard" for correctness
+###Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
-    * Write/Read Conflicts (Dirty Reads): Reading in between uncommitted data
+    * **Write/Read Conflicts (Dirty Reads):** Reading in between uncommitted data
         * Consider the following schedule S:
             * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `abort`
             * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
@@ -89,14 +89,14 @@ How can we solve these problems?
             * The data written by T1 should not have been read/used by T2
         * Schedule S is *NOT* serializable because it is not equivalent to any serial schedule
             * Transactions in a serial schedules always have access to the most "up-to-date" data, so this situation could never happen (ie. they're atomic)
-    * Read/Write Conflicts (Unrepeatable Reads): Reading same data gets different values
+    * **Read/Write Conflicts (Unrepeatable Reads):** Reading same data gets different values
         * Consider the following schedule S:
             * T1: `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit` 
             * T2: &emsp;&emsp;&ensp; `r(A) w(A)` `commit`
         * Here, transaction 1 reads from A twice and gets different results from each read
         * This schedule is also *NOT* serializable because there does not exist an equivalent serial schedule
             * Similar reasoning to previous example
-    * Write/Write Conflicts (Lost Writes): Overwriting someone else's writes
+    * **Write/Write Conflicts (Lost Writes):** Overwriting someone else's writes
         * Consider the following schedule S: 
             * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)` `commit`
             * T2: &emsp;&emsp;&ensp; `w(A) w(B)` `commit`
