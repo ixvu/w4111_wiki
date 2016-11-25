@@ -1,4 +1,4 @@
-# Terminology
+# I. Terminology
 * **Transaction:** A single logical operation on a database that provides "ACID" guarantees  (essentially a simpler and more fundamental method of reading/writing)
 * **ACID:** A set {Atomicity, Consistency, Isolation, Durability} of transaction properties that ensure consistency and correctness of the database.
     * **Atomicity:** 
@@ -22,7 +22,7 @@
     * **Read/Write Conflict (Unrepeatable Reads):** Reading same data gets different values
     * **Write/Write Conflict (Lost Writes):** Overwriting someone else's writes
 
-# The Problem
+# II. The Problem
 * How do we maintain consistency/correctness when dealing with computer crashes, failing hardware, and parallelly running queries.
 * Simple Example: A wants to transfer $1000 to B.  How should we do this?
     1. Check if A has at least $1000
@@ -41,7 +41,7 @@ How can we solve these problems?
     * This provides the illusion that each transaction runs sequentially without concurrency
     * Essentially, transactions run in a vacuum: they are unaware and unaffected by other concurrently running transactions
 
-# Translating Application Semantics to Transaction Semantics
+# III. Translating Application Semantics to Transaction Semantics
 * A transaction is just a sequence of actions, where an action is one of the following:
     1. Read an object
     2. Write an object
@@ -64,7 +64,7 @@ How can we solve these problems?
         * Transaction 1: `r(A) w(A)` `r(B) w(B)` `commit`
         * Transaction 2: `r(A) w(A)` `r(B) w(B)` `commit`
 
-# Serial Schedules
+# IV. Serial Schedules
 * Example 1: T1 first, T2 second
     * T1: `r(A) w(A)` `r(B) w(B)`
     * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
@@ -77,13 +77,13 @@ How can we solve these problems?
         * In the second case, you might not have enough money to give!
 * **NOTE:** A serial schedule does not necessarily guarantee an error free application; it only ensures that there are no anomalies due to ACID violations
 
-# Correctness
+# V. Correctness
 * What does correctness mean?
     * What are "correct" results when running transactions concurrently?
     * On crash or abort, how do we ensure that we can recover to a "correct" state?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
 
-# Serializable Schedules: the "gold standard" for correctness
+# VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
     * **Write/Read Conflicts (Dirty Reads):**
         * Consider the following schedule S:
@@ -114,7 +114,7 @@ How can we solve these problems?
     * That is to say: if transactions are just reading, then there are no anomalies
     * This also suggests that tracking writes may help us prevent anomalies
 
-# Conflict Serializability
+# VII. Conflict Serializability
 * A schedule is conflict serializable if it is conflict equivalent to a serial schedule
     * A schedule S1 is conflict equivalent to another schedule S2 if:
         1. S1 and S2 have the same set of actions
