@@ -165,31 +165,30 @@ for irow in inner:
 - Very flexible,can implement theta join
 - Equality check can be replaced with any condition
 - Incremental algorithm
-As you execute it, it will generate record, while some other join executor requires waiting until you create the hash table or you sorted the data before you can start to get result.
+  - The join will generate record as you execute it, while some other join executors need to wait until you create the hash table or sort the data before it can start outputting results
 - Cost: M + MN, pretty expensive
-For each row of outer, go through each row in the inner and check. If it is matched, then yield that.						
+  - For each row of outer, go through each row in the inner and check. If it is matched, then yield that.						
 - Is this the same as a cross product? 
-No, for cross product, just remove the predicate check.
+  - No, for cross product, just remove the predicate check.
 
 
-####What this means in terms of disk IO?						
-A join B
-A is outer. M pages
-B is inner. N pages 
-T tuples per page
+####What does this mean in terms of disk IO?						
++ Ex. A join B
+  + A is outer. M pages
+  + B is inner. N pages 
+  + T tuples per page
 						
-Cost: M +T × M × N
-+ for each tuple t in tableA, (M pages,TM tuples)
-+ scan through each page pi in the inner (N pages) 
-+ compare all the tuples in pi with t 
++ Cost: M +T × M × N
+  + for each tuple t in tableA, (M pages,TM tuples)
+  + scan through each page pi in the inner (N pages) 
+  + compare all the tuples in pi with t 
 
 
-#### Order matters
-- A join B: M + T x M x N      
-- B join A: N + T x N x M     
-+ Scan “Outer” once, the first constant
-+ Scan Inner multiple times
-+ If inner is small IO, can fit in memory, then cost is M + N.
+#### Join Order Matters
++ A join B: M + T x M x N      
++ B join A: N + T x N x M     
++ Note: 
+  + If inner is small IO, can fit in memory, then cost is M + N.
 + You have to incur a quadratic cost for implement this join, ideally you want something linear, so we can try indexed nested loops join
 
 
