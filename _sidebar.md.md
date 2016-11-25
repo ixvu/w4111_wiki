@@ -9,7 +9,7 @@
 [[Normalization | normalization]]  
 [[Physical Design | physical-design]]  
 [[Query Processing | query-proc]]  
-[[Transactions | transaction-processing]] (22-23) 
+[[Transactions | transactions]] (22-23) 
 
 ###Additional Topics  
 [[Instabase & Assignment Structure |infrastructure]]
