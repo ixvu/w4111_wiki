@@ -80,11 +80,30 @@ How can we solve these problems?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
 
 ##Serializable Schedules: the "gold standard" for correctness
-* Why?  Because they prevent many types of concurrency anomalies.  For example:
-    * Write/Read Conflicts (Dirty Reads):
+* Why?  Because they prevent concurrency anomalies.  For example:
+    * Write/Read Conflicts (Dirty Reads): Reading in between uncommitted data
         * Consider the following schedule S:
-            * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `abort`
-            * T2: &emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
+            * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `abort`
+            * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
+        * In this schedule, transaction 2 reads and commits tainted data that is aborted by T1
+            * The data written by T1 should not have been read/used by T2
+        * Schedule S is *NOT* serializable because it is not equivalent to any serial schedule
+            * Transactions in a serial schedules always have access to the most "up-to-date" data, so this situation could never happen (ie. they're atomic)
+    * Read/Write Conflicts (Unrepeatable Reads): Reading same data gets different values
+        * Consider the following schedule S:
+            * T1: `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit` 
+            * T2: &emsp;&emsp;&ensp; `r(A) w(A)` `commit`
+        * Here, transaction 1 reads from A twice and gets different results from each read
+        * This schedule is also *NOT* serializable because there does not exist an equivalent serial schedule
+            * Similar reasoning to previous example
+    * Write/Write Conflicts (Lost Writes): Overwriting someone else's writes
+        * Consider the following schedule S: 
+            * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)` `commit`
+            * T2: &emsp;&emsp;&ensp; `w(A) w(B)` `commit`
+        * In this case, T1's write to A is overwritten by T2
+        * Again, this schedule is *NOT* serializable (ie. there is no serializable schedule that exists that would yield the same result as this)
+        * NOTE: there is no W/W conflict between T2's and T1's write to B because T2 committed before T1 wrote to B
+        
 
 
 *currently being edited*
