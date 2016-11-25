@@ -303,7 +303,7 @@ Naïve
 +Note: estimate wrong if this is a key/fk join on emp.did = dept.did:1000 results 
 
 
-#### join plan space
+### 2. join plan space
 A⨝B⨝C 
 Possible plans: 12
 + (AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
