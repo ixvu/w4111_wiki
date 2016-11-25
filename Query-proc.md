@@ -305,7 +305,7 @@ Given an operate, input and statistics, we should be able to estimate the cost
   + estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
 
 
-### 2. join plan space
+### 2. Join plan space
 A⨝B⨝C 
 Possible plans: 12
 + (AB)C (AC)B (BC)A (BA)C (CA)B (CB)A
@@ -313,21 +313,23 @@ Possible plans: 12
 
 number of plans = number of permutation  * number of possible trees
 + e.g. N = 10  number of plans =17,643,225,600
+Note: The following two joins are not the same!
 
-If the plan space is too large,we can simplify the set of plans so it's tractable and  
-+ 1. Push down selections and projections
-+ 2. Ignore cross  products(S&T don't share attributes) 
-+ 3. Left deep plans only
-     + only outer is allowed to have join, means only left side is allowed to have subtree, right side is always leaf
-     + The reason for chossing left deep plan
-       + it allows pipelining. If the left side AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins. 
+
+### If the plan space is too large,we can simplify the set of plans so it's tractable and  
+1. Push down selections and projections
+2. Ignore cross  products(S&T don't share attributes) 
+3. Left deep plans only
++ only outer is allowed to have join, which means only left side is allowed to have subtree. The right side is always a leaf.
++ The reason for chossing left deep plan
+  + it allows pipelining. If the AB can generate a tuple, then we can immediately start to join with the other table C while this is impossible for right deep joins:
     + If we want to join inner for every tuple in A, we need to re-compute the join or wait until the inner is completed. 
     + Also, if the inner is the output of the join operation, then we don’t have any indices.				
-+ 4. Dynamic programming optimization problem
+4. Dynamic programming optimization problem
   + Idea: If considering ((ABC)DE),figure out best way to combine with (DE)			
   + Dynamic Programming Algorithm
   compute best join size 1, then size 2, ... ~O(N*2N) 
-+  5. Consider interesting sort orders  
+5. Consider interesting sort orders  
 
 ## Selinger Optimizer Example A⋈<sub>x</sub>B⋈<sub>x</sub>C⋈<sub>x</sub>D
 ### Preliminaries
