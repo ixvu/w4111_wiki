@@ -75,3 +75,5 @@ List of contributors and contributions
   1. Scribed the first edition for Lecture 20 "Physical Deisgn - Indexing Continued" and discussed notes with Prof. Wu on Office time.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparsion between different types of physical design on their time complexity of some common operators.
   1. Combine the two different editions of the scribe into a new modified one that picked up the better aspects of them but  some parts of it still need to be enhanced(The part work will be or have been done by student shy2116).
+* Jason Zhao (jsz2107)
+  1. Scribed Lecture 22: Transaction Processing
