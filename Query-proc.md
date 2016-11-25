@@ -241,9 +241,9 @@ for each tuple t in A:
 # for every sid in B, create a key, and then match all the tuple with that particular sid. 
 # By doing so, we can speed up C<sub>1<sub>
 index = build_hash_table(B)                    #N pages
-    for each tuple t in the A:                    #M pages,TM tuples					
-         if predicate(t):                    #5% of tuples satisfy predicate
-            lookup_in_index(t.sid)                    #C1 cost
+    for each tuple t in the A:                 #M pages,TM tuples					
+         if predicate(t):                      #5% of tuples satisfy predicate
+            lookup_in_index(t.sid)             #C1 cost
 ```
 <img src = "https://github.com/xz2581/project1/blob/master/9.png">
 
@@ -255,24 +255,24 @@ index = build_hash_table(B)                    #N pages
 ###Example to Address the above questions:
 + Use cost model to decided what the best execution for single join and join order 
 
-####1. optimizing single join:
+#### Optimizing single join:
 + R join S on id
-+ |R| = 1000 pages
-+ |S| = 100 pages
-+ Tuple/page = 100
-For this problem, we can do nested loops and hash join
+  + |R| = 1000 pages
+  + |S| = 100 pages
+  + Tuple/page = 100
++ For single join, go through all the combinations, because it is cheap enough to do this.
++ For this problem, we can do nested loops and hash join
 <img src = "https://github.com/xz2581/project1/blob/master/10.png">
 
-For single join, go through all the combinations, because it is cheap enough to do this.
 
 
-####2. How do we  join Multiple tables?  Use Selinger Optimizer
-R join S join T	
+####2. How do we  join Multiple tables?  
++ Use Selinger Optimizer (Ex. R⋈S⋈T)
 					
 ### Selinger Optimizer 
 Goals: don’t go for best plan, go for least worst plan
 						
-2 Big Ideas
+Two Big Ideas:
 
 1.Cost Estimator
 + “predict” cost of query from statistics
@@ -287,10 +287,10 @@ Goals: don’t go for best plan, go for least worst plan
 ### 1. Cost estimation
 Given an operate, input and statistics, we should be able to estimate the cost
 - estimate cost for each operator
- depends on input cardinalities (# tuples)  and data structure you have					
+  - depends on input cardinalities (# tuples)  and data structure you have					
 - estimate output size for each operator
-need to call estimate() on inputs!
-use selectivity. assume attributes are independent
+  - need to call estimate() on inputs!
+  - use selectivity. assume attributes are independent
 
 ####Estimate Size of Output
 Emp: 1000 Cardinality
