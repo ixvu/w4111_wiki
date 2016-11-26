@@ -68,10 +68,11 @@ List of contributors and contributions
   1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
 * Ziyuan Wang (zw2396)
   1. Scribed Lecture 18 "Physical Deisgn" and discussed notes with Prof. Wu on email
-  1. section include: work from bottom up, % matters, what is disk, how does disk work
+  1. Section include: work from bottom up, % matters, what is disk, how does disk work
   1. Added definition and example from textbook
   1. Scribed Lecture 21 "Query Processing"
-  1. section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join
+  1. Section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
+  1. Added blackboard Join example.
 * Jisong Liu (jl4819)
   1. Scribed the first edition for Lecture 20 "Physical Deisgn - Indexing Continued" and discussed notes with Prof. Wu on Office time.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparsion between different types of physical design on their time complexity of some common operators.
