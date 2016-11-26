@@ -40,7 +40,8 @@ How can we solve these problems?
 * And also "*isolation*"
     * This provides the illusion that each transaction runs sequentially without concurrency
     * Essentially, transactions run in a vacuum: they are unaware and unaffected by other concurrently running transactions
-    * Why do we need concurrency? Serial schedules may preserve correctness and ACID guarantees, but it's slow. We need to be able to update our database quickly as well as correctly. We thus must serve transactions concurrently.
+
+Why do we need concurrency? Serial schedules may preserve correctness and ACID guarantees, but it's slow. We need to be able to update our database quickly as well as correctly. We thus must serve transactions concurrently.
 
 # III. Translating Application Semantics to Transaction Semantics
 * A transaction is just a sequence of actions, where an action is one of the following:
@@ -56,24 +57,23 @@ How can we solve these problems?
     * INSERT: Write
     * UPDATE: Read then Write
     * DELETE: Write an empty value
-* Example: UPDATE accounts
-           SET bal=bal+1000
-           WHERE bal > 1M
-* We read the balances for every tuple, update those with balances > 1M.
-* Does the access method matter? Yes, because if we scan, we have to read every tuple, but if we index, we only have to read the tuples with balance > 1M
 * Example:
     * User's (Application) View:
         * Transaction 1: `A = A + 100` `B = B - 100`
         * Transaction 2: `A = A - 50` `B = B + 50`
     * DBMS's Logical View:
-        * Transaction 1: `r(A) w(A)` `r(B) w(B)` `commit`
-        * Transaction 2: `r(A) w(A)` `r(B) w(B)` `commit`
+        * Transaction 1: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+        * Transaction 2: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+    * Consider the following logical exacts: 
+        * T1: `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A + 100; B = B - 100)
+        * T2: `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A * 1.5; B = B * 1.5)
+* Example: `UPDATE accounts SET bal = bal + 1000 WHERE bal > 1M`
+    * Read the balances for every tuple and update those with balances > 1M.
+    * Does the access method matter? Yes!
+        * If we scan, we have to read every tuple
+        * If we index, we only have to read the tuples with balance > 1M
 
 # IV. Serial Schedules
-* Consider the following logical exacts: 
-    * T1: `r(A) w(A) r(B) w(B) (e.g. A=A+100; B=B-100)`
-    * T2: `r(A) w(A) r(B) w(B) (e.g. A=A*1.5; B=B*1.5)`
-
 * Example 1: T1 first, T2 second, no concurrency (serial 1)
     * T1: `r(A) w(A)` `r(B) w(B)`
     * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
