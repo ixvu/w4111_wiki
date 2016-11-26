@@ -65,8 +65,8 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
         * Transaction 1: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
         * Transaction 2: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
     * Consider the following logical exacts: 
-        * T1: `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A + 100; B = B - 100)
-        * T2: `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A * 1.5; B = B * 1.5)
+        * `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A + 100; B = B - 100)
+        * `begin` `r(A) w(A) r(B) w(B)` `commit` (e.g. A = A * 1.5; B = B * 1.5)
 * Example: `UPDATE accounts SET bal = bal + 1000 WHERE bal > 1M`
     * Read the balances for every tuple and update those with balances > 1M.
     * Does the access method matter? Yes!
@@ -75,11 +75,11 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 
 # IV. Serial Schedules
 * Example 1: T1 first, T2 second, no concurrency (serial 1)
-    * T1: `r(A) w(A)` `r(B) w(B)`
-    * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
+    * T1: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+    * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
 * Example 2: T2 first, T1 second, no concurrency (serial 2)
-    * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `r(B) w(B)`
-    * T2: `r(A) w(A)` `r(B) w(B)`
+    * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+    * T2: `begin` `r(A) w(A)` `r(B) w(B)` `commit`
 * Are these two examples the same?
     * No!  Different serial schedules can have different effects! Transaction order matters!
 
@@ -91,16 +91,16 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
     * What are "correct" results when running transactions concurrently?
     * On crash or abort, how do we ensure that we can recover to a "correct" state?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
-* More example schedules:
-* Consider the following logical exacts: 
-    * T1: `r(A) w(A) **r(A)** w(B) (e.g. A=A+1; B=A+1)`
-    * T2: `r(A) w(A) r(B) w(B) (e.g. A=A+10; B=B+1)`
-* Concurrency (bad, this doesn't work)
-    * T1: `r(A) w(A)`&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(B)`
-    * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`r(A) w(A)`&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`r(B) w(B)`
-* Concurrency (same as serial (T1, T2)!)
-    * T1: `r(A) w(A)`&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`r(A) w(B)`
-    * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`r(A)`&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`w(A) r(B) w(B)`
+* Example:
+    * Consider the following logical exacts: 
+        * T1 (eg. A = A + 1; B = A + 1): `begin` `r(A) w(A)` `r(A) w(B)` `commit`
+        * T2 (eg. A = A + 10; B = B + 1): &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+    * This concurrent schedule is **NOT** correct (ie. bad, doesn't work)
+        * T1: `begin` `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(B)` `commit`
+        * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `r(B) w(B)` `commit`
+    * This concurrent schedule is correct (because it is equivalent to the serial schedule of T1 & T2)
+        * T1: `begin` `r(A) w(A)` &emsp;&emsp;&ensp; `r(A) w(B)` `commit`
+        * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(A) r(B) w(B)` `commit`
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
