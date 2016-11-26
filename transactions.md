@@ -83,7 +83,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 * Are these two examples the same?
     * No!  Different serial schedules can have different effects! Transaction order matters!
 
-* **NOTE:** A serial schedule does not necessarily guarantee an error free application; it only ensures that there are no anomalies due to ACID violations
+* **NOTE:** A serial schedule does not necessarily guarantee an error free (ie. all constraints satisfied) application; it only ensures that there are no anomalies due to ACID violations
 * This ties into the ideas of concurrency control (techniques to ensure correct results when running transactions concurrently) and recovery (on a crash or abort, how do we get back to the correct state?), which are intertwined.  
 
 # V. Correctness 
@@ -92,22 +92,26 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
     * On crash or abort, how do we ensure that we can recover to a "correct" state?
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
 * Example:
-    * Consider the following logical exacts: 
+    * Consider the following logical exacts (where initially A = B = 0): 
         * T1 (eg. A = A + 1; B = A + 1): `begin` `r(A) w(A)` `r(A) w(B)` `commit`
         * T2 (eg. A = A + 10; B = B + 1): &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
-    * This concurrent schedule is **NOT** correct (ie. bad, doesn't work)
+        * After this schedule: A = 11, B = 3
+    * This concurrent schedule is **NOT** correct (ie. doesn't work, not equivalent to serial schedule)
         * T1: `begin` `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(B)` `commit`
         * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `r(B) w(B)` `commit`
-    * This concurrent schedule is correct (because it is equivalent to the serial schedule of T1 & T2)
+        * After this schedule: A = 11, B = 13 &emsp;**&#10007;**
+    * This concurrent schedule is correct
         * T1: `begin` `r(A) w(A)` &emsp;&emsp;&ensp; `r(A) w(B)` `commit`
         * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(A) r(B) w(B)` `commit`
+        * After this schedule: A = 11, B = 3 &emsp;**&#10003;**
+        * We call this a *serializable* schedule because it is equivalent to the serial schedule of T1 & T2
 
 # VI. Serializable Schedules: the "gold standard" for correctness
 * Why?  Because they prevent concurrency anomalies.  For example:
     * **Write/Read Conflicts - reading in between uncommitted data (Dirty Reads):**
         * Consider the following schedule S:
-            * T1: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(B) w(B) abort`
-            * T2: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit`
+            * T1: `begin` `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `r(B) w(B) abort`
+            * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A) w(A)` `commit`
         * In this schedule, transaction 2 reads and commits data - it's write was based on an uncommitted read, and may lead to an inconsistent database state
             * The data written by T1 should not have been read/used by T2, as it was not committed
         * Schedule S is *NOT* serializable because it is not equivalent to any serial schedule
@@ -115,16 +119,16 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 
     * **Read/Write Conflicts (Unrepeatable Reads):**
         * Consider the following schedule S:
-            * T1: `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit` 
-            * T2: &emsp;&emsp;&ensp; `r(A) w(A)` `commit`
+            * T1: `begin` `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)` `commit` 
+            * T2: `begin` &emsp;&emsp;&ensp; `r(A) w(A)` `commit`
         * Here, transaction 1 reads from A twice and gets different results from each read
         * This schedule is also *NOT* serializable because there does not exist an equivalent serial schedule
             * Similar reasoning to previous example
 
     * **Write/Write Conflicts (Lost Writes):**
         * Consider the following schedule S: 
-            * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)` `commit`
-            * T2: &emsp;&emsp;&ensp; `w(A) w(B)` `commit`
+            * T1: `begin` `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `w(B)` `commit`
+            * T2: `begin` &emsp;&emsp;&ensp; `w(A) w(B)` `commit`
         * In this case, T1's write to A is overwritten by T2
         * Again, this schedule is *NOT* serializable (ie. there is no serializable schedule that exists that would yield the same result as this)
         * NOTE: there is no W/W conflict between T2's and T1's write to B because T2 committed before T1 wrote to B
@@ -132,34 +136,3 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 * Notice that all anomalies occur when one transaction writes and another is reading/writing
     * That is to say: if transactions are just reading, then there are no anomalies
     * This also suggests that tracking writes may help us prevent anomalies
-
-# VII. Conflict Serializability
-* A schedule is conflict serializable if it is conflict equivalent to a serial schedule
-    * A schedule S1 is conflict equivalent to another schedule S2 if:
-        1. S1 and S2 have the same set of actions
-        2. Each pair of actions in S1 and S2 have the same order
-    * To put it another way, if you can obtain a serial schedule by swapping non-conflicting operations, then that schedule is conflict serializable 
-* Some serializable schedules are not conflict serializable, but all conflict serializable schedules are serializable
-* **Example of a Conflict Serializable Schedule:**
-    * Consider the following schedule S: 
-        * T1: &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
-        * T2: `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(B) w(B)`
-    * We can swap `r(A) w(A)` in T1 and `r(B) w(B)` in T2 to obtain the serial schedule:
-        * T1: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(A)`
-        * T2: `r(A) w(A)` `r(B) w(B)`
-    * So S is conflict serializable
-* **Example of a Non-Conflict-Serializable (Regularly) Serializable Schedule:** 
-    * Consider the schedule S:
-        * T1: `w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `w(B)`
-        * T2: &emsp;&emsp;&nbsp; `w(A) w(B)`
-        * T3: &emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
-    * This schedule is basically one big write/write conflict and you can't do any swapping because every operation is a conflict
-        * So because this schedule isn't already serial, then it is also not conflict serializable by default
-    * S *IS* serializable because it is equivalent to the following schedule:
-        * T1: `w(A) w(B)`
-        * T2: &emsp;&emsp;&emsp;&emsp;&ensp; `w(A) w(B)`
-        * T3: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(B)`
-        * We can do this because T1's and T2's write to B is overwritten to T3, and because T1's write to A is lost to T2, so logically this serial schedule is equivalent to S
-
-
-
