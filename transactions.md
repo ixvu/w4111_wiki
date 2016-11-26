@@ -93,8 +93,11 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
     * **Definition:** An interleaving is "correct" if its results are the same as a serial ordering (so basically a serializable schedule)
 * Example:
     * Consider the following logical exacts (where initially A = B = 0): 
-        * T1 (eg. A = A + 1; B = A + 1): `begin` `r(A) w(A)` `r(A) w(B)` `commit`
-        * T2 (eg. A = A + 10; B = B + 1): &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
+        * A = A + 1; B = A + 1
+        * A = A + 10; B = B + 1
+    * A corresponding serial schedule would be:
+        * T1: `begin` `r(A) w(A)` `r(A) w(B)` `commit`
+        * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
         * After this schedule: A = 11, B = 3
     * This concurrent schedule is **NOT** correct (ie. doesn't work, not equivalent to serial schedule)
         * T1: `begin` `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp; `r(A) w(B)` `commit`
