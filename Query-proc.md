@@ -91,10 +91,12 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ## Primary Index and Secondary Index Example
 <img src="https://github.com/xz2581/project1/blob/master/1.png" width="450">
 ###Preliminaries
-+ Underlying data has the schema R(a int, b int, c int, d int)
++ IF we thought of the data being stored in the pages as tuples, THEN Underlying data has the schema R(a int, b int, c int, d int)
 + We built primary and secondary B+ trees with key = a.
-+ Page 1 is an example leaf page for primary index. It stores the actual tuples.
-+ Page 2 is an example leaf page for secondary index. It stores a values with corresponding pointers to the actual tuples.
++ Page 1 (data page) is an example leaf page for primary index. It stores the actual tuples.
++ Page 2 (directory page) is an example leaf page for secondary index. It stores a values with corresponding pointers to the actual tuples.
++ this is simply a way to think about what is stored in data page and directory pages
+
 
 ###Assumptions
 + Each page can fit in 8000 bytes of data.
@@ -375,7 +377,6 @@ Note: The following two joins are not the same!
 
 ### The full process for determining the join orders is shown below
 <img src = "https://github.com/xz2581/project1/blob/master/7.png">
-
 
 
 
