@@ -166,6 +166,7 @@ for irow in inner:
 - Incremental algorithm
   - The join will generate record as you execute it, while some other join executors need to wait until you create the hash table or sort the data before it can start outputting results
 - Cost: M + MN, pretty expensive
+  - outer M pages; Inner N pages
   - For each row of outer, go through each row in the inner and check. If it is matched, then yield that.						
 - Is this the same as a cross product? 
   - No, for cross product, just remove the predicate check.
