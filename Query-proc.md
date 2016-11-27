@@ -93,9 +93,10 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ###Preliminaries
 + IF we thought of the data being stored in the pages as tuples, THEN Underlying data has the schema R(a int, b int, c int, d int)
 + We built primary and secondary B+ trees with key = a.
-+ Page 1 (data page) is an example leaf page for primary index. It stores the actual tuples.
-+ Page 2 (directory page) is an example leaf page for secondary index. It stores a values with corresponding pointers to the actual tuples.
++ Leaf page for primary index is data page. It stores the actual tuples.
++ Leaf page for secondary index is directory page. It stores a values with corresponding pointers to the actual tuples.
 + this is simply a way to think about what is stored in data page and directory pages
+
 
 
 ###Assumptions
@@ -108,9 +109,10 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 <img src = "https://github.com/xz2581/project1/blob/master/2.png">
 
 ### Additional Notes
-+ leaves of the primary index are data page, and leaves for the secondary index are directory page.
++ Leaves of the primary index are data page, and leaves for the secondary index are directory page.
++ Leaf pages in both trees ARE sorted on the search key.
 + For primary index, the leaf pages is sorted while this is not necessarily the case for secondary index.
-+ Typically, the secondary tree is smaller than the primary tree. For example, in this case, there are 40 pages at the bottom for primary and only 20 pages at the bottom for secondary.
++ Typically, the secondary tree is smaller than the primary tree. For example, in this case, there are 40 leaf pagesfor primary and only 20 leaf pages for secondary.
 + When would we want to use secondary index (or when would using secondary index probably faster)?
   + When you only want equality predicates.
   + When you don't want to access the actual tuples associated with this "a" value
@@ -378,6 +380,5 @@ Note: The following two joins are not the same!
 
 ### The full process for determining the join orders is shown below
 <img src = "https://github.com/xz2581/project1/blob/master/7.png">
-
 
 
