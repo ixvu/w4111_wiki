@@ -123,8 +123,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ##Predicate Push down: 
 <img src = "https://github.com/xz2581/project1/blob/master/8.png">
 
-+ if I see (b), (b) can be pushed down to (a), then do so.
-+ In general, predicate push downs depend on the actual operator implementations. 
++ if I see (b), (b) can be transformed into (a) by pushing the selection operator down.
 
 Which option is faster if we have a B+ tree index on a?
 + a)Log F(B) + M pages: using Btree, go down the tree and find the starting value for a and scan to the right
@@ -375,7 +374,6 @@ Note: The following two joins are not the same!
 
 ### The full process for determining the join orders is shown below
 <img src = "https://github.com/xz2581/project1/blob/master/7.png">
-
 
 
 
