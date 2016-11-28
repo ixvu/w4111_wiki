@@ -91,7 +91,8 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ##lec 21
 
 ## Primary Index and Secondary Index Example
-<img src="https://github.com/xz2581/project1/blob/master/14.png" width="450">
++ An way to think about what is stored in data pages and directory pages
+<img src="https://github.com/xz2581/project1/blob/master/15.png" width="450">
 ###Preliminaries
 + IF we thought of the data being stored in the pages as tuples, THEN Underlying data has the schema R(a int, b int, c int, d int)
 + We built primary and secondary B+ trees with key = a.
