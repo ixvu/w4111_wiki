@@ -139,3 +139,57 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 * Notice that all anomalies occur when one transaction writes and another is reading/writing
     * That is to say: if transactions are just reading, then there are no anomalies
     * This also suggests that tracking writes may help us prevent anomalies
+
+#VII. Conflict Serializability
+* Definition: For any conflicting operations O1 of T1, O2 of T2, O1 always before O2 in the schedule or O2 always before O1 in the schedule. For example:
+    * **There are two Ts**
+         * T1: `R(A)W(A)` `R(B)W(B)`
+         * T2: `R(A)W(A)` `R(B)W(B)`
+    * **We find the conflicts as the following:**
+         * T1.R(A) with T2.W(A)
+         * T1.W(A) with T2.R(A)
+         * T1.W(A) with T2.W(A)
+         * T1.R(B) with T2.W(B)
+         * T1.W(B) with T2.R(B)
+         * T1.W(B) with T2.W(B)
+    * **One possible serializable:**
+         * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)` 
+         * T2: &emsp;&emsp;&emsp;&emsp;`R(A)W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)`
+         * In this case, all T1's operations are before the conflicted T2's operation, therefore it is the right serializable.
+   * **One Not Serializable**
+         * T1: `R(A)`&emsp;&emsp;`W(A)`&emsp;&emsp;`R(B) W(B)`
+         * T2: &emsp;&emsp;`R(A)`&emsp;&emsp;`W(A)`&emsp;&emsp;&emsp;&emsp;`R(B) W(B)`
+         * In this case, T1.R(A) is conflicted with T2.W(A) and T1.R(A) is executed first; however, T2.R(A) is conflicted with T1.W(A), but T2.R(A) is executed first. Therefore, it is not serializable.
+   * **Look is from a big picture:**
+         If we suppose there is one edge from T1.operator -> T2.operator if the two operators confict AND there is edge between both conatenate operation in `T1` or `T2` => If the graph does not contain cycles, then it means conflict is serializable.
+
+#VIII.  Conflict Serializabilizable issues
+* Why it is a question? Because there are the following problems:
+   * **Not recoverable** 
+          * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)ABORT`
+          * T2:&emsp;&emsp;&emsp;&emsp;`R(A)COMMIT`
+          * In this case, T1 first do some modification for A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsucessful.
+   * **Cascading Rollback**    
+          * T1:`R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
+          * T2:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)`
+          * In this case, T2 read the uncommitted data updated by T1, but T1 abort is shortly. Although T1 only want to abort itsefl modification for A, the T2's modification is aborted as well because A has not been committed. 
+
+* What should we do?
+   * **Lock-based concurrency control**
+       * The idea is to have a shared(read) and exclusive(write) lock before op.
+               * The original idea is not so useful in the following case:
+               * T1  `R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B) ABORT`
+               * T2 &emsp;&emsp;&emsp;&emsp;`R(A) COMMIT`
+               * The case will cause some problems, but it is allowed for this lock mechanism.
+       * Two-phase locking(2PL) Growing phase: acquire locks   Shrinking phase: release locks
+               * The idea is not so useful in the following case:
+               * T1  `R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
+               * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
+               * The case will cause some problems(it is unrecoverable), but it is allowed for this lock mechanism.
+       * Strict two-phase locking (Strict 2PL): Growing phase: acquire locks   Shrinking phase: release locks. But HOLD ON locks until commit/abort.
+               * This idea is useful and can avoid cascading rollbacks and gurantees serializable schedules.
+               * To be specific the following case is forbidden since T1 will hold the lock for W(A) before ABORT op
+               * T1  `R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
+               * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
+
+       
