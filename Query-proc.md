@@ -91,7 +91,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 ##lec 21
 
 ## Primary Index and Secondary Index Example
-+ An way to think about what is stored in data pages and directory pages
++ Example of a way to think about what is stored in data pages and directory pages
 <img src="https://github.com/xz2581/project1/blob/master/15.png" width="450">
 
 ###Preliminaries
@@ -99,7 +99,6 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + We built primary and secondary B+ trees with key = a.
 + Leaf page for primary index is data page. It stores the actual tuples.
 + Leaf page for secondary index is directory page. It stores a values with corresponding pointers to the actual tuples.
-+ this is simply a way to think about what is stored in data page and directory pages
 
 
 
