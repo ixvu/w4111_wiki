@@ -207,3 +207,28 @@ Let's start with an example:
 If we know that Name->BDay, and BDay->Age, then we know that Name->Age
 A functional dependency f' is implied by a set F if f' is true when F is true. 
 All the functional dependencies that can be implied from F is called the closure (F<sup>+</sup>)
+
+We can construct a closure of a set F using Armstrong's axioms
+
+## Armstrong's Axioms:
+* Reflexivity: if attribute Y is a subset of key X, then X->Y
+    The "trivial" rule-a column always determines itself, and a set of column always determines a subset of that set
+    A->A
+    (X, Y)->Y
+* Augmentation: if X->Y, then XZ->YZ for any Z
+    Example: A->B, C->C by reflexivity. So, (A,C)->(B,C)
+* Transitivity: if X->Y and Y->Z, then X->Z
+    Apply them in sequence. If we know (x, y), we know that from X=x we can get Y=y. Similarly, if we know (y, z), we know that from Y=y we can get Z=z. Therefore, from X=x we can get Y=y, and since we know y, we can get Z=z. 
+
+Example: 
+Consider the functional dependency F=(A->B, B->C, CB->E)
+Is A->E in the closure?
+Solution: 
+A->B (given) 
+A->AB (augmenting A on both sides, AA can be reduced to A-remember that a functional dependency is a constraint between two sets of attributes in a relation, and a set requires distinct elements)
+A->BB (apply A->B)
+A->BC (apply B->C)
+BC->E (given)
+A->E (transitivity)
+
+# Minimum Cover of Functional Dependencies
