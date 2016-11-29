@@ -162,8 +162,9 @@ basic approaches
 ###1.Nested Loops Join
 ```		 	 	 		
 # outer ⨝1 inner
-# outer JOIN inner ON outer.1 = inner.1 for row in outer:				
-for irow in inner:
+# outer JOIN inner ON outer.1 = inner.1 
+for row in outer:				
+    for irow in inner:
        if row.attr == irow.attr:      # could be any check
                 yield (row, irow)
 ```
