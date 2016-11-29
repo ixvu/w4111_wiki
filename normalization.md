@@ -233,3 +233,7 @@ Solution:
 * A->E (transitivity)
 
 ### Minimum Cover of Functional Dependencies
+
+Closures can allow us to compare sets of FD's meaningfully. 
+
+For example
