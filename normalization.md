@@ -206,4 +206,4 @@ Yes, but we can improve our data design abilities by understanding redundancy
 Let's start with an example: 
 If we know that Name->BDay, and BDay->Age, then we know that Name->Age
 A functional dependency f' is implied by a set F if f' is true when F is true. 
-All the functional dependencies that can be implied from F is called the closure (F^+)
+All the functional dependencies that can be implied from F is called the closure (F<sup>+</sup>)
