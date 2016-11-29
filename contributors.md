@@ -51,6 +51,8 @@ List of contributors and contributions
 * Zhan Zhao (zz2247)
   1. Scribed Lecture 11 SQL (10/12/2016)
   1. Sections include: ORDER BY, LIMIT, NULL, JOIN, Table Constraints, UDFs
+* Lina Huang (lh2728)
+  1. Added SQL LIMIT example on Lecture 11
 * Chang Pan (cp 2923)
   1. add image of Conceptual Query Evaluation and a link in SQL part
 * Gregory Chen (glc2121)
@@ -88,4 +90,3 @@ List of contributors and contributions
   1. Scribed lecture 21: Query Processing
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
      1. Added examples for primary and secondary Btree index, Selinger optimizer (A join B join C join D)
-
