@@ -236,4 +236,17 @@ Solution:
 
 Closures can allow us to compare sets of FD's meaningfully. 
 
-For example
+For example, if F1={A->B, A->C, A->BC}, and F2={A->B, A->C) are the equivalent? Yes! We can get from F2 to F1 using Armstrong's axioms, so F1 is not minimal.
+
+If there's a closure (a maximally expanded set of functional dependencies), then there must be a minimal set as well. 
+
+### Steps:
+* Turn the FD's into _standard form_
+    * Split the FD's so there is only one attribute on the right side
+* Minimize left side of each FD
+    * For each FD, check if we can delete a left attribute using another FD. 
+        * Given (A, B, C)->D, and B->C, we can reduce this to (A, B)->D, and B->C
+* Delete redundant functional dependencies
+    * Check each remaining functional dependency and check to see if it can be deleted (if it's in the closure of the other FD's)
+
+**Step 2 MUST happen before step 3!!**
