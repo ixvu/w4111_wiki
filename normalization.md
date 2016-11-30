@@ -1,6 +1,4 @@
-# Lecture 16: Normalization
-
-## General Idea: What and Why
+# I. General Idea: What and Why
 Quick review on steps for a new application
 
 * Requirements Analysis: What are you going to build? 
@@ -10,7 +8,7 @@ Quick review on steps for a new application
 * Physical Database Design: Optimize for speed/storage
 
 
-## Redundancy and Anomalies
+# II. Redundancy and Anomalies
 #### Example 1: 
 * people have names and addresses 
 * hobbies have costs
@@ -31,7 +29,7 @@ These redundancies lead to anomalies:
   * In Example: If we delete a hobby e.g. swimming, Shaq's record will be deleted unless it's allowed to update all 'swimming' to 'NULL'.
   * Definition: It may not be possible to delete certain information without losing some other information.
 
-## Decomposition
+# III. Decomposition
 1. What is decomposition?
 2. What criteria of decomposition do we care?
 
@@ -76,7 +74,7 @@ Explanation: In ER model, attributes only describe the entity they belongs to, a
 See below: functional dependencies and normal forms
 
 
-## Functional Dependency
+# IV. Functional Dependency
 1. What is FD?
 2. How do we use FD?
 3. Where to find FD?
@@ -114,7 +112,7 @@ In other words, if 2 records have the same sid, their name and address are the s
 We can never deduce that an FD does hold by looking at one or more instances of the relation, because an FD, like other ICs, is a statement about all possible legal instances of the relation.
 
 
-# Normal Forms
+# V. Normal Forms
 We will focus on two normal forms: BCNF and 3NF
 * BCNF has no redundancy, but may lose some dependencies
 * 3NF preserves all dependencies but has some redundancy
@@ -198,7 +196,7 @@ while BCNF is violated:
 ```
 Intuitively, we can understand this as, "while BCNF is violated, find a relation that is violating a FD and decompose it further by splitting it into two tables: one with all the attributes defined in the FD and another with everything else and the key of the FD (ie. left side of FD = `X`).
 
-### Step by step example
+### Step By Step Example
 **Given the relation `BCNO` and the FDs `BC -> N` and `N -> BO`, decompose R using the following steps:**
  1. `BCNO` violates BCNF
  2. Break `BCNO` (in this example we use `N -> BO` as the "base" FD)
@@ -208,7 +206,7 @@ Intuitively, we can understand this as, "while BCNF is violated, find a relation
 
 **NOTE:** that we have "lost" `BC -> N` since there is no longer a relation that contains all three attributes, but this is ok because we are in BCNF and apparently no one cares :/
 
-## 3rd Normal Form (3NF)
+# VI. 3rd Normal Form (3NF)
 We relax BCNF (BCNF is a stricter version of 3NF):
     * F: a set of functional dependencies over relation R
         * for (X->Y) in R:
@@ -226,8 +224,8 @@ I thought we were trying to get rid of redundancies?
 
 Yes, but we can improve our data design abilities by understanding redundancy 
 
-### Closure of FD's
-
+# VII. Formalization of Normal Forms
+## Closure of FDs
 Let's start with an example: 
 If we know that Name->BDay, and BDay->Age, then we know that Name->Age
 
@@ -237,7 +235,7 @@ All the functional dependencies that can be implied from F is called the closure
 
 We can construct a closure of a set F using Armstrong's axioms
 
-### Armstrong's Axioms:
+## Armstrong's Axioms:
 * Reflexivity: if attribute Y is a subset of key X, then X->Y
     The "trivial" rule-a column always determines itself, and a set of column always determines a subset of that set
     * A->A
@@ -257,7 +255,7 @@ Solution:
 * BC->E (given)
 * A->E (transitivity)
 
-### Minimum Cover of Functional Dependencies
+## Minimum Cover of Functional Dependencies
 
 Closures can allow us to compare sets of FD's meaningfully. 
 
