@@ -22,7 +22,7 @@
 ### Condition 1: Data is not indexed.
 B: number of pages; M: number of pages matched in WHERE clause.
 +    Execution Types:
-     +    Naive execution: Following query steps and only pass data to next level if it is completely processed in one level. Cost can be up to B+M+M given a where clause.
+     +    Naive execution: Following query steps and only pass data to next level if it is completely processed in one level. Cost can be up to B+B+M given a where clause.
      +    Pipelining. evaluate several operations simultaneously, and pass the result on to the next operation. Cost: B.
 +    Comparison:
      +    Pipelining is usually cheaper than naive execution, because temporary relations are not generated and stored on disk.
