@@ -152,7 +152,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
          * T1.R(B) with T2.W(B)
          * T1.W(B) with T2.R(B)
          * T1.W(B) with T2.W(B)
-    * **An easy way to think about it is that you will have conflicting operations whenever one transaction has a "write" operation and the other transaction attempts to operate on the same object.
+    * **An easy way to think about it is that you will have conflicting operations whenever one transaction has a "write" operation and the other transaction attempts to operate on the same object.**
     * **One possible serializable:**
          * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)` 
          * T2: &emsp;&emsp;&emsp;&emsp;`R(A)W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)`
