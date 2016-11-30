@@ -157,7 +157,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
          * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)` 
          * T2: &emsp;&emsp;&emsp;&emsp;`R(A)W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)`
          * In this case, all T1's operations on a given object are before the conflicted T2's operation and vice versa, therefore it is the right serializable.
-         * Another algorithm we can use to determine conflict serializability is the following: try to a set of adjacent operations from each transaction in time and if we do not have conflicts we are okay. Continue this process until we find a swap that would include a conflict or until all of one transaction happens exclusively before the other. We see this below.
+         * Another algorithm we can use to determine conflict serializability is the following: try to swap a set of adjacent operations from each transaction in time and if we do not have conflicts we are okay. Continue this process until we find a swap that would feature a conflict or until all of one transaction happens exclusively before the other. We see this below.
          * Swapped transaction statements:
          * T1:`R(A) W(A)``R(B)W(B)`&emsp;&emsp;&emsp;&emsp; 
          * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)``R(B)W(B)`
