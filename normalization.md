@@ -114,76 +114,101 @@ In other words, if 2 records have the same sid, their name and address are the s
 We can never deduce that an FD does hold by looking at one or more instances of the relation, because an FD, like other ICs, is a statement about all possible legal instances of the relation.
 
 
-## Normal forms
-Normalization functions to reduce data redundancy and improve data integrity.
-Decomposition is a good way of normalization.
-Normal forms can help us determine if/how we want to decompose a relation.
+# Normal Forms
+We will focus on two normal forms: BCNF and 3NF
+* BCNF has no redundancy, but may lose some dependencies
+* 3NF preserves all dependencies but has some redundancy
 
-The point of these normal forms is that we will show algorithms to achieve them. 
-In order to make these algorithms, we need good definitions of what they are.
-We have two options of normal forms: 
+## BCNF: Boyce-Codd Normal Form
+* BCNF ensures that no redundancy occurs from Functional Dependencies (other forms redundancy can occur)
+* In ensuring no redundancy, BCNF may not preserve all dependencies (ie. constraints may need to be enforced with joins)
 
-* BCNF is no redundancy, but loses dependencies. 
-* 3NF preserves dependencies but has some redundancy.
+### Definition:
+Given a relation *R* and a set of functional dependencies *F* of the form (*X* -> *A*), we say that *R* is in BCNF if:
 
-### Boyce Codd Normal Form (BCNF)
-BCNF ensures that no redundancy can be detected using FD information alone.
-BCNF has no redundancy, but the decomposition into it may lose dependencies (that R constraints must be enforced with joins).
-
-#### Definition:
-* R: relation
-* F: set of FDs given to hold over R
-* X: subset of the attributes of R
-* A: one attribute of R
-* R is in BCNF if:
 ```
-for every FD(X -> A) in F:
-  A is in X 
-  OR
-  X is a superkey of R
+for every X -> A in F:
+  if (A is in X OR 
+      X is a superkey of R)
 ```
-Note that we assume here all FDs are of the form (set of attributes X -> single attribute A).
-Here if we say X is a superkey, it is greater or equal to the size of a candidate key.
 
-For example, 'hobby' relation in example2_2 is in BCNF, because (i) for ({name}->name), name is in {name} and (ii) for ({name}->cost), name is a key of R.
+In words:
+* If **every** functional dependency is either trivially satisfied (ie. A in X, right-side of arrow is also part of the left-side) or a superkey of all corresponding relations, then the decomposition is in BCNF
+ * That is, loop through FDs and if any do not satisfy the "OR" condition above, then decomposition is not in BCNF
+  * This is how we "check" if a relation is in BCNF
+* Conversely, if **any** functional dependency is neither trivially satisfied nor a superkey, then the entire decomposition is **NOT** in BCNF
+* **NOTE:** Superkey: a combination of attributes that can uniquely identify an entity (row) in a relation (table).
+ * So a trivial superkey would just be a tuple of every attribute and candidate keys are a subset of superkeys, since they are *minimal* superkeys
+ * More importantly, we say an attribute is a superkey of a relation w.r.t. FDs iff every attribute in the relation is defined in the functional dependency (eg. given `ABC` and `A -> BC`, `A` is a superkey of `ABC` because `A` uniquely identifies `B` and `C` as stated in the FD `A -> BC`)
 
-If any FDs in R does not satisfy the 'OR' condition above, R is not in BCNF.
-This 'for loop' can be used to **check** if a relation is in BCNF.
+### A Few Examples:
+**Given the relation `ABCD` and the FDs `A -> B`, `A -> C`**
 
-#### More Examples:
-Given S->NA, H->C, and BOLD primary key attributes, we have
+| Relations | BCNF? | Reason |
+| ------ | ------ | ------ |
+| ABCD | NO | `A -> B` is not trivially satisfied (ie. `B` in not in `A`) and `A` is not a superkey of `ABCD` |
+| ABC, D | NO | `B` not in `A` and `A` is not a superkey of `ABC` (ignore `D` because `A` and `B` aren't in `D`) |
+| AB, AC, AD | YES | `A` is superkey of `AB` and `AC` (again don't really care about `AD`) |
+| AB, AC, D | YES* | **BUT** this is **NOT** desirable because we've lost data about how `D` relates to the rest `A`, `B`, and `C` |
 
-| Relations | BCNF? | Reason
-| ------|------| ------|
-|**SH**NAC | NO | for H->C, C does not belong to SH, and H is not a superkey
-|**S**NA, **SH**C | NO | for H->C, C does not belong to SH, and H is not a superkey
-|**S**NA, **H**C, **S**H | YES | Fits the definition
+So why is `AB, AC, AD` considered a "good" decomposition while `AB, AC, D` is "bad"?
+* Because we know `A` is a key of `AB` and `AC`, we can accurately recover the original schema `ABCD` by performing a join on `A`
+* Conversely, we cannot do this on `AB, AC, D` because after joining `AB` and `AC` on `A` we have no lossless way of combining `ABC` and `D` (ie. we can only perform a cross-product, which will most likely produce too many tuples)
 
-## Decompose table to BCNF by FDs
+
+**Given the relation `SHNAC` and the function dependencies `S -> NA` and `H -> C`**
+
+| Relations | BCNF? | Reason |
+| ------ | ------ | ------ |
+| SHNAC | NO | for `S -> NA`, `NA` is not in `S` and `S` is not a superkey of `SHNAC` => NOT BCNF |
+| SNA, SHC | NO | for `S -> NA`, `S` is a superkey of `SNA`... ignore `SHC` because does not contain `NA`... for `H -> C`, ignore `SNA`... `H` not superkey of `SHC` => NOT BCNF (ie. `H -> C` FD is not satisfied) |
+| SNA, HC, SH | YES | for `S -> NA`, `S` is a superkey of `SNA`... ignore `HC` and `SH`... for `H -> C`, ignore `SNA`... `H` is a superkey of `HC`... ignore `SH` => YES BCNF (ie. all FDs satisfied!) |
+
+
+**Given the relation `IJKLM` and the functional dependency `IJ -> K`**
+
+| Relations | BCNF? | Reason |
+| ------ | ------ | ------ |
+| IJKLM | NO | Should be pretty obvious by now: `IJ` is not a superkey of `IJKLM` (and `K` is not in `IJ`) |
+| IJK, KLM | YES* | `IJ` is a superkey of `IJK`, but this is **NOT** desirable because we cannot recover the original table |
+| IJK, IJLM | YES | `IJ` is a superkey of `IJK` and we can perform a lossless join on `IJ` |
+
+**Ok what if we add the functional dependency `L -> M`?**
+
+| Relations | BCNF? | Reason |
+| ------ | ------ | ------ |
+| IJK, IJLM | NO | Now, because of our new FD `L` must also be a superkey which isn't true for `IJLM` |
+| IJK, LM | YES* | Again, technically this is in BCNF, but it is **NOT** desirable because we lose data about how `IJK` relates to `LM` and therefore can't accurately recover the original table |
+| IJK, LM, IJL | YES | `IJ` is superkey of `IJK`, `L` is superkey of `LM`, and we can perform a lossless join using `IJL` |
+
+Things to note about this last example:
+* We can kind of see a pattern begin to emerge for BCNF:
+ * A simple decomposition could just be a relation for each FD and then an additional relation of all the keys if there is no common key between the two tables
+ * So for this last example: `IJK` and `LM` are relations for each FD and `IJL` is just a table of the keys
+* We can also begin to see a rough outline of the algorithm for decomposing a relation to BCNF
+ * Basically, if the relation isn't in BCNF, just keep breaking the relation up along the lines mentioned above until the relation is in BCNF
+
+## A ~More~ Formal Algorithm for BCNF Decomposition
 ### Algorithm
-```java
+```
 while BCNF is violated: 
    R with FDs FR
    if X->Y violates BCNF
       turn R into R-Y & XY
 ```
+Intuitively, we can understand this as, "while BCNF is violated, find a relation that is violating a FD and decompose it further by splitting it into two tables: one with all the attributes defined in the FD and another with everything else and the key of the FD (ie. left side of FD = `X`).
+
 ### Step by step example
-Table: Branch,Customer,banker Name,Office  BCNO
+**Given the relation `BCNO` and the FDs `BC -> N` and `N -> BO`, decompose R using the following steps:**
+ 1. `BCNO` violates BCNF
+ 2. Break `BCNO` (in this example we use `N -> BO` as the "base" FD)
+  * `NBO` is one relation (obtained by just combining attributes of "base" FD)
+  * The other relation is simply `R - Y` = `BCNO` - `BO` = `CN`
+ 3. Now we have `NBO`, `CN` which is in BCNF
 
-FDs:
-   1. Name -> Branch, Office  N -> BO 
-   2. Customer,Branch->Name  CB->N
+**NOTE:** that we have "lost" `BC -> N` since there is no longer a relation that contains all three attributes, but this is ok because we are in BCNF and apparently no one cares :/
 
-Steps:
-   1. R: BCNO, violates BCNF
-   2. X->Y = N -> BO
-      1. R-Y = BCNO - BO = CN
-      2. XY = NBO
-      3. R = (NBO,CN)
-   3. R: (NBO,CN) is a BCNF, end while
-   4. miss CB->N
-
-#3rd Normal Form (3NF)
+## 3rd Normal Form (3NF)
 We relax BCNF (BCNF is a stricter version of 3NF):
     * F: a set of functional dependencies over relation R
         * for (X->Y) in R:
@@ -201,7 +226,7 @@ I thought we were trying to get rid of redundancies?
 
 Yes, but we can improve our data design abilities by understanding redundancy 
 
-###Closure of FD's
+### Closure of FD's
 
 Let's start with an example: 
 If we know that Name->BDay, and BDay->Age, then we know that Name->Age
