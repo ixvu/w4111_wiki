@@ -86,6 +86,7 @@ List of contributors and contributions
   1. section include:Conflict Serializability and Conflict Serializabilizable issues
 * Jason Zhao (jsz2107)
   1. Scribed Lecture 22: Transaction Processing
+  1. Revised BCNF section (V) of Normalization Scribe Notes
 * Abhiroop Gangopadhyay (ag3661)
   1. Scribed lecture 22: Transaction Processing
   1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
