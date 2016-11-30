@@ -8,6 +8,7 @@
 ### Why Disk is important? 
 1. Disk is the cheapest per Gigabyte Storage mechanism in the market
 2. The process of analyzing and optimizing disk is the same process you might go through for optimizing any others
+3. It allows us to retrieve any page at a (more or less) fixed cost per page. However, if we read several pages in the order that they are stored physically, the cost can be much less than the cost of reading the same pages in a random order.
 
 ![](https://github.com/pyw2102/w4111ScribedNotes/blob/master/Physical-Design/disk.png?raw=true)
 
