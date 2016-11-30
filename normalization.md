@@ -186,8 +186,8 @@ Things to note about this last example:
 * We can also begin to see a rough outline of the algorithm for decomposing a relation to BCNF
  * Basically, if the relation isn't in BCNF, just keep breaking the relation up along the lines mentioned above until the relation is in BCNF
 
-## A ~More~ Formal Algorithm for BCNF Decomposition
-### Algorithm
+### A ~More~ Formal Algorithm for BCNF Decomposition
+#### Algorithm
 ```
 while BCNF is violated: 
    R with FDs FR
@@ -196,7 +196,7 @@ while BCNF is violated:
 ```
 Intuitively, we can understand this as, "while BCNF is violated, find a relation that is violating a FD and decompose it further by splitting it into two tables: one with all the attributes defined in the FD and another with everything else and the key of the FD (ie. left side of FD = `X`).
 
-### Step By Step Example
+#### Step By Step Example
 **Given the relation `BCNO` and the FDs `BC -> N` and `N -> BO`, decompose R using the following steps:**
  1. `BCNO` violates BCNF
  2. Break `BCNO` (in this example we use `N -> BO` as the "base" FD)
@@ -206,7 +206,7 @@ Intuitively, we can understand this as, "while BCNF is violated, find a relation
 
 **NOTE:** that we have "lost" `BC -> N` since there is no longer a relation that contains all three attributes, but this is ok because we are in BCNF and apparently no one cares :/
 
-# VI. 3rd Normal Form (3NF)
+## 3rd Normal Form (3NF)
 We relax BCNF (BCNF is a stricter version of 3NF):
     * F: a set of functional dependencies over relation R
         * for (X->Y) in R:
@@ -224,7 +224,7 @@ I thought we were trying to get rid of redundancies?
 
 Yes, but we can improve our data design abilities by understanding redundancy 
 
-# VII. Formalization of Normal Forms
+# VI. Formalization of Normal Forms
 ## Closure of FDs
 Let's start with an example: 
 If we know that Name->BDay, and BDay->Age, then we know that Name->Age
