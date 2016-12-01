@@ -156,25 +156,29 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
     * **One possible serializable:**
          * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)` 
          * T2: &emsp;&emsp;&emsp;&emsp;`R(A)W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)W(B)`
-         * In this case, all T1's operations on a given object are before the conflicted T2's operation and vice versa, therefore it is conflict serializable.
-         * Another algorithm we can use to determine conflict serializability is the following: try to swap a set of adjacent operations from each transaction in time and if we do not have conflicts we are okay. Continue this process until we find a swap that would feature a conflict or until all of one transaction happens exclusively before the other. We see this below.
+         * In this case, all T1's operations on a given object are before T2's operation on that same object, therefore it is conflict serializable.
+         * One way we can determine serializability in general (although there are lots of nuances so we usually don't look at this case) is if we can create a serial schedule out of the given schedule by putting all of T1's or T2's operations before all of the other's. We take a look at the previous example.
          * Swapped transaction statements:
          * T1:`R(A) W(A)``R(B)W(B)`&emsp;&emsp;&emsp;&emsp; 
          * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)``R(B)W(B)`
-         * We see that T1 completely executes before T2 so this schedule is conflict serializable.
+         * We see that T1 completely executes before T2, and T2 never performs a blind write (a write without first looking at the object) so this schedule is serializable.
    * **One Not Serializable**
          * T1: `R(A)`&emsp;&emsp;`W(A)`&emsp;&emsp;`R(B) W(B)`
          * T2: &emsp;&emsp;`R(A)`&emsp;&emsp;`W(A)`&emsp;&emsp;&emsp;&emsp;`R(B) W(B)`
          * In this case, T1.R(A) is conflicted with T2.W(A) and T1.R(A) is executed first; however, T2.R(A) is conflicted with T1.W(A), but T2.R(A) is executed first. Therefore, it is not serializable.
-   * **Look is from a big picture:**
-         If we suppose there is one edge from T1.operator -> T2.operator if the two operators confict AND there is edge between both conatenate operation in `T1` or `T2` => If the graph does not contain cycles, then it means conflict is serializable.
+   * **Let's zoom out and take a look at the big picture:**
+         Imagine the set of operations is a graph. A directed edge is created between two operations when one transaction performs an operation on an object and then another transaction performs an operation on the same object. If all edges go the same direction (either all going from T1 to T2 or vice versa) then the schedule is serializable. If the graph has cycles (T1 connects to T2 and T2 connects to T1 as well) then the schedule is not serializable.
+         * We see a conflict serializable schedule where all edges connect T1 to T2.
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/graphnocycles.PNG)
+         * We see a not conflict serializable schedule where some edges connect T1 to T2 and some connect T2 to T1.
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/graphscycles.PNG)
 
 #VIII.  Conflict Serializabilizable issues
 * Why it is a question? Because there are the following problems:
    * **Not recoverable** 
           * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;`R(A)COMMIT`
-          * In this case, T1 first do some modification for A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsucessful.
+          * In this case, T1 first do some modification for A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsuccessful.
    * **Cascading Rollback**    
           * T1:`R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)`
