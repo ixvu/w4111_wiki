@@ -259,7 +259,7 @@ Solution:
 
 Closures can allow us to compare sets of FD's meaningfully. 
 
-For example, if F1={A->B, A->C, A->BC}, and F2={A->B, A->C) are the equivalent? Yes! We can get from F2 to F1 using Armstrong's axioms, so F1 is not minimal.
+For example, if F1={A->B, A->C, A->BC}, and F2={A->B, A->C), are they equivalent? Yes! We can get from F2 to F1 using Armstrong's axioms, so F1 is not minimal.
 
 If there's a closure (a maximally expanded set of functional dependencies), then there must be a minimal set as well. 
 
