@@ -173,20 +173,20 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
          * We see a non-conflict serializable schedule where some edges connect T1 to T2 and some connect T2 to T1.
 ![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)
 
-#VIII.  Conflict Serializabilizable issues
+#VIII.  Conflict Serializability issues
 * There are several potential problems with conflict serializability which we will discuss below:
    * **Not recoverable** 
           * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;`R(A)COMMIT`
-          * In this case, T1 operates on object A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsuccessful.
+          * In this case, T1 operates on object A but later decides to abort this modification(In reality, it might happen when T1 reads another value B and finds something wrong with B, requiring an abort on the former modification). However, before it can abort, T2 commits the modification, rendering the abort unsuccessful.
    * **Cascading Rollback**    
           * T1:`R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)`
-          * In this case, T2 read the uncommitted data updated by T1, but T1 abort is shortly. Although T1 only want to abort itsefl modification for A, the T2's modification is aborted as well because A has not been committed. 
+          * In this case, T2 reads the uncommitted data updated by T1, but T1 aborts right after. Although T1 only want to abort its own modification on A, T2's modification is aborted as well because T2 had not committed its modifications on A. 
 
 * What should we do?
    * **Lock-based concurrency control**
-       * The idea is to have a shared(read) and exclusive(write) lock before op.
+       * The idea is to have a shared(read) lock where both parties can perform the function and exclusive(write) lock where only one party can write on an object at a time.
                * The original idea is not so useful in the following case:
                * T1  `R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B) ABORT`
                * T2 &emsp;&emsp;&emsp;&emsp;`R(A) COMMIT`
@@ -197,7 +197,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
                * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
                * The case will cause some problems(it is unrecoverable), but it is allowed for this lock mechanism.
        * Strict two-phase locking (Strict 2PL): Growing phase: acquire locks   Shrinking phase: release locks. But HOLD ON locks until commit/abort.
-               * This idea is useful and can avoid cascading rollbacks and gurantees serializable schedules.
+               * This idea is useful and can avoid cascading rollbacks and guarantees serializable schedules.
                * To be specific the following case is forbidden since T1 will hold the lock for W(A) before ABORT op
                * T1  `R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
                * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
