@@ -145,9 +145,9 @@ In words:
 | Relations | BCNF? | Reason |
 | ------ | ------ | ------ |
 | ABCD | NO | `A -> B` is not trivially satisfied (ie. `B` in not in `A`) and `A` is not a superkey of `ABCD` |
-| ABC, D | NO | `B` not in `A` and `A` is not a superkey of `ABC` (ignore `D` because `A` and `B` aren't in `D`) |
 | AB, AC, AD | YES | `A` is superkey of `AB` and `AC` (again don't really care about `AD`) |
 | AB, AC, D | YES* | **BUT** this is **NOT** desirable because we've lost data about how `D` relates to the rest `A`, `B`, and `C` |
+| ABC, D | YES* | `A -> B` and `A -> C` implies `A -> BC`, which is satisfied by this relation; but like the relation above, this is **NOT** desirable because we've lost data about `D` |
 
 So why is `AB, AC, AD` considered a "good" decomposition while `AB, AC, D` is "bad"?
 * Because we know `A` is a key of `AB` and `AC`, we can accurately recover the original schema `ABCD` by performing a join on `A`
