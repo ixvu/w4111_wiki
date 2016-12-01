@@ -174,11 +174,11 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 ![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)
 
 #VIII.  Conflict Serializabilizable issues
-* Why it is a question? Because there are the following problems:
+* There are several potential problems with conflict serializability which we will discuss below:
    * **Not recoverable** 
           * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;`R(A)COMMIT`
-          * In this case, T1 first do some modification for A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsuccessful.
+          * In this case, T1 operates on object A but finally T1 decides to abort this modification(In reality, it might happen when T1 read another value B and find something wrong and need to abort the former modification). However, due to T2 have commit this modification, the abort is unsuccessful.
    * **Cascading Rollback**    
           * T1:`R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
           * T2:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)`
