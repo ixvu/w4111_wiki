@@ -169,9 +169,9 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
    * **Let's zoom out and take a look at the big picture:**
          Imagine the set of operations is a graph. A directed edge is created between two operations when one transaction performs an operation on an object and then another transaction performs an operation on the same object. If all edges go the same direction (either all going from T1 to T2 or vice versa) then the schedule is serializable. If the graph has cycles (T1 connects to T2 and T2 connects to T1 as well) then the schedule is not serializable.
          * We see a conflict serializable schedule where all edges connect T1 to T2.
-![](https://github.com/harrybari/w4111ScribeNotes/blob/master/graphnocycles.PNG)
-         * We see a not conflict serializable schedule where some edges connect T1 to T2 and some connect T2 to T1.
-![](https://github.com/harrybari/w4111ScribeNotes/blob/master/graphscycles.PNG)
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphnocycle.PNG)
+         * We see a non-conflict serializable schedule where some edges connect T1 to T2 and some connect T2 to T1.
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)
 
 #VIII.  Conflict Serializabilizable issues
 * Why it is a question? Because there are the following problems:
