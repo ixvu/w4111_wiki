@@ -145,9 +145,9 @@ In words:
 | Relations | BCNF? | Reason |
 | ------ | ------ | ------ |
 | ABCD | NO | `A -> B` is not trivially satisfied (ie. `B` in not in `A`) and `A` is not a superkey of `ABCD` |
+| ABC, D | NO | `B` not in `A` and `A` is not a superkey of `ABC` (ignore `D` because `A` and `B` aren't in `D`) |
 | AB, AC, AD | YES | `A` is superkey of `AB` and `AC` (again don't really care about `AD`) |
 | AB, AC, D | YES* | **BUT** this is **NOT** desirable because we've lost data about how `D` relates to the rest `A`, `B`, and `C` |
-| ABC, D | YES* | `A -> B` and `A -> C` implies `A -> BC`, which is satisfied by this relation; but like the relation above, this is **NOT** desirable because we've lost data about `D` |
 
 So why is `AB, AC, AD` considered a "good" decomposition while `AB, AC, D` is "bad"?
 * Because we know `A` is a key of `AB` and `AC`, we can accurately recover the original schema `ABCD` by performing a join on `A`
@@ -269,7 +269,20 @@ If there's a closure (a maximally expanded set of functional dependencies), then
  2. Minimize left side of each FD
     * For each FD, check if we can delete a left attribute using another FD. 
         * Given (A, B, C)->D, and B->C, we can reduce this to (A, B)->D, and B->C
+        * Why? B->C, so we can replace C on the left with B, and since we're looking at a set of attributes, this collapses to (A, B)->D
  3. Delete redundant functional dependencies
     * Check each remaining functional dependency and check to see if it can be deleted (if it's in the closure of the other FD's)
 
 **NOTE: You must do the steps in this order**
+
+Examples:
+Consider the set A->B, ABC->E, EF->G, ACF->EG
+
+1. First convert to standard form (only one attribute on the right side):
+    * We get A->B, ABC->E, EF->G, **ACF->E**, **ACF->G**
+2. Minimize left side
+    * A->B, **AC->E**, EF->G, ACF->E, ACF->G
+        * Why? AC->E and AC->B implies ABC->E
+3. Delete redundant FD's
+    * A->B, AC->E, EF->G
+        * ACF->E implied by AC->E (a smaller set of attributes that determines E), ACF->G implied by AC->E EF->G (we can substitute AC for E to get ACF->G to reconstruct this dependency)
