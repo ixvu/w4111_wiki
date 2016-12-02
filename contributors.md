@@ -95,3 +95,6 @@ List of contributors and contributions
   1. Scribed lecture 21: Query Processing
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
      1. Added examples for primary and secondary Btree index, Selinger optimizer (A join B join C join D)
+* Shengyang Zhang (sz2624)
+  1. Scribed Lecture 24: Review part
+    1. Section include examples of serializable and access costs problem in many cases.
