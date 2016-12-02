@@ -9,8 +9,7 @@
 [[Normalization | normalization]]  
 [[Physical Design | physical-design]]  
 [[Query Processing | query-proc]]  
-[[Transactions | transactions]] (22-23) 
-
+[[Transactions | transactions]] (22-23)  
 [[Review]] (24)
 
 ###Additional Topics  
