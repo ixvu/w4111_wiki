@@ -15,6 +15,7 @@ Links to topics
 * [[Physical Design | physical-design]]
 * [[Query Processing | query-proc]]
 * [[Transactions | transactions]]
+* [[Recovery | recovery]]
 
 Additional Topics
 
