@@ -11,6 +11,7 @@
 [[Query Processing | query-proc]]  
 [[Transactions | transactions]] (22-23)  
 [[Recovery|Recovery]](24)
+
 [[Review|Review]] (24)
 
 ###Additional Topics  
