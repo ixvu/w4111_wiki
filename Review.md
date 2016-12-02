@@ -70,7 +70,7 @@ However it is serializable. Since it is equivalent to T2,T1.
 
 
 
-# Review Topic 2:
+# Review Topic 2: Access Costs
 In this example, we will cover access costs computing for a table in primary/secondary, candidate key/not candidate key, π<sub>id</sub>, and overflow page cases.
 ## Setting:
 * Fill factor: 50%
