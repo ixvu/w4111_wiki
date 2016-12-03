@@ -20,6 +20,8 @@
 
 [[Access Path Selection Calculation | Access Path Selection Calculation ]]
 
+[[Midterm 2 Study Guide | midterm_2 study guide ]]
+
 ***
 
 ###Livecode  
