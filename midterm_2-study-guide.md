@@ -195,9 +195,9 @@ The same logic can be considered for keys AB and A.  We have already decided tha
 Now consider the last superkey __BD__.  Is it a candidate key?  We begin by asking if there is any proper subset of __BD__ that is also a superkey?  The only subsets of __BD__ are __B__ and __D__ and neither of these individual attributes are superkeys.  So the answer is __yes__, __BD__ is also a candidate key of the relation.  
    
 ###__Finding Number of Candidate Keys Additional Examples__  
-  
-__Example 1__  
-  
+
+<details> 
+  <summary>__Example 1__</summary><br /><p>  
 Finding the candidate key(s) of the following relation.  
   
 R(ABCDEFGH)  
@@ -218,9 +218,9 @@ __Step 2__:Now we find the closure of AB<sup>+</sup>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AB<sup>+</sup>=ABCDEFGH&nbsp;&nbsp;&nbsp;  
   
 So AB is both the candidate key and superkey of relation R.  
-  
-__Example 2__  
-  
+</p></details>
+<details> 
+  <summary>__Example 2__</summary><br /><p>
 Finding the candidate key(s) of the following relation.  
   
 R(ABCDEFGH)  
@@ -241,9 +241,9 @@ __Step 2__:Now we find the closure of ABD<sup>+</sup>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABD<sup>+</sup>=ABCDEFGH&nbsp;&nbsp;&nbsp;  
   
 So ABD is both the candidate key and superkey of relation R.  
-  
-__Example 3__  
-  
+</p></details>
+<details> 
+  <summary>__Example 3__</summary><br /><p>
 Finding the candidate key(s) of the following relation.  
   
 R(ABCDE)  
@@ -271,9 +271,9 @@ We will try the following - AC, BC, CD and CE:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CE<sup>+</sup>=CE&nbsp;&nbsp;&nbsp;  
   
 So we have found two candidate keys __BC__ and __CD__ for the relation.  
-  
-__Example 4__  
-  
+</p></details>  
+<details> 
+  <summary>__Example 4__</summary><br /><p> 
 Finding the candidate key(s) of the following relation.  
   
 R(WXYZ)  
@@ -304,7 +304,8 @@ __Step 3__: We will now try combinations of the single attributes that failed wh
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WZ<sup>+</sup>=WZ&nbsp;&nbsp;&nbsp;  
   
 So we have found three keys for the relation: __Y__, __WX__ and __XZ__.  
-  
+</p></details>
+
 __*ACID*__ - Related to the properties of Transactions   
 __A__ stands for Atomicity  
 __C__ stands for Consistency  
