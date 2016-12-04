@@ -330,7 +330,18 @@ A does not uniquely determine anything in R1, but it does in R2, and R1 intersec
  
 ###What about dependency preservation?
 
-F<sub>R</sub>
+Let F<sub>R</sub> be the projection of F onto R
+
+Then F<sub>R</sub> is the set of FD's X->Y in F closure such that X and Y are attributes of the new relation R'. 
+
+If we decompose the original relation R into X and Y, then the decomposition is dependency preserving if all closures of all the FD's over all the new relations (in this case, X and Y) is equal to closure of F over R.
+
+Example:
+
+Consider the following:
+
+R(A, B, C, D) under F = {A → B, B → C}. 
+
 
 
 
