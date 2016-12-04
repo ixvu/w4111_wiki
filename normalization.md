@@ -309,3 +309,9 @@ This means that if the intersection of R1 and R2 is a key for either R1 or R2, a
 
 **Note: here R1 intersect R2 is simply the intersection of the attributes in the relation. If R1=(A, B) and R2=(B, C), then R1 intersect R2 = B**
 
+Example: 
+
+![](https://github.com/agango/Scribesnotes-image/blob/master/example2.png)
+
+
+
