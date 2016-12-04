@@ -208,10 +208,15 @@ Intuitively, we can understand this as, "while BCNF is violated, find a relation
 
 ## 3rd Normal Form (3NF)
 We relax BCNF (BCNF is a stricter version of 3NF):
+
     * F: a set of functional dependencies over relation R
+
         * for (X->Y) in R:
+
             * Y is in X OR X is a superkey of R OR **Y is some attribute in a key in R**
+
 This new condition is NOT trivial, as this key is minimal, not a superkey. This guarantees lossless join AND dependency preserving decomposition
+
 Tradeoff is that a relation in 3NF form does retain some redundancies. 
 
 Let's look at the pizza example:
@@ -313,5 +318,15 @@ Example:
 
 ![](https://github.com/agango/Scribesnotes-image/blob/master/example2.png)
 
+Why is this an example of lossy decomposition? In this case, (R1 intersect R2) = AB intersect BC = B. In table R1, B does not determine anything (we have 2 values of A for the same value of B), and the same for table R2. As we can see, when we join the two relations, we get new rows that were not there before. We have not been able to completely recover the original relation by joining R1 and R2. 
+
+What's correct?
+
+![](https://github.com/agango/Scribesnotes-image/blob/master/example3.png)
+
+Why is this correct?
+
+A does not uniquely determine anything in R1, but it does in R2, so the FD (R1 intersect R2) = A -> AC (which can be decomposed to A->A, which is trivial, and A->C, which is a FD of R).
+ 
 
 
