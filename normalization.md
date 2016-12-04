@@ -292,11 +292,20 @@ Consider the set A->B, ABC->E, EF->G, ACF->EG
 We eventually want to be able to decompose relation R into sub-relations R1, R2,..., Rn such that we can do a join on R1, R2, ..., Rn and get back the original relation R, while preserving the functional dependencies F of R. 
 
 However, we've seen issues with decomposition:
+   
     * Lost joins (can't recover R from R1, R2, ... , Rn)
+    
     * Lost dependencies (we cannot enforces all the dependencies when we decompose R into the sub-relations)
 
 How can we tell if a decomposition will yield lossless joins?
+
 Consider the decomposition of R into R1 and R2
+
 A decomposition is lossless w.r.t F if the closure of F contains one of the following:
-<cup></cup>
-R1 
+
+(R1 intersect R2) -> R1 OR (R1 intersect R2) -> R2. 
+
+This means that if the intersection of R1 and R2 is a key for either R1 or R2, and is contained in the closure of F, then the decomposition of R into R1 and R2 is lossless. 
+
+**Note: here R1 intersect R2 is simply the intersection of the attributes in the relation. If R1=(A, B) and R2=(B, C), then R1 intersect R2 = B**
+
