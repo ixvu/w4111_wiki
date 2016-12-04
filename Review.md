@@ -58,7 +58,7 @@ Since there is a dependency cycle between T1 and T2, then it is not conflict ser
 
 ## A Not Conflict Serializable But Serializable Example
 * T1: `W(A)`<sub>1</sub>&emsp;&emsp;&emsp;&emsp;&emsp;`W(A)`<sub>2</sub>
-* T2: &emsp;&emsp;&emsp;`⇘``R(A)``⇗`
+* T2: &emsp;&emsp;&emsp;`⇘``W(A)``⇗`
 
 Since there is a dependency cycle between T1 and T2, then it is not conflict serializable. The cycle is from operation T1.W(A)<sub>1</sub> and T2.R(A) being in conflict, and operations T2.R(A) and T2.W(A)<sub>2</sub> being in conflict.
 
