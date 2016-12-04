@@ -14,7 +14,7 @@
 [[Review|Review]] (24)
 
 ###Additional Topics  
-[[Instabase & Assignment Structure |infrastructure]]
+[[Instabase |infrastructure]]
 
 [[Midterm Study Guide |midterm study guide]]
 
