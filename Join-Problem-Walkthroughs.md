@@ -1,7 +1,8 @@
 # Join Problem Walkthroughs
 <details> 
   <summary>Example 1</summary><br />  
-
+### Stats  
+</details>
 |Fill Factor|Dir. Entry Size|Tuple Size|Page Size|    
 |:---------:|:-------------:|:--------:|:-------:|  
 |     0.5   |    5 bytes    | 100 bytes|400 bytes|
