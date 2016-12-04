@@ -45,7 +45,7 @@ For example, a relation with attributes (ABCD) can be replaced with (AB,BCD) or 
 
 <img src="https://github.com/pw2393/testrepo/blob/master/example2_1.PNG" width="450">
 
-This is a bad attempt. It costs no less memory, and more importantly it's a lossy decomposition.
+This is a bad attempt because you loose information in the decomposition, making it a lossy decomposition. Additionally it uses the same amount of memory to store the data so there is no benefit to decomposing the table in this way. 
 
 Explanation: If we read 'person' relation only, we cannot understand the meaning of attribute 'cost' without join, since it's the hobby's cost. However, if we equi-join two relations on sid, it actually cannot recover the original relation. 
 Because we have two tuples with 'sid = 1', equi-join is ambiguous that for instance cost '$$' can be associated with 'cheese' or 'trucks'. The decomposition breaks the original association between hobby and cost, and thus loses information.
