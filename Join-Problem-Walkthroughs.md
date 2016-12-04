@@ -81,7 +81,7 @@ Note: Costs is to lookup 1 tuple in page units!
   2.  ceiling(Log<sub>40</sub>(5000)) + 2 = 
   3.  ceiling(2.3) + 2 = 3 + 2 = 5  
 
-| Attribute\Relation |T<sub>1</sub>|T<sub>2</sub>|T<sub>3</sub>|T<sub>4</sub>|      
+| Index\Cost per Tuple |T<sub>1</sub>|T<sub>2</sub>|T<sub>3</sub>|T<sub>4</sub>|      
 |-------------------:|:-----------:|:--------:|:--------:|:--------:|
 | Primary Hash Index |    ✖      |     1    |    ✖      |     ✖    |  
 |Secondary Hash Index|     3     |     ✖    |    ✖      |     ✖    |  
