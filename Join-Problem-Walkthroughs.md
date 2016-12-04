@@ -42,7 +42,7 @@
 
 <details> 
   <summary>3. Compute the Page Sizes for each of the relations T1 thru T4</summary><br /><p>
-Note: we need to end up in units of pages!
+Note: we need to end up in units of pages!  
    1.  T<sub>1</sub> = <sup>2000 Tuples</sup>&frasl;<sub>2 Tuples/Page</sub> = 1000 Pages  
    1.  T<sub>2</sub> = <sup>20000 Tuples</sup>&frasl;<sub>2 Tuples/Page</sub> = 10000 Pages  
    1.  T<sub>3</sub> = <sup>20 Tuples</sup>&frasl;<sub>2 Tuples/Page</sub> = 10 Pages  
@@ -56,29 +56,30 @@ Note: we need to end up in units of pages!
 
 
 <details> 
-  <summary>4. Compute the Lookup Costs for each of the indexes relations T1 thru T4</summary><br /><p>
-Note: Costs is to lookup 1 tuple in page units!
-1.  Equations
-    1. Hash Index Cost = 1
-    2. Primary Tree Index Cost = ceiling(log<sub>DE&frasl;Page</sub>(# of Relation Pages)) + 1
-    3. Secondary Tree Index Cost = ceiling(log<sub>DE&frasl;Page</sub>(<sup># of Relation Tuples</sup>&frasl;<sub>DE/Page</sub>)) + 2
-    4. Nested Loop = M + T*M\*N or M+T\*M\*C
-    5. Hash Join Cost = M + N + (T\*M)(1)
-2.  T1: Primary Tree Index = 3
-    1.  ceiling(Log<sub>40</sub>(1000)) + 1 = ceiling(1.872) + 1 = 2 + 1 = 3 
-3.  T2: Primary Hash Index = 1  
-3.  T2: Secondary Tree Index = 4
-    1.  ceiling(Log<sub>40</sub>(<sub>20000</sub>&frasl;<sub>40</sub>)) + 2 = 
-    2.  ceiling(Log<sub>40</sub>(500)) + 1 = 
-    3.  ceiling(1.68) + 2 = 2 + 2 = 4 
-4.  T3: Primary Tree Index = 2
-    1.  ceiling(Log<sub>40</sub>(10)) + 1 = ceiling(.624) + 1 = 1 + 1 = 2  
-4.  T4: Primary Tree Index = 5
-    1.  ceiling(Log<sub>40</sub>(100000)) + 1 = ceiling(3.12) + 1 = 4 + 1 = 5   
-4.  T4: Secondary Tree Index = 5
-    1.  ceiling(Log<sub>40</sub>(<sub>20000</sub>&frasl;<sub>40</sub>)) + 2 = 
-    2.  ceiling(Log<sub>40</sub>(5000)) + 2 = 
-    3.  ceiling(2.3) + 2 = 3 + 2 = 5  
+  <summary>4. Compute the Lookup Costs for each of the indexes relations T1 thru T4</summary><br /><p>  
+Note: Costs is to lookup 1 tuple in page units!  
+### Equations  
+  1. Hash Index Cost = 1  
+  2. Primary Tree Index Cost = ceiling(log<sub>DE&frasl;Page</sub>(# of Relation Pages)) + 1  
+  3. Secondary Tree Index Cost = ceiling(log<sub>DE&frasl;Page</sub>(<sup># of Relation Tuples</sup>&frasl;<sub>DE/Page</sub>)) + 2  
+  4. Nested Loop = M + T*M\*N or M+T\*M\*C  
+  5. Hash Join Cost = M + N + (T\*M)(1)  
+
+*  **T1: Primary Tree Index = 3**
+  1.  ceiling(Log<sub>40</sub>(1000)) + 1 = ceiling(1.872) + 1 = 2 + 1 = 3 
+*  **T2: Primary Hash Index = 1**  
+*  **T2: Secondary Tree Index = 4**
+  1.  ceiling(Log<sub>40</sub>(<sub>20000</sub>&frasl;<sub>40</sub>)) + 2 = 
+  2.  ceiling(Log<sub>40</sub>(500)) + 1 = 
+  3.  ceiling(1.68) + 2 = 2 + 2 = 4 
+*  **T3: Primary Tree Index = 2**
+  1.  ceiling(Log<sub>40</sub>(10)) + 1 = ceiling(.624) + 1 = 1 + 1 = 2  
+*  **T4: Primary Tree Index = 5**
+  1.  ceiling(Log<sub>40</sub>(100000)) + 1 = ceiling(3.12) + 1 = 4 + 1 = 5   
+*  **T4: Secondary Tree Index = 5**
+  1.  ceiling(Log<sub>40</sub>(<sub>20000</sub>&frasl;<sub>40</sub>)) + 2 = 
+  2.  ceiling(Log<sub>40</sub>(5000)) + 2 = 
+  3.  ceiling(2.3) + 2 = 3 + 2 = 5  
 
 | Attribute\Relation |T<sub>1</sub>|T<sub>2</sub>|T<sub>3</sub>|T<sub>4</sub>|      
 |-------------------:|:--------:|:--------:|:--------:|:--------:|
