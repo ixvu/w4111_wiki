@@ -50,7 +50,7 @@ Reserve the lecture that you will scribe for by adding your github username next
 * L10: SQL (cchao595)
 * L11: SQL (zzhanzzhao)
 * L12: SQL (hermshermsherms)
-* L15: APIs (Wangler, katebrea)
+* L15: APIs (Wangler)
 * L16: Normalization (pw2393)
 * L17: Normalization (kellielu,micklinISgood)
 * L18: Physical Design (pyw2102,zw2396)
