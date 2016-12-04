@@ -14,7 +14,7 @@
 |Secondary Hash Index|     ✓    |          |          |          |  
 | Primary Tree Index |          |          |    ✓     |     ✓    |  
 |Secondary Tree Index|          |     ✓    |          |     ✓    |  
-
+</details>
 ### Preparation Steps
 <details> 
   <summary>1. Compute the Directory Entries Per Page</summary><br />
