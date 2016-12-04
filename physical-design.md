@@ -205,56 +205,78 @@ We need something to tell us where the pages are and what they contain without h
 
 ## Indexes
 ### Reason for using index
-- If you spend a lot of time building an index so you can access your data way faster, that will be much faster than naively executing a query. 
-- To enhance the visiting and search speed, the traditional idea that we set a head page and set pointers between each page is not a good choice, because it means we should scan almost each page to find the page we want which is time-consuming.
-As an alternative the idea of directory is used. The idea is that we use some extra space to store the page location information, although we might need some extra space and time to store and maintain it, the directory can extremely enhance the search speed. It is like "If I had eight hours to chop down a tree I'd spend six sharpening my ax". We use the six hours to maintain the extra time and space consuming and can have a better performance in two hours compared with using eight hours do search. Considering this case, we use indexes to implement this idea.
+- **Idea:** If you know you’re going to do something often, it’s worthwhile to make sure it can be done fast
  - Abraham Lincoln: "If I had eight hours to chop down a tree, I'd spend six sharpening my ax."
+- **Point:** Creating and storing indexes on pages takes up additional space; however, the amount of space is relatively small compared to the database it's based on, and the queries they are tailored to can execute infinitely faster.
 - **Offline (vs. online):** Allowing a database to prepare all the data structures and encoding it needs, so queries can run fast and efficiently
 - **Two types of queries:**
- - Something is equal to something
-   - Find students in "CS"  
- - Something is in a range
-   - Find students in California(any city)
+ - Equality query: An attribute equals something
+   - SELECT name FROM sailors WHERE sid = 11111
+ - Range query: An attribute satisfies a set of inequalities
+   - Select name FROM students WHERE age > 19
 
 ### Some knowledge about index
-- Index is defined for a search key
-- Index is different than a candidate key (For candidate key, it can be used to label an unique turple; however, index is used for searching issue) 
-- In SQL, you can the syntax:"CREATE INDEX [idx1] ON users USING btree (sid)" to assign an index for the table directly. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations (reference from PsotgreSQL documentation)
-
+- Indexes are defined wrt a search key, an attribute or a set of attributes that you want to be able to query efficiently. - **Naming collision:** A search key is different from a candidate key! A search key does not necessarily identify a unique tuple, it can be on any attribute, such as age or sex in a database containing information on everyone alive on Earth.
 - **Application:** Search keys can provide faster access for WHERE clauses
+
+- In SQL, you can use the following syntax to assign an index for to a table. The CREATE INDEX command creates B-tree indexes by default, which tends to be appropriate for most situations
+
+`CREATE INDEX [idx1] ON users USING btree (sid)`
+
+- **Valid queries** using this index
+`SELECT name FROM users WHERE sid = 11111`
+`SELECT name FROM users WHERE sid > 11111`
+`SELECT name FROM users WHERE sid > 11111 AND age > 18`
+- The index key is on the attribute sid, so the index is specially tailored to queries with sid in their WHERE clauses.
+- In the third query, although the index is not on age, having an index on sid can significantly reduce the number of tuples that must be checked. 
+- **Invalid queries** using this index
+`SELECT name FROM users WHERE age = 18`
+`SELECT name FROM users WHERE age > 18`
+- Because sid does not exist in their WHERE clauses, the idx1 cannot be used for these queries. If no other indexes are available, we can do no better than a full table scan.
 
 ![](https://github.com/shy2116/project1/blob/master/SQL%20index.PNG?raw=true)
 
-- If a query can use an index, then the database optimizer will consider it as a potential way of running the query if it will be faster.
+- The database optimizer makes a cost analysis of the different indexes available and selects the method it deems the most efficient.
 
 ### High Level (Primary) Index Structure
 ![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Primary)%20index%20structure.PNG?raw=true)
-- The index is made of pages (illustrated below the index), pages that store the data records along with an index
-- It includes index entries and data entries. 
-- In the primary index structure, the data entries is the data record and we can directly access the turple using it
+- The index and data entries (corresponding to index pages and leaf nodes) in the illustration make up the index.
+- In a "Primary Structure," the actual data records (entire tuples of a table) are stored in the leaf nodes of the index, stored on the index key (search key).
+- This structure has two significant page I/O cost implications:
+ 1. The index file requires more pages to store the actual data records in the leaf pages, meaning the height of the tree could potentially be taller than the secondary structure.
+ 2. The data records stored in the leaf nodes are sorted and clustered by definition. This means that when a query has multiple matches corresponding to an equality condition, all the matches are conveniently clustered in the leaf pages for us to access. The number of data pages (leaf pages for the primary) we will access a maximum of: (# matching tuples) divided by (# tuples a page can hold). For a query with a handful of matches, this is much more efficient than having to access a distinct page for each matching tuple.
 
 ### High Level (Secondary) Index Structure
 ![](https://github.com/shy2116/project1/blob/master/High%20Level%20(Secondary)%20index%20structure.PNG?raw=true)
-- In secondary index structure, the data entries has the following format <search key value, rid> and we have another layer called data records. The actual record is stored in that layer. If we want to obtain the data in a page, 
-- The search process is index entries -> data entries -> data record(according to the rid storing in data entries)
+- As opposed to the "Primary Structure," the "Secondary Structure" separates the indexing from the data records. This means that both the index pages and leaf pages (illustrated as data entries) serve as directories, where all entries are of the form <search key, pointer>. The index pages point to lower level index pages or leaf pages, and the leaf pages point to the record pages (data pages) containing the actual tuples corresponding to our search keys.
+
 - This structure is a parallel to our Basic Scenario V4 (directories)
-- Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
+- Because the leaf pages only contain pointers, as opposed to actual records, which are almost always smaller in size than actual records, a leaf node can hold many more data entries. This has 3 important page I/O cost implications:
+ 1. The index file requires relatively less pages with a secondary structure, allowing for the height of the index tree to potentially be shorter.
+ 2. Because the leaf pages only contain pointers, an additional page access is required to to follow this pointer and access the data page containing the associated tuple.
+ 3. Assuming a reasonably high selectivity (low % of matches relative to total number of records in file), each pointer can be expected to point to a distinct page, requiring a page access for each qualifying record. Refer back to the cost advantage of using the primary structure.
+
+Because we use only pointers, a page can contain many more pointers, but need to incur an additional cost to access actual records.
 
 ###B+ Tree Index
 ![](https://github.com/shy2116/project1/blob/master/B.PNG?raw=true)
-- Each node of it represent for a page. 
-- Self-balanced (It makes the tree has a moderate height to make sure it can keep a good search performance). Therefore, the unbalanced situation will not happened.
-- Index pages point to children
+- Everything is stored as pages (i.e. index pages, leaf pages, data pages)
+- Index pages contain values of the index key and pointers to child nodes
 - Leaf pages contain the data
-- Leaf nodes are connected as the following picture showed. This data structure help to actualize the disk optimition.
-![1](https://github.com/JisongLiu/Gym-/blob/master/1.png)
-- Next/previous pointers to perform range scans, as opposed to going through the index each time
+- Next/previous pointers exist to perform range scans, as opposed to going through the index each time
+ - For example: Provided: idx1(age) and Query: SELECT name FROM users WHERE age > 20
+ - Once we have arrived at the leaf node corresponding to the leftmost leaf node satisfying the range condition, rather than going back through the index, we can use the next pointers between leaf nodes to scan right. 
+ - The fact that B+ Tree indexes are sorted on the index key is the root of their significant advantage in evaluating range queries.
 - Both equality and range queries can be used
- - Explanations and examples above
+ - Additional explanations and examples above
+- Self-balancing: The distance from the root to any leaf node is constant
+ - Implication: Amount of time to search is logarithmic to the amount of data you have (height)
+- Disk optimized: indexes are optimized for specific types of storage
 - Built bottom up: When you construct the B+ Tree, you need a starting point on the disk and the pages need to be sorted. - Given these two factors, it is much more efficient to build the tree bottom-up than inserting each record into the tree in a top-down approach.
 
 **Basic B+ Tree: search key <age>**
 ![](https://github.com/shy2116/project1/blob/master/B0.PNG?raw=true)
+- Note: This is a simplified example. The significant advantage of Btree indexes over the binary search alternative is that Btree indexes can have significantly higher fanouts (typically >100 rather than the 3 used in this example)
 - An index has at most 3 pointers corresponding to 3 conditions
 - The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it. 
 
