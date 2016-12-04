@@ -100,17 +100,17 @@ Note: Costs is to lookup 1 tuple in page units!
 
 | T<sub>3</sub> ⋈<sub>attr</sub> T<sub>X</sub> Cost   |    T<sub>1</sub>    |    T<sub>2</sub>    |    T<sub>4</sub>    |   
 |-------------------------------:|:--------:|:--------:|:--------:| 
-| Hash Inner Nested Loop         |     ✖    |10 + 20(1)|    ✖     |  
-|Primary BTree Inner Nested Loop |10 + 20(3)|    ✖     |    ✖     |  
-|Secondary BTree Inner Nested Loop|10 + 20(5)|    ✖     |10 + 20(5)|  
+| Hash INL         |     ✖    |10 + 20(1)|    ✖     |  
+|Primary BTree INL |10 + 20(3)|    ✖     |    ✖     |  
+|Secondary BTree INL |10 + 20(5)|    ✖     |10 + 20(5)|  
 |Nested Loops                    |10 + 2(10)(2000)|10 + 2(10)(20000)|10 + 2(10)(200000)|   
 |Hash Join                       |10+1000+20(1)|10+10000+20(1)|10+100000+20(1)|    
 
 | T<sub>3</sub> ⋈<sub>attr</sub> T<sub>X</sub> Cost    |    T<sub>1</sub>    |    T<sub>2</sub>    |    T<sub>4</sub>    | 
 |-------------------------------:|:--------:|:--------:|:--------:| 
-| Hash Inner Nested Loop         |     ✖    |   30     |    ✖     |  
-|Primary BTree Inner Nested Loop |    70    |    ✖     |   110    |  
-|Secondary BTree Inner Nested Loop|    ✖    |    ✖     |   110    |  
+| Hash INL          |     ✖    |   30     |    ✖     |  
+|Primary BTree INL  |    70    |    ✖     |   110    |  
+|Secondary BTree INL |    ✖    |    ✖     |   110    |  
 |Nested Loops                    |40010     |400010    |4000010   |   
 |Hash Join                       |1030      |10030     |100030    |   
 
@@ -123,9 +123,9 @@ R<sub>1</sub> = T<sub>3</sub> Hash-INL T<sub>2</sub>
 
 | (T<sub>3</sub> ⋈<sub>attr</sub>T<sub>2</sub>) ⋈<sub>attr</sub> T<sub>X</sub> Cost   |    T<sub>1</sub>    |    T<sub>4</sub>    |   
 |-------------------------------:|:--------:|:--------:|  
-| Hash Inner Nested Loop         |     ✖    |    ✖     |  
-|Primary BTree Inner Nested Loop |30 + 20(3)|30 + 20(3)|  
-|Secondary BTree Inner Nested Loop|     ✖    |30 + 20(5)|  
+| Hash INL          |     ✖    |    ✖     |  
+|Primary BTree INL  |30 + 20(3)|30 + 20(3)|  
+|Secondary BTree INL |     ✖    |30 + 20(5)|  
 |Nested Loops                    |30 + 2(10)(2000)|30 + 2(10)(200000)|   
 |Hash Join                       |30+1000+20(1)|30+100000+20(1)|    
 
