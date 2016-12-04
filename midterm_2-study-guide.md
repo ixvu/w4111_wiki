@@ -1,18 +1,18 @@
-## Midterm 2 Study Guide  
+# Midterm 2 Study Guide  
   
-###__Important Definitions with Examples__  
-
-__*Superkey*__  
-  
+##__Important Definitions with Examples__  
+<details> 
+  <summary>__*Superkey*__</summary><br /><p>
 Given the following EMPLOYEE relation: 
 
 |_**SSn**_|Ename|Bdate|Address|Dnumber|
 |---|---|---|---|---|  
   
 where SSn is the __key__ for the relation and {Ssn}, {Ssn, Ename}, {Ssn,Ename,Bdate}, and any set of attributes that includes Ssn are all __superkeys__. If a relation schema has more than one key, each is called a candidate key. One of the candidate keys is arbitrarily designated to be the primary key, and the others are called secondary keys. In a practical relational database, each relation schema must have a primary key. If no candidate key is known for a relation, the entire relation can be treated as a default superkey. In the previous schema, {Ssn} is the only candidate key for EMPLOYEE, so it is also the primary key. 
+</p></details>
 
-__*Prime attribute verses non-prime attribute*__  
-
+<details> 
+  <summary>__*Prime attribute verses non-prime attribute*__</summary><br /><p>
 An attribute of relation schema R is called a __prime attribute__ of R if it is a member of some candidate key of R. An attribute 
 is called __nonprime__ if it is not a prime attribute—that is, if it is not a member of any candidate key.  
   
@@ -20,7 +20,7 @@ Given the following schema, where the primary key for the relation is {Ssn,Pnumb
 
 |_**Ssn**_|_**Pnumber**_|Hours|  
 |---|---|---|  
-
+</p></details>
   
 __*Full Functional Dependency verses Partial Functional Dependency*__  
   
