@@ -111,7 +111,9 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
         * We call this a *serializable* schedule because it is equivalent to the serial schedule of T1 & T2
 
 # VI. Serializable Schedules: the "gold standard" for correctness
-* Why?  Because they prevent concurrency anomalies.  For example:
+* Why?  Because they prevent concurrency anomalies from changing the database state in a way that isn't possible in a serial ordering.
+    * That is, serializable schedules **CAN** have anomalies, but these anomalies do not invalidate the correctness of the schedule.
+* Example anomalies:
     * **Write/Read Conflicts - reading in between uncommitted data (Dirty Reads):**
         * Consider the following schedule S:
             * T1: `begin` `r(A) w(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `r(B) w(B) abort`
