@@ -334,7 +334,7 @@ Let F<sub>R</sub> be the projection of F onto R
 
 Then F<sub>R</sub> is the set of FD's X->Y in F closure such that X and Y are attributes of the new relation R'. 
 
-If we decompose the original relation R into X and Y, then the decomposition is dependency preserving if all closures of all the FD's over all the new relations (in this case, X and Y) is equal to closure of F over R.
+If we decompose the original relation R into X and Y, then the decomposition is dependency preserving if all closures of all the FD's in all the new relations (in this case, X and Y) is equal to closure of F over R (a FD X->Y is preserved in a relation R if R contains all the attributes of X and Y).
 
 Example:
 
@@ -342,6 +342,19 @@ Consider the following:
 
 R(A, B, C, D) under F = {A → B, B → C}. 
 
+A valid BCNF decomposition would be R1(AB), R2(AC), R3(AD).
 
+However, this decomposition is not dependency preserving, because while A->B is preserved in R1, B->C is not preserved anywhere. 
 
+We can instead decompose this into R1(AB), R2(BC), R3(AD)
+
+Here, both FD's are preserved (A->B preserved in R1, B->C preserved in R2), so this decomposition is dependency preserving.
+
+Example 2: 
+
+Consider ABCD, C is the key, AB->C, D->A
+
+BCNF decomposition: BCD, DA
+
+AB->C doesn't apply to either new relation, so this decomposition is not dependency preserving. 
 
