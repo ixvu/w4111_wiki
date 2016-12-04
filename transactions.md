@@ -45,10 +45,11 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 
 # III. Translating Application Semantics to Transaction Semantics
 * A transaction is just a sequence of actions, where an action is one of the following:
-    1. Read an object
-    2. Write an object
-    3. Commit: sucessfully end the transaction
-    4. Abort: end the transaction prematurely or in error
+    1. READ an object
+    2. WRITE an object
+    3. BEGIN: begin the transaction
+    4. COMMIT: successfully end the transaction
+    5. ABORT: end the transaction prematurely or in error
 
     * These actions provide an API between the application and the DBMS
 
