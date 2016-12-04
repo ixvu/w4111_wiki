@@ -286,3 +286,17 @@ Consider the set A->B, ABC->E, EF->G, ACF->EG
 3. Delete redundant FD's
     * A->B, AC->E, EF->G
         * ACF->E implied by AC->E (a smaller set of attributes that determines E), ACF->G implied by AC->E EF->G (we can substitute AC for E to get ACF->G to reconstruct this dependency)
+
+## Principled Decomposition
+
+We eventually want to be able to decompose relation R into sub-relations R1, R2,..., Rn such that we can do a join on R1, R2, ..., Rn and get back the original relation R, while preserving the functional dependencies F of R. 
+
+However, we've seen issues with decomposition:
+    * Lost joins (can't recover R from R1, R2, ... , Rn)
+    * Lost dependencies (we cannot enforces all the dependencies when we decompose R into the sub-relations)
+
+How can we tell if a decomposition will yield lossless joins?
+Consider the decomposition of R into R1 and R2
+A decomposition is lossless w.r.t F if the closure of F contains one of the following:
+<cup></cup>
+R1 
