@@ -74,10 +74,10 @@ R(ABCDEF)
   
 Given the following functional dependencies:  
 
-1) AB-->C  
-2) BC-->AD  
-3) D-->E  
-4) CF-->B  
+1. AB → C  
+2. BC → AD  
+3. D → E  
+4. CF → B  
   
 Find (AB)<sup>+</sup>  
 &nbsp;&nbsp;= AB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reflexivity  
@@ -89,7 +89,7 @@ So (AB)<sup>+</sup> is __ABCDE__
   
 ###__Irreducable Set or Canonical Form of Functional Dependencies__  
   
-Used to determine if an attribute of a functional dependency is extraneous.  An attribute is said to be extranious if we can remove it without changing the closure of the set of functional dependencies.  
+Used to determine if an attribute of a functional dependency is extraneous.  An attribute is said to be extraneous if we can remove it without changing the closure of the set of functional dependencies.  
   
 Given the following relation:  
   
@@ -97,26 +97,26 @@ R(WXYZ)
   
 And the following functional dependencies:  
   
-1) X-->W  
-2) WZ-->XY  
-3) Y-->WXZ  
+1. X → W  
+2. WZ → XY  
+3. Y → WXZ  
 
 __Step 1__: Apply Decomposition Rule:  
   
 This means that you perform the following decomposition:  
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&alpha;-->&beta;&gamma;  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&alpha;-->&beta;   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&alpha;-->&gamma;  
+&alpha; → &beta;&gamma;  
+&nbsp;&nbsp;↳ &alpha; → &beta;   
+&nbsp;&nbsp;↳ &alpha; → &gamma;  
   
 So we end up with the following:  
   
-1) X-->W  
-2) WZ-->X  
-3) WZ-->Y  
-4) Y-->W  
-5) Y-->X  
-6) Y-->Z  
+1. X → W  
+2. WZ → X  
+3. WZ → Y  
+4. Y → W  
+5. Y → X  
+6. Y → Z  
   
 __Step 2__: Determine if any of the FD are redundant. We do this by determining the closure of each attribute along with testing each of the FD one at a time to see if they are redundant as shown:  
   
@@ -146,16 +146,16 @@ We see that we can find WZ<sup>+</sup> without FD number 2.  FD number 2 is ther
   
 Continuing with this process allows to determing that there are only four of the original six FD that are required to find all attributes.  They are:  
   
-1) X-->W   
-2) WZ-->Y  
-3) Y-->X  
-4) Y-->Z  
+1. X → W   
+2. WZ → Y  
+3. Y → X  
+4. Y → Z  
   
 __Step 3__: The final step is to determine if any of the FD with more than one attribute on the left hand side contain any attributes that are unnecessary in determining the closure of the particular FD.  In our example, we have only one FD to consider - FD number 2:  
   
-2) WZ-->Y  
+2) WZ → Y  
 
-We compare the closure of WZ<sup>+</sup> with the closure of W<sup>+</sup> and Z<sup>+</sup> to see if either of the left hand side attributes alone can find the full closure WZ<sup>+</sup>.  If either of them can, then the other attribute can be disgarded.  
+We compare the closure of WZ<sup>+</sup> with the closure of W<sup>+</sup> and Z<sup>+</sup> to see if either of the left hand side attributes alone can find the full closure WZ<sup>+</sup>.  If either of them can, then the other attribute can be discarded.  
   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WZ<sup>+</sup>=WZYX&nbsp;&nbsp;&nbsp;found by FD 2 and FD 3  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W<sup>+</sup>=W  
@@ -171,19 +171,19 @@ R(ABCD)
   
 and the following functional dependencies:  
   
-1) A-->BCD  
-2) AB-->CD  
-3) ABC-->D  
-4) BD-->AD  
-5) C-->AD  
+1. A → BCD  
+2. AB → CD  
+3. ABC → D  
+4. BD → AD  
+5. C → AD  
   
 |FD|Superkey|candidate key|  
-|---|---|---|  
-|A-->BCD|Yes|Yes|  
-|AB-->CD|Yes|No|  
-|ABC-->D|Yes|No|  
-|BD-->AD|Yes|Yes|  
-|C-->AD|No|No|  
+|-------|---|---|  
+|A → BCD|Yes|Yes|  
+|AB → CD|Yes|No |  
+|ABC → D|Yes|No |  
+|BD → AD|Yes|Yes|  
+|C → AD |No |No |  
   
 When can you say that a superkey is minimal and consequently is a candidate key?  
   - __If a superkey has a subset of its attributes that are another superkey, then it is not a candidate key.__  
@@ -204,10 +204,10 @@ R(ABCDEFGH)
   
 and the following functional dependencies:  
   
-1) AB-->C  
-2) A-->DE  
-3) B-->F  
-4) F-->GH  
+1. AB → C  
+2. A → DE  
+3. B → F  
+4. F → GH  
   
 __Step 1__: We start by looking for attributes that do not appear on the right hand side of any of the functional dependencies.  This implies that it cannot be found through any of the functional dependencies and it is consequently part or potentially singly comprises the candidate key of the relation.  
   
@@ -227,10 +227,10 @@ R(ABCDEFGH)
   
 and the following functional dependencies:  
   
-1) AB-->C  
-2) BD-->EF  
-3) AD-->G  
-4) A-->H  
+1. AB → C  
+2. BD → EF  
+3. AD → G  
+4. A → H  
   
 __Step 1__: We start by looking for attributes that do not appear on the right hand side of any of the functional dependencies.  This implies that it cannot be found through any of the functional dependencies and it is consequently part or potentially singly comprises the candidate key of the relation.  
   
@@ -250,8 +250,8 @@ R(ABCDE)
   
 and the following functional dependencies:  
   
-1) BC-->ADE  
-2) D-->B  
+1. BC → ADE  
+2. D → B  
   
 __Step 1__: We start by looking for attributes that do not appear on the right hand side of any of the functional dependencies.  This implies that it cannot be found through any of the functional dependencies and it is consequently part or potentially singly comprises the candidate key of the relation.  
   
@@ -280,9 +280,9 @@ R(WXYZ)
   
 and the following functional dependencies:  
   
-1) Z-->W  
-2) Y-->XZ  
-3) WX-->Y  
+1. Z → W  
+2. Y → XZ  
+3. WX → Y  
   
 __Step 1__: We start by looking for attributes that do not appear on the right hand side of any of the functional dependencies.  This implies that it cannot be found through any of the functional dependencies and it is consequently part or potentially singly comprises the candidate key of the relation.  
   
