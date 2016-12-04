@@ -66,8 +66,7 @@ _EP3 relation_
 |_**Pnumber**_|Pname|Plocation
 |---|---|---|  
   
-###__Finding the Closure Set of Attributes__  
-  
+###__Finding the Closure Set of Attributes__   
 Being able to find the the closure of a set of attributes is an important step in finding the candidate keys of a relation.  We begin by finding the closure of (AB)<sup>+</sup> in the following relation:  
 
 R(ABCDEF)  
@@ -78,31 +77,30 @@ Given the following functional dependencies:
 2. BC → AD  
 3. D → E  
 4. CF → B  
-  
-Find (AB)<sup>+</sup>  
+
+<details> 
+  <summary>Find (AB)<sup>+</sup></summary><br /><p>
 &nbsp;&nbsp;= AB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reflexivity  
 &nbsp;&nbsp;= ABC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Given FD 1  
 &nbsp;&nbsp;= ABCD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Given FD 2  
 &nbsp;&nbsp;= ABCDE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Given FD 3  
   
-So (AB)<sup>+</sup> is __ABCDE__  
-  
-###__Irreducable Set or Canonical Form of Functional Dependencies__  
-  
+So (AB)<sup>+</sup> is __ABCDE__ 
+ 
+</p></details>
+###__Irreducible Set or Canonical Form of Functional Dependencies__  
+
 Used to determine if an attribute of a functional dependency is extraneous.  An attribute is said to be extraneous if we can remove it without changing the closure of the set of functional dependencies.  
   
-Given the following relation:  
+Given the following relation: R(WXYZ)  
   
-R(WXYZ)  
-  
-And the following functional dependencies:  
-  
+And the following functional dependencies:    
 1. X → W  
 2. WZ → XY  
 3. Y → WXZ  
 
-__Step 1__: Apply Decomposition Rule:  
-  
+<details> 
+  <summary>Step 1: Apply Decomposition Rule</summary><br /><p>
 This means that you perform the following decomposition:  
   
 &alpha; → &beta;&gamma;  
@@ -116,9 +114,12 @@ So we end up with the following:
 3. WZ → Y  
 4. Y → W  
 5. Y → X  
-6. Y → Z  
-  
-__Step 2__: Determine if any of the FD are redundant. We do this by determining the closure of each attribute along with testing each of the FD one at a time to see if they are redundant as shown:  
+6. Y → Z
+
+</p></details>
+<details>
+  <summary>Step 2: Determine if any of the FD are redundant.</summary><br /><p> 
+We do this by determining the closure of each attribute along with testing each of the FD one at a time to see if they are redundant as shown:  
   
 Using FD number 1 compute (X)<sup>+</sup>  
 
@@ -149,9 +150,12 @@ Continuing with this process allows to determing that there are only four of the
 1. X → W   
 2. WZ → Y  
 3. Y → X  
-4. Y → Z  
-  
-__Step 3__: The final step is to determine if any of the FD with more than one attribute on the left hand side contain any attributes that are unnecessary in determining the closure of the particular FD.  In our example, we have only one FD to consider - FD number 2:  
+4. Y → Z
+
+</p></details>
+<details> 
+  <summary>Step 3: Determine if any of the FD with more than one attribute on the left hand side contain any attributes that are unnecessary in determining the closure of the particular FD.</summary><br /><p>   
+In our example, we have only one FD to consider - FD number 2:  
   
 2) WZ → Y  
 
@@ -162,9 +166,10 @@ We compare the closure of WZ<sup>+</sup> with the closure of W<sup>+</sup> and Z
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z<sup>+</sup>=Z  
   
 So in this example, if W<sup>+</sup> had found the same closure as WZ<sup>+</sup>, then attribute Z would have been redundant.  If  Z<sup>+</sup> had found the same closure as WZ<sup>+</sup>, the attribute W would have been redundant.  But as we see, neither attribute alone was able to find the full closure of WZ<sup>+</sup>, so both left hand attributes of FD 2 are required.  
-  
+</p></details>
 ###__Finding Candidate Keys__  
-  
+<details> 
+  <summary>Summary</summary><br /><p> 
 We begin by finding the candidate key(s) of the following relation.  It is important to remember that only minimal superkey's become candidate keys:  
   
 R(ABCD)  
@@ -193,9 +198,9 @@ For example, ABC and AB are both superkeys.  Since AB is also a superkey, then t
 The same logic can be considered for keys AB and A.  We have already decided that both AB and A are both superkeys.  Since A is also a superkey, this means that AB is not minimal.  Since superkey A does not have any subsets, it alone is the only candidate key for the relation.  
   
 Now consider the last superkey __BD__.  Is it a candidate key?  We begin by asking if there is any proper subset of __BD__ that is also a superkey?  The only subsets of __BD__ are __B__ and __D__ and neither of these individual attributes are superkeys.  So the answer is __yes__, __BD__ is also a candidate key of the relation.  
-   
-###__Finding Number of Candidate Keys Additional Examples__  
+</p></details>
 
+###__Finding Number of Candidate Keys Additional Examples__  
 <details> 
   <summary>__Example 1__</summary><br /><p>  
 Finding the candidate key(s) of the following relation.  
@@ -270,12 +275,11 @@ We will try the following - AC, BC, CD and CE:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CD<sup>+</sup>=ABCDE&nbsp;&nbsp;&nbsp;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CE<sup>+</sup>=CE&nbsp;&nbsp;&nbsp;  
   
-So we have found two candidate keys __BC__ and __CD__ for the relation.  
-</p></details>  
+So we have found two candidate keys __BC__ and __CD__ for the relation.
+</p></details>
 <details> 
   <summary>__Example 4__</summary><br /><p> 
-Finding the candidate key(s) of the following relation.  
-  
+Finding the candidate key(s) of the following relation.    
 R(WXYZ)  
   
 and the following functional dependencies:  
