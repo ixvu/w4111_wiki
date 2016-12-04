@@ -15,18 +15,16 @@
 
 ###Additional Topics  
 [[Instabase |infrastructure]]
-
-[[Midterm Study Guide |midterm study guide]]
-
 [[Access Path Selection Calculation | Access Path Selection Calculation ]]
+***
 
+###Study Guides 
+[[Midterm 1 Study Guide |midterm study guide]]
 [[Midterm 2 Study Guide | midterm_2 study guide ]]
-
 ***
 
 ###Livecode  
 [[Playing With Constraints | Livecode---Playing-With-Constraints]] (5)  
-
 ***
 
 [[Contributors | contributors]]
