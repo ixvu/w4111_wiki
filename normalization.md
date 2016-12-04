@@ -302,7 +302,7 @@ However, we've seen issues with decomposition:
     
     * Lost dependencies (we cannot enforces all the dependencies when we decompose R into the sub-relations)
 
-How can we tell if a decomposition will yield lossless joins?
+###How can we tell if a decomposition will yield lossless joins?
 
 Consider the decomposition of R into R1 and R2
 
@@ -328,6 +328,9 @@ Why is this correct?
 
 A does not uniquely determine anything in R1, but it does in R2, and R1 intersect R2 = A, so we get the FD A -> AC (which can be decomposed to A->A, which is trivial, and A->C, which is a FD of R). This functional dependency is in the closure of F. 
  
+###What about dependency preservation?
+
+F<sub>R</sub>
 
 
 
