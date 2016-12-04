@@ -1,8 +1,8 @@
 # Join Problem Walkthroughs
+## Example 1
 <details> 
-  <summary>Example 1</summary><br />  
-### Stats  
-</details>
+  <summary>Stats</summary><br /><p>  
+
 |Fill Factor|Dir. Entry Size|Tuple Size|Page Size|    
 |:---------:|:-------------:|:--------:|:-------:|  
 |     0.5   |    5 bytes    | 100 bytes|400 bytes|
@@ -15,10 +15,10 @@
 |Secondary Hash Index|     ✓    |          |          |          |  
 | Primary Tree Index |          |          |    ✓     |     ✓    |  
 |Secondary Tree Index|          |     ✓    |          |     ✓    |  
-</details>
+</p></details>
 ### Preparation Steps
 <details> 
-  <summary>1. Compute the Directory Entries Per Page</summary><br />
+  <summary>1. Compute the Directory Entries Per Page</summary><br /><p>
    1.  floor(<sup>Page Size * Fill Factor</sup>&frasl;<sub>Dir Entry Size</sub>)  
    2.  floor(<sup>400 * 0.5</sup>&frasl;<sub>5</sub>) 
    3.  40 <sup>DEs</sup>&frasl;<sub>Page</sub>
@@ -26,10 +26,10 @@
 |Fill Factor|Dir. Entry Size|Tuple Size|Page Size|DE/Page|    
 |:---------:|:-------------:|:--------:|:-------:|:-----:|     
 |     0.5   |    5 bytes    | 100 bytes|400 bytes|  40   |  
-</details>
+</p></details>
 
 <details> 
-  <summary>2. Compute the Tuples Per Page</summary><br />
+  <summary>2. Compute the Tuples Per Page</summary><br /><p>
    1.  floor(<sup>Page Size * Fill Factor</sup>&frasl;<sub>Tuple Size</sub>) 
    2.  floor(<sup>400 * 0.5</sup>&frasl;<sub>100</sub>)  
    3.  2 <sup>Tups</sup>&frasl;<sub>Page</sub>
@@ -37,11 +37,11 @@
 |Fill Factor|Dir. Entry Size|Tuple Size|Page Size|DE/Page|Tups/Page|    
 |:---------:|:-------------:|:--------:|:-------:|:-----:|:-------:|   
 |     0.5   |    5 bytes    | 100 bytes|400 bytes|  40   |    2    |  
-</details>
+</p></details>
 
 
 <details> 
-  <summary>3. Compute the Page Sizes for each of the relations T1 thru T4</summary><br />
+  <summary>3. Compute the Page Sizes for each of the relations T1 thru T4</summary><br /><p>
 Note: we need to end up in units of pages!
    1.  T<sub>1</sub> = <sup>2000 Tuples</sup>&frasl;<sub>2 Tuples/Page</sub> = 1000 Pages  
    1.  T<sub>2</sub> = <sup>20000 Tuples</sup>&frasl;<sub>2 Tuples/Page</sub> = 10000 Pages  
@@ -52,11 +52,11 @@ Note: we need to end up in units of pages!
 |-------------------:|:--------:|:--------:|:--------:|:--------:|
 |       Tuples       |  2000    |  20000   |    20    |  200000  | 
 |       Pages        |  1000    |  10000   |    10    |  100000  |  
-</details>
+</p></details>
 
 
 <details> 
-  <summary>4. Compute the Lookup Costs for each of the indexes relations T1 thru T4</summary><br />
+  <summary>4. Compute the Lookup Costs for each of the indexes relations T1 thru T4</summary><br /><p>
 Note: Costs is to lookup 1 tuple in page units!
 1.  Equations
     1. Hash Index Cost = 1
@@ -84,18 +84,18 @@ Note: Costs is to lookup 1 tuple in page units!
 |-------------------:|:--------:|:--------:|:--------:|:--------:|
 |       Tuples       |  2000    |  20000   |    20    |  200000  | 
 |       Pages        |  1000    |  10000   |    10    |  100000  |  
-</details>
+</p></details>
       
 ### Solution Steps
 
 <details> 
-  <summary>1. Find the Relation with the least number of tuples</summary><br />
+  <summary>1. Find the Relation with the least number of tuples</summary><br /><p>
   T<sub>3</sub> &lt; T<sub>1</sub> &lt; T<sub>2</sub> &lt; T<sub>4</sub>
-</details>
+</p></details>
 
 
 <details> 
-  <summary>2. Compare the cost of of joining against the other</summary><br />
+  <summary>2. Compare the cost of of joining against the other</summary><br /><p>
 
 | T<sub>3</sub> ⋈<sub>attr</sub> T<sub>X</sub> Cost   |    T<sub>1</sub>    |    T<sub>2</sub>    |    T<sub>4</sub>    |   
 |-------------------------------:|:--------:|:--------:|:--------:| 
@@ -115,10 +115,10 @@ Note: Costs is to lookup 1 tuple in page units!
 
 We observe that the Index Nested Loop using the T2 Hash Index is the least costly operation with a 30 page cost.  
 R<sub>1</sub> = T<sub>3</sub> Hash-INL T<sub>2</sub>
-</details>
+</p></details>
 
 <details> 
-  <summary>3. Compare the cost of joining R1 against the other relations</summary><br />
+  <summary>3. Compare the cost of joining R1 against the other relations</summary><br /><p>
 
 | (T<sub>3</sub> ⋈<sub>attr</sub>T<sub>2</sub>) ⋈<sub>attr</sub> T<sub>X</sub> Cost   |    T<sub>1</sub>    |    T<sub>4</sub>    |   
 |-------------------------------:|:--------:|:--------:|  
@@ -137,10 +137,10 @@ R<sub>1</sub> = T<sub>3</sub> Hash-INL T<sub>2</sub>
 |Hash Join                                         |1050   |100050  | 
  We observe that the Index Nested Loop using the T1 Primary B-Tree Index is the least costly operation with a cumulative 90 page cost.  
 R<sub>2</sub> = R<sub>1</sub> Primary-B-Tree-INL T<sub>1</sub>
-</details>
+</p></details>
 
 <details> 
-  <summary>4. Calculate the cost of joining R1 against the last relation</summary><br />
+  <summary>4. Calculate the cost of joining R1 against the last relation</summary><br /><p>
 
 | ((T<sub>3</sub> ⋈<sub>attr</sub>T<sub>2</sub>) ⋈<sub>attr</sub> T1) ⋈<sub>attr</sub> T<sub>4</sub> Cost|  T<sub>4</sub>   | 
 |----------------------------------------------------------------------:|:-----:| 
@@ -161,5 +161,4 @@ R<sub>2</sub> = R<sub>1</sub> Primary-B-Tree-INL T<sub>1</sub>
 We identify that an Index Nested Loop join using either the Primary B-Tree or Secondary B-Tree equivalently incur the least cost.  
 We select the Primary B-Tree and formulate the final relation.  
 R<sub>3</sub> = R<sub>2</sub> Primary-B-Tree-INL T<sub>4</sub> with estimated cost 190.
-</details>
-</details>
+</p></details>
