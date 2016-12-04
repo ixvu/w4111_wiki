@@ -82,9 +82,11 @@ Note: Costs is to lookup 1 tuple in page units!
   3.  ceiling(2.3) + 2 = 3 + 2 = 5  
 
 | Attribute\Relation |T<sub>1</sub>|T<sub>2</sub>|T<sub>3</sub>|T<sub>4</sub>|      
-|-------------------:|:--------:|:--------:|:--------:|:--------:|
-|       Tuples       |  2000    |  20000   |    20    |  200000  | 
-|       Pages        |  1000    |  10000   |    10    |  100000  |  
+|-------------------:|:-----------:|:--------:|:--------:|:--------:|
+| Primary Hash Index |    ✖      |     1    |    ✖      |     ✖    |  
+|Secondary Hash Index|     3     |     ✖    |    ✖      |     ✖    |  
+| Primary Tree Index |     ✖     |     ✖    |    2      |     5    |  
+|Secondary Tree Index|     ✖     |     4    |    ✖      |     5    |  
 </p></details>
       
 ### Solution Steps
@@ -141,7 +143,7 @@ R<sub>2</sub> = R<sub>1</sub> Primary-B-Tree-INL T<sub>1</sub>
 </p></details>
 
 <details> 
-  <summary>4. Calculate the cost of joining R1 against the last relation</summary><br /><p>
+  <summary>4. Calculate the cost of joining R2 against the last relation</summary><br /><p>
 
 | ((T<sub>3</sub> ⋈<sub>attr</sub>T<sub>2</sub>) ⋈<sub>attr</sub> T1) ⋈<sub>attr</sub> T<sub>4</sub> Cost|  T<sub>4</sub>   | 
 |----------------------------------------------------------------------:|:-----:| 
