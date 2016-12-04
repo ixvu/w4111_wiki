@@ -277,15 +277,20 @@ Because we use only pointers, a page can contain many more pointers, but need to
 **Basic B+ Tree: search key <age>**
 ![](https://github.com/shy2116/project1/blob/master/B0.PNG?raw=true)
 - Note: This is a simplified example. The significant advantage of Btree indexes over the binary search alternative is that Btree indexes can have significantly higher fanouts (typically >100 rather than the 3 used in this example)
-- An index has at most 3 pointers corresponding to 3 conditions
-- The search processing for the following image is: 15<17 -> left node of 17 -> 15>14 -> right node of 14 -> 14<15 -> visit the right elements of 14 -> 16>15 -> visit 16 and all the elements on the right of it. 
+- The bottom nodes are the data pages that contain the actual tuples. In this example, the tuples are simply the index key.
+- The index has at most 3 pointers corresponding to 3 conditions
+- The index page has two index key values, 17 and 50. They are used to decide which child to follow when performing a search.
+- **Example: ** SELECT * FROM file WHERE key = 16
+ - We start at the node, and evaluate our condition against the conditions corresponding the three pointers. With the two index key values, 17 and 50, serving as dividers for the pointers. The first, second, and third pointers corresponds to the following conditions, respectively: values < 17, 17 < values < 50, values > 50. Because our condition falls within the range of the first condition, we follow the first pointer. We read from left to right, first evaluating the key 14, which does not equal 16. We proceed right to the next search key (we can do this because a Btree is sorted on its index keys), and find that the key search key, 16, does in fact match our condition. We return this tuple, and continue scanning right to check for any additional matches. Because leaf nodes in a Btree index are connected by previous/next pointers, we can proceed to the next leaf page without having to go through the index again. Reading the next page from left to right, we determine that the next next key, 17, does not satisfy our condition, and so we end our search.
 
 **Full B+ Tree with additional record pages**
 ![](https://github.com/shy2116/project1/blob/master/B1.PNG?raw=true)
-- The B+ Tree is "full," meaning the maximum number of pointers from the index has been reached
+- The INDEX page is full, so we cannot add more child pointers to point to the two leaf nodes on the left. An additional index page must be added.
 
 ![](https://github.com/shy2116/project1/blob/master/B2.PNG?raw=true)
-- Additional index pages must be added
+- We have added an additional index page to cover the two additional nodes; however, in doing so we also had to create an additional level and an additional page to point to the two index pages below it.
+ - This is necessary, because we need a new root node to navigate the multiple index pages we now have.
+ - The height of our index has increased by 1 to a value of 2.
 
 
 **Composite search tree (multiple search keys)**
