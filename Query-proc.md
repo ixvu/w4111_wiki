@@ -369,7 +369,7 @@ Note: The following two joins are not the same!
   + For (AC)D since there is no index built for D, we can only use nested loop.
   + Intuitively, (AC)B should have less cost.
 + To estimate the cost for the three-table join, we need to find the estimated output size (in tuples) of A⋈C
-  + Denote the output size by |A⋈C|
+  + Denote the output size by |A⋈C| (This is in TUPLES!! NOT IN PAGES!)
   + |A⋈C| = selectivity * |A X C|
            = 1/max(1K, 100K) * (1K*100K) = 1K
 + (AC)B and (AC)D with their corresponding costs:
