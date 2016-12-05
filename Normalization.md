@@ -356,5 +356,5 @@ Consider ABCD, C is the key, AB->C, D->A
 
 BCNF decomposition: BCD, DA
 
-AB->C doesn't apply to either new relation, so this decomposition is not dependency preserving. 
+AB->C doesn't apply to either of the new relations, so this decomposition is not dependency preserving. 
 
