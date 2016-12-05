@@ -381,3 +381,40 @@ Run BCNF on Fmin
 For X->Y in Fmin not in projection onto R1,.., Rn
     create relation X->Y
 ```
+
+**Notes:** Based on the solution of homework & final, the algorithm for a 3NF decomposition is:
+
+```
+1. Got one of the BCNF decomposition (Let's call it BCNF1)
+2. First find the minimal cover Fmin
+3. Check each FD in Fmin on BCNF1:
+   For X->Y in Fmin not in projection onto R1,.., Rn
+       create relation X->Y
+4. Remove redundant tables. (Redundant tables are those whose attributes are a subset of another table in the decomposition)
+```
+
+Example 1:
+
+**Given the relation `BCNO` and the FDs `BC -> N` and `N -> BO`, decompose R using the following steps:**
+ 1. `BCNO` violates BCNF
+ 2. Break `BCNO` (in this example we use `N -> BO` as the "base" FD)
+  * `NBO` is one relation (obtained by just combining attributes of "base" FD)
+  * The other relation is simply `R - Y` = `BCNO` - `BO` = `CN`
+ 3. Now we have `NBO`, `CN` which is in BCNF
+ 4. Fmin = `BC->N, N->B, B->O`
+ 5. Check `NBO`, `CN` using Fmin, we found the FD `BC->N` is lost
+ 6. Add `BC->N` back to the schemas, `NBO`, `CN` and `BCN`
+ 7. Since `CN` is a subset of `BCN`, remove redundant table `CN`
+ 8. Final results: `NBO`, `BCN`
+
+Example 2:
+
+Relation `ABCDE`, FDs `A->BCDE`, `B->C`, `D->EC`.
+
+```
+1. Applying `B->C`, `BC`, `ABDE`
+2. Applying `D->E` (projection of `D->EC` on `ABDE`), `BC`, `DE`, `ABD`
+3. Fmin = { A->B, A->D, B->C, D->E, D->C }
+4. `D->C` is missing
+5. 3NF: `BC`, `DE`, `ABD`, `DC`
+```
