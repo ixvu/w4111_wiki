@@ -280,6 +280,8 @@ If there's a closure (a maximally expanded set of functional dependencies), then
 
 **NOTE: You must do the steps in this order**
 
+Minimum covers are not necessarily unique
+
 Examples:
 Consider the set A->B, ABC->E, EF->G, ACF->EG
 
@@ -328,7 +330,7 @@ Why is this correct?
 
 R1 intersect R2 = A, so we get the FD A -> AC (which can be decomposed to A->A, which is trivial, and A->C, which is a FD of R). This functional dependency is in the closure of F. 
 
-**Note:** Just as a quick note, the difference between a BCNF decomposition that loses a functional dependency, and an invalid BCNF decomposition is the lossless join component. Even if we have lost an FD in the new relations, if they can be joined together to recover the original relation, then they are in BCNF. 
+**Note:** Just as a quick note, the difference between a BCNF decomposition that loses a functional dependency, and an invalid BCNF decomposition is the lossless join component. Even if we have lost an FD in the new relations, if they can be joined together to recover the original relation, then they are in BCNF. However, a bad or invalid BCNF decomposition will suffer from lossy decomposition. 
  
 ###What about dependency preservation?
 
@@ -359,3 +361,23 @@ Consider ABCD, C is the key, AB->C, D->A
 BCNF decomposition: BCD, DA
 
 AB->C doesn't apply to either of the new relations, so this decomposition is not dependency preserving. 
+
+## Decomposing into 3NF
+
+We have already seen above the algorithm for BCNF decomposition. Just to refresh:
+
+```
+while BCNF is violated: 
+   R with FDs FR
+   if X->Y violates BCNF
+      turn R into R-Y & XY
+```
+
+For a 3NF decomposition: 
+
+```
+First find the minimal cover F<sup>min</sup>
+Run BCNF on F<sup>min</sup>
+For X->Y in F<sup>min</sup> not in projection onto R1,.., Rn
+    create relation X->Y
+```
