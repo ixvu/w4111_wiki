@@ -11,7 +11,7 @@ modifying to **target == el.lower()** will get the correct result.
 
 
 # Lecture 2 Entity-Relationship Model
-## Inconsistencies/ConstraintViolations
+## Inconsistencies/Constraint Violations
 
 * duplicate attribute: 
 
