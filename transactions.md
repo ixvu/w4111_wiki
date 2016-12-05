@@ -205,6 +205,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
                * T1  `R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
                * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
 
+#IX.  More Notes
 * Why do we need the conflict serializability at all?
 	* Serializability is more preferable, but there's no way to check serializablity. 
 	* We have simple rules/algorithm to check conflict serializability.
