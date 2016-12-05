@@ -57,7 +57,7 @@ It uses index to find all record, identify first index page and number of pages 
           +    Given 100 DEs of each page, number of pages one level up: 1K/100=10. 
           +    One level up is 1 page, root page. 
           +    Total height: 3. 
-          +    Total cost: 90K+3.
+          +    Total cost: 90K+900+2.
 
 ## Access path
 Access Path refers to the path chosen by the system to retrieve data after a structured query language (SQL) request is executed. A query may request at least one variable to be filled up with one value or more.
