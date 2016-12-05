@@ -205,7 +205,7 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
                * T1  `R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`
                * T2  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A) W(A)`
 
-#IX.  More Notes
+#IX.  More Notes : To get better prepared for final
 * Why do we need the conflict serializability at all?
     * Serializability is more preferable, but there's no way to check serializablity. 
     * We have simple rules/algorithm to check conflict serializability.
@@ -224,3 +224,13 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
         * There is WR in T2, but they're all in T2. No repeated reads in T1. So we're fine.
             * T1: `r(A)`&emsp;&emsp;
             * T2: &emsp;&emsp;`w(A) r(a)`
+
+    * example 3) Lost Write
+        * T2 wrote A, but soon after T1 overwrote A. So it was lost *by other transaction*.
+            * T1: `r(A)`&emsp;&emsp; `w(A)`
+            * T2: &emsp;&emsp;`w(A)`
+
+    * example 4) NO Lost Write
+        * T2 wrote A, and soon after T2 wrote A again. In this case, we won't say it is lost, because it was done by me.
+            * T1: `r(A)`&emsp;&emsp;
+            * T2: &emsp;&emsp;`w(A) w(A)`
