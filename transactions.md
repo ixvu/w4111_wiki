@@ -207,6 +207,17 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 
 #IX.  More Notes
 * Why do we need the conflict serializability at all?
-	* Serializability is more preferable, but there's no way to check serializablity. 
-	* We have simple rules/algorithm to check conflict serializability.
-	* So, in combination with lock-based concurrency control, the conflict serializability gives us a systematic way of serialization, which will save computational resources.
+    * Serializability is more preferable, but there's no way to check serializablity. 
+    * We have simple rules/algorithm to check conflict serializability.
+    * So, in combination with lock-based concurrency control, the conflict serializability gives us a systematic way of serialization, which will save computational resources.
+
+
+* Caution! : Conflicts are *between* transactions
+
+    * Unrepeatable Read
+        * T1: `r(A)`&emsp;&emsp; `r(A)`
+        * T2: &emsp;`w(A)`
+
+    * NOT Unrepeatable Read
+        * T1: `r(A)`&emsp;&emsp;
+        * T2: &emsp;`w(A) r(a)`
