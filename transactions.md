@@ -213,11 +213,14 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
 
 
 * Caution! : Conflicts are *between* transactions
+    * This is to keep in mind that, those 3 conflicts(RW,WR,WW) are for *between* transactions. Everyone may know that, but when in exams with complex schedules, it is easy to forget.
 
-    * Unrepeatable Read
-        * T1: `r(A)`&emsp;&emsp; `r(A)`
-        * T2: &emsp;`w(A)`
+    * example 1) Unrepeatable Read
+        * T1 tries to read A again (for whatever reason), but it was changed by T2.
+            * T1: `r(A)`&emsp;&emsp; `r(A)`
+            * T2: &emsp;&emsp;`w(A)`
 
-    * NOT Unrepeatable Read
-        * T1: `r(A)`&emsp;&emsp;
-        * T2: &emsp;`w(A) r(a)`
+    * example 2) *NO* Unrepeatable Read
+        * There is WR in T2, but they're all in T2. No repeated reads in T1. So we're fine.
+            * T1: `r(A)`&emsp;&emsp;
+            * T2: &emsp;&emsp;`w(A) r(a)`
