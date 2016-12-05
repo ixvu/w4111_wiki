@@ -121,7 +121,7 @@ At above we computed fan out is 25 and we have 20,000 tuples in total.
 Therefore the new height of tree is:
 * new height of tree=⌈log<sub>25</sub>800⌉=3 (this is different from the previous one even they are both 3) 
 
-The access cost will be the height plus one more leaf page and since we are in secondary case we need one more page on disk, note that this is under assumption that there is no overflow page (we covered overflow case below):
+The access cost will be the height plus one more leaf page and since we are in secondary case we need one more page on disk:
 * Cost = 3(new height)+1(leaf page)+1(disk)=5
 
 
@@ -129,7 +129,24 @@ The access cost will be the height plus one more leaf page and since we are in s
 The difference between this problem and the previous one is that since we are only looking for the id which is the index we do not need the information from disk. Thus
 * Cost = 3(height)+1(leaf page)=4
 
-
-## Overflow Pages Case: 14
-Assume on average each bucket has 10 pages, then the page we need to read in disk will be 10
+## Secondary B+-tree 𝜎<sub>id=10</sub>(T1) and 10 matched tuple: 14
+Since DE/page = 25, it's reasonable to assume that the directory of these 10 matched page are stored in a single leaf page.
 * Cost = 3(height)+1(leaf page)+10(disk)=14
+
+## Secondary B+-tree π<sub>id</sub>𝜎<sub>id=10</sub>(T1) and 10 matched tuple: 4
+Since we don't need to get the real data tuple
+* Cost = 3(height)+1(leaf page) = 4
+
+## Primary Hash Index Case
+𝜎<sub>id=10</sub>(T1)
+1. If id is not the key and there is no overflow page
+    Cost = 1
+2. If id is not the key and on average there are 10 overflow pages
+    Cost = 10
+
+## Secondary Hash Index Case
+𝜎<sub>id=10</sub>(T1)
+1. If 5 matched tuple and there is no overflow page
+    Cost = 1 + 5 = 6
+2. If 5 matched tuple and on average there are 10 overflow pages
+    Cost = 10 + 5 = 15
