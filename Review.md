@@ -139,14 +139,18 @@ Since we don't need to get the real data tuple
 
 ## Primary Hash Index Case
 𝜎<sub>id=10</sub>(T1)
+
 1. If id is not the key and there is no overflow page
     Cost = 1
+
 2. If id is not the key and on average there are 10 overflow pages
     Cost = 10
 
 ## Secondary Hash Index Case
 𝜎<sub>id=10</sub>(T1)
+
 1. If 5 matched tuple and there is no overflow page
     Cost = 1 + 5 = 6
+
 2. If 5 matched tuple and on average there are 10 overflow pages
     Cost = 10 + 5 = 15
