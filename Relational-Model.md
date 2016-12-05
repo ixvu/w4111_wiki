@@ -89,7 +89,8 @@ CREATE TABLE Name(   -- syntax to create a table
 * `RENAME`: modifies an existing database object
 
 # Integrity Constraints (ICs)
-**IC**: a condition that is true for *any* instance of database
+**Integrity Constraint**: a condition that is true for *any* instance of database. ICs allow the database to ensure properties about the data, such as an item must have a value or an item must be unique, which allows the programmer to assume that data received from the database conforms to a given property without having to verify within an application. This allows for a dissociation of data storage and application logic. 
+
 * **Domain Constraints** -- Attribution type
         
   ```sql
@@ -114,6 +115,7 @@ CREATE TABLE Students(
     gpa real
     )
   ```
+* **[Functional Dependencies ](https://github.com/w4111/scribenotes/wiki/Normalization#iv-functional-dependency)**
 
 # Keys
 ## Candidate key
