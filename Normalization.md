@@ -326,7 +326,9 @@ What's correct?
 
 Why is this correct?
 
-A does not uniquely determine anything in R1, but it does in R2, and R1 intersect R2 = A, so we get the FD A -> AC (which can be decomposed to A->A, which is trivial, and A->C, which is a FD of R). This functional dependency is in the closure of F. 
+R1 intersect R2 = A, so we get the FD A -> AC (which can be decomposed to A->A, which is trivial, and A->C, which is a FD of R). This functional dependency is in the closure of F. 
+
+**Note:** Just as a quick note, the difference between a BCNF decomposition that loses a functional dependency, and an invalid BCNF decomposition is the lossless join component. Even if we have lost an FD in the new relations, if they can be joined together to recover the original relation, then they are in BCNF. 
  
 ###What about dependency preservation?
 
@@ -357,4 +359,3 @@ Consider ABCD, C is the key, AB->C, D->A
 BCNF decomposition: BCD, DA
 
 AB->C doesn't apply to either of the new relations, so this decomposition is not dependency preserving. 
-
