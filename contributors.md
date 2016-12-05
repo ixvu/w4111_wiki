@@ -100,3 +100,6 @@ List of contributors and contributions
 * Shengyang Zhang (sz2624)
   1. Scribed Lecture 24: Review part
     1. Section include examples of serializable and access costs problem in many cases.
+* Bryce Yoo (shy2116)
+  1. Scribed Lecture 20: Physical Design
+    1. Provided elaborate descriptions of every concept, incorporated new examples and filled in any gaps in the lecture with information from the textbook.
