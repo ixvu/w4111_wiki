@@ -373,7 +373,7 @@ Note: The following two joins are not the same!
   + |A⋈C| = selectivity * |A X C|
            = 1/max(1K, 100K) * (1K*100K) = 1K
 + (AC)B and (AC)D with their corresponding costs:
-<img src = "https://github.com/xz2581/project1/blob/master/6.png">
+<img src = "https://github.com/xz2581/project1/blob/master/16.png">
 + (AC)B is indeed the one with the less cost.
 
 ### Step Three: find the four-table join with the least cost
