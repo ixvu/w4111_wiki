@@ -93,7 +93,7 @@ List of contributors and contributions
 * Abhiroop Gangopadhyay (ag3661)
   1. Scribed lecture 22: Transaction Processing
   1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
-  2. Scribed lecture 17, normalization part 2 (sections include everything from 3NF onwards)
+  2. Scribed lecture 17, normalization part 2 (sections include everything from 3NF and formalization of normal forms onwards), added examples
 * Louise Zhou (xz2581)
   1. Scribed lecture 21: Query Processing
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
