@@ -103,3 +103,7 @@ List of contributors and contributions
 * Bryce Yoo (shy2116)
   1. Scribed Lecture 20: Physical Design
   2. Addressed all suggestions made by the professor. 
+* Wonchang CHung (wc2550 as totuta)
+  1. Added *More Notes* at the end of Transactions scribe notes
+
+
