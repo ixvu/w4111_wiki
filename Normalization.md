@@ -376,8 +376,8 @@ while BCNF is violated:
 For a 3NF decomposition: 
 
 ```
-First find the minimal cover F<sup>m</sup>
-Run BCNF on (F<sup>min</sup>)
-For X->Y in F<sup>min</sup> not in projection onto R1,.., Rn
+First find the minimal cover Fmin
+Run BCNF on Fmin
+For X->Y in Fmin not in projection onto R1,.., Rn
     create relation X->Y
 ```
