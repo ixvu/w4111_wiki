@@ -92,7 +92,7 @@ List of contributors and contributions
   1. Scribed Lecture 22: Transaction Processing
   1. Revised BCNF section (V) of Normalization Scribe Notes
 * Abhiroop Gangopadhyay (ag3661)
-  1. Scribed lecture 22: Transaction Processing
+  1. Scribed lecture 22: Transaction Processing (originally scribed onto google doc, my partner transcribed a lot of it over to the markdown. I can show the link to google doc if necessary). 
   1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
   2. Scribed lecture 17, normalization part 2 (sections include everything from 3NF and formalization of normal forms onwards), added examples
 * Louise Zhou (xz2581)
