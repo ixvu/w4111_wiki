@@ -128,3 +128,8 @@ List of contributors and contributions
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).[Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
   2. Improved notes for Transactions. Added graph for Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
   3. Improved notes for Normalization by adding short introduction and a picture describing relationships between norm forms.[Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
+* Haikuo Liu (hl3023 as github: haikuoliu)
+  1. Add examples of computing selectivity: "Example of computing selectivity" in the following link.
+[How to determin/compute selectivity](https://github.com/w4111/scribenotes/wiki/Query-proc#how-to-determincompute-selectivity)
+  2. Clarify an example: the second item of "note" in the following link.
+[Estimate Size of Output](https://github.com/w4111/scribenotes/wiki/Query-proc#estimate-size-of-output)
