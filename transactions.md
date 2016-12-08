@@ -1,6 +1,6 @@
 # I. Terminology
-* **Transaction:** A transaction is the DBMS’s abstract view of a user program (essentially a simpler and more fundamental **sequence **of reads/writes)
-   * Why do we need to know transaction? Concurrent execution of user programs is essential for good DBMS performance because disk accesses are frequent, and relatively slow, it is important to keep the CPU cores humming by working on several user programs concurrently.
+* **Transaction:** A transaction is the DBMS’s abstract view of a user program (essentially a simpler and more fundamental sequence of reads/writes)
+   * **Why do we need to know transaction?** Concurrent execution of user programs is essential for good DBMS performance because disk accesses are frequent, and relatively slow, it is important to keep the CPU cores humming by working on several user programs concurrently.
 
 * **ACID:** A set {Atomicity, Consistency, Isolation, Durability} of transaction properties that ensure consistency and correctness of the database.
     * **Atomicity:** 
