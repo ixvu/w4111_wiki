@@ -113,6 +113,11 @@ We can never deduce that an FD does hold by looking at one or more instances of 
 
 
 # V. Normal Forms
+Relationships between normal forms:
+![](https://github.com/jh3768/imgs/blob/master/imgs/normforms.png?raw=true)
+
+If a relation is in a certain normal form (BCNF, 3NF etc.), it is known that certain kinds of problems are avoided/minimized. This can be used to help us decide whether decomposing the relation will help.
+
 We will focus on two normal forms: BCNF and 3NF
 * BCNF has no redundancy, but may lose some dependencies
 * 3NF preserves all dependencies but has some redundancy
