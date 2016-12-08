@@ -60,3 +60,16 @@ More:
     * AI/ML: Knowledge Discovery
     * Logic: RelationalAlgebra = 1st order logic
 * Datasets increasing in diversity and volume (videos, webs...etc)
+
+## DBMSes in the Wild
+* Classic Relational
+    * Oracle, IBM, Microsoft, Teradata, EMC, etc Free: MySQL, PostgreSQL, SQLite
+* New Relational
+    * In-Memory, Column-store, Streaming
+* Non-traditional
+    * Search (Google, Bing, Lucene), Scientific, Geographic
+* NoSQL
+    * Big Data: Hadoop, Spark, etc
+    * Key-value: Mongo, BerkeleyDB, Cassandra, etc
+* DBMS-as-a-Service
+    * Microsoft Azure, Amazon Redshift/RDS, etc...
