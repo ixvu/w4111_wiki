@@ -41,9 +41,9 @@ List of contributors and contributions
   1. Scribed relational model basic concepts
   1. Scribed relational model Integrity Constraints
 * Chi Cao (cc3920)
-  1. Scribed Lecture 7 Relational Algebra
-  1. Add in hyperlinks for easier browsing 
-  1. Provided graphs for better understanding
+  1. Scribed Lecture 7 [Relational Algebra](https://github.com/w4111/scribenotes/wiki/Relational-Algebra)
+  1. [Add in hyperlinks for easier browsing](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#5-core-operations) 
+  1. [Provided graphs for better understanding](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#project)
 * Kaili Chen (kc3031)
   1. Primarily Scribed [Lecture 8 Relational Algebra](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
   1. Sections include: Primarily Scribed [1.Recap: Join 2.Examples of Set Division 3.How to Express Set Division 4.More Examples](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
