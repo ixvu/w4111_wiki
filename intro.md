@@ -31,7 +31,7 @@ Generating data was historically expensive because of manual work.  Even today, 
     * Relationships (e.g., Susan is taking CS 234, Susan is a friend of Lynn, ...)
 * What’s a database management system (DBMS)?
     * A software system designed to store, manage, and provide access to one or more databases
-    * System to safely and reliably store lots of persistent structured data that is convenient for multiple users to efficiently access and modify.
+    * More specifically, system to safely and reliably store lots of persistent structured data that is convenient for multiple users to efficiently access and modify.
 
 ## File Systems vs. DBMS
 * Application programs must sometimes stage large datasets between main memory and secondary storage (for buffering huge data sets, getting page-oriented access, etc.)
@@ -39,3 +39,11 @@ Generating data was historically expensive because of manual work.  Even today, 
 * Must protect data from inconsistency due to multiple concurrent users
 * Crash recovery is important since data is now the currency of the day (corporate jewels)
 * Security and access control are also important(!)
+
+## Why Use a DBMS?
+* Data independence.
+* Efficient data access.
+* Reduced application development time.
+* Data integrity and security.
+* Uniform data administration
+* Concurrent access, recovery from crashes.
