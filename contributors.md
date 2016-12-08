@@ -51,7 +51,7 @@ List of contributors and contributions
   1. Scribed Lecture 8 Relational Algebra
   1. Sections include: 1. Set Difference and Performance 2.Relational Operator: Set Division 3.Why learn relational algebra
 * Ching-Hui Hsu (ch3230)
-  1. Scribed Lecture 9 SQL
+  1. Primary Scribed Lecture 9 [SQL](https://github.com/w4111/scribenotes/wiki/SQL)
   1. Include: 1. SQL Semantics 2. SQL Query Examples 3. supply detailed explanation for query statement/expression.
 * Christine Chao (cc4059)
   1. Scribed Lecture 10 SQL
