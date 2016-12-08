@@ -127,7 +127,7 @@ List of contributors and contributions
     3. Tip on unexpected situations. 
   2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note in exam but lost point.
 * Jiamin Huang (jh3768 as github: jh3768)
-  1. Added more materials to the introduction of this class (I feel it is helpful for people who are going to takes this class or want to know what is this class about to look at)[Introduction](https://github.com/w4111/scribenotes/wiki/intro#what-is-a-database-system)
+  1. Added more materials to the introduction of this class (I feel it is helpful for people who are going to takes this class or want to know what this class is about to look at) [Intro to db](https://github.com/w4111/scribenotes/wiki/intro#what-is-a-database-system)
   2. Revised the Join Problem and corrected factual errors in the notes [Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
     1. T1 does not have primary tree index 
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).
