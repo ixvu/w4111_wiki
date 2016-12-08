@@ -129,7 +129,10 @@ List of contributors and contributions
     1. T1 does not have primary tree index 
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).[Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
   2. Improved notes for Transactions. Added graph for Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
-  3. Improved notes for Normalization by adding short introduction and a picture describing relationships between norm forms.[Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
+  3. Improved notes for Normalization
+    1. Edited and added short introduction
+    2. Added a picture describing relationships between norm forms and explained BCNF/3NF[Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
+  4. Added notes for Normalization Decomposition Potential Problems[Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
 * Haikuo Liu (hl3023 as github: haikuoliu)
   1. Added examples of computing selectivity: "Example of computing selectivity" in the following link.
 [How to determin/compute selectivity](https://github.com/w4111/scribenotes/wiki/Query-proc#how-to-determincompute-selectivity)
