@@ -214,11 +214,11 @@ Intuitively, we can understand this as, "while BCNF is violated, find a relation
 ## 3rd Normal Form (3NF)
 We relax BCNF (BCNF is a stricter version of 3NF):
 
-    * F: a set of functional dependencies over relation R
-
-        * for (X->Y) in R:
-
-            * Y is in X OR X is a superkey of R OR **Y is some attribute in a key in R**
+    F: a set of functional dependencies over relation R
+        for (X->Y) in R:
+            Y is in X OR X is a super key of R OR 
+            Y is some attribute in a key of R OR
+            is some attribute in a key in R
 
 This new condition is NOT trivial, as this key is minimal, not a superkey. This guarantees lossless join AND dependency preserving decomposition
 
