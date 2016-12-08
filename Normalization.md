@@ -119,8 +119,9 @@ Relationships between normal forms:
 If a relation is in a certain normal form (BCNF, 3NF etc.), it is known that certain kinds of problems are avoided/minimized. This can be used to help us decide whether decomposing the relation will help.
 
 Hence we will focus on two normal forms: BCNF and 3NF
-* BCNF has no redundancy, but may lose some dependencies
-* 3NF preserves all dependencies but has some redundancy
+* BCNF has no redundancy, but may lose some dependencies (Everything depends on “the key, the whole key, and nothing but the key”)
+* 3NF preserves all dependencies but has some redundancy (A lossless-join, dependency-preserving decomposition of R
+￼into a collection of 3NF relations is always possible.)
 
 ## BCNF: Boyce-Codd Normal Form
 * BCNF ensures that no redundancy occurs from Functional Dependencies (other forms redundancy can occur)
