@@ -89,8 +89,8 @@ List of contributors and contributions
   1. Scribe the first edition for lecture 23 "Transaction processing"
   1. section include:Conflict Serializability and Conflict Serializabilizable issues
 * Yunxuan Zhu (yz2868)
-  1. Primary Scribe <https://github.com/w4111/scribenotes/wiki/Query-proc#background>.
-  1. Scribed lecture 20 "Query Execution & Optimization Continued" with Xinyu Wang.
+  1. Primary Scribe <https://github.com/w4111/scribenotes/wiki/Query-proc#background>. Discussed scribe note with Prof.Wu after class and made adjustments as suggested.
+  1. Scribed lecture 20 "Query Execution & Optimization Continued" with Xinyu Wang. 
   1. Illustrated evaluation of different queries.
   1. Included example covered in class.
   1. Included different access paths.
