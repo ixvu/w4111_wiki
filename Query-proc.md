@@ -68,9 +68,21 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 +    Tree Index Search: accept conditions on prefix of search keys.
 
 ### How to pick access path
-+    'SELECT' is required to choose the appropriate index to use.
-+    Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
-+    Selectivity only for selection operation.
++ 'SELECT' is required to choose the appropriate index to use.
++ Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
++ Selectivity only for selection operation.
++ Example of computing selectivity:
+  + Ex1. A has 100 values: 
+    + selectivity(A = 1) = 1 / 100 = 0.01
+  + Ex2. A has 1000 values and 100 distinct values:
+    + selectivity(A = 1) = 1 / 100 = 0.01
+  + Ex3. A has 100 values, B has 10 values and C has 1 values:
+    + selectivity(A = 1 and B = 1 and C = 1) = 1 / (100 * 10 * 1) = 0.001
+  + Ex4. The range of A is [0, 50):
+    + selectivity(A < 5) = 5 / 50 = 0.1
+  + Ex5. A has 100 values, B has 10 values:
+    + selectivity(A join B) = 1 / max(A, B) = 1 / max(100, 10) = 0.01
+
 
 ### How to determin/compute selectivity
 +    Scan the whole data and multiple, assuming the distribution over all values is uniform.
