@@ -116,4 +116,5 @@ List of contributors and contributions
     2. Try to avoid printing the whole dataset in instabase.
     3. Tip on unexpected situations. 
   2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note in exam but lost point.
-
+* Jiamin Huang (jh3768 as github: jh3768)
+  1. Revised the Join Problem and corrected factual errors in the notes (T1 does not have primary tree index and the nested loops costs are computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).[Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
