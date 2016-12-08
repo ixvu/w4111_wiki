@@ -134,6 +134,7 @@ List of contributors and contributions
     2. Added a picture describing relationships between norm forms and explained BCNF/3NF
   4. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
   5. Edited paragraph and added more sentences in the section of Purpose with a picture explaining how DBMS works[Recovery Purpose](https://github.com/w4111/scribenotes/wiki/Recovery#purpose)
+  6. Edited the  Aries Recovery Algorithm by elaborating each phase. [Aries Recovery Algorithm](https://github.com/w4111/scribenotes/wiki/Recovery#protocol)
 * Haikuo Liu (hl3023 as github: haikuoliu)
   1. Added examples of computing selectivity: "Example of computing selectivity" in the following link.
 [How to determin/compute selectivity](https://github.com/w4111/scribenotes/wiki/Query-proc#how-to-determincompute-selectivity)
