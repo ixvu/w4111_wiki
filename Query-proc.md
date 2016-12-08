@@ -322,7 +322,7 @@ Given an operate, input and statistics, we should be able to estimate the cost
   - Output cardinality          10,000 * 0.001   	=10											
 + Note
   + Selectivity is defined with respect to cross product size
-  + estimate wrong if this is a key/foreign key (ex. join on emp.did = dept.did should yield 1000 results, not 10)
+  + estimate wrong if this is a key/foreign key (ex: assumes that dept.did is the primary key and emp.did refers to dept.did, then join on emp.did = dept.did should yield 1000 results, not 10, because each emp.did has a corresponding dept.did. But when emp.did and dept.did are both primary keys in each table, the result should be 10, i.e. the smaller one, because the primary key should be distinct.)
 
 
 ### 2. Join plan space
