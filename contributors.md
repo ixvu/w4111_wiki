@@ -112,5 +112,8 @@ List of contributors and contributions
   1. Added *More Notes* at the end of Transactions scribe notes
 * Hao Xu (hx2208 as xu568)
   1. Add more tips on using instabase through my experiences in the whole semester.
-  2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note but lose point.
+    1. Try to avoid creating new temp table, use with instead.
+    2. Try to avoid printing the whole dataset in instabase.
+    3. Tip on unexpected situations. 
+  2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note in exam but lost point.
 
