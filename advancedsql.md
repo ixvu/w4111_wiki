@@ -132,6 +132,30 @@ WHERE B.bid = RB.bid AND count < 2
 - If you want, you can create a trigger to update a view but they are tricky.  
 - Views are defined as query results rather than inserted base data.
 
+# Create Table As
+
+- We can create a new table using the statement like the following examples:
+```sql
+CREATE TABLE used_boats1 AS
+  SELECT r.bid
+  FROM Sailors s, Reservations r
+  WHERE s.sid = r.sid
+  
+CREATE TABLE used_boats2 AS
+  SELECT r.bid as foo
+  FROM Sailors s,
+  Reservations r
+```
+- The database will figure out the schema by inferring from the query.
+So the first example will give us a table with schema: used_boats1(bid int).
+
+- We can also define a new attribute name using **as**, the second
+example will result in table with schema: used_boats2(foo int)
+
+- Differences between **Create View As** and **Create Table As**:
+  - View doesn't take place, but a new table needs actual space to store.
+  - When we update the view, the base table will be updated accordingly. But when we 
+change the data in the new table, the base table will remain the same.
 
 # User Defined Functions
 
