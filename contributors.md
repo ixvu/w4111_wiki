@@ -45,8 +45,8 @@ List of contributors and contributions
   1. Add in hyperlinks for easier browsing 
   1. Provided graphs for better understanding
 * Kaili Chen (kc3031)
-  1. Scribed Lecture 8 Relational Algebra
-  1. Sections include: [1.Recap: Join 2.Examples of Set Division 3.How to Express Set Division 4.More Examples](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
+  1. Primarily Scribed Lecture 8 Relational Algebra
+  1. Sections include: Primarily Scribed[1.Recap: Join 2.Examples of Set Division 3.How to Express Set Division 4.More Examples](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
 * Sheryl Ann Zamora Binarao Crespo (szc2103)
   1. Scribed Lecture 8 Relational Algebra
   1. Sections include: 1. Set Difference and Performance 2.Relational Operator: Set Division 3.Why learn relational algebra
