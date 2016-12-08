@@ -137,7 +137,7 @@ List of contributors and contributions
   4. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
   5. Edited paragraph and added more sentences in the section of Purpose with a picture explaining how DBMS works [Recovery Purpose](https://github.com/w4111/scribenotes/wiki/Recovery#purpose)
   6. Edited the  Aries Recovery Algorithm by elaborating each phase. [Aries Recovery Algorithm](https://github.com/w4111/scribenotes/wiki/Recovery#protocol)
-  7. Correct the definition of a Transaction, added the reason why do we care about transactions, added picture explaining reads and writes, added a section introducing Concurrency in DBMS.
+  7. Corrected the definition of a Transaction, added the reason why do we care about transactions, added picture explaining reads and writes, introduced Concurrency in DBMS.
 [Transaction/Concurrecny](https://github.com/w4111/scribenotes/wiki/transactions#i-terminology)
 
 * Haikuo Liu (hl3023 as github: haikuoliu)
