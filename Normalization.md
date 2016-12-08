@@ -116,6 +116,88 @@ In other words, if 2 records have the same sid, their name and address are the s
 ### 3. Where to find FDs?
 We can never deduce that an FD does hold by looking at one or more instances of the relation, because an FD, like other ICs, is a statement about all possible legal instances of the relation.
 
+### 4. How to Use FD's to find Keys (Tabular Method)
+
+There is a tabular method to finding keys (even composite ones) using these Function Dependencies (FD's). Take a look at the following example:
+
+**Ex: 1**
+
+R(ABC)
+F = {A --> B, B --> C}
+
+R is a relation containing the attributes A,B,C and F is the set of FD's that corresponds to this relation. In order to find all of the keys in relation R, you could set up a table like this:
+
+| **L**        | **M**           | **R**  |
+| ------------- |:-------------:| -----:|
+| A     | B | C |
+
+L means left, M means middle, and R means right. Look through each FD and check if each attribute only appeared on the left hand side of a FD, only on the right-hand side, or on both sides. In the above example, A only appeared the left hand side of a FD, so it goes into the "L" column. Similarly, C went into the "R" column. Since B appeared on the right-hand side of one FD and on the left-hand side of another, it belongs to the middle column. 
+
+So what does this table means? Well, here is the interpretation:
+
+	* **Left:** all attributes in this column must be part of every key
+	* **Right:** attributes in this column do not belong to any key
+	* **Middle:** these attributes may or may not be part of a key (more example below to find out what they really are)
+
+For thee above example, if we perform A+ (A closure), we would get ABC, giving us all of the attributes of relation R. Therefore, A is certainly a key for this relation.
+
+Keys: A
+Attributes used for keys: A
+Attributes not used for keys: B, C
+
+**Ex: 2**
+
+R(ABCD)
+F = {AB --> C, C --> B, C -->D}
+
+Let's set up our handy table:
+
+| **L**        | **M**           | **R**  |
+| ------------- |:-------------:| -----:|
+| A     | B C | D |
+
+Using our table, we see that A might be a key. To be sure, we will perform A+, which will yield...just A by reflexivity. Therefore, A on its own is not a key, and must add another attribute to it. **This is where the middle column comes into play.** Let's try another closure like AB+:
+
+AB --> AB (reflexivity)
+AB --> C (given)
+C --> D (given)
+
+Therefore, AB+: ABCD
+
+Aha! Since we have all of the attributes of R, we now know that AB is a key. Now let's use the other middle attribute C:
+
+AC --> AC (reflex)
+C --> B (given)
+C --> D (given)
+
+Therfore, AC+: ACBD
+
+Now we find that AC is also a key. Therefore, we conclude for this problem:
+
+Keys: AB, AC,
+Attributes used for keys: A, B, C
+Attributes not used for keys: D
+
+**Ex: 3**
+
+R(ABC)
+F = {A --> B, B --> C, C --> A}
+
+| **L**        | **M**           | **R**  |
+| ------------- |:-------------:| -----:|
+|      | A B C |  |
+
+This situation is rather painful, but it is doable. Since all of the attributes are in the middle column, we must do multiple permutations of closure to find the keys (ie: closures of 1 attribute at a time,  2 attributes at a time, and 3 attributes at a time).
+
+A+: ABC (A is a key)
+B+: ABC (B is a key)
+C+: ABC (C is a key)
+
+In this case, all of the attributes by themselves are all keys, so we are done.
+
+Keys: A, B, C
+Attributes used for keys: A, B, C
+Attributes not used for keys: null
 
 # V. Normal Forms
 Relationships between normal forms:
