@@ -133,3 +133,4 @@ List of contributors and contributions
 [How to determin/compute selectivity](https://github.com/w4111/scribenotes/wiki/Query-proc#how-to-determincompute-selectivity)
   2. Clarify an example: the second item of "note" in the following link.
 [Estimate Size of Output](https://github.com/w4111/scribenotes/wiki/Query-proc#estimate-size-of-output)
+  3. Add "System Catalog Keeps Statistics" section in Query proc: [System Catalog Keeps Statistics](https://github.com/w4111/scribenotes/wiki/Query-proc#system-catalog-keeps-statistics)
