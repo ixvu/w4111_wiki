@@ -211,6 +211,9 @@ Why do we need concurrency? Serial schedules may preserve correctness and ACID g
     * We have simple rules/algorithm to check conflict serializability.
     * So, in combination with lock-based concurrency control, the conflict serializability gives us a systematic way of serialization, which will save computational resources.
 
+* The image below simply explain the relationship between Serial, Serializable, and Conflict Serializable.
+![](https://github.com/jh3768/imgs/blob/master/imgs/graph.png?raw=true)
+
 
 * Caution! : Conflicts are *between* transactions
     * This is to keep in mind that, those 3 conflicts(RW,WR,WW) are for *between* transactions. Everyone may know that, but when in exams with complex schedules, it is easy to forget.
