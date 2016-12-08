@@ -2,6 +2,13 @@
 * **Transaction:** A transaction is the DBMS’s abstract view of a user program (essentially a simpler and more fundamental sequence of reads/writes)
    * **Why do we need to know about transactions?** Concurrent execution of user programs is essential for good DBMS performance because disk accesses are frequent, and relatively slow, it is important to keep the CPU cores humming by working on several user programs concurrently.
 
+* Abstract view of reads and writes:
+![](https://github.com/jh3768/imgs/blob/master/imgs/reads_writes.png?raw=true)
+
+
+* **Concurrency in DBMS:** Users submit transactions, and they can think of each one as executing all by itself.
+   * Concurrency is achieved by the DBMS, which interleaves actions (reads/writes of DB objects) of various transactions.
+   * Each transaction must leave the database in a consistent state if the DB is consistent when the transaction begins.
 
 * **ACID:** A set {Atomicity, Consistency, Isolation, Durability} of transaction properties that ensure consistency and correctness of the database.
     * **Atomicity:** 
