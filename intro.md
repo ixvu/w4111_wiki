@@ -41,9 +41,17 @@ Generating data was historically expensive because of manual work.  Even today, 
 * Security and access control are also important(!)
 
 ## Why Use a DBMS?
-* Data independence.
-* Efficient data access.
+* Data independence
+* Efficient data access (Fast:100k+queries/sec)
 * Reduced application development time.
-* Data integrity and security.
+* Data integrity and security (Consistent and correct data after failures)
 * Uniform data administration
 * Concurrent access, recovery from crashes.
+
+## Why Study Databases?
+* DBMS field encompasses most of CS
+    * OS: DBMS directly manages hardware
+    * Language: SQL is a domain specific language
+    * Theory: Algorithms, models, NP-complete
+    * AI/ML: Knowledge Discovery
+    * Logic: RelationalAlgebra = 1st order logic
