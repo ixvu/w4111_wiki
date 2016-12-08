@@ -432,12 +432,12 @@ Relation `ABCDE`, FDs `A->BCDE`, `B->C`, `D->EC`.
 
 ## Practice problem and strategy to find minimal cover
 Find minimal cover for R(ABCDE) F={A->D, BC->AD, C->B, E->A, E->D}
-1. singleton right hand-side
+ 1. singleton right hand-side
 ```
 break BC->AD to BC->A and BC->D
 now, F={A->D, BC->A, BC->D, C->B, E->A, E->D}
 ```
-2. check if there exist extraneous attributes on right hand-side
+ 2. check if there exist extraneous attributes on right hand-side
 ```
 strategy: do it one FD at a time.
 	(1) BC->A
@@ -449,7 +449,7 @@ strategy: do it one FD at a time.
 		As above, we can eliminate B
 		now, F={A->D, C->A, C->D, C->B, E->A, E->D}
 ```
-3. eliminate any redundant dependency
+ 3. eliminate any redundant dependency
 ```
 strategy: do it one FD at a time, pretend if it does not exist and see if we can get the FD by other FDs.
 	(1) A->D
