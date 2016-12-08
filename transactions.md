@@ -2,7 +2,7 @@
 * **Transaction:** A transaction is the DBMS’s abstract view of a user program (essentially a simpler and more fundamental sequence of reads/writes)
    * **Why do we need to know about transactions?** Concurrent execution of user programs is essential for good DBMS performance because disk accesses are frequent, and relatively slow, it is important to keep the CPU cores humming by working on several user programs concurrently.
 
-* Abstract view of reads and writes:
+* **An abstract view of reads and writes:**
 ![](https://github.com/jh3768/imgs/blob/master/imgs/reads_writes.png?raw=true)
 
 
