@@ -88,6 +88,12 @@ List of contributors and contributions
   1. Combine the two different editions of the scribe into a new modified one that picked up the better aspects of them but  some parts of it still need to be enhanced(The part work will be or have been done by student shy2116).
   1. Scribe the first edition for lecture 23 "Transaction processing"
   1. section include:Conflict Serializability and Conflict Serializabilizable issues
+* Yunxuan Zhu (yz2868)
+  1. Primary Scribe <https://github.com/w4111/scribenotes/wiki/Query-proc#background>.
+  1. Scribed lecture 20 "Query Execution & Optimization Continued" with Xinyu Wang.
+  1. Illustrated evaluation of different queries.
+  1. Included example covered in class.
+  1. Included different access paths.
 * Jason Zhao (jsz2107)
   1. Scribed Lecture 22: Transaction Processing
   1. Revised BCNF section (V) of Normalization Scribe Notes
