@@ -134,3 +134,4 @@ List of contributors and contributions
   2. Clarify an example: the second item of "note" in the following link.
 [Estimate Size of Output](https://github.com/w4111/scribenotes/wiki/Query-proc#estimate-size-of-output)
   3. Add "System Catalog Keeps Statistics" section in Query proc: [System Catalog Keeps Statistics](https://github.com/w4111/scribenotes/wiki/Query-proc#system-catalog-keeps-statistics)
+  4. Format the definition of 3NF: [3rd Normal Form (3NF)](https://github.com/w4111/scribenotes/wiki/Normalization#3rd-normal-form-3nf)
