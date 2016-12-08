@@ -44,6 +44,7 @@ Generating data was historically expensive because of manual work.  Even today, 
 Two key concepts:
 * Data independence
 * Declarative Languages 
+
 More:
 * Efficient data access (Fast:100k+queries/sec)
 * Reduced application development time.
