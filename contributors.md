@@ -63,8 +63,7 @@ List of contributors and contributions
   1. Added SQL LIMIT example on Lecture 11
 * Chang Pan (cp 2923)
   1. Primarily Scribed [Recovery](https://github.com/w4111/scribenotes/wiki/Recovery)
-  1. add image of Conceptual Query Evaluation and a link in SQL part
-  2. Scribed Lecture 24 "Recovery"
+  2. add image of [Conceptual Query Evaluation](https://github.com/w4111/scribenotes/wiki/SQL#conceptual-query-evaluation) and a link for [live code](https://github.com/w4111/scribenotes/wiki/SQL#conceptual-query-evaluation) in SQL part
 * Gregory Chen (glc2121)
   1. On "Relational Algebra" page: filled in missing information on different types of joins, included subtle example differentiating theta and equi joins (taken from a question that I asked on piazza)
 * Lucy Wang (Wangler, lw2351)
