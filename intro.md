@@ -41,7 +41,10 @@ Generating data was historically expensive because of manual work.  Even today, 
 * Security and access control are also important(!)
 
 ## Why Use a DBMS?
+Two key concepts:
 * Data independence
+* Declarative Languages
+More:
 * Efficient data access (Fast:100k+queries/sec)
 * Reduced application development time.
 * Data integrity and security (Consistent and correct data after failures)
@@ -55,3 +58,4 @@ Generating data was historically expensive because of manual work.  Even today, 
     * Theory: Algorithms, models, NP-complete
     * AI/ML: Knowledge Discovery
     * Logic: RelationalAlgebra = 1st order logic
+* Datasets increasing in diversity and volume (videos, webs...etc)
