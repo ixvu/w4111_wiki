@@ -32,6 +32,7 @@ These redundancies lead to anomalies:
 # III. Decomposition
 1. What is decomposition?
 2. What criteria of decomposition do we care?
+3. Potential Problems with Decompositions
 
 ### 1. What is decomposition?
 Fortunately, many problems arising from redundancy can be addressed by replacing a relation **R** with a collection of 'smaller' relations,
@@ -73,6 +74,10 @@ Explanation: In ER model, attributes only describe the entity they belongs to, a
 #### How can we systematically decompose relations according to the desirable criteria?
 See below: functional dependencies and normal forms
 
+### 
+* Some queries become more expensive.
+* Given instances of the decomposed relations, we may not be able to reconstruct the corresponding instance of the original relation! (If “lossy”...)
+* Checking some dependencies may require joining the instances of the decomposed relations.
 
 # IV. Functional Dependency
 1. What is FD?
