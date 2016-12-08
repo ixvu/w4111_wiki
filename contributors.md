@@ -154,5 +154,4 @@ List of contributors and contributions
   5. Added section "Create Table As" in advancedsql: [Create Table As](https://github.com/w4111/scribenotes/wiki/advancedsql#create-table-as)
 
 * Steven Ulahannan (su2206 as steveula)
-  1. Added tabular method to finding keys in a relation using functional dependencies.
-  2. https://github.com/w4111/scribenotes/wiki/Normalization#4-how-to-use-fds-to-find-keys-tabular-method
+  1. Added [[tabular method](https://github.com/w4111/scribenotes/wiki/Normalization#4-how-to-use-fds-to-find-keys-tabular-method) to finding keys in a relation using functional dependencies.
