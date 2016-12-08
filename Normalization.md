@@ -429,3 +429,41 @@ Relation `ABCDE`, FDs `A->BCDE`, `B->C`, `D->EC`.
 4. `D->C` is missing
 5. 3NF: `BC`, `DE`, `ABD`, `DC`
 ```
+
+## Practice problem and strategy to find minimal cover
+Find minimal cover for R(ABCDE) F={A->D, BC->AD, C->B, E->A, E->D}
+1. singleton right hand-side
+```
+break BC->AD to BC->A and BC->D
+now, F={A->D, BC->A, BC->D, C->B, E->A, E->D}
+```
+2. check if there exist extraneous attributes on right hand-side
+```
+strategy: do it one FD at a time.
+	(1) BC->A
+		To do this, we check what is B+ and C+. If any of B+ or C+ include the A, we can eliminate the other one.
+		B+: B(by reflexivity)
+		C+: C(by reflexivity), B(by C->B), A(by BC->A), D(by BC->D). Because C+ includes B, we can eliminate B from left hand-side
+		now, F={A->D, C->A, BC->D, C->B, E->A, E->D}
+	(2) BC->D
+		As above, we can eliminate B
+		now, F={A->D, C->A, C->D, C->B, E->A, E->D}
+```
+3. eliminate any redundant dependency
+```
+strategy: do it one FD at a time, pretend if it does not exist and see if we can get the FD by other FDs.
+	(1) A->D
+		A+ without this FD: A(by reflexivity). No way to get A->D w/o this FD. KEEP it.
+	(2) C->A
+		C+ without this FD: C(by reflexivity), D(by C->D), B(by C->B). No way to get C->A w/o this FD. KEEP it.
+	(3) C->D
+		C+ without this FD: CADB. We can get C->D w/o this FD. ELIMINATE it.
+	(4) C->B
+		C+ without this FD: CAD. KEEP it.
+	(5) E->A
+		E+ without this FD: ED. KEEP it.
+	(6) E->D
+		E+ without this FD: EAD. ELIMINATE it.
+```
+
+
