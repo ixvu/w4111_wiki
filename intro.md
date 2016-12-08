@@ -73,3 +73,16 @@ More:
     * Key-value: Mongo, BerkeleyDB, Cassandra, etc
 * DBMS-as-a-Service
     * Microsoft Azure, Amazon Redshift/RDS, etc...
+
+## What does this course cover?
+* Intro to DBMSes
+* Data Models (Entity-relation, Relational, ...)
+* Relational Algebra
+* SQL
+* Applications + SQL (cursors, APIs, embedded ...)
+* Normalization
+* Peek at DBMS internals:
+    * Storage and indexing
+    * Query optimization
+    * Transaction Processing
+    * Recovery
