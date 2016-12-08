@@ -29,9 +29,9 @@ List of contributors and contributions
   34. Reviewed and revised midterm 2, added the join link walkthrough (on separate page)
 * Yuedong Wang (yw2931)
   1. Primarily Scribed Infrastructure (first version, and was edited by anantb)[Infrastructure (first version)](https://github.com/w4111/scribenotes/wiki/Infrastructure)
-  1. Primarily Scribed ER Models (detailed version).[ER-Model(detailed version)](https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#entity-relationship-modeling-detailed-version)
+  1. Primarily Scribed [ER Modeling (detailed version)](https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#entity-relationship-modeling-detailed-version).
   1. Sections include: what is ER model, why we need ER model, basic concepts for ER model (Entity and Entity set, Relationships and Relationships Set, Constraints, ISA Hierarchies, and Aggregation). 
-  1. Added detailed description and explanation for each example.
+  1. Added detailed description and explanation for each picture and example.
   1. Also included Q&A in class.
 * Priscilla Wang (pyw2102)
   1. Added onto ScribeNotes for Lecture 3 ( Including: Entity or Attribute, Entity or Relationship, Binary or Ternary)
