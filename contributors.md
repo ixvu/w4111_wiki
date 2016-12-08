@@ -62,6 +62,7 @@ List of contributors and contributions
 * Lina Huang (lh2728)
   1. Added SQL LIMIT example on Lecture 11
 * Chang Pan (cp 2923)
+  1. Primarily Scribed [Recovery](https://github.com/w4111/scribenotes/wiki/Recovery)
   1. add image of Conceptual Query Evaluation and a link in SQL part
   2. Scribed Lecture 24 "Recovery"
 * Gregory Chen (glc2121)
