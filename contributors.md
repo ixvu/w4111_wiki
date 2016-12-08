@@ -126,4 +126,4 @@ List of contributors and contributions
   1. Revised the Join Problem and corrected factual errors in the notes 
     1. T1 does not have primary tree index 
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).[Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
-  2. Improved notes for Transactions. Added graph for Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions)
+  2. Improved notes for Transactions. Added graph for Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
