@@ -152,3 +152,6 @@ List of contributors and contributions
   3. Added "System Catalog Keeps Statistics" section in Query proc: [System Catalog Keeps Statistics](https://github.com/w4111/scribenotes/wiki/Query-proc#system-catalog-keeps-statistics)
   4. Formatted the definition of 3NF: [3rd Normal Form (3NF)](https://github.com/w4111/scribenotes/wiki/Normalization#3rd-normal-form-3nf)
   5. Added section "Create Table As" in advancedsql: [Create Table As](https://github.com/w4111/scribenotes/wiki/advancedsql#create-table-as)
+
+* Steven Ulahannan (su2206 as steveula)
+  1. Added tabular method to finding keys in a relation using functional dependencies.
