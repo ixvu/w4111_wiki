@@ -71,6 +71,17 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + 'SELECT' is required to choose the appropriate index to use.
 + Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
 + Selectivity only for selection operation.
+
+### How to determin/compute selectivity
++    Scan the whole data and multiple, assuming the distribution over all values is uniform.
++    How many distinct values in a hash table.
++    Default estimate -- if know nothing else, assume 5%.
+
+### Notice:
+        If attributes is primary key, you know exactly one matches it.
+        Number of value equals to cardinality.
+        Assumption: attribute selectivity is independent 
+
 + Example of computing selectivity:
   + Ex1. A has 100 values: 
     + selectivity(A = 1) = 1 / 100 = 0.01
@@ -82,17 +93,6 @@ Access Path refers to the path chosen by the system to retrieve data after a str
     + selectivity(A < 5) = 5 / 50 = 0.1
   + Ex5. A has 100 values, B has 10 values:
     + selectivity(A join B) = 1 / max(A, B) = 1 / max(100, 10) = 0.01
-
-
-### How to determin/compute selectivity
-+    Scan the whole data and multiple, assuming the distribution over all values is uniform.
-+    How many distinct values in a hash table.
-+    Default estimate -- if know nothing else, assume 5%.
-
-### Notice:
-        If attributes is primary key, you know exactly one matches it.
-        Number of value equals to cardinality.
-        Assumption: attribute selectivity is independent 
 
 ## Complementary Concepts
 ### Primary and Secondary Index
