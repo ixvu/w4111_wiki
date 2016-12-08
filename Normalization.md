@@ -74,7 +74,7 @@ Explanation: In ER model, attributes only describe the entity they belongs to, a
 #### How can we systematically decompose relations according to the desirable criteria?
 See below: functional dependencies and normal forms
 
-### 
+### 3. Potential Problems with Decompositions
 * Some queries become more expensive.
 * Given instances of the decomposed relations, we may not be able to reconstruct the corresponding instance of the original relation! (If “lossy”...)
 * Checking some dependencies may require joining the instances of the decomposed relations.
