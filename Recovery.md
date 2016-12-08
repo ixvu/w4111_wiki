@@ -120,7 +120,7 @@ We need to redo undo op6.
 WAL protocol: flush to log before disk
 
 ARIES Algorithm:
-*	Redo for durability
+*	Redo for durability and atomicity
 *	Undo for atomicity
 *	Redo all committed writes,  Undo uncommitted tranactions
 *	Enables transactions bigger than memory!
