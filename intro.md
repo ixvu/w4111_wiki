@@ -42,15 +42,15 @@ Generating data was historically expensive because of manual work.  Even today, 
 
 ## Why Use a DBMS?
 Two key concepts:
-* Data independence (Levels of abstraction give data independence.)
+* Data independence (Levels of abstraction give data independence)
 * Declarative Languages 
 
 More:
 * Efficient data access (Fast:100k+queries/sec)
-* Reduced application development time.
-* Data integrity and security (Consistent and correct data after failures)
+* Reduced application development time
+* Data integrity and security
 * Uniform data administration
-* Concurrent access, recovery from crashes.
+* Concurrent access, recovery from crashes
 
 ## Why Study Databases?
 * DBMS field encompasses most of CS
