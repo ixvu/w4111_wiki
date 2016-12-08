@@ -87,10 +87,10 @@ List of contributors and contributions
   1. Section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
   1. Added blackboard Join example.
 * Jisong Liu (jl4819)
-  1. Scribed the first edition for Lecture 20 "Physical Deisgn - Indexing Continued" and discussed notes with Prof. Wu on Office time.
+  1. Primary Scribe for [Physical Deisgn - Indexing Continued(lecture20)](https://github.com/w4111/scribenotes/wiki/physical-design) and discussed notes with Prof. Wu on Office time.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparison between different types of physical design on their time complexity of some common operators.
-  1. Combine the two different editions of the scribe into a new modified one that picked up the better aspects of them but  some parts of it still need to be enhanced(The part work will be or have been done by student shy2116).
-  1. Scribe the first edition for lecture 23 "Transaction processing"
+  1. Combine the two different editions of the scribe Physical Design-continued into a new modified one that picked up the better aspects of them.
+  1. Primary Scribe for [Transaction processing(lecture23)](https://github.com/w4111/scribenotes/wiki/transactions) 
   1. section include:Conflict Serializability and Conflict Serializabilizable issues
 * Yunxuan Zhu (yz2868)
   1. Primary Scribe <https://github.com/w4111/scribenotes/wiki/Query-proc>. Discussed scribe note with Prof.Wu after class and made adjustments as suggested.
