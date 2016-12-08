@@ -42,7 +42,7 @@ Generating data was historically expensive because of manual work.  Even today, 
 
 ## Why Use a DBMS?
 Two key concepts:
-* Data independence
+* Data independence (Levels of abstraction give data independence.)
 * Declarative Languages 
 
 More:
