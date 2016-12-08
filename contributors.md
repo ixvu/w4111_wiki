@@ -103,9 +103,10 @@ List of contributors and contributions
   1. Scribed Lecture 22: [Transaction Processing](https://github.com/w4111/scribenotes/wiki/transactions)
   1. Revised BCNF section (V) of Normalization Scribe Notes
 * Abhiroop Gangopadhyay (ag3661)
-  1. Scribed lecture 22: Transaction Processing (originally scribed onto google doc, my partner transcribed a lot of it over to the markdown. I can show the link to google doc if necessary). 
+  1. Primary scribe-lecture 22: Transaction Processing (https://github.com/w4111/scribenotes/wiki/transactions)
+ (originally scribed onto google doc, my partner transcribed a lot of it over to the markdown. I can show the link to google doc if necessary-links to images of notes:[https://github.com/agango/Scribesnotes-image/blob/master/22.png, https://github.com/agango/Scribesnotes-image/blob/master/22-1.png, https://github.com/agango/Scribesnotes-image/blob/master/22-2.png]). 
   1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
-  2. Scribed lecture 17, normalization part 2 (sections include everything from 3NF and formalization of normal forms onwards), added examples
+  2. Primary lecture 17, normalization part 2 (https://github.com/w4111/scribenotes/wiki/Normalization#3rd-normal-form-3nf) (sections include everything from 3NF and formalization of normal forms onwards), added examples
 * Louise Zhou (xz2581)
   1. Scribed lecture 21: Query Processing
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
