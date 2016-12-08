@@ -127,17 +127,18 @@ List of contributors and contributions
     3. Tip on unexpected situations. 
   2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note in exam but lost point.
 * Jiamin Huang (jh3768 as github: jh3768)
-  1. Revised the Join Problem and corrected factual errors in the notes [Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
+  1. Added more materials to the introduction of this class (I feel it is helpful for people who are going to takes this class or want to know what is this class about to look at)[Introduction](https://github.com/w4111/scribenotes/wiki/intro#what-is-a-database-system)
+  2. Revised the Join Problem and corrected factual errors in the notes [Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
     1. T1 does not have primary tree index 
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).
-  2. Improved notes for Transactions. Added graph to clarify the relationship between Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
-  3. Improved notes for Normalization [Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
+  3. Improved notes for Transactions. Added graph to clarify the relationship between Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
+  4. Improved notes for Normalization [Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
     1. Edited sentences and added a short introduction
     2. Added a picture describing relationships between norm forms and explained BCNF/3NF
-  4. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
-  5. Edited paragraph and added more sentences in the section of Purpose with a picture clarifying how DBMS works [Recovery Purpose](https://github.com/w4111/scribenotes/wiki/Recovery#purpose)
-  6. Edited the  Aries Recovery Algorithm by elaborating each phase. [Aries Recovery Algorithm](https://github.com/w4111/scribenotes/wiki/Recovery#protocol)
-  7. Corrected the definition of a Transaction, added the reason why do we care about transactions, added a picture to clarify reads and writes in DBMS, introduced Concurrency in DBMS.
+  5. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
+  6. Edited paragraph and added more sentences in the section of Purpose with a picture clarifying how DBMS works [Recovery Purpose](https://github.com/w4111/scribenotes/wiki/Recovery#purpose)
+  7. Edited the  Aries Recovery Algorithm by elaborating each phase. [Aries Recovery Algorithm](https://github.com/w4111/scribenotes/wiki/Recovery#protocol)
+  8. Corrected the definition of a Transaction, added the reason why do we care about transactions, added a picture to clarify reads and writes in DBMS, introduced Concurrency in DBMS.
 [Transaction/Concurrecny](https://github.com/w4111/scribenotes/wiki/transactions#i-terminology)
 
 * Haikuo Liu (hl3023 as github: haikuoliu)
