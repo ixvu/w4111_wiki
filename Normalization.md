@@ -137,7 +137,9 @@ L means **left**, M means **middle**, and R means **right**. Look through each F
 So what does this table means? Well, here is the interpretation:
 
 **Left:** all attributes in this column must be part of every key
+
 **Right:** attributes in this column do not belong to any key
+
 **Middle:** these attributes may or may not be part of a key (more example below to find out what they really are)
 
 For the above example, if we perform A+ (A closure), we would get ABC, giving us all of the attributes of relation R. Therefore, A is certainly a key for this relation.
