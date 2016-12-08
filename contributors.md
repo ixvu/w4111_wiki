@@ -99,7 +99,7 @@ List of contributors and contributions
   1. Included example covered in class.
   1. Included different access paths.
 * Jason Zhao (jsz2107)
-  1. Scribed Lecture 22: Transaction Processing
+  1. Scribed Lecture 22: [Transaction Processing](https://github.com/w4111/scribenotes/wiki/transactions)
   1. Revised BCNF section (V) of Normalization Scribe Notes
 * Abhiroop Gangopadhyay (ag3661)
   1. Scribed lecture 22: Transaction Processing (originally scribed onto google doc, my partner transcribed a lot of it over to the markdown. I can show the link to google doc if necessary). 
