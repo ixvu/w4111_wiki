@@ -94,6 +94,20 @@ Access Path refers to the path chosen by the system to retrieve data after a str
   + Ex5. A has 100 values, B has 10 values:
     + selectivity(A join B) = 1 / max(A, B) = 1 / max(100, 10) = 0.01
 
+##System Catalog Keeps Statistics
+
++ The statistics info is kept as another table in most databases,
+we can query this table like we query anything else.
++ System R is the first relational database. [See more about System R](http://www.webopedia.com/TERM/S/System_R.html)
++ Below is the statistics stored in System R, the information is not much because statistics in 1979 is very expensive, 
+database today has much more complicated statistics information.
+  + NCARD "relation cardinality” # tuples in relation
+  + TCARD # pages relation occupies
+  + ICARD # keys (distinct values) in index
+  + NINDX pages occupied by index
+  + min and max keys in indexes
++ Database will use this information to compute the selectivity, otherwise it'll use the default estimate (5%).
+
 ## Complementary Concepts
 ### Primary and Secondary Index
     Primary: data is store in the leaf nodes. 
