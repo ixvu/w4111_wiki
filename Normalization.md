@@ -279,22 +279,19 @@ Decomposition: If A->BC, then A->B and A->C (this is also standard form).
 
 Pseudo-transitivity: If A->B, and CB->D, then CA->D holds (We can prove this using augmentation. We can augment C to both sides of A->B to get CA->CB, and use transitivity to get CA->D). 
 
- ```
 Example:
 
 Consider the following relation scheme R=(A, B, C, G, H, I), and the set of functional dependencies A->B, A->C, CG->H, CG->I, B->H.
 
 We want to make sure that our closure includes all non-trivial functional dependencies implied by the dependencies given above.
 
-Our closure, F<sup>+</sup>, is then the following:
+Our closure, F+, is then the following:
 
 -A->H, by transitivity
 
 -CG->HI. To see why, consider augmenting I to both sides of CG->H. We then get CGI->HI. However, we have CG->I, so we can substitute CG for I, and because functional dependencies deal with sets of attributes, CGCG->HI becomes CG->HI.
 
 -AG->I. We can augment G to both sides of AG->CG, because CG->I, we get AG->I. It is important to note that we could do this in one step using pseudo-transitivity (A->C, so we can substitute A for C in CG->I to get AG->I).
-
-```
 
 ## Minimum Cover of Functional Dependencies
 
@@ -454,7 +451,6 @@ Relation `ABCDE`, FDs `A->BCDE`, `B->C`, `D->EC`.
 4. `D->C` is missing
 5. 3NF: `BC`, `DE`, `ABD`, `DC`
 ```
-
 ## Practice problem and strategy to find minimal cover
 Find minimal cover for R(ABCDE) F={A->D, BC->AD, C->B, E->A, E->D}
 
