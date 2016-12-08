@@ -3,7 +3,10 @@
 # Purpose
 A crash could happen at any point in time, we can’t control it.
 
-We want to figure out how do we actually decide what information to store so that whenever the crash happens, we are able to undo all the things that have not been committed and recover anything that has committed.
+Reminder: This is the architecture of a DBMS
+![](https://github.com/jh3768/imgs/blob/master/imgs/dbms_architecture.png?raw=true)
+
+We want to figure out how do we actually decide what information to store so that whenever the crash happens, we are able to undo all the things that have not been committed and recover anything that has committed. The picture above gives you an idea of how the DBMS work and where is the lock manager, log manger, and transaction manager.
 
 **Atomicity**:  Either all of a transaction's actions are carried out or none are
 
