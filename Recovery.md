@@ -96,11 +96,11 @@ Also works in other system. This is a way to recover from failure.
 **Aries Recovery Algorithm** Use WAL during normal database operation
 
 After crash, we should fix the database by 3 phases:
-* Analysis: Scan the log forward (from most recent checkpoint) to identify all Xacts that were active, and also all dirty pages in the buffer pool, as of the time of the crash: analyze the log to find status of all transactions
+*** Analysis**: Scan the log forward (from most recent checkpoint) to identify all Xacts that were active, and also all dirty pages in the buffer pool, as of the time of the crash: analyze the log to find status of all transactions
   * Whether a transaction has committed or not?
-* Redo all updates to dirty pages in the buffer pool, as needed, to ensure that all logged updates are in fact carried out and written to disk. (Establishes state to recover from.): Redo transactions that were committed but not in database
+* **Redo:** Redo all updates to dirty pages in the buffer pool, as needed, to ensure that all logged updates are in fact carried out and written to disk. (Establishes state to recover from.): Redo transactions that were committed but not in database
   * Now at the same state at the point of the crash
-* Undo writes of all Xacts that were active at the crash (by restoring the before value of the update, which is found in the log record for the update), working backwards in the log. (A bit of care must be taken to accomodate the case of a crash occurring during the recovery process!): Undo partial (in flight) transactions that not been committed
+* **Undo:** Undo writes of all Xacts that were active at the crash (by restoring the before value of the update, which is found in the log record for the update), working backwards in the log. (A bit of care must be taken to accomodate the case of a crash occurring during the recovery process!): Undo partial (in flight) transactions that not been committed
 
 ##Example
 <img src="https://github.com/cp2923/W4111_sribenote/blob/master/crash1.jpg" width="450">
