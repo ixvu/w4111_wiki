@@ -131,7 +131,7 @@ List of contributors and contributions
     1. T1 does not have primary tree index 
     2. All nested loops costs were computed incorrectly: should be Pt + Nt * Ps, NOT Pt + Nt * Ns).
   2. Improved notes for Transactions. Added graph for Serializable, Conflict Serializable and Serial.[Transactions](https://github.com/w4111/scribenotes/wiki/transactions#ix--more-notes--to-get-better-prepared-for-final)
-  3. Improved notes for Normalization[Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
+  3. Improved notes for Normalization [Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
     1. Edited sentences and added a short introduction
     2. Added a picture describing relationships between norm forms and explained BCNF/3NF
   4. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
