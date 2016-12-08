@@ -17,3 +17,7 @@ The page contains instructions and tips for infrastructure used in this course, 
 1. [Instabase](https://www.instabase.com) periodically kills containers that has been inactive for more than 4 hours. While it automatically saves all your file changes to Instabase Filesystem every few minutes but to be completely safe, please make sure to click ```File``` > ```Save``` before leaving the page.
  
 1. Google Chrome is the recommended browser for [Instabase](https://www.instabase.com).
+
+1. When doing query in instabase, use WITH clause instead of using SELECT... INTO ... to create new tables. SELECT... INTO ... would create a real physical table, which means you need to keep changing the name of table until you get your query right.
+
+1. When instabase is not working as expected, try refreshing and restart the code from the very beginning. 
