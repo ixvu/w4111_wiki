@@ -132,7 +132,7 @@ List of contributors and contributions
   3. Improved notes for Normalization[Normal Forms](https://github.com/w4111/scribenotes/wiki/Normalization#v-normal-forms)
     1. Edited sentences and added a short introduction
     2. Added a picture describing relationships between norm forms and explained BCNF/3NF
-  4. Added notes for Normalization Decomposition Potential Problems[Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
+  4. Added notes for Normalization Decomposition Potential Problems [Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#iii-decomposition)
 * Haikuo Liu (hl3023 as github: haikuoliu)
   1. Added examples of computing selectivity: "Example of computing selectivity" in the following link.
 [How to determin/compute selectivity](https://github.com/w4111/scribenotes/wiki/Query-proc#how-to-determincompute-selectivity)
