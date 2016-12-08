@@ -104,8 +104,8 @@ Note: Costs is to lookup 1 tuple in page units!
 |-------------------------------:|:--------:|:--------:|:--------:| 
 | Hash INL         |     ✖    |10 + 20(1)|    ✖     |  
 |Primary BTree INL |10 + 20(3)|    ✖     |    ✖     |  
-|Secondary BTree INL |10 + 20(5)|    ✖     |10 + 20(5)|  
-|Nested Loops                    |10 + 2(10)(2000)|10 + 2(10)(20000)|10 + 2(10)(200000)|   
+|Secondary BTree INL |✖ |    ✖     |10 + 20(5)|  
+|Nested Loops                    |10 + 2(10)(1000)|10 + 2(10)(10000)|10 + 2(10)(100000)|   
 |Hash Join                       |10+1000+20(1)|10+10000+20(1)|10+100000+20(1)|    
 
 | T<sub>3</sub> ⋈<sub>attr</sub> T<sub>X</sub> Cost    |    T<sub>1</sub>    |    T<sub>2</sub>    |    T<sub>4</sub>    | 
@@ -128,13 +128,13 @@ R<sub>1</sub> = T<sub>3</sub> Hash-INL T<sub>2</sub>
 | Hash INL          |     ✖    |    ✖     |  
 |Primary BTree INL  |30 + 20(3)|30 + 20(3)|  
 |Secondary BTree INL |     ✖    |30 + 20(5)|  
-|Nested Loops                    |30 + 2(10)(2000)|30 + 2(10)(200000)|   
+|Nested Loops                    |30 + 2(10)(1000)|30 + 2(10)(100000)|   
 |Hash Join                       |30+1000+20(1)|30+100000+20(1)|    
 
 | (T<sub>3</sub> ⋈<sub>attr</sub>T<sub>2</sub>) ⋈<sub>attr</sub> T<sub>X</sub> Cost|  T<sub>1</sub>   |  T<sub>4</sub>    |   
 |-------------------------------------------------:|:-----:|:------:|  
 | Hash INL                                         |   ✖   |    ✖   |  
-|Primary BTree INL                                 |90     |130     |  
+|Primary BTree INL                                 |✖      |130     |  
 |Secondary BTree INL                                |   ✖    |130     |  
 |Nested Loops                                      |40030  |400030  |   
 |Hash Join                                         |1050   |100050  | 
