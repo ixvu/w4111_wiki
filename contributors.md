@@ -53,6 +53,7 @@ List of contributors and contributions
 * Ching-Hui Hsu (ch3230)
   1. Primary Scribed Lecture 9 [SQL](https://github.com/w4111/scribenotes/wiki/SQL)
   1. Include: 1. SQL Semantics 2. SQL Query Examples 3. supply detailed explanation for query statement/expression.
+  1. Add practice problem and strategy to find minimal cover(https://github.com/w4111/scribenotes/wiki/Normalization#practice-problem-and-strategy-to-find-minimal-cover)
 * Christine Chao (cc4059)
   1. Scribed Lecture 10 SQL
   1. Include: SET comparison operators, SQL examples, AGGREGATION, GROUP BY, In class example, HAVING 
