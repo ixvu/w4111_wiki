@@ -226,6 +226,35 @@ A/R3
 * Disqualified: Students that do not reserve the particular books.
 * Final answer: All students minus disqualified students.
 
+## Additional Notes on Set Division
+###Division can be thought of in relation to the Cross Product
+If A / B = C, B X C is a subset of A 
+###Explanation and Example
+From the above example, 
+* C(name), or A/B can be thought of as "all students who have reserved all books"
+* B(bid) is the set of all books 
+* A (name,bid) is the set of all reservations
+
+Thus, 
+* B X C yields the set of reservations that have been made by "all students who have reserved all books", a subset of A
+
+### Division as an SQL Query follows the principle of double negation 
+In SQL queries, division A ( name, bid) / B(bid) is implemented using double negation. 
+![]()
+
+### Division is affected by the number of attributes used in both the divisor and dividend
+The number of attributes in the tables used by division matter in obtaining the correct result of division. 
+For example, 
++ Let there be tables A(x, a1, a2) and B(x). 
++ Let A1 $\pi${\substack{x,a1}}(A)
++ $\pi${\substack{a1}}A / B will not yield the same results as A1 / B. 
+#### Explanation
+Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
+For table A1, this means A1/B will yield every a1 that has every x in B. 
+However, for table A, this means A/B will yield every pair (a1,a2) that has every x in B. 
+
+Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being excluded from the result of $\pi${\substack{a1}}A / B. 
+
 ##More Examples
 Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
 * Name of students that reserved DB books
