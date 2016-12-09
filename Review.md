@@ -167,7 +167,15 @@ The minimum cover we end up getting is the following:
 
 AB->C, C->A, BC->D, CD->B, D->E, D->G, BE->C, CG->B, CE->G
 
-How did we get this? Well, let's take a look at the dependencies that we either got rid of or were able to reduce further. Starting with ACD->B, we know that it is redundant because we have D->G, and CG->B, so we can substitute CG for B and D for G to get ACG->CG, which is useless. We also got rid of CG->D and CE->A. CG->D is redundant because we have CG->B, and BC->D. We can substitute CG for B to get CG->D. CE->A is redundant because we have C->A in the set F already, and we can get CE->A through augmentation. 
+How did we get this? 
+
+Well, let's take a look at the dependencies that we either got rid of or were able to reduce further. 
+
+Starting with ACD->B, we know that it is redundant because we have D->G, and CG->B, so we can substitute CG for B and D for G to get ACG->CG, which is useless. 
+
+We also got rid of CG->D and CE->A. CG->D is redundant because we have CG->B, and BC->D. We can substitute CG for B to get CG->D. 
+
+CE->A is redundant because we have C->A in the set F already, and we can get CE->A through augmentation. 
 
 ## Finding closure of functional dependency
 
