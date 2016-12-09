@@ -229,7 +229,7 @@ A/R3
 ## Additional Notes on Set Division
 ###Division can be thought of in relation to the Cross Product
 If A / B = C, B X C is a subset of A 
-###Explanation and Example
+####Explanation and Example
 From the above example, 
 * C(name), or A/B can be thought of as "all students who have reserved all books"
 * B(bid) is the set of all books 
@@ -237,6 +237,7 @@ From the above example,
 
 Thus, 
 * B X C yields the set of reservations that have been made by "all students who have reserved all books", a subset of A
+Following, if every student in A had reserved all books in B, then A / B = C and B x C = A. 
 
 ### Division as an SQL Query follows the principle of double negation 
 In SQL queries, division A ( name, bid) / B(bid) is implemented using double negation. 
@@ -246,8 +247,8 @@ In SQL queries, division A ( name, bid) / B(bid) is implemented using double neg
 The number of attributes in the tables used by division matter in obtaining the correct result of division. 
 For example, 
 + Let there be tables A(x, a1, a2) and B(x). 
-+ Let A1 $\pi${\substack{x,a1}}(A)
-+ $\pi${\substack{a1}}A / B will not yield the same results as A1 / B. 
++ Let A1 \Pi<sub>x,a1</sub>(A)
++ \Pi<sub>a1<\sub>(A / B) will not yield the same results as A1 / B. 
 #### Explanation
 Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
 For table A1, this means A1/B will yield every a1 that has every x in B. 
