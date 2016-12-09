@@ -5,11 +5,10 @@ List of contributors and contributions
   1. setup scaffolding for wiki
   1. added example notes in introduction lecture page.
 * Mick Lin (cl3469)
-  1. Primarily Scribed [scribed L2 ER Models](https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling)
+  1. scribed L2 ER Models
   1. supplied Keys definitions
   1. reflow the relationship and relationship set section
   1. sections: homework review, Inconsistencies/ConstraintViolations, It is Hard to Design Applications, Keys, Entity graph representation, Relationships, Quiz
-  1. Add the step by step decomposition of BCNF, search [Formal Algorithm for BCNF Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization)
 * George Fisher (gf2359)
   1. Added Relational Model page
   1. Added initial Scribe notes for Lecture 3
@@ -19,16 +18,15 @@ List of contributors and contributions
   1. Added Access Path Selection Calculation
   1. Added Midterm 2 Study Guide
 * David Kuhta (dk2723)
-  1. [[L2 - Converted table images to markdown tables| https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#keys]], added [[dblp | https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#inconsistenciesconstraint-violations]] link
-  1. [[Scribed L5 | https://github.com/w4111/scribenotes/wiki/Relational-Model]] and formatted to align with Lecture 4
-  2. Added Links for [[ER Modeling tools | https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs]]
-  3. Scribed [["Playing With Constraints"Livecoding Session | https://github.com/w4111/scribenotes/wiki/Livecode---Playing-With-Constraints]] from Lecture 5
-  5. Added (and maintained) [[sidebar | https://github.com/w4111/scribenotes/wiki/_sidebar.md/_edit]] to simplify moving between pages.
-  8. Revised [[Lecture 7 & 8 | https://github.com/w4111/scribenotes/wiki/SQL]] implemented questions (in dropdown format).
-  13. Review, Formatting, and Content to [[Midterm Review 1 | https://github.com/w4111/scribenotes/wiki/Midterm-Study-Guide]] to facilitate its use as a study aid 
-  21. Scribed first half of [[Lecture 6 | https://github.com/w4111/scribenotes/wiki/Relational-Model]]
-  34. Review and Formatting for [[Midterm Review 2 | https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide]]
-  55. Scribed detailed [[Join Problem Walkthrough | https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs]] (linked separately in Midterm 2 Review) 
+  1. L2 - Converted table images to markdown tables, added dblp link
+  1. Scribed L5 and formatted to align with Lecture 4
+  2. Added Links for ER Modeling tools
+  3. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
+  5. Added sidebar to simplify moving between pages.
+  8. Revised first half of SQL, formatted answers to dropdown format.
+  13. Reformatted midterm review with dropdowns and syntax highlighted SQL 
+  21. Added first half of Lecture 6
+  34. Reviewed and revised midterm 2, added the join link walkthrough (on separate page)
 * Yuedong Wang (yw2931)
   1. Primarily Scribed [Infrastructure (first version](https://github.com/w4111/scribenotes/wiki/Infrastructure), and was edited by anantb)
   1. Primarily Scribed [ER Modeling (detailed version)](https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#entity-relationship-modeling-detailed-version).
@@ -84,12 +82,12 @@ List of contributors and contributions
   1. Scribed Lecture 16 "Normalization" and discussed notes with Prof. Wu on email
   1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
 * Ziyuan Wang (zw2396)
-  1. Primary Scribe for [Lecture 18 "Physical Design"] (https://github.com/w4111/scribenotes/wiki/physical-design#lec-18-physical-design ）
-     1. Section include: work from bottom up, % matters, what is disk, how does disk work
-     1. Added definition and example from textbook
-  1. Primary Scribe for [Lecture 21 "Query Processing"] (https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
-     1. Section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
-  1. Added [blackboard Join example](https://github.com/w4111/scribenotes/wiki/Query-proc#optimizing-single-join-example).
+  1. Scribed Lecture 18 "Physical Deisgn" and discussed notes with Prof. Wu on email
+  1. Section include: work from bottom up, % matters, what is disk, how does disk work
+  1. Added definition and example from textbook
+  1. Scribed Lecture 21 "Query Processing"
+  1. Section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
+  1. Added blackboard Join example.
 * Jisong Liu (jl4819)
   1. Primary Scribe for [Physical Deisgn - Indexing Continued(lecture20)](https://github.com/w4111/scribenotes/wiki/physical-design) and discussed notes with Prof. Wu on Office time.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparison between different types of physical design on their time complexity of some common operators.
@@ -105,12 +103,12 @@ List of contributors and contributions
 * Jason Zhao (jsz2107)
   1. Scribed Lecture 22: [Transaction Processing](https://github.com/w4111/scribenotes/wiki/transactions)
   1. Revised BCNF section (V) of Normalization Scribe Notes
-* Abhiroop Gangopadhyay (ag3661)
+* Abhiroop Gangopadhyay (github:agango, UNI:ag3661)
   1. Primary scribe-lecture 22: Transaction Processing (https://github.com/w4111/scribenotes/wiki/transactions)
  (originally scribed onto google doc, my partner transcribed a lot of it over to the markdown. I can show the link to google doc if necessary-links to images of notes:[https://github.com/agango/Scribesnotes-image/blob/master/22.png, https://github.com/agango/Scribesnotes-image/blob/master/22-1.png, https://github.com/agango/Scribesnotes-image/blob/master/22-2.png]). 
   1. Added example schedules for concurrency and serializability. Added definitions and cleared up explanations (sections include II, III, IV, V)
   2. Primary lecture 17, normalization part 2 (https://github.com/w4111/scribenotes/wiki/Normalization#3rd-normal-form-3nf) (sections include everything from 3NF and formalization of normal forms, up to but not including practice problem and strategy to find minimal cover https://github.com/w4111/scribenotes/wiki/Normalization#practice-problem-and-strategy-to-find-minimal-cover), added examples
-  3. 
+  3. Added normalization examples in review scribenotes (https://github.com/w4111/scribenotes/wiki/Review#review-topic-3-normalization-examples)
 * Louise Zhou (githubusername: xz2581; UNI: xz2581)
   1. Primary Scribe for [Query Processing LECTURE 21](https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
@@ -165,7 +163,3 @@ List of contributors and contributions
 * Juwan Hong (jh3831 as juwanhong)
   1. Updated Midterm 2 Review (https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#transactions) to include transaction section.
   2. Updated Midterm 2 Review to get the recovery section started.
-
-* Yaqing Wang (yw2902 as Lynnnnnnn0)
-  1. Revised and corrected factual errors in the Minimum Cover example in [Midterm 2 Review] (https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#irreducible-set-or-canonical-form-of-functional-dependencies-known-as-minimum-cover-in-this-course)
-    1. Step 2 must come before step 3, instead of the other way around stated as before
