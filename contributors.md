@@ -9,7 +9,7 @@ List of contributors and contributions
   1. supplied Keys definitions
   1. reflow the relationship and relationship set section
   1. sections: homework review, Inconsistencies/ConstraintViolations, It is Hard to Design Applications, Keys, Entity graph representation, Relationships, Quiz
-  1. Add the step by step decomposition of BCNF, search [A ~More~ Formal Algorithm for BCNF Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization)
+  1. Add the step by step decomposition of BCNF, search [Formal Algorithm for BCNF Decomposition](https://github.com/w4111/scribenotes/wiki/Normalization)
 * George Fisher (gf2359)
   1. Added Relational Model page
   1. Added initial Scribe notes for Lecture 3
