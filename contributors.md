@@ -74,10 +74,10 @@ List of contributors and contributions
     1. Sections include: 1. SQL != Programming Language, 2. Many Database API Options, 3. Embedded SQL, 4.Libraries, 5. SQL Injections, 6. Relational Impedance Mismatches, 7. ORMs, 8. Modern Database APIs
   1. Primary Scribe for [Advanced SQL](https://github.com/w4111/scribenotes/wiki/advancedsql) page
     1. Added the sections for [Triggers](https://github.com/w4111/scribenotes/wiki/advancedsql#triggers), [With](https://github.com/w4111/scribenotes/wiki/advancedsql#with), and [Views](https://github.com/w4111/scribenotes/wiki/advancedsql#view). Inserted definitions, class notes, and examples.
-* Jeremy Staub (jbs2208)
-  1. Scribed Lecture 12 Advanced SQL + Met with Prof. Wu to discuss notes
-  1. Wrote information about UDFs including details and code examples
-  1. Supplemented details and examples of Triggers, WITH, VIEWs
+* Jeremy Staub (jbs2208 / hermshermsherms)
+  1. Primary Scribe<https://github.com/w4111/scribenotes/wiki/advancedsql> Scribed Lecture 12 Advanced SQL + Met with Prof. Wu and Varun to discuss notes
+  1. Wrote information about UDFs including details and code examples https://github.com/w4111/scribenotes/wiki/advancedsql#user-defined-functions
+  1. Supplemented details and examples of Triggers, WITH, VIEWs (Someone uploaded a lot of detail before I could post)
 * Peng Wu (pw2393)
   1. Scribed Lecture 16 "Normalization" and discussed notes with Prof. Wu on email
   1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
