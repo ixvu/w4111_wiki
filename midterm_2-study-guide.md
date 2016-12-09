@@ -340,8 +340,8 @@ __Durability__ - this property states that changes made by a transaction must be
    * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;`begin R(A) W(A) W(B) R(B) COMMIT`  
 
 * Concurrent Schedule
-A concurrent schedule is "correct" if the results are the same as those of a serial schedule.  
-  * Example of correct concurrent:
+A concurrent schedule is "correct" if the results are the same as those of a serial schedule. A correct concurrent schedule is a "serializable" schedule.  
+  * Example of correct concurrent schedule:
     * Consider the following logical exacts (where initially A = B = 0): 
         * A = A + 1; B = A + 1
         * A = A + 10; B = B + 1
@@ -351,4 +351,16 @@ A concurrent schedule is "correct" if the results are the same as those of a ser
         * After this schedule: A = 11, B = 3
     * This concurrent schedule is correct
         * T1: `begin` `r(A) w(A)` &emsp;&emsp;&ensp; `r(A) w(B)` `commit`
-        * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(A) r(B) w(B)` `commit`
+        * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(A) r(B) w(B)` `commit`  
+
+
+* Anomalies:  
+    * Dirty Reads: Reading in between uncommited data. Violates the atomicity.  
+    * Unrepeatable Reads: A transaction reads from same page but get different values. Violates consistency.  
+    * Lost Writes: A transaction's write is overwritten by another transaction before the first transaction gets committed.  
+
+* Conflict Serializability  
+   * Definition: For any conflicting operations O1 of T1 and O2 of T2, O1 always happens before O2 in the schedule or O2 always happens before O1 in the schedule.
+   * Reads on reads are OK but any other combination are not. The following diagrams show a simple way to check the conflict serializability of concurrent schedules.
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphnocycle.PNG)
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)
