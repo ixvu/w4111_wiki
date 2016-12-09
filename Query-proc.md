@@ -140,6 +140,7 @@ database today has much more complicated statistics information.
 ### Calculations for Accessing a Tuple for the two B+ Trees 
 #### Finding the access cost for a tuple in a Primary B+ Tree 
 + Because the leaf pages of a primary B+ tree are data pages, access cost is Height(access leaf page) + 1 (from data page access tuple)
+
 #### Finding the access cost for  a tuple in a Secondary B+ Tree
 + Because the leaf pages of a secondary B+ tree are directory pages, access cost for is Height (access leaf page) + 1(from directory page access data page) + 1 (from data page access tuple)
 
