@@ -19,15 +19,16 @@ List of contributors and contributions
   1. Added Access Path Selection Calculation
   1. Added Midterm 2 Study Guide
 * David Kuhta (dk2723)
-  1. L2 - Converted table images to markdown tables, added dblp link
-  1. Scribed L5 and formatted to align with Lecture 4
-  2. Added Links for ER Modeling tools
-  3. Scribed "Playing With Constraint" Livecoding Session from Lecture 5
-  5. Added sidebar to simplify moving between pages.
-  8. Revised first half of SQL, formatted answers to dropdown format.
-  13. Reformatted midterm review with dropdowns and syntax highlighted SQL 
-  21. Added first half of Lecture 6
-  34. Reviewed and revised midterm 2, added the join link walkthrough (on separate page)
+  1. [[L2 - Converted table images to markdown tables| https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#keys]], added [[dblp | https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#inconsistenciesconstraint-violations]] link
+  1. [[Scribed L5 | https://github.com/w4111/scribenotes/wiki/Relational-Model]] and formatted to align with Lecture 4
+  2. Added Links for [[ER Modeling tools | https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs]]
+  3. Scribed [["Playing With Constraints"Livecoding Session | https://github.com/w4111/scribenotes/wiki/Livecode---Playing-With-Constraints]] from Lecture 5
+  5. Added (and maintained) [[sidebar | https://github.com/w4111/scribenotes/wiki/_sidebar.md/_edit]] to simplify moving between pages.
+  8. Revised [[Lecture 7 & 8 | https://github.com/w4111/scribenotes/wiki/SQL]] implemented questions (in dropdown format).
+  13. Review, Formatting, and Content to [[Midterm Review 1 | https://github.com/w4111/scribenotes/wiki/Midterm-Study-Guide]] to facilitate its use as a study aid 
+  21. Scribed first half of [[Lecture 6 | https://github.com/w4111/scribenotes/wiki/Relational-Model]]
+  34. Review and Formatting for [[Midterm Review 2 | https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide]]
+  55. Scribed detailed [[Join Problem Walkthrough | https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs]] (linked separately in Midterm 2 Review) 
 * Yuedong Wang (yw2931)
   1. Primarily Scribed [Infrastructure (first version](https://github.com/w4111/scribenotes/wiki/Infrastructure), and was edited by anantb)
   1. Primarily Scribed [ER Modeling (detailed version)](https://github.com/w4111/scribenotes/wiki/Entity-Relationship-Modeling#entity-relationship-modeling-detailed-version).
