@@ -364,6 +364,11 @@ A concurrent schedule is "correct" if the results are the same as those of a ser
        * Growing phase: acquire locks   
        * Shrinking phase: release locks. But HOLD ON locks until commit/abort.  
 
+* Overall relationships diagram
+  * Below is a diagram showing the relations of transactions that we learned so far.
+![](https://cloud.githubusercontent.com/assets/17611263/21064322/2c2c6334-be28-11e6-8c62-79006e1d8ba7.png)
+
+
 # Recovery  
 * Logging
     * Write Ahead Logging (WAL)  
