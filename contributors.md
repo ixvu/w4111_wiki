@@ -118,7 +118,7 @@ List of contributors and contributions
 * Bryce Yoo (shy2116)
   1. Scribed Lecture 20: Physical Design
   2. Addressed all suggestions made by the professor. 
-* Zehao Song (zs2324)
+* Zehao Song (uni: zs2324 github:tsszh)
   1. Normalization: Add more examples for [3NF decomposition](https://github.com/w4111/scribenotes/wiki/Normalization#decomposing-into-3nf)
   2. Revise Final Review. Add more examples for Secondary B+-tree and hash index
 * Wonchang Chung (wc2550 as totuta)
