@@ -176,4 +176,5 @@ List of contributors and contributions
 * Hooshmand Shokri Razaghi(hs2703 as hooshmandshr)
    1. Code for solving FD full closure, minimum cover, candidate keys
 (https://github.com/w4111/scribenotes/wiki/Normalization#code-for-solving-fd-full-closure-minimum-cover-and-finding-candidate-keys)
+(https://www.instabase.com/hooshmand68/comsw4111Normalization/fs/Instabase%20Drive/main.ipynb)
    
