@@ -175,8 +175,40 @@ Starting with ACD->B, we know that it is redundant because we have D->G, and CG-
 
 We also got rid of CG->D and CE->A. CG->D is redundant because we have CG->B, and BC->D. We can substitute CG for B to get CG->D. 
 
-CE->A is redundant because we have C->A in the set F already, and we can get CE->A through augmentation. 
+CE->A is redundant because we have C->A in the set F already, and we can get CE->A through augmentation to get CE->AE, and then we can split the dependencies to get CE->A and CE->E. These are both redundant.
 
 ## Finding closure of functional dependency
 
+Assume the relation R(A, B, C, D) and the following functional dependencies:
+
+A->B, B->C
+
+Then, to get the closure of F (we'll call it F+), 
+
 ## 3NF Decomposition
+
+Consider the relation R(A, B, C, D, E), and the following functional dependencies:
+
+AB->C
+
+C->D
+
+D->B
+
+D->E
+
+First, let's find a BCNF decomposition. 
+
+We get ABC, CD, BDE
+
+The dependencies are interestingly enough already in their minimum cover. There are no redundancies to get rid of, and if we tried to simplify any of the dependencies, we would lose some of the dependencies altogether. 
+
+Now we can decompose into 3NF:
+
+For every functional dependency, check to see if they exist in any of the relations in the BCNF decomposition. We have AB->C, which is in ABC, C->D, which is in CD, D->B and D->E, which are in BDE. Luckily for us, this decomposition is already in 3NF form, and we can see that there is dependency preservation. 3NF guarantees dependency preservation and lossless joins. 
+
+Lastly, remove any redundant tables (any tables with attributes that are a subset of another table). We don't seem to have any redundant tables here, so we're good. 
+
+If the BCNF decomposition had lost some of the functional dependencies (as can happen with BCNF), then we would have had to create a new relation XY for every functional dependency X-Y not in any of the relations yielded from the BCNF decomposition. 
+
+Thus, we have a 3NF decomposition without redundancies!
