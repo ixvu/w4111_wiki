@@ -159,3 +159,7 @@ List of contributors and contributions
 
 * Steven Ulahannan (su2206 as steveula)
   1. Added [tabular method](https://github.com/w4111/scribenotes/wiki/Normalization#4-how-to-use-fds-to-find-keys-tabular-method) to finding keys in a relation using functional dependencies.
+
+* Juwan Hong (jh3831 as juwanhong)
+  1. Updated Midterm 2 Review (https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#transactions) to include transaction section.
+  2. Updated Midterm 2 Review to get the recovery section started.
