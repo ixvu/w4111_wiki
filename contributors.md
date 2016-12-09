@@ -84,7 +84,8 @@ List of contributors and contributions
   1. Scribed Lecture 16 "Normalization" and discussed notes with Prof. Wu on email
   1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
 * Ziyuan Wang (zw2396)
-  1. Scribed ［Lecture 18 "Physical Deisgn"](https://github.com/w4111/scribenotes/wiki/physical-design#lec-18-physical-design）and discussed notes with Prof. Wu on email
+  1. Scribed［Lecture 18 "Physical Deisgn"] (https://github.com/w4111/scribenotes/wiki/physical-design#lec-18-physical-design）
+and discussed notes with Prof. Wu on email
   1. Section include: work from bottom up, % matters, what is disk, how does disk work
   1. Added definition and example from textbook
   1. Scribed [Lecture 21 "Query Processing"] (https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
