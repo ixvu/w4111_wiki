@@ -363,4 +363,18 @@ A concurrent schedule is "correct" if the results are the same as those of a ser
    * Definition: For any conflicting operations O1 of T1 and O2 of T2, O1 always happens before O2 in the schedule or O2 always happens before O1 in the schedule.
    * Reads on reads are OK but any other combination are not. The following diagrams show a simple way to check the conflict serializability of concurrent schedules.
 ![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphnocycle.PNG)
-![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)
+![](https://github.com/harrybari/w4111ScribeNotes/blob/master/newgraphcycle.PNG)  
+
+* Issues with Conflict Serializability  
+   * Not recoverable - when a transaction commits a change before another transaction has a chance to abort.  
+       * T1:`R(A) W(A)`&emsp;&emsp;&emsp;&emsp;`R(B)ABORT`  
+       * T2:&emsp;&emsp;&emsp;&emsp;`R(A)COMMIT`  
+   * Cascading rollback - when a transaction aborts, modifications by other uncommitted transactions are lost  
+       * T1:`R(A) W(B) W(A)`&emsp;&emsp;&emsp;&emsp;`ABORT`  
+       * T2:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`R(A)W(A)`  
+
+* Lock-Based Concurrency Control  
+   * To deal with issues in conflict serializability, lock-based concurrency control is used.
+   * Strict two-phase locking (Strict 2PL): 
+       * Growing phase: acquire locks   
+       * Shrinking phase: release locks. But HOLD ON locks until commit/abort.  
