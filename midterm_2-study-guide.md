@@ -378,3 +378,10 @@ A concurrent schedule is "correct" if the results are the same as those of a ser
    * Strict two-phase locking (Strict 2PL): 
        * Growing phase: acquire locks   
        * Shrinking phase: release locks. But HOLD ON locks until commit/abort.  
+
+* Logging
+    * Write Ahead Logging (WAL)  
+    * Steps:  
+         * Flush log records to disk before data pages persisted  
+         * Persist all log records before commit  
+         * Log is ordered, if record flushed, all previous records must be flushed  
