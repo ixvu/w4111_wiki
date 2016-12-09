@@ -88,7 +88,7 @@ Given the following functional dependencies:
 So (AB)<sup>+</sup> is __ABCDE__ 
  
 </p></details>
-###__Irreducible Set or Canonical Form of Functional Dependencies__  
+###__Irreducible Set or Canonical Form of Functional Dependencies(known as Minimum Cover in this course) __  
 
 Used to determine if an attribute of a functional dependency is extraneous.  An attribute is said to be extraneous if we can remove it without changing the closure of the set of functional dependencies.  
   
@@ -100,7 +100,7 @@ And the following functional dependencies:
 3. Y → WXZ  
 
 <details> 
-  <summary>Step 1: Apply Decomposition Rule</summary><br /><p>
+  <summary>Step 1: Turn FDs into standard form: split FDs so there is one attribute on the right side.</summary><br /><p>
 This means that you perform the following decomposition:  
   
 &alpha; → &beta;&gamma;  
@@ -118,55 +118,40 @@ So we end up with the following:
 
 </p></details>
 <details>
-  <summary>Step 2: Determine if any of the FD are redundant.</summary><br /><p> 
-We do this by determining the closure of each attribute along with testing each of the FD one at a time to see if they are redundant as shown:  
-  
-Using FD number 1 compute (X)<sup>+</sup>  
+  <summary>Step 2: Minimize left side of each FD: for each FD, check if can delete a left attribute using another FD.</summary><br /><p> 
+WZ is the potential candidate for reduction here.
+Now, check if there is any FD that left-side including W that determines Z or left-side including Z that determines W.
+In this case, neither of these FDs exsits, so no deleting can be make here.
+But if, for example, Z → W exists, we could reduce WZ → X to Z → X and WZ → Y to Z → Y.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X<sup>+</sup>=XW  
-
-Now compute (X)<sup>+</sup> again except this time do not consider FD number 1.  If you can still find (X)<sup>+</sup> without FD number 1 then this FD is redundant.  
-
-(X)<sup>+</sup> without FD number 1:  
+So in this step, we end up with the same as above:  
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X<sup>+</sup>=X  
-  
-This proves that FD number 1 is necessary and is not redundant.  
-  
-Using FD number 2 compute (WZ)<sup>+</sup>  
-  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WZ<sup>+</sup>=WZXY  
-  
-So it shows that with (WZ)<sup>+</sup> all attributes can be found.  
-  
-Now compute (WZ)<sup>+</sup> again except this time do not consider FD number 2.  If you can still find (WZ)<sup>+</sup> without FD number 2 then this FD is redundant.  
-  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WZ<sup>+</sup>=WZYX  
-  
-We see that we can find WZ<sup>+</sup> without FD number 2.  FD number 2 is therefore redundant.  
-  
-Continuing with this process allows to determing that there are only four of the original six FD that are required to find all attributes.  They are:  
-  
-1. X → W   
-2. WZ → Y  
-3. Y → X  
-4. Y → Z
+1. X → W  
+2. WZ → X  
+3. WZ → Y  
+4. Y → W  
+5. Y → X  
+6. Y → Z
 
 </p></details>
 <details> 
-  <summary>Step 3: Determine if any of the FD with more than one attribute on the left hand side contain any attributes that are unnecessary in determining the closure of the particular FD.</summary><br /><p>   
-In our example, we have only one FD to consider - FD number 2:  
-  
-2) WZ → Y  
+  <summary>Step 3: Delete redundant FDs: check each remaining FD and see if it can be deleted.</summary><br /><p>   
+Y → W implied by Y → X and X → W, 
 
-We compare the closure of WZ<sup>+</sup> with the closure of W<sup>+</sup> and Z<sup>+</sup> to see if either of the left hand side attributes alone can find the full closure WZ<sup>+</sup>.  If either of them can, then the other attribute can be discarded.  
+WZ → X implied by WZ → Y and Y → X
+
+So we end up with the following:
+
+1. X → W   
+3. WZ → Y  
+5. Y → X  
+6. Y → Z
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WZ<sup>+</sup>=WZYX&nbsp;&nbsp;&nbsp;found by FD 2 and FD 3  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W<sup>+</sup>=W  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z<sup>+</sup>=Z  
-  
-So in this example, if W<sup>+</sup> had found the same closure as WZ<sup>+</sup>, then attribute Z would have been redundant.  If  Z<sup>+</sup> had found the same closure as WZ<sup>+</sup>, the attribute W would have been redundant.  But as we see, neither attribute alone was able to find the full closure of WZ<sup>+</sup>, so both left hand attributes of FD 2 are required.  
+
 </p></details>
+
+IMPORTANT: Step 2 must happen before 3!!!
+
 ###__Finding Candidate Keys__  
 <details> 
   <summary>Summary</summary><br /><p> 
