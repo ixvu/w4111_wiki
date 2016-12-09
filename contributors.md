@@ -125,11 +125,11 @@ List of contributors and contributions
 * Wonchang Chung (wc2550 as totuta)
   1. Added *More Notes* at the end of Transactions scribe notes
 * Hao Xu (hx2208 as xu568)
-  1. Add more tips on using instabase through my experiences in the whole semester.
+  1. Add more tips on using [instabase](https://github.com/w4111/scribenotes/wiki/Infrastructure) through my experiences in the whole semester.
     1. Try to avoid creating new temp table, use with instead.
     2. Try to avoid printing the whole dataset in instabase.
     3. Tip on unexpected situations. 
-  2. fix a minor error in recovery scribe note. That's where I used the concept mentioned by that note in exam but lost point.
+  2. fix a minor error in [recovery](https://github.com/w4111/scribenotes/wiki/Recovery#Summary) scribe note. That's where I used the concept mentioned by that note in exam but lost point.
 * Jiamin Huang (jh3768 as github: jh3768)
   1. Added more materials to the introduction of this class (I feel it is helpful for people who are going to take this class or want to know what this class is about to look at) [Intro to db](https://github.com/w4111/scribenotes/wiki/intro#what-is-a-database-system)
   2. Revised the Join Problem and corrected factual errors in the notes [Join Problem](https://github.com/w4111/scribenotes/wiki/Join-Problem-Walkthroughs)
