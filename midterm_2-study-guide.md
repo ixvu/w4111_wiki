@@ -88,7 +88,7 @@ Given the following functional dependencies:
 So (AB)<sup>+</sup> is __ABCDE__ 
  
 </p></details>
-###__Irreducible Set or Canonical Form of Functional Dependencies(known as Minimum Cover in this course) __  
+###__Irreducible Set or Canonical Form of Functional Dependencies (known as Minimum Cover in this course)__  
 
 Used to determine if an attribute of a functional dependency is extraneous.  An attribute is said to be extraneous if we can remove it without changing the closure of the set of functional dependencies.  
   
