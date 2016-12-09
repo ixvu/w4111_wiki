@@ -18,8 +18,10 @@ The page contains instructions and tips for infrastructure used in this course, 
  
 1. Google Chrome is the recommended browser for [Instabase](https://www.instabase.com).
 
-1. When doing query in instabase, use WITH clause instead of using SELECT... INTO ... to create new tables. SELECT... INTO ... would create a real physical table, which means you need to keep changing the name of table until you get your query right.
+1. When doing query in instabase, use WITH clause instead of using SELECT... INTO ... to create new tables. SELECT... INTO ... would create a real physical table, which means you need to keep changing the name of table until you get your query right.  
 
 1. Try to avoid querying like SELECT * FROM... ; if you just want to know how the dataset looks like, since this kind of action would take a long time and could slow down other people's query as well. Use limit 1 if you just want to take a look at the data. Use count(*) if you want to know how large is the dataset. Most of time you do not need to print all the dataset.
 
-1. When instabase is not working as expected, try refreshing and restart the code from the very beginning. 
+1. When instabase is not working as expected, try refreshing and restart the code from the very beginning.
+
+1. Instabase has updates around 2am [PST] every weekend. 
