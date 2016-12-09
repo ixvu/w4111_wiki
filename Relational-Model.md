@@ -324,6 +324,7 @@ Application dependent difference between `PRIMARY KEY (uid, cid)` and `PRIMARY K
 
 Strict translation of relationship set implies only one instance of each relation "pair" and corresponds to a primary key composed of the foreign keys.
 
+
 ## "At Most One" to Relation
 <img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_most_one_set.png" width="600">  
 1. Add keys for each entity set as foreign keys: _superkey_  
@@ -372,6 +373,30 @@ uid int NOT NULL
 FOREIGN KEY (uid) REFERENCES Users ON DELETE NO ACTION
 ```
 ***
+## "Exactly One" to Relation
+<img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_most_one_set.png" width="600"> 
+Exactly one is very similar to At Most One - simply add the **NOT NULL** constraint to the primary key of the entity with the exactly one constraint.
+### Corollary: "Pairwise Exactly One" Relation
+What if each course had exactly one instructor and each user taught exactly one course?
+
+Assuming a simplified ER diagram where table Users has one attribute uid, and table Courses has one attribute cid
+(basically, there is no need to combine tables for this example), this can be represented as the following:
+  
+```sql
+CREATE TABLE Instructs(
+   uid int UNIQUE NOT NULL,
+   cid int,
+   PRIMARY KEY (cid),
+)
+```
+The **UNIQUE** constraint is necessary because of the pairwise "Exactly One", which implies that both cid and uid must not have duplicates. 
+
+If we did not add the **UNIQUE** constraint, this faulty insertion of values would be allowed.
+(uid,cid)
+(1,1)
+(1,2)
+
+As seen, this violates the ER diagram, which specifies that a user has exactly one course. 
 
 ## At Least One Constraint
 <img src="https://github.com/davidkuhta/scribenotes/blob/master/images/at_least_one_relationship.png" width="600">  
