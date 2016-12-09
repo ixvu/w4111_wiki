@@ -170,5 +170,5 @@ List of contributors and contributions
   2. Added a relation diagram for [transactions](https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#transactions) in Midterm2 Review.
 
 * Kellie Lu(krl2130 as kellielu)
-1. Added subsection **Calculations for Accessing a Tuple** in Query Processing https://github.com/w4111/scribenotes/wiki/Query-proc#calculations-for-accessing-a-tuple-for-the-two-b-trees
-2. Added entire section **Additional Notes on Set Division** in Relational Algebra (https://github.com/w4111/scribenotes/wiki/Relational-Algebra#additional-notes-on-set-division) 
+   1. Added subsection **Calculations for Accessing a Tuple** in Query Processing https://github.com/w4111/scribenotes/wiki/Query-proc#calculations-for-accessing-a-tuple-for-the-two-b-trees
+   2. Added entire section **Additional Notes on Set Division** in Relational Algebra (https://github.com/w4111/scribenotes/wiki/Relational-Algebra#additional-notes-on-set-division) 
