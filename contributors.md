@@ -172,6 +172,8 @@ List of contributors and contributions
 * Kellie Lu(krl2130 as kellielu)
    1. Added subsection **Calculations for Accessing a Tuple** in Query Processing https://github.com/w4111/scribenotes/wiki/Query-proc#calculations-for-accessing-a-tuple-for-the-two-b-trees
    2. Added entire section **Additional Notes on Set Division** in Relational Algebra (https://github.com/w4111/scribenotes/wiki/Relational-Algebra#additional-notes-on-set-division) 
+   3. Added section **Exactly One Relation** in Relational Model
+https://github.com/w4111/scribenotes/wiki/Relational-Model#exactly-one-to-relation
 
 * Hooshmand Shokri Razaghi(hs2703 as hooshmandshr)
    1. Code for solving FD full closure, minimum cover, candidate keys
