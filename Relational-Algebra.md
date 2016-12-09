@@ -251,14 +251,15 @@ For example,
 + π <sub>a1</sub>(  A / B ) will not yield the same results as A1 / B. 
 
 #### Explanation
-Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
-For table A1, this means A1(x,a1)/B(x) will yield a table C(a1) with every value a1 that has every x in B. 
+###### Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
 
-However, for table A, this means π<sub>a1</sub>( A/B ) will yield a table C(a1) with the a1 value from every pair (a1,a2) that has every x in B. 
+* For table A1, this means A1(x,a1)/B(x) will yield a table C(a1) with every value a1 that has every x in B. 
 
-Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being in A1/B but excluded from the result of π <sub>a1</sub>(  A / B ).
+* However, for table A, this means π<sub>a1</sub>( A/B ) will yield a table C(a1) with the a1 value from every pair (a1,a2) that has every x in B. 
 
-So to obtain the correct value for division, perform necessary projections on the divisor and dividend tables before executing the division. 
+* Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being in A1/B but excluded from the result of π <sub>a1</sub>(  A / B ).
+
+####### So to obtain the correct value for division, perform necessary projections on the divisor and dividend tables before executing the division. 
 
 ##More Examples
 Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
