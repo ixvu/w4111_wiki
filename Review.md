@@ -183,7 +183,13 @@ Assume the relation R(A, B, C, D) and the following functional dependencies:
 
 A->B, B->C
 
-Then, to get the closure of F (we'll call it F+), 
+Then, to get the nontrivial closure of F (we'll call it F+), we apply Armstrong's axioms.
+
+* From A->B, B->C, we can get A->C
+
+* Using augmentation, we can get AD->B, BD->C, AD->C. Note that augmenting C to both side of A->B leads to redundancies because we have A->C, and augmenting B to both sides of A->C leads to redundancies because of A->B. 
+
+Thus, our final closure is A->C, AD->B, BD->C, AD->C
 
 ## 3NF Decomposition
 
