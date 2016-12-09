@@ -229,7 +229,7 @@ A/R3
 ## Additional Notes on Set Division
 ###Division can be thought of in relation to the Cross Product
 If A / B = C, B X C is a subset of A 
-####Explanation and Example
+#####Explanation and Example
 From the above example, 
 * C(name), or A/B can be thought of as "all students who have reserved all books"
 * B(bid) is the set of all books 
@@ -247,15 +247,16 @@ In SQL queries, division A ( name, bid) / B(bid) is implemented using double neg
 The number of attributes in the tables used by division matter in obtaining the correct result of division. 
 For example, 
 + Let there be tables A(x, a1, a2) and B(x). 
-+ Let A1 \pi <sub>x,a1</sub>(A)
-+ \pi <sub>a1</sub>(A / B) will not yield the same results as A1 / B. 
++ Let A1 = π <sub>x,a1</sub>(A) 
++ π <sub>a1</sub>(  A(x,a1,a2) / B(x) ) will not yield the same results as A1(x,a1) / B(x). 
 
 #### Explanation
 Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
-For table A1, this means A1/B will yield every a1 that has every x in B. 
-However, for table A, this means A/B will yield every pair (a1,a2) that has every x in B. 
+For table A1, this means A1(x,a1)/B(x) will yield a table C(a1) with every value a1 that has every x in B. 
 
-Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being excluded from the result of $\pi${\substack{a1}}A / B. 
+However, for table A, this means π<sub>a1</sub>( A(x,a1,a2)/B(x) ) will yield a table C(a1) with every pair (a1,a2) that has every x in B. 
+
+Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being excluded from the result of π <sub>a1</sub>(  A(x,a1,a2) / B(x) ).
 
 ##More Examples
 Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
