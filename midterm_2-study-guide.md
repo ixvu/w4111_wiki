@@ -336,12 +336,12 @@ __Durability__ - this property states that changes made by a transaction must be
     5. ABORT (unsuccessful transaction due to error)
 
 * Serial Schedule  
-   *T1: `begin R(A) R(B) W(A) W(B) COMMIT`  
-   *T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;`begin R(A) W(A) W(B) R(B) COMMIT`  
+   * T1: `begin R(A) R(B) W(A) W(B) COMMIT`  
+   * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;`begin R(A) W(A) W(B) R(B) COMMIT`  
 
 * Concurrent Schedule
 A concurrent schedule is "correct" if the results are the same as those of a serial schedule.  
-* Example:
+  * Example of correct concurrent:
     * Consider the following logical exacts (where initially A = B = 0): 
         * A = A + 1; B = A + 1
         * A = A + 10; B = B + 1
@@ -349,3 +349,6 @@ A concurrent schedule is "correct" if the results are the same as those of a ser
         * T1: `begin` `r(A) w(A)` `r(A) w(B)` `commit`
         * T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; `begin` `r(A) w(A)` `r(B) w(B)` `commit`
         * After this schedule: A = 11, B = 3
+    * This concurrent schedule is correct
+        * T1: `begin` `r(A) w(A)` &emsp;&emsp;&ensp; `r(A) w(B)` `commit`
+        * T2: `begin` &emsp;&emsp;&emsp;&emsp;&ensp; `r(A)` &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; `w(A) r(B) w(B)` `commit`
