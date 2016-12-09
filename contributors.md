@@ -110,7 +110,7 @@ List of contributors and contributions
   2. Primary lecture 17, normalization part 2 (https://github.com/w4111/scribenotes/wiki/Normalization#3rd-normal-form-3nf) (sections include everything from 3NF and formalization of normal forms, up to but not including practice problem and strategy to find minimal cover https://github.com/w4111/scribenotes/wiki/Normalization#practice-problem-and-strategy-to-find-minimal-cover), added examples
   3. 
 * Louise Zhou (githubusername: xz2581; UNI: xz2581)
-  1. Primary Scribe for [Query Processing LEC 21](https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
+  1. Primary Scribe for [Query Processing LECTURE 21](https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
      1. Added examples for primary and secondary Btree index, Selinger optimizer (A join B join C join D)
 * Shengyang Zhang (sz2624)
