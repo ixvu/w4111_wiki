@@ -589,3 +589,5 @@ strategy: do it one FD at a time, pretend if it does not exist and see if we can
 ```
 
 
+## Code for solving FD full closure, minimum cover and finding candidate keys
+https://www.instabase.com/hooshmand68/comsw4111Normalization/fs/Instabase%20Drive/main.ipynb
