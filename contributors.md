@@ -48,8 +48,9 @@ List of contributors and contributions
   1. Primarily Scribed [Lecture 8 Relational Algebra](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
   1. Sections include: Primarily Scribed [1.Recap: Join 2.Examples of Set Division 3.How to Express Set Division 4.More Examples](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
 * Sheryl Ann Zamora Binarao Crespo (szc2103)
-  1. Scribed Lecture 8 Relational Algebra
-  1. Sections include: 1. Set Difference and Performance 2.Relational Operator: Set Division 3.Why learn relational algebra
+  1. Primary scribe: Lecture 8 Relational Algebra [Lecture 8 Relational Algebra](https://github.com/w4111/scribenotes/wiki/Relational-Algebra#recap-joins)
+  2. Sections include: 1. Set Difference and Performance 2.Relational Operator: Set Division 3.Why learn relational algebra
+  3. Added images for Relational Algebra section. 
 * Ching-Hui Hsu (ch3230)
   1. Primary Scribed Lecture 9 [SQL](https://github.com/w4111/scribenotes/wiki/SQL)
   1. Include: 1. SQL Semantics 2. SQL Query Examples 3. supply detailed explanation for query statement/expression.
