@@ -325,3 +325,16 @@ __Isolation__ - ensures that concurrent execution results in a system state that
 __Durability__ - this property states that changes made by a transaction must be permanent.  The changes must __NOT__ be due to a database failure.  This property is the responsibility of the Recovery Manager.  
 
 # [[Join Problem Walkthroughs|join-problem-walkthroughs]]
+
+
+# Transactions
+* A transaction is a sequence of actions. Actions are :
+    1. READ
+    2. WRITE
+    3. BEGIN
+    4. COMMIT (successful end of transaction)
+    5. ABORT (unsuccessful transaction due to error)
+
+* Serial Schedule
+   -T1: R(A) R(B) W(A) W(B) COMMIT
+   -T2:                             R(A) W(A) W(B) R(B) COMMIT
