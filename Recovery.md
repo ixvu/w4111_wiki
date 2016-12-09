@@ -142,8 +142,11 @@ We need to know what kind of guarantee that we need to make things work.
 ## Examples
 
 1. Example 1:
+
 **Given the Redo log and current disk state. Reconstruct the state of database after recovery:**
+
 Redo Log:
+```
 transaction          operation
           A          w=50
           B          y=60
@@ -153,26 +156,32 @@ transaction          operation
           C          y=90
           A          w=100
           C          COMMIT
-
+```
 On disk state:
+```
 item_id        value
       w        1
       x        2
       y        3
       z        4
-
+```
 In the log file, we can see that only transaction B and C committed, therefore, we need to redo operations did by transaction B and C. Therefore, y firstly was assigned a value 60 and then modified by C to 90. So y should have value 90. Transaction C also assign x a value 70. Therefore, the disk state after reconstruction should be:
 
+```
 item_id        value
       w        1
       x        70
       y        90
       z        4
+```
 
 2. Example 2:
+
 **Given the following log writes, decide whether those writes guarantee correct recovery after a crash at any time:**
 
 1). 
+
+```
 1. BEGIN;
 2. Write(A)
 3. Write(B)
@@ -182,14 +191,18 @@ item_id        value
 7. flush B to disk
 9. flush log record for COMMIT to disk
 10 COMMIT;
+```
 
 This sequence of operations guarantee correct recovery after a crash at any time. Every time it write data to disk, the log record for that record is already in the disk. eg. Before flushing A to disk, we already have flushed a log for write(A) into disk, which makes sure that it can be recovered. This sequence of operations actually strictly follows the write ahead protocol mentioned during the lecture, which ensures the recovery of data after a crash at any time.
 
 2). 
+
+```
 1. write A
 2. flush A
 3. flush log record for "Write A"
 4. flush log record for "COMMIT"
 5. COMMIT
+```
 
 This sequence of operations cannot guarantee correct recovery after a crash at any time. Since if we have a crash after step 2, the transaction does not actually committed and any operations should be redone, however, we cannot find the log of Write A, since we have not flush the log into the disk yet. So if there is a crush after 2, the system could go wrong.
