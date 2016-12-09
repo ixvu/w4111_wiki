@@ -31,6 +31,10 @@ B: number of pages; M: number of pages matched in WHERE clause.
 +    Pipeline Execution: Read a page from offers and pass to selection. As selection looks for tuples in the page that satisfy the predicate, can read the next page from offers. Similarly, pass valid pages to projection, and as projection returns value of projected attributes, selection can look for tuples in the page that satisfy the predicate.
 
 ### Condition 2: Data is indexed as hash table.
+ Treat data pages as buckets
+  + One primary bucket and possibly overflow buckets.
+  + A hashing function maps a key value into the bucket number where the data entry is stored .
+
 It is only applicable for equalities.
 +    Example query: 
     +    SELECT a FROM R WHERE a>10. 
@@ -38,8 +42,13 @@ It is only applicable for equalities.
     +    each page has 10 tuples, 
     +    each page has 100 directory entries. 
     +    Assume uniform distribution with ‘a’ ranging from 0 to 100. 
-+    Need to go over all pages since hash table only supports equality. Cost: 10K pages.
-
++    Need to go over all pages since hash table only supports equality. Cost: 10K pages
+￼￼￼￼￼￼￼
+### Querying And Performance
++ Because buckets are indexed by this hashed key value, searching on this value is very efficient
+  + Since the number of buckets in a hashing file is known when the file is created, the primary pages can be stored on successive disk pages. Hence, a search ideally requires just one disk I/O, and insert and delete operations require two I/Os (read and write the page)
+    + Cost could be higher in the presence of overflow pages.
+   
 ### Condition 3: Data is indexed as B+ Tree.
 It uses index to find all record, identify first index page and number of pages that matches and pass to projector operator. Cost is reduced to logarithm.
 +    Example query: Same query as previous.
@@ -63,7 +72,7 @@ It uses index to find all record, identify first index page and number of pages 
 Access Path refers to the path chosen by the system to retrieve data after a structured query language (SQL) request is executed. A query may request at least one variable to be filled up with one value or more.
 
 ### Index + matching condition
-+    Sequential Scan: doesnt accept condition.
++    Sequential Scan: doesn't accept condition.
 +    Hash Index Search: accept equality conditions on all search keys.
 +    Tree Index Search: accept conditions on prefix of search keys.
 
@@ -72,7 +81,7 @@ Access Path refers to the path chosen by the system to retrieve data after a str
 + Depend on number of data pages: secondary indicies, less than 2%, not worthy to use.
 + Selectivity only for selection operation.
 
-### How to determin/compute selectivity
+### How to determine/compute selectivity
 +    Scan the whole data and multiple, assuming the distribution over all values is uniform.
 +    How many distinct values in a hash table.
 +    Default estimate -- if know nothing else, assume 5%.
@@ -126,8 +135,6 @@ database today has much more complicated statistics information.
 + Leaf page for primary index is data page. It stores the actual tuples.
 + Leaf page for secondary index is directory page. It stores a values with corresponding pointers to the actual tuples.
 
-
-
 ###Assumptions
 + Each page can fit in 8000 bytes of data.
 + An integer costs 8 bytes.
@@ -172,7 +179,7 @@ Which option is faster if we have a B+ tree index on a?
 ##Projection with DISTINCT clause
 need to de-duplicate e.g., π</sub>rating<sub> Sailors
 						
-basic approaches
+Basic approaches
 
 + 1. Sort: fundamental database operation
   + sort on rating, remove duplicates by scanning sorted data
