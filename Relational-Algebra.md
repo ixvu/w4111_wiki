@@ -231,17 +231,44 @@ A/R3
 If A / B = C, B X C is a subset of A 
 #####Explanation and Example
 From the above example, 
-* C(name), or A/B can be thought of as "all students who have reserved all books"
+* C(sid), or A/B can be thought of as "all students who have reserved all books"
 * B(bid) is the set of all books 
-* A (name,bid) is the set of all reservations
+* A (sid,bid) is the set of all reservations
 
 Thus, 
 * B X C yields the set of reservations that have been made by "all students who have reserved all books", a subset of A
 Following, if every student in A had reserved all books in B, then A / B = C and B x C = A. 
 
 ### Division as an SQL Query follows the principle of double negation 
-In SQL queries, division A ( name, bid) / B(bid) is implemented using double negation. 
-![]()
+In SQL queries, division A (sid, bid) / B(bid) is implemented using double negation. 
+
+#### SQL Query for above division example
+Division is usually implemented as a nested query using **NOT IN** and **NOT EXISTS** operators. 
+
+#### Example of Division in SQL
+Given A(sid) is a table of students. 
+Given B(bid) is a table of books.
+Given C(sid,bid) is a table of student reservations of books. 
+
+Find C/B, or all students that have reserved all books. 
+```
+SELECT A.sid
+FROM A 
+WHERE NOT EXISTS(
+     SELECT B.bid 
+     FROM B
+     WHERE b.bid NOT IN (
+          SELECT C.bid
+          FROM C
+          WHERE C.sid = A.sid
+     )
+)
+```
+
+This query can be explained from the *innermost* loop to the *outermost* loop - 
+* 3 = Select all the books that the student has reserved
+* 2 = Selected all the books that the student has not reserved
+* 1 = Select students where (query 2) returns empty, or where there are  no books that the student hasn't reserved
 
 ### Division is affected by the number of attributes used in both the divisor and dividend
 The number of attributes in the tables used by division matter in obtaining the correct result of division. 
@@ -251,7 +278,7 @@ For example,
 + π <sub>a1</sub>(  A / B ) will not yield the same results as A1 / B. 
 
 #### Explanation
-** Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B.**
+**Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B.**
 
 * For table A1, this means A1(x,a1)/B(x) will yield a table C(a1) with every value a1 that has every x in B. 
 
@@ -259,7 +286,7 @@ For example,
 
  *Following, even though a value of a1 may contain every x in B and be in A1/B, a pair of (a1,a2) may not contain every x in B, and may result in that a1 value being in A1/B but excluded from the result of π <sub>a1</sub>(  A / B ).*
 
-** So to obtain the correct value for division, perform necessary projections on the divisor and dividend tables before executing the division. **
+**So to obtain the correct value for division, perform necessary projections on the divisor and dividend tables before executing the division.**
 
 ##More Examples
 Tables: Book(rid, type) Reserve(sid,rid) Students(sid)
