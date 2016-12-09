@@ -163,3 +163,7 @@ List of contributors and contributions
 * Juwan Hong (jh3831 as juwanhong)
   1. Updated Midterm 2 Review (https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#transactions) to include transaction section.
   2. Updated Midterm 2 Review to get the recovery section started.
+
+* Yaqing Wang (yw2902 as Lynnnnnnn0)
+  1. Revised the Minimum Cover example and corrected factual errors in the notes in [Midterm 2 Review] (https://github.com/w4111/scribenotes/wiki/midterm_2-study-guide#irreducible-set-or-canonical-form-of-functional-dependencies-known-as-minimum-cover-in-this-course)
+    1. Step 2 must come before step 3, instead of the other way around stated as before
