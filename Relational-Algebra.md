@@ -247,8 +247,8 @@ In SQL queries, division A ( name, bid) / B(bid) is implemented using double neg
 The number of attributes in the tables used by division matter in obtaining the correct result of division. 
 For example, 
 + Let there be tables A(x, a1, a2) and B(x). 
-+ Let A1 \Pi<sub>x,a1</sub>(A)
-+ \Pi<sub>a1<\sub>(A / B) will not yield the same results as A1 / B. 
++ Let A1 $\Pi$ <sub>x,a1</sub>(A)
++ $\Pi$ <sub>a1</sub>(A / B) will not yield the same results as A1 / B. 
 #### Explanation
 Given tables A(x, a1,a2,...an) and B(x), then A / B finds all instances of (a1,a2..an) that contain every x in B. 
 For table A1, this means A1/B will yield every a1 that has every x in B. 
