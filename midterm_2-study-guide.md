@@ -336,5 +336,5 @@ __Durability__ - this property states that changes made by a transaction must be
     5. ABORT (unsuccessful transaction due to error)
 
 * Serial Schedule
-   *T1: `begin R(A) R(B) W(A) W(B) COMMIT`
-   *T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;`R(A) W(A) W(B) R(B) COMMIT`
+   **T1: `begin R(A) R(B) W(A) W(B) COMMIT`**
+   **T2: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;`R(A) W(A) W(B) R(B) COMMIT`**
