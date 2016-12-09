@@ -84,12 +84,12 @@ List of contributors and contributions
   1. Scribed Lecture 16 "Normalization" and discussed notes with Prof. Wu on email
   1. Added SQL code for the schema of "manage-donate" example in "Relational Model"
 * Ziyuan Wang (zw2396)
-  1. Scribed Lecture 18 "Physical Deisgn" and discussed notes with Prof. Wu on email
+  1. Scribed ［Lecture 18 "Physical Deisgn"］（https://github.com/w4111/scribenotes/wiki/physical-design#lec-18-physical-design） and discussed notes with Prof. Wu on email
   1. Section include: work from bottom up, % matters, what is disk, how does disk work
   1. Added definition and example from textbook
-  1. Scribed Lecture 21 "Query Processing"
+  1. Scribed [Lecture 21 "Query Processing"] (https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
   1. Section include:What Optimization Options Do We Have?Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
-  1. Added blackboard Join example.
+  1. Added [blackboard Join example](https://github.com/w4111/scribenotes/wiki/Query-proc#optimizing-single-join-example).
 * Jisong Liu (jl4819)
   1. Primary Scribe for [Physical Deisgn - Indexing Continued(lecture20)](https://github.com/w4111/scribenotes/wiki/physical-design) and discussed notes with Prof. Wu on Office time.
   1. section include: the using of index, different types of index (hash index, B-tree index), the comparison between different types of physical design on their time complexity of some common operators.
