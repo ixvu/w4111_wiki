@@ -112,7 +112,7 @@ List of contributors and contributions
 * Louise Zhou (githubusername: xz2581; UNI: xz2581)
   1. Primary Scribe for [Query Processing LECTURE 21](https://github.com/w4111/scribenotes/wiki/Query-proc#lec-21)
      1. Section include: What Optimization Options Do We Have? Predicate Push Down,Projection with DISTINCT clause,The Join,Nested Loops Join,Selinger Optimizer,Cost estimation, Estimate size of output, Join plan space.
-     1. Added examples for primary and secondary Btree index, Selinger optimizer (A join B join C join D)
+     1. Added examples for [primary and secondary Btree index](https://github.com/w4111/scribenotes/wiki/Query-proc#primary-index-and-secondary-index-example), [Selinger optimizer](https://github.com/w4111/scribenotes/wiki/Query-proc#selinger-optimizer-example-axbxcxd), [Join plan space](https://github.com/w4111/scribenotes/wiki/Query-proc#2-join-plan-space)
 * Shengyang Zhang (sz2624)
   1. Scribed Lecture 24: Review part
     1. Section include examples of serializable and access costs problem in many cases.
